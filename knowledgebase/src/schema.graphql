@@ -1,0 +1,3519 @@
+schema {
+    query: QueryType
+    mutation: MutationType
+}
+
+# This directive allows results to be deferred during execution
+directive @defer on FIELD
+# Relationship
+directive @relation on FIELD
+# default value
+directive @defaultValue on FIELD
+# field is unique in type
+directive @isUnique on FIELD
+# entity is a model type
+directive @model on FIELD
+# Cypher query to run
+directive @cypher on FIELD
+# Enable query profiling
+directive @profile on QUERY
+# Enable query explanation
+directive @explain on QUERY
+# Specify Cypher version
+directive @version(
+    # Cypher Version (3.0, 3.1, 3.2)
+    version: String = "3.4"
+) on QUERY
+# Filter Input Type for Author
+input _AuthorFilter {
+    # AND
+    AND: [_AuthorFilter!]
+    # OR
+    OR: [_AuthorFilter!]
+    # first_initial
+    first_initial: String
+    # first_initial_contains
+    first_initial_contains: String
+    # first_initial_ends_with
+    first_initial_ends_with: String
+    # first_initial_gt
+    first_initial_gt: String
+    # first_initial_gte
+    first_initial_gte: String
+    # first_initial_in
+    first_initial_in: [String!]
+    # first_initial_lt
+    first_initial_lt: String
+    # first_initial_lte
+    first_initial_lte: String
+    # first_initial_not
+    first_initial_not: String
+    # first_initial_not_contains
+    first_initial_not_contains: String
+    # first_initial_not_ends_with
+    first_initial_not_ends_with: String
+    # first_initial_not_in
+    first_initial_not_in: [String!]
+    # first_initial_not_starts_with
+    first_initial_not_starts_with: String
+    # first_initial_starts_with
+    first_initial_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _LiteratureReferenceFilter
+    # references_every
+    references_every: _LiteratureReferenceFilter
+    # references_in
+    references_in: _LiteratureReferenceFilter
+    # references_none
+    references_none: _LiteratureReferenceFilter
+    # references_not
+    references_not: _LiteratureReferenceFilter
+    # references_not_in
+    references_not_in: _LiteratureReferenceFilter
+    # references_single
+    references_single: _LiteratureReferenceFilter
+    # references_some
+    references_some: _LiteratureReferenceFilter
+    # surname
+    surname: String
+    # surname_contains
+    surname_contains: String
+    # surname_ends_with
+    surname_ends_with: String
+    # surname_gt
+    surname_gt: String
+    # surname_gte
+    surname_gte: String
+    # surname_in
+    surname_in: [String!]
+    # surname_lt
+    surname_lt: String
+    # surname_lte
+    surname_lte: String
+    # surname_not
+    surname_not: String
+    # surname_not_contains
+    surname_not_contains: String
+    # surname_not_ends_with
+    surname_not_ends_with: String
+    # surname_not_in
+    surname_not_in: [String!]
+    # surname_not_starts_with
+    surname_not_starts_with: String
+    # surname_starts_with
+    surname_starts_with: String
+}
+
+# Ordering Enum for Author
+enum _AuthorOrdering {
+    # Ascending sort for first_initial
+    first_initial_asc
+    # Descending sort for first_initial
+    first_initial_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for surname
+    surname_asc
+    # Descending sort for surname
+    surname_desc
+}
+
+# Filter Input Type for EditableStatement
+input _EditableStatementFilter {
+    # AND
+    AND: [_EditableStatementFilter!]
+    # OR
+    OR: [_EditableStatementFilter!]
+    # deleted
+    deleted: Boolean
+    # deleted_not
+    deleted_not: Boolean
+    # edit_date
+    edit_date: String
+    # edit_date_contains
+    edit_date_contains: String
+    # edit_date_ends_with
+    edit_date_ends_with: String
+    # edit_date_gt
+    edit_date_gt: String
+    # edit_date_gte
+    edit_date_gte: String
+    # edit_date_in
+    edit_date_in: [String!]
+    # edit_date_lt
+    edit_date_lt: String
+    # edit_date_lte
+    edit_date_lte: String
+    # edit_date_not
+    edit_date_not: String
+    # edit_date_not_contains
+    edit_date_not_contains: String
+    # edit_date_not_ends_with
+    edit_date_not_ends_with: String
+    # edit_date_not_in
+    edit_date_not_in: [String!]
+    # edit_date_not_starts_with
+    edit_date_not_starts_with: String
+    # edit_date_starts_with
+    edit_date_starts_with: String
+    # editor
+    editor: _UserFilter
+    # editor_in
+    editor_in: _UserFilter
+    # editor_not
+    editor_not: _UserFilter
+    # editor_not_in
+    editor_not_in: _UserFilter
+    # field
+    field: String
+    # field_contains
+    field_contains: String
+    # field_ends_with
+    field_ends_with: String
+    # field_gt
+    field_gt: String
+    # field_gte
+    field_gte: String
+    # field_in
+    field_in: [String!]
+    # field_lt
+    field_lt: String
+    # field_lte
+    field_lte: String
+    # field_not
+    field_not: String
+    # field_not_contains
+    field_not_contains: String
+    # field_not_ends_with
+    field_not_ends_with: String
+    # field_not_in
+    field_not_in: [String!]
+    # field_not_starts_with
+    field_not_starts_with: String
+    # field_starts_with
+    field_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+    # statement
+    statement: String
+    # statement_contains
+    statement_contains: String
+    # statement_ends_with
+    statement_ends_with: String
+    # statement_gt
+    statement_gt: String
+    # statement_gte
+    statement_gte: String
+    # statement_in
+    statement_in: [String!]
+    # statement_lt
+    statement_lt: String
+    # statement_lte
+    statement_lte: String
+    # statement_not
+    statement_not: String
+    # statement_not_contains
+    statement_not_contains: String
+    # statement_not_ends_with
+    statement_not_ends_with: String
+    # statement_not_in
+    statement_not_in: [String!]
+    # statement_not_starts_with
+    statement_not_starts_with: String
+    # statement_starts_with
+    statement_starts_with: String
+}
+
+# Ordering Enum for EditableStatement
+enum _EditableStatementOrdering {
+    # Ascending sort for deleted
+    deleted_asc
+    # Descending sort for deleted
+    deleted_desc
+    # Ascending sort for edit_date
+    edit_date_asc
+    # Descending sort for edit_date
+    edit_date_desc
+    # Ascending sort for field
+    field_asc
+    # Descending sort for field
+    field_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for statement
+    statement_asc
+    # Descending sort for statement
+    statement_desc
+}
+
+# Filter Input Type for InternetReference
+input _InternetReferenceFilter {
+    # AND
+    AND: [_InternetReferenceFilter!]
+    # OR
+    OR: [_InternetReferenceFilter!]
+    # accessed_date
+    accessed_date: String
+    # accessed_date_contains
+    accessed_date_contains: String
+    # accessed_date_ends_with
+    accessed_date_ends_with: String
+    # accessed_date_gt
+    accessed_date_gt: String
+    # accessed_date_gte
+    accessed_date_gte: String
+    # accessed_date_in
+    accessed_date_in: [String!]
+    # accessed_date_lt
+    accessed_date_lt: String
+    # accessed_date_lte
+    accessed_date_lte: String
+    # accessed_date_not
+    accessed_date_not: String
+    # accessed_date_not_contains
+    accessed_date_not_contains: String
+    # accessed_date_not_ends_with
+    accessed_date_not_ends_with: String
+    # accessed_date_not_in
+    accessed_date_not_in: [String!]
+    # accessed_date_not_starts_with
+    accessed_date_not_starts_with: String
+    # accessed_date_starts_with
+    accessed_date_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # shortReference
+    shortReference: String
+    # shortReference_contains
+    shortReference_contains: String
+    # shortReference_ends_with
+    shortReference_ends_with: String
+    # shortReference_gt
+    shortReference_gt: String
+    # shortReference_gte
+    shortReference_gte: String
+    # shortReference_in
+    shortReference_in: [String!]
+    # shortReference_lt
+    shortReference_lt: String
+    # shortReference_lte
+    shortReference_lte: String
+    # shortReference_not
+    shortReference_not: String
+    # shortReference_not_contains
+    shortReference_not_contains: String
+    # shortReference_not_ends_with
+    shortReference_not_ends_with: String
+    # shortReference_not_in
+    shortReference_not_in: [String!]
+    # shortReference_not_starts_with
+    shortReference_not_starts_with: String
+    # shortReference_starts_with
+    shortReference_starts_with: String
+    # statements_referenced
+    statements_referenced: _StatementWithEvidenceFilter
+    # statements_referenced_every
+    statements_referenced_every: _StatementWithEvidenceFilter
+    # statements_referenced_in
+    statements_referenced_in: _StatementWithEvidenceFilter
+    # statements_referenced_none
+    statements_referenced_none: _StatementWithEvidenceFilter
+    # statements_referenced_not
+    statements_referenced_not: _StatementWithEvidenceFilter
+    # statements_referenced_not_in
+    statements_referenced_not_in: _StatementWithEvidenceFilter
+    # statements_referenced_single
+    statements_referenced_single: _StatementWithEvidenceFilter
+    # statements_referenced_some
+    statements_referenced_some: _StatementWithEvidenceFilter
+    # web_address
+    web_address: String
+    # web_address_contains
+    web_address_contains: String
+    # web_address_ends_with
+    web_address_ends_with: String
+    # web_address_gt
+    web_address_gt: String
+    # web_address_gte
+    web_address_gte: String
+    # web_address_in
+    web_address_in: [String!]
+    # web_address_lt
+    web_address_lt: String
+    # web_address_lte
+    web_address_lte: String
+    # web_address_not
+    web_address_not: String
+    # web_address_not_contains
+    web_address_not_contains: String
+    # web_address_not_ends_with
+    web_address_not_ends_with: String
+    # web_address_not_in
+    web_address_not_in: [String!]
+    # web_address_not_starts_with
+    web_address_not_starts_with: String
+    # web_address_starts_with
+    web_address_starts_with: String
+}
+
+# Ordering Enum for InternetReference
+enum _InternetReferenceOrdering {
+    # Ascending sort for accessed_date
+    accessed_date_asc
+    # Descending sort for accessed_date
+    accessed_date_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for shortReference
+    shortReference_asc
+    # Descending sort for shortReference
+    shortReference_desc
+    # Ascending sort for web_address
+    web_address_asc
+    # Descending sort for web_address
+    web_address_desc
+}
+
+# Filter Input Type for JaxGene
+input _JaxGeneFilter {
+    # AND
+    AND: [_JaxGeneFilter!]
+    # OR
+    OR: [_JaxGeneFilter!]
+    # canonicalTranscript
+    canonicalTranscript: String
+    # canonicalTranscript_contains
+    canonicalTranscript_contains: String
+    # canonicalTranscript_ends_with
+    canonicalTranscript_ends_with: String
+    # canonicalTranscript_gt
+    canonicalTranscript_gt: String
+    # canonicalTranscript_gte
+    canonicalTranscript_gte: String
+    # canonicalTranscript_in
+    canonicalTranscript_in: [String!]
+    # canonicalTranscript_lt
+    canonicalTranscript_lt: String
+    # canonicalTranscript_lte
+    canonicalTranscript_lte: String
+    # canonicalTranscript_not
+    canonicalTranscript_not: String
+    # canonicalTranscript_not_contains
+    canonicalTranscript_not_contains: String
+    # canonicalTranscript_not_ends_with
+    canonicalTranscript_not_ends_with: String
+    # canonicalTranscript_not_in
+    canonicalTranscript_not_in: [String!]
+    # canonicalTranscript_not_starts_with
+    canonicalTranscript_not_starts_with: String
+    # canonicalTranscript_starts_with
+    canonicalTranscript_starts_with: String
+    # chromosome
+    chromosome: String
+    # chromosome_contains
+    chromosome_contains: String
+    # chromosome_ends_with
+    chromosome_ends_with: String
+    # chromosome_gt
+    chromosome_gt: String
+    # chromosome_gte
+    chromosome_gte: String
+    # chromosome_in
+    chromosome_in: [String!]
+    # chromosome_lt
+    chromosome_lt: String
+    # chromosome_lte
+    chromosome_lte: String
+    # chromosome_not
+    chromosome_not: String
+    # chromosome_not_contains
+    chromosome_not_contains: String
+    # chromosome_not_ends_with
+    chromosome_not_ends_with: String
+    # chromosome_not_in
+    chromosome_not_in: [String!]
+    # chromosome_not_starts_with
+    chromosome_not_starts_with: String
+    # chromosome_starts_with
+    chromosome_starts_with: String
+    # description
+    description: _EditableStatementFilter
+    # description_in
+    description_in: _EditableStatementFilter
+    # description_not
+    description_not: _EditableStatementFilter
+    # description_not_in
+    description_not_in: _EditableStatementFilter
+    # entrezId
+    entrezId: String
+    # entrezId_contains
+    entrezId_contains: String
+    # entrezId_ends_with
+    entrezId_ends_with: String
+    # entrezId_gt
+    entrezId_gt: String
+    # entrezId_gte
+    entrezId_gte: String
+    # entrezId_in
+    entrezId_in: [String!]
+    # entrezId_lt
+    entrezId_lt: String
+    # entrezId_lte
+    entrezId_lte: String
+    # entrezId_not
+    entrezId_not: String
+    # entrezId_not_contains
+    entrezId_not_contains: String
+    # entrezId_not_ends_with
+    entrezId_not_ends_with: String
+    # entrezId_not_in
+    entrezId_not_in: [String!]
+    # entrezId_not_starts_with
+    entrezId_not_starts_with: String
+    # entrezId_starts_with
+    entrezId_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # jaxId
+    jaxId: String
+    # jaxId_contains
+    jaxId_contains: String
+    # jaxId_ends_with
+    jaxId_ends_with: String
+    # jaxId_gt
+    jaxId_gt: String
+    # jaxId_gte
+    jaxId_gte: String
+    # jaxId_in
+    jaxId_in: [String!]
+    # jaxId_lt
+    jaxId_lt: String
+    # jaxId_lte
+    jaxId_lte: String
+    # jaxId_not
+    jaxId_not: String
+    # jaxId_not_contains
+    jaxId_not_contains: String
+    # jaxId_not_ends_with
+    jaxId_not_ends_with: String
+    # jaxId_not_in
+    jaxId_not_in: [String!]
+    # jaxId_not_starts_with
+    jaxId_not_starts_with: String
+    # jaxId_starts_with
+    jaxId_starts_with: String
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+    # synonyms
+    synonyms: String
+    # synonyms_contains
+    synonyms_contains: String
+    # synonyms_ends_with
+    synonyms_ends_with: String
+    # synonyms_gt
+    synonyms_gt: String
+    # synonyms_gte
+    synonyms_gte: String
+    # synonyms_in
+    synonyms_in: [String!]
+    # synonyms_lt
+    synonyms_lt: String
+    # synonyms_lte
+    synonyms_lte: String
+    # synonyms_not
+    synonyms_not: String
+    # synonyms_not_contains
+    synonyms_not_contains: String
+    # synonyms_not_ends_with
+    synonyms_not_ends_with: String
+    # synonyms_not_in
+    synonyms_not_in: [String!]
+    # synonyms_not_starts_with
+    synonyms_not_starts_with: String
+    # synonyms_starts_with
+    synonyms_starts_with: String
+}
+
+# Ordering Enum for JaxGene
+enum _JaxGeneOrdering {
+    # Ascending sort for canonicalTranscript
+    canonicalTranscript_asc
+    # Descending sort for canonicalTranscript
+    canonicalTranscript_desc
+    # Ascending sort for chromosome
+    chromosome_asc
+    # Descending sort for chromosome
+    chromosome_desc
+    # Ascending sort for entrezId
+    entrezId_asc
+    # Descending sort for entrezId
+    entrezId_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for jaxId
+    jaxId_asc
+    # Descending sort for jaxId
+    jaxId_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+    # Ascending sort for synonyms
+    synonyms_asc
+    # Descending sort for synonyms
+    synonyms_desc
+}
+
+# Filter Input Type for Journal
+input _JournalFilter {
+    # AND
+    AND: [_JournalFilter!]
+    # OR
+    OR: [_JournalFilter!]
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+}
+
+# Ordering Enum for Journal
+enum _JournalOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+}
+
+# Filter Input Type for LiteratureReference
+input _LiteratureReferenceFilter {
+    # AND
+    AND: [_LiteratureReferenceFilter!]
+    # DOI
+    DOI: String
+    # DOI_contains
+    DOI_contains: String
+    # DOI_ends_with
+    DOI_ends_with: String
+    # DOI_gt
+    DOI_gt: String
+    # DOI_gte
+    DOI_gte: String
+    # DOI_in
+    DOI_in: [String!]
+    # DOI_lt
+    DOI_lt: String
+    # DOI_lte
+    DOI_lte: String
+    # DOI_not
+    DOI_not: String
+    # DOI_not_contains
+    DOI_not_contains: String
+    # DOI_not_ends_with
+    DOI_not_ends_with: String
+    # DOI_not_in
+    DOI_not_in: [String!]
+    # DOI_not_starts_with
+    DOI_not_starts_with: String
+    # DOI_starts_with
+    DOI_starts_with: String
+    # OR
+    OR: [_LiteratureReferenceFilter!]
+    # PMID
+    PMID: String
+    # PMID_contains
+    PMID_contains: String
+    # PMID_ends_with
+    PMID_ends_with: String
+    # PMID_gt
+    PMID_gt: String
+    # PMID_gte
+    PMID_gte: String
+    # PMID_in
+    PMID_in: [String!]
+    # PMID_lt
+    PMID_lt: String
+    # PMID_lte
+    PMID_lte: String
+    # PMID_not
+    PMID_not: String
+    # PMID_not_contains
+    PMID_not_contains: String
+    # PMID_not_ends_with
+    PMID_not_ends_with: String
+    # PMID_not_in
+    PMID_not_in: [String!]
+    # PMID_not_starts_with
+    PMID_not_starts_with: String
+    # PMID_starts_with
+    PMID_starts_with: String
+    # abstract
+    abstract: String
+    # abstract_contains
+    abstract_contains: String
+    # abstract_ends_with
+    abstract_ends_with: String
+    # abstract_gt
+    abstract_gt: String
+    # abstract_gte
+    abstract_gte: String
+    # abstract_in
+    abstract_in: [String!]
+    # abstract_lt
+    abstract_lt: String
+    # abstract_lte
+    abstract_lte: String
+    # abstract_not
+    abstract_not: String
+    # abstract_not_contains
+    abstract_not_contains: String
+    # abstract_not_ends_with
+    abstract_not_ends_with: String
+    # abstract_not_in
+    abstract_not_in: [String!]
+    # abstract_not_starts_with
+    abstract_not_starts_with: String
+    # abstract_starts_with
+    abstract_starts_with: String
+    # authors
+    authors: _AuthorFilter
+    # authors_every
+    authors_every: _AuthorFilter
+    # authors_in
+    authors_in: _AuthorFilter
+    # authors_none
+    authors_none: _AuthorFilter
+    # authors_not
+    authors_not: _AuthorFilter
+    # authors_not_in
+    authors_not_in: _AuthorFilter
+    # authors_single
+    authors_single: _AuthorFilter
+    # authors_some
+    authors_some: _AuthorFilter
+    # first_page
+    first_page: String
+    # first_page_contains
+    first_page_contains: String
+    # first_page_ends_with
+    first_page_ends_with: String
+    # first_page_gt
+    first_page_gt: String
+    # first_page_gte
+    first_page_gte: String
+    # first_page_in
+    first_page_in: [String!]
+    # first_page_lt
+    first_page_lt: String
+    # first_page_lte
+    first_page_lte: String
+    # first_page_not
+    first_page_not: String
+    # first_page_not_contains
+    first_page_not_contains: String
+    # first_page_not_ends_with
+    first_page_not_ends_with: String
+    # first_page_not_in
+    first_page_not_in: [String!]
+    # first_page_not_starts_with
+    first_page_not_starts_with: String
+    # first_page_starts_with
+    first_page_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # journal
+    journal: _JournalFilter
+    # journal_in
+    journal_in: _JournalFilter
+    # journal_not
+    journal_not: _JournalFilter
+    # journal_not_in
+    journal_not_in: _JournalFilter
+    # last_page
+    last_page: String
+    # last_page_contains
+    last_page_contains: String
+    # last_page_ends_with
+    last_page_ends_with: String
+    # last_page_gt
+    last_page_gt: String
+    # last_page_gte
+    last_page_gte: String
+    # last_page_in
+    last_page_in: [String!]
+    # last_page_lt
+    last_page_lt: String
+    # last_page_lte
+    last_page_lte: String
+    # last_page_not
+    last_page_not: String
+    # last_page_not_contains
+    last_page_not_contains: String
+    # last_page_not_ends_with
+    last_page_not_ends_with: String
+    # last_page_not_in
+    last_page_not_in: [String!]
+    # last_page_not_starts_with
+    last_page_not_starts_with: String
+    # last_page_starts_with
+    last_page_starts_with: String
+    # publication_Year
+    publication_Year: String
+    # publication_Year_contains
+    publication_Year_contains: String
+    # publication_Year_ends_with
+    publication_Year_ends_with: String
+    # publication_Year_gt
+    publication_Year_gt: String
+    # publication_Year_gte
+    publication_Year_gte: String
+    # publication_Year_in
+    publication_Year_in: [String!]
+    # publication_Year_lt
+    publication_Year_lt: String
+    # publication_Year_lte
+    publication_Year_lte: String
+    # publication_Year_not
+    publication_Year_not: String
+    # publication_Year_not_contains
+    publication_Year_not_contains: String
+    # publication_Year_not_ends_with
+    publication_Year_not_ends_with: String
+    # publication_Year_not_in
+    publication_Year_not_in: [String!]
+    # publication_Year_not_starts_with
+    publication_Year_not_starts_with: String
+    # publication_Year_starts_with
+    publication_Year_starts_with: String
+    # shortReference
+    shortReference: String
+    # shortReference_contains
+    shortReference_contains: String
+    # shortReference_ends_with
+    shortReference_ends_with: String
+    # shortReference_gt
+    shortReference_gt: String
+    # shortReference_gte
+    shortReference_gte: String
+    # shortReference_in
+    shortReference_in: [String!]
+    # shortReference_lt
+    shortReference_lt: String
+    # shortReference_lte
+    shortReference_lte: String
+    # shortReference_not
+    shortReference_not: String
+    # shortReference_not_contains
+    shortReference_not_contains: String
+    # shortReference_not_ends_with
+    shortReference_not_ends_with: String
+    # shortReference_not_in
+    shortReference_not_in: [String!]
+    # shortReference_not_starts_with
+    shortReference_not_starts_with: String
+    # shortReference_starts_with
+    shortReference_starts_with: String
+    # statements_referenced
+    statements_referenced: _StatementWithEvidenceFilter
+    # statements_referenced_every
+    statements_referenced_every: _StatementWithEvidenceFilter
+    # statements_referenced_in
+    statements_referenced_in: _StatementWithEvidenceFilter
+    # statements_referenced_none
+    statements_referenced_none: _StatementWithEvidenceFilter
+    # statements_referenced_not
+    statements_referenced_not: _StatementWithEvidenceFilter
+    # statements_referenced_not_in
+    statements_referenced_not_in: _StatementWithEvidenceFilter
+    # statements_referenced_single
+    statements_referenced_single: _StatementWithEvidenceFilter
+    # statements_referenced_some
+    statements_referenced_some: _StatementWithEvidenceFilter
+    # title
+    title: String
+    # title_contains
+    title_contains: String
+    # title_ends_with
+    title_ends_with: String
+    # title_gt
+    title_gt: String
+    # title_gte
+    title_gte: String
+    # title_in
+    title_in: [String!]
+    # title_lt
+    title_lt: String
+    # title_lte
+    title_lte: String
+    # title_not
+    title_not: String
+    # title_not_contains
+    title_not_contains: String
+    # title_not_ends_with
+    title_not_ends_with: String
+    # title_not_in
+    title_not_in: [String!]
+    # title_not_starts_with
+    title_not_starts_with: String
+    # title_starts_with
+    title_starts_with: String
+    # volume
+    volume: String
+    # volume_contains
+    volume_contains: String
+    # volume_ends_with
+    volume_ends_with: String
+    # volume_gt
+    volume_gt: String
+    # volume_gte
+    volume_gte: String
+    # volume_in
+    volume_in: [String!]
+    # volume_lt
+    volume_lt: String
+    # volume_lte
+    volume_lte: String
+    # volume_not
+    volume_not: String
+    # volume_not_contains
+    volume_not_contains: String
+    # volume_not_ends_with
+    volume_not_ends_with: String
+    # volume_not_in
+    volume_not_in: [String!]
+    # volume_not_starts_with
+    volume_not_starts_with: String
+    # volume_starts_with
+    volume_starts_with: String
+}
+
+# Ordering Enum for LiteratureReference
+enum _LiteratureReferenceOrdering {
+    # Ascending sort for DOI
+    DOI_asc
+    # Descending sort for DOI
+    DOI_desc
+    # Ascending sort for PMID
+    PMID_asc
+    # Descending sort for PMID
+    PMID_desc
+    # Ascending sort for abstract
+    abstract_asc
+    # Descending sort for abstract
+    abstract_desc
+    # Ascending sort for first_page
+    first_page_asc
+    # Descending sort for first_page
+    first_page_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for last_page
+    last_page_asc
+    # Descending sort for last_page
+    last_page_desc
+    # Ascending sort for publication_Year
+    publication_Year_asc
+    # Descending sort for publication_Year
+    publication_Year_desc
+    # Ascending sort for shortReference
+    shortReference_asc
+    # Descending sort for shortReference
+    shortReference_desc
+    # Ascending sort for title
+    title_asc
+    # Descending sort for title
+    title_desc
+    # Ascending sort for volume
+    volume_asc
+    # Descending sort for volume
+    volume_desc
+}
+
+# Filter Input Type for MyGeneInfo_Gene
+input _MyGeneInfo_GeneFilter {
+    # AND
+    AND: [_MyGeneInfo_GeneFilter!]
+    # OR
+    OR: [_MyGeneInfo_GeneFilter!]
+    # chromosome
+    chromosome: String
+    # chromosome_contains
+    chromosome_contains: String
+    # chromosome_ends_with
+    chromosome_ends_with: String
+    # chromosome_gt
+    chromosome_gt: String
+    # chromosome_gte
+    chromosome_gte: String
+    # chromosome_in
+    chromosome_in: [String!]
+    # chromosome_lt
+    chromosome_lt: String
+    # chromosome_lte
+    chromosome_lte: String
+    # chromosome_not
+    chromosome_not: String
+    # chromosome_not_contains
+    chromosome_not_contains: String
+    # chromosome_not_ends_with
+    chromosome_not_ends_with: String
+    # chromosome_not_in
+    chromosome_not_in: [String!]
+    # chromosome_not_starts_with
+    chromosome_not_starts_with: String
+    # chromosome_starts_with
+    chromosome_starts_with: String
+    # description
+    description: _EditableStatementFilter
+    # description_in
+    description_in: _EditableStatementFilter
+    # description_not
+    description_not: _EditableStatementFilter
+    # description_not_in
+    description_not_in: _EditableStatementFilter
+    # end
+    end: Int
+    # end_gt
+    end_gt: Int
+    # end_gte
+    end_gte: Int
+    # end_in
+    end_in: [Int!]
+    # end_lt
+    end_lt: Int
+    # end_lte
+    end_lte: Int
+    # end_not
+    end_not: Int
+    # end_not_in
+    end_not_in: [Int!]
+    # entrezId
+    entrezId: String
+    # entrezId_contains
+    entrezId_contains: String
+    # entrezId_ends_with
+    entrezId_ends_with: String
+    # entrezId_gt
+    entrezId_gt: String
+    # entrezId_gte
+    entrezId_gte: String
+    # entrezId_in
+    entrezId_in: [String!]
+    # entrezId_lt
+    entrezId_lt: String
+    # entrezId_lte
+    entrezId_lte: String
+    # entrezId_not
+    entrezId_not: String
+    # entrezId_not_contains
+    entrezId_not_contains: String
+    # entrezId_not_ends_with
+    entrezId_not_ends_with: String
+    # entrezId_not_in
+    entrezId_not_in: [String!]
+    # entrezId_not_starts_with
+    entrezId_not_starts_with: String
+    # entrezId_starts_with
+    entrezId_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+    # start
+    start: Int
+    # start_gt
+    start_gt: Int
+    # start_gte
+    start_gte: Int
+    # start_in
+    start_in: [Int!]
+    # start_lt
+    start_lt: Int
+    # start_lte
+    start_lte: Int
+    # start_not
+    start_not: Int
+    # start_not_in
+    start_not_in: [Int!]
+    # strand
+    strand: Strand
+    # strand_in
+    strand_in: [Strand!]
+    # strand_not
+    strand_not: Strand
+    # strand_not_in
+    strand_not_in: [Strand!]
+    # synonyms
+    synonyms: String
+    # synonyms_contains
+    synonyms_contains: String
+    # synonyms_ends_with
+    synonyms_ends_with: String
+    # synonyms_gt
+    synonyms_gt: String
+    # synonyms_gte
+    synonyms_gte: String
+    # synonyms_in
+    synonyms_in: [String!]
+    # synonyms_lt
+    synonyms_lt: String
+    # synonyms_lte
+    synonyms_lte: String
+    # synonyms_not
+    synonyms_not: String
+    # synonyms_not_contains
+    synonyms_not_contains: String
+    # synonyms_not_ends_with
+    synonyms_not_ends_with: String
+    # synonyms_not_in
+    synonyms_not_in: [String!]
+    # synonyms_not_starts_with
+    synonyms_not_starts_with: String
+    # synonyms_starts_with
+    synonyms_starts_with: String
+    # uniprot_entry
+    uniprot_entry: _Uniprot_EntryFilter
+    # uniprot_entry_in
+    uniprot_entry_in: _Uniprot_EntryFilter
+    # uniprot_entry_not
+    uniprot_entry_not: _Uniprot_EntryFilter
+    # uniprot_entry_not_in
+    uniprot_entry_not_in: _Uniprot_EntryFilter
+}
+
+# Ordering Enum for MyGeneInfo_Gene
+enum _MyGeneInfo_GeneOrdering {
+    # Ascending sort for chromosome
+    chromosome_asc
+    # Descending sort for chromosome
+    chromosome_desc
+    # Ascending sort for end
+    end_asc
+    # Descending sort for end
+    end_desc
+    # Ascending sort for entrezId
+    entrezId_asc
+    # Descending sort for entrezId
+    entrezId_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+    # Ascending sort for start
+    start_asc
+    # Descending sort for start
+    start_desc
+    # Ascending sort for strand
+    strand_asc
+    # Descending sort for strand
+    strand_desc
+    # Ascending sort for synonyms
+    synonyms_asc
+    # Descending sort for synonyms
+    synonyms_desc
+}
+
+# Filter Input Type for NamedEntity
+input _NamedEntityFilter {
+    # AND
+    AND: [_NamedEntityFilter!]
+    # OR
+    OR: [_NamedEntityFilter!]
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+}
+
+# Ordering Enum for NamedEntity
+enum _NamedEntityOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+}
+
+# Filter Input Type for OmniGene
+input _OmniGeneFilter {
+    # AND
+    AND: [_OmniGeneFilter!]
+    # OR
+    OR: [_OmniGeneFilter!]
+    # geneDescription
+    geneDescription: _EditableStatementFilter
+    # geneDescription_in
+    geneDescription_in: _EditableStatementFilter
+    # geneDescription_not
+    geneDescription_not: _EditableStatementFilter
+    # geneDescription_not_in
+    geneDescription_not_in: _EditableStatementFilter
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # jaxGene
+    jaxGene: _JaxGeneFilter
+    # jaxGene_in
+    jaxGene_in: _JaxGeneFilter
+    # jaxGene_not
+    jaxGene_not: _JaxGeneFilter
+    # jaxGene_not_in
+    jaxGene_not_in: _JaxGeneFilter
+    # myGeneInfoGene
+    myGeneInfoGene: _MyGeneInfo_GeneFilter
+    # myGeneInfoGene_in
+    myGeneInfoGene_in: _MyGeneInfo_GeneFilter
+    # myGeneInfoGene_not
+    myGeneInfoGene_not: _MyGeneInfo_GeneFilter
+    # myGeneInfoGene_not_in
+    myGeneInfoGene_not_in: _MyGeneInfo_GeneFilter
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+    # oncogenicCategory
+    oncogenicCategory: _EditableStatementFilter
+    # oncogenicCategory_in
+    oncogenicCategory_in: _EditableStatementFilter
+    # oncogenicCategory_not
+    oncogenicCategory_not: _EditableStatementFilter
+    # oncogenicCategory_not_in
+    oncogenicCategory_not_in: _EditableStatementFilter
+    # panelName
+    panelName: String
+    # panelName_contains
+    panelName_contains: String
+    # panelName_ends_with
+    panelName_ends_with: String
+    # panelName_gt
+    panelName_gt: String
+    # panelName_gte
+    panelName_gte: String
+    # panelName_in
+    panelName_in: [String!]
+    # panelName_lt
+    panelName_lt: String
+    # panelName_lte
+    panelName_lte: String
+    # panelName_not
+    panelName_not: String
+    # panelName_not_contains
+    panelName_not_contains: String
+    # panelName_not_ends_with
+    panelName_not_ends_with: String
+    # panelName_not_in
+    panelName_not_in: [String!]
+    # panelName_not_starts_with
+    panelName_not_starts_with: String
+    # panelName_starts_with
+    panelName_starts_with: String
+    # synonymsString
+    synonymsString: _EditableStatementFilter
+    # synonymsString_in
+    synonymsString_in: _EditableStatementFilter
+    # synonymsString_not
+    synonymsString_not: _EditableStatementFilter
+    # synonymsString_not_in
+    synonymsString_not_in: _EditableStatementFilter
+    # uniprot_entry
+    uniprot_entry: _Uniprot_EntryFilter
+    # uniprot_entry_in
+    uniprot_entry_in: _Uniprot_EntryFilter
+    # uniprot_entry_not
+    uniprot_entry_not: _Uniprot_EntryFilter
+    # uniprot_entry_not_in
+    uniprot_entry_not_in: _Uniprot_EntryFilter
+}
+
+# Ordering Enum for OmniGene
+enum _OmniGeneOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+    # Ascending sort for panelName
+    panelName_asc
+    # Descending sort for panelName
+    panelName_desc
+}
+
+# Filter Input Type for Reference
+input _ReferenceFilter {
+    # AND
+    AND: [_ReferenceFilter!]
+    # OR
+    OR: [_ReferenceFilter!]
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # shortReference
+    shortReference: String
+    # shortReference_contains
+    shortReference_contains: String
+    # shortReference_ends_with
+    shortReference_ends_with: String
+    # shortReference_gt
+    shortReference_gt: String
+    # shortReference_gte
+    shortReference_gte: String
+    # shortReference_in
+    shortReference_in: [String!]
+    # shortReference_lt
+    shortReference_lt: String
+    # shortReference_lte
+    shortReference_lte: String
+    # shortReference_not
+    shortReference_not: String
+    # shortReference_not_contains
+    shortReference_not_contains: String
+    # shortReference_not_ends_with
+    shortReference_not_ends_with: String
+    # shortReference_not_in
+    shortReference_not_in: [String!]
+    # shortReference_not_starts_with
+    shortReference_not_starts_with: String
+    # shortReference_starts_with
+    shortReference_starts_with: String
+    # statements_referenced
+    statements_referenced: _StatementWithEvidenceFilter
+    # statements_referenced_every
+    statements_referenced_every: _StatementWithEvidenceFilter
+    # statements_referenced_in
+    statements_referenced_in: _StatementWithEvidenceFilter
+    # statements_referenced_none
+    statements_referenced_none: _StatementWithEvidenceFilter
+    # statements_referenced_not
+    statements_referenced_not: _StatementWithEvidenceFilter
+    # statements_referenced_not_in
+    statements_referenced_not_in: _StatementWithEvidenceFilter
+    # statements_referenced_single
+    statements_referenced_single: _StatementWithEvidenceFilter
+    # statements_referenced_some
+    statements_referenced_some: _StatementWithEvidenceFilter
+}
+
+# Ordering Enum for Reference
+enum _ReferenceOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for shortReference
+    shortReference_asc
+    # Descending sort for shortReference
+    shortReference_desc
+}
+
+# Filter Input Type for StatementWithEvidence
+input _StatementWithEvidenceFilter {
+    # AND
+    AND: [_StatementWithEvidenceFilter!]
+    # OR
+    OR: [_StatementWithEvidenceFilter!]
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+    # statement
+    statement: String
+    # statement_contains
+    statement_contains: String
+    # statement_ends_with
+    statement_ends_with: String
+    # statement_gt
+    statement_gt: String
+    # statement_gte
+    statement_gte: String
+    # statement_in
+    statement_in: [String!]
+    # statement_lt
+    statement_lt: String
+    # statement_lte
+    statement_lte: String
+    # statement_not
+    statement_not: String
+    # statement_not_contains
+    statement_not_contains: String
+    # statement_not_ends_with
+    statement_not_ends_with: String
+    # statement_not_in
+    statement_not_in: [String!]
+    # statement_not_starts_with
+    statement_not_starts_with: String
+    # statement_starts_with
+    statement_starts_with: String
+}
+
+# Ordering Enum for StatementWithEvidence
+enum _StatementWithEvidenceOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for statement
+    statement_asc
+    # Descending sort for statement
+    statement_desc
+}
+
+# Filter Input Type for Uniprot_Entry
+input _Uniprot_EntryFilter {
+    # AND
+    AND: [_Uniprot_EntryFilter!]
+    # OR
+    OR: [_Uniprot_EntryFilter!]
+    # accessionNumber
+    accessionNumber: String
+    # accessionNumber_contains
+    accessionNumber_contains: String
+    # accessionNumber_ends_with
+    accessionNumber_ends_with: String
+    # accessionNumber_gt
+    accessionNumber_gt: String
+    # accessionNumber_gte
+    accessionNumber_gte: String
+    # accessionNumber_in
+    accessionNumber_in: [String!]
+    # accessionNumber_lt
+    accessionNumber_lt: String
+    # accessionNumber_lte
+    accessionNumber_lte: String
+    # accessionNumber_not
+    accessionNumber_not: String
+    # accessionNumber_not_contains
+    accessionNumber_not_contains: String
+    # accessionNumber_not_ends_with
+    accessionNumber_not_ends_with: String
+    # accessionNumber_not_in
+    accessionNumber_not_in: [String!]
+    # accessionNumber_not_starts_with
+    accessionNumber_not_starts_with: String
+    # accessionNumber_starts_with
+    accessionNumber_starts_with: String
+    # function
+    function: _EditableStatementFilter
+    # function_in
+    function_in: _EditableStatementFilter
+    # function_not
+    function_not: _EditableStatementFilter
+    # function_not_in
+    function_not_in: _EditableStatementFilter
+    # gene
+    gene: _MyGeneInfo_GeneFilter
+    # gene_in
+    gene_in: _MyGeneInfo_GeneFilter
+    # gene_not
+    gene_not: _MyGeneInfo_GeneFilter
+    # gene_not_in
+    gene_not_in: _MyGeneInfo_GeneFilter
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+    # uniprot_id
+    uniprot_id: String
+    # uniprot_id_contains
+    uniprot_id_contains: String
+    # uniprot_id_ends_with
+    uniprot_id_ends_with: String
+    # uniprot_id_gt
+    uniprot_id_gt: String
+    # uniprot_id_gte
+    uniprot_id_gte: String
+    # uniprot_id_in
+    uniprot_id_in: [String!]
+    # uniprot_id_lt
+    uniprot_id_lt: String
+    # uniprot_id_lte
+    uniprot_id_lte: String
+    # uniprot_id_not
+    uniprot_id_not: String
+    # uniprot_id_not_contains
+    uniprot_id_not_contains: String
+    # uniprot_id_not_ends_with
+    uniprot_id_not_ends_with: String
+    # uniprot_id_not_in
+    uniprot_id_not_in: [String!]
+    # uniprot_id_not_starts_with
+    uniprot_id_not_starts_with: String
+    # uniprot_id_starts_with
+    uniprot_id_starts_with: String
+}
+
+# Ordering Enum for Uniprot_Entry
+enum _Uniprot_EntryOrdering {
+    # Ascending sort for accessionNumber
+    accessionNumber_asc
+    # Descending sort for accessionNumber
+    accessionNumber_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+    # Ascending sort for uniprot_id
+    uniprot_id_asc
+    # Descending sort for uniprot_id
+    uniprot_id_desc
+}
+
+# Filter Input Type for User
+input _UserFilter {
+    # AND
+    AND: [_UserFilter!]
+    # OR
+    OR: [_UserFilter!]
+    # edited_Statements
+    edited_Statements: _EditableStatementFilter
+    # edited_Statements_every
+    edited_Statements_every: _EditableStatementFilter
+    # edited_Statements_in
+    edited_Statements_in: _EditableStatementFilter
+    # edited_Statements_none
+    edited_Statements_none: _EditableStatementFilter
+    # edited_Statements_not
+    edited_Statements_not: _EditableStatementFilter
+    # edited_Statements_not_in
+    edited_Statements_not_in: _EditableStatementFilter
+    # edited_Statements_single
+    edited_Statements_single: _EditableStatementFilter
+    # edited_Statements_some
+    edited_Statements_some: _EditableStatementFilter
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # isAdmin
+    isAdmin: Boolean
+    # isAdmin_not
+    isAdmin_not: Boolean
+    # name
+    name: String
+    # name_contains
+    name_contains: String
+    # name_ends_with
+    name_ends_with: String
+    # name_gt
+    name_gt: String
+    # name_gte
+    name_gte: String
+    # name_in
+    name_in: [String!]
+    # name_lt
+    name_lt: String
+    # name_lte
+    name_lte: String
+    # name_not
+    name_not: String
+    # name_not_contains
+    name_not_contains: String
+    # name_not_ends_with
+    name_not_ends_with: String
+    # name_not_in
+    name_not_in: [String!]
+    # name_not_starts_with
+    name_not_starts_with: String
+    # name_starts_with
+    name_starts_with: String
+    # password
+    password: String
+    # password_contains
+    password_contains: String
+    # password_ends_with
+    password_ends_with: String
+    # password_gt
+    password_gt: String
+    # password_gte
+    password_gte: String
+    # password_in
+    password_in: [String!]
+    # password_lt
+    password_lt: String
+    # password_lte
+    password_lte: String
+    # password_not
+    password_not: String
+    # password_not_contains
+    password_not_contains: String
+    # password_not_ends_with
+    password_not_ends_with: String
+    # password_not_in
+    password_not_in: [String!]
+    # password_not_starts_with
+    password_not_starts_with: String
+    # password_starts_with
+    password_starts_with: String
+}
+
+# Ordering Enum for User
+enum _UserOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for isAdmin
+    isAdmin_asc
+    # Descending sort for isAdmin
+    isAdmin_desc
+    # Ascending sort for name
+    name_asc
+    # Descending sort for name
+    name_desc
+    # Ascending sort for password
+    password_asc
+    # Descending sort for password
+    password_desc
+}
+
+# Author-Node
+type Author {
+    # internal node id
+    _id: Long
+    # first_initial of  Author
+    first_initial: String!
+    # id of  Author
+    id: ID!
+    # Author references LiteratureReference
+    references(
+        # DOI of LiteratureReference
+        DOI: String
+        # DOIs is list variant of DOI of LiteratureReference
+        DOIs: [String]
+        # PMID of LiteratureReference
+        PMID: String
+        # PMIDs is list variant of PMID of LiteratureReference
+        PMIDs: [String]
+        _id: Long
+        _ids: [Long]
+        # abstract of LiteratureReference
+        abstract: String
+        # abstracts is list variant of abstract of LiteratureReference
+        abstracts: [String]
+        filter: _LiteratureReferenceFilter
+        first: Int
+        # first_page of LiteratureReference
+        first_page: String
+        # first_pages is list variant of first_page of LiteratureReference
+        first_pages: [String]
+        # id of LiteratureReference
+        id: ID
+        # ids is list variant of id of LiteratureReference
+        ids: [ID]
+        # last_page of LiteratureReference
+        last_page: String
+        # last_pages is list variant of last_page of LiteratureReference
+        last_pages: [String]
+        offset: Int
+        orderBy: [_LiteratureReferenceOrdering]
+        # publication_Year of LiteratureReference
+        publication_Year: String
+        # publication_Years is list variant of publication_Year of LiteratureReference
+        publication_Years: [String]
+        # shortReference of LiteratureReference
+        shortReference: String
+        # shortReferences is list variant of shortReference of LiteratureReference
+        shortReferences: [String]
+        # title of LiteratureReference
+        title: String
+        # titles is list variant of title of LiteratureReference
+        titles: [String]
+        # volume of LiteratureReference
+        volume: String
+        # volumes is list variant of volume of LiteratureReference
+        volumes: [String]
+    ): [LiteratureReference!]!
+    # surname of  Author
+    surname: String!
+}
+
+# EditableStatement-Node
+type EditableStatement implements StatementWithEvidence {
+    # internal node id
+    _id: Long
+    # deleted of  EditableStatement
+    deleted: Boolean!
+    # edit_date of  EditableStatement
+    edit_date: String!
+    # EditableStatement editor User
+    editor(
+        filter: _UserFilter
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): User!
+    # field of  EditableStatement
+    field: String!
+    # id of  EditableStatement
+    id: ID!
+    # EditableStatement references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+    # statement of  EditableStatement
+    statement: String!
+}
+
+# InternetReference-Node
+type InternetReference implements Reference {
+    # internal node id
+    _id: Long
+    # accessed_date of  InternetReference
+    accessed_date: String!
+    # id of  InternetReference
+    id: ID!
+    # shortReference of  InternetReference
+    shortReference: String!
+    # InternetReference statements_referenced StatementWithEvidence
+    statements_referenced(
+        _id: Long
+        _ids: [Long]
+        filter: _StatementWithEvidenceFilter
+        first: Int
+        # id of StatementWithEvidence
+        id: ID
+        # ids is list variant of id of StatementWithEvidence
+        ids: [ID]
+        offset: Int
+        orderBy: [_StatementWithEvidenceOrdering]
+        # statement of StatementWithEvidence
+        statement: String
+        # statements is list variant of statement of StatementWithEvidence
+        statements: [String]
+    ): [StatementWithEvidence!]!
+    # web_address of  InternetReference
+    web_address: String!
+}
+
+# JaxGene-Node
+type JaxGene implements NamedEntity {
+    # internal node id
+    _id: Long
+    # canonicalTranscript of  JaxGene
+    canonicalTranscript: [String]!
+    # chromosome of  JaxGene
+    chromosome: String!
+    # statement = description
+    description(
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
+    # entrezId of  JaxGene
+    entrezId: String!
+    # id of  JaxGene
+    id: ID!
+    # jaxId of  JaxGene
+    jaxId: String!
+    # name == Gene Symbox
+    name: String!
+    # synonyms of  JaxGene
+    synonyms: [String]!
+}
+
+# Journal-Node
+type Journal implements NamedEntity {
+    # internal node id
+    _id: Long
+    # id of  Journal
+    id: ID!
+    # name of  Journal
+    name: String!
+}
+
+# LiteratureReference-Node
+type LiteratureReference implements Reference {
+    # DOI of  LiteratureReference
+    DOI: String
+    # PMID of  LiteratureReference
+    PMID: String
+    # internal node id
+    _id: Long
+    # abstract of  LiteratureReference
+    abstract: String
+    # LiteratureReference authors Author
+    authors(
+        _id: Long
+        _ids: [Long]
+        filter: _AuthorFilter
+        first: Int
+        # first_initial of Author
+        first_initial: String
+        # first_initials is list variant of first_initial of Author
+        first_initials: [String]
+        # id of Author
+        id: ID
+        # ids is list variant of id of Author
+        ids: [ID]
+        offset: Int
+        orderBy: [_AuthorOrdering]
+        # surname of Author
+        surname: String
+        # surnames is list variant of surname of Author
+        surnames: [String]
+    ): [Author!]!
+    # first_page of  LiteratureReference
+    first_page: String!
+    # id of  LiteratureReference
+    id: ID!
+    # LiteratureReference journal Journal
+    journal(
+        filter: _JournalFilter
+        # id of Journal
+        id: ID
+        # ids is list variant of id of Journal
+        ids: [ID]
+        # name of Journal
+        name: String
+        # names is list variant of name of Journal
+        names: [String]
+        orderBy: [_JournalOrdering]
+    ): Journal!
+    # last_page of  LiteratureReference
+    last_page: String!
+    # publication_Year of  LiteratureReference
+    publication_Year: String!
+    # shortReference of  LiteratureReference
+    shortReference: String!
+    # LiteratureReference statements_referenced StatementWithEvidence
+    statements_referenced(
+        _id: Long
+        _ids: [Long]
+        filter: _StatementWithEvidenceFilter
+        first: Int
+        # id of StatementWithEvidence
+        id: ID
+        # ids is list variant of id of StatementWithEvidence
+        ids: [ID]
+        offset: Int
+        orderBy: [_StatementWithEvidenceOrdering]
+        # statement of StatementWithEvidence
+        statement: String
+        # statements is list variant of statement of StatementWithEvidence
+        statements: [String]
+    ): [StatementWithEvidence!]!
+    # title of  LiteratureReference
+    title: String!
+    # volume of  LiteratureReference
+    volume: String!
+}
+
+# Long type
+scalar Long
+
+type MutationType {
+    # Adds References to Author entity
+    addAuthorReferences(id: ID!, references: [ID!]!): String
+    # Adds Editor to EditableStatement entity
+    addEditableStatementEditor(editor: [ID!]!, id: ID!): String
+    # Adds References to EditableStatement entity
+    addEditableStatementReferences(id: ID!, references: [ID!]!): String
+    # Adds Statements_referenced to InternetReference entity
+    addInternetReferenceStatements_referenced(
+        id: ID!
+        statements_referenced: [ID!]!
+    ): String
+    # Adds Description to JaxGene entity
+    addJaxGeneDescription(description: [ID!]!, id: ID!): String
+    # Adds Authors to LiteratureReference entity
+    addLiteratureReferenceAuthors(authors: [ID!]!, id: ID!): String
+    # Adds Journal to LiteratureReference entity
+    addLiteratureReferenceJournal(id: ID!, journal: [ID!]!): String
+    # Adds Statements_referenced to LiteratureReference entity
+    addLiteratureReferenceStatements_referenced(
+        id: ID!
+        statements_referenced: [ID!]!
+    ): String
+    # Adds Description to MyGeneInfo_Gene entity
+    addMyGeneInfo_GeneDescription(description: [ID!]!, id: ID!): String
+    # Adds Uniprot_entry to MyGeneInfo_Gene entity
+    addMyGeneInfo_GeneUniprot_entry(id: ID!, uniprot_entry: [ID!]!): String
+    # Adds GeneDescription to OmniGene entity
+    addOmniGeneGeneDescription(geneDescription: [ID!]!, id: ID!): String
+    # Adds JaxGene to OmniGene entity
+    addOmniGeneJaxGene(id: ID!, jaxGene: [ID!]!): String
+    # Adds MyGeneInfoGene to OmniGene entity
+    addOmniGeneMyGeneInfoGene(id: ID!, myGeneInfoGene: [ID!]!): String
+    # Adds OncogenicCategory to OmniGene entity
+    addOmniGeneOncogenicCategory(id: ID!, oncogenicCategory: [ID!]!): String
+    # Adds SynonymsString to OmniGene entity
+    addOmniGeneSynonymsString(id: ID!, synonymsString: [ID!]!): String
+    # Adds Uniprot_entry to OmniGene entity
+    addOmniGeneUniprot_entry(id: ID!, uniprot_entry: [ID!]!): String
+    # Adds Statements_referenced to Reference entity
+    addReferenceStatements_referenced(
+        id: ID!
+        statements_referenced: [ID!]!
+    ): String
+    # Adds References to StatementWithEvidence entity
+    addStatementWithEvidenceReferences(id: ID!, references: [ID!]!): String
+    # Adds Function to Uniprot_Entry entity
+    addUniprot_EntryFunction(function: [ID!]!, id: ID!): String
+    # Adds Gene to Uniprot_Entry entity
+    addUniprot_EntryGene(gene: [ID!]!, id: ID!): String
+    # Adds Edited_Statements to User entity
+    addUserEdited_Statements(edited_Statements: [ID!]!, id: ID!): String
+    # Creates a Author entity
+    createAuthor(first_initial: String!, id: ID!, surname: String!): String
+    # Creates a EditableStatement entity
+    createEditableStatement(
+        deleted: Boolean!
+        edit_date: String!
+        field: String!
+        id: ID!
+        statement: String!
+    ): String
+    # Creates a InternetReference entity
+    createInternetReference(
+        accessed_date: String!
+        id: ID!
+        shortReference: String!
+        web_address: String!
+    ): String
+    # Creates a JaxGene entity
+    createJaxGene(
+        canonicalTranscript: [String]!
+        chromosome: String!
+        entrezId: String!
+        id: ID!
+        jaxId: String!
+        name: String!
+        synonyms: [String]!
+    ): String
+    # Creates a Journal entity
+    createJournal(id: ID!, name: String!): String
+    # Creates a LiteratureReference entity
+    createLiteratureReference(
+        DOI: String
+        PMID: String
+        abstract: String
+        first_page: String!
+        id: ID!
+        last_page: String!
+        publication_Year: String!
+        shortReference: String!
+        title: String!
+        volume: String!
+    ): String
+    # Creates a MyGeneInfo_Gene entity
+    createMyGeneInfo_Gene(
+        chromosome: String!
+        end: Int
+        entrezId: String!
+        id: ID!
+        name: String!
+        start: Int
+        strand: Strand!
+        synonyms: [String]!
+    ): String
+    # Creates a NamedEntity entity
+    createNamedEntity(id: ID!, name: String!): String
+    # Creates a OmniGene entity
+    createOmniGene(id: ID!, name: String!, panelName: String!): String
+    # Creates a Reference entity
+    createReference(id: ID!, shortReference: String!): String
+    # Creates a StatementWithEvidence entity
+    createStatementWithEvidence(id: ID!, statement: String!): String
+    # Creates a Uniprot_Entry entity
+    createUniprot_Entry(
+        accessionNumber: String!
+        id: ID!
+        name: String!
+        uniprot_id: String!
+    ): String
+    # Creates a User entity
+    createUser(
+        id: ID!
+        isAdmin: Boolean!
+        name: String!
+        password: String!
+    ): String
+    # Deletes a Author entity
+    deleteAuthor(id: ID!): String
+    # Deletes References from Author entity
+    deleteAuthorReferences(id: ID!, references: [ID!]!): String
+    # Deletes a EditableStatement entity
+    deleteEditableStatement(id: ID!): String
+    # Deletes Editor from EditableStatement entity
+    deleteEditableStatementEditor(editor: [ID!]!, id: ID!): String
+    # Deletes References from EditableStatement entity
+    deleteEditableStatementReferences(id: ID!, references: [ID!]!): String
+    # Deletes a InternetReference entity
+    deleteInternetReference(id: ID!): String
+    # Deletes Statements_referenced from InternetReference entity
+    deleteInternetReferenceStatements_referenced(
+        id: ID!
+        statements_referenced: [ID!]!
+    ): String
+    # Deletes a JaxGene entity
+    deleteJaxGene(id: ID!): String
+    # Deletes Description from JaxGene entity
+    deleteJaxGeneDescription(description: [ID!]!, id: ID!): String
+    # Deletes a Journal entity
+    deleteJournal(id: ID!): String
+    # Deletes a LiteratureReference entity
+    deleteLiteratureReference(id: ID!): String
+    # Deletes Authors from LiteratureReference entity
+    deleteLiteratureReferenceAuthors(authors: [ID!]!, id: ID!): String
+    # Deletes Journal from LiteratureReference entity
+    deleteLiteratureReferenceJournal(id: ID!, journal: [ID!]!): String
+    # Deletes Statements_referenced from LiteratureReference entity
+    deleteLiteratureReferenceStatements_referenced(
+        id: ID!
+        statements_referenced: [ID!]!
+    ): String
+    # Deletes a MyGeneInfo_Gene entity
+    deleteMyGeneInfo_Gene(id: ID!): String
+    # Deletes Description from MyGeneInfo_Gene entity
+    deleteMyGeneInfo_GeneDescription(description: [ID!]!, id: ID!): String
+    # Deletes Uniprot_entry from MyGeneInfo_Gene entity
+    deleteMyGeneInfo_GeneUniprot_entry(id: ID!, uniprot_entry: [ID!]!): String
+    # Deletes a NamedEntity entity
+    deleteNamedEntity(id: ID!): String
+    # Deletes a OmniGene entity
+    deleteOmniGene(id: ID!): String
+    # Deletes GeneDescription from OmniGene entity
+    deleteOmniGeneGeneDescription(geneDescription: [ID!]!, id: ID!): String
+    # Deletes JaxGene from OmniGene entity
+    deleteOmniGeneJaxGene(id: ID!, jaxGene: [ID!]!): String
+    # Deletes MyGeneInfoGene from OmniGene entity
+    deleteOmniGeneMyGeneInfoGene(id: ID!, myGeneInfoGene: [ID!]!): String
+    # Deletes OncogenicCategory from OmniGene entity
+    deleteOmniGeneOncogenicCategory(id: ID!, oncogenicCategory: [ID!]!): String
+    # Deletes SynonymsString from OmniGene entity
+    deleteOmniGeneSynonymsString(id: ID!, synonymsString: [ID!]!): String
+    # Deletes Uniprot_entry from OmniGene entity
+    deleteOmniGeneUniprot_entry(id: ID!, uniprot_entry: [ID!]!): String
+    # Deletes a Reference entity
+    deleteReference(id: ID!): String
+    # Deletes Statements_referenced from Reference entity
+    deleteReferenceStatements_referenced(
+        id: ID!
+        statements_referenced: [ID!]!
+    ): String
+    # Deletes a StatementWithEvidence entity
+    deleteStatementWithEvidence(id: ID!): String
+    # Deletes References from StatementWithEvidence entity
+    deleteStatementWithEvidenceReferences(id: ID!, references: [ID!]!): String
+    # Deletes a Uniprot_Entry entity
+    deleteUniprot_Entry(id: ID!): String
+    # Deletes Function from Uniprot_Entry entity
+    deleteUniprot_EntryFunction(function: [ID!]!, id: ID!): String
+    # Deletes Gene from Uniprot_Entry entity
+    deleteUniprot_EntryGene(gene: [ID!]!, id: ID!): String
+    # Deletes a User entity
+    deleteUser(id: ID!): String
+    # Deletes Edited_Statements from User entity
+    deleteUserEdited_Statements(edited_Statements: [ID!]!, id: ID!): String
+    # Merge a Author entity
+    mergeAuthor(first_initial: String!, id: ID!, surname: String!): String
+    # Merge a EditableStatement entity
+    mergeEditableStatement(
+        deleted: Boolean!
+        edit_date: String!
+        field: String!
+        id: ID!
+        statement: String!
+    ): String
+    # Merge a InternetReference entity
+    mergeInternetReference(
+        accessed_date: String!
+        id: ID!
+        shortReference: String!
+        web_address: String!
+    ): String
+    # Merge a JaxGene entity
+    mergeJaxGene(
+        canonicalTranscript: [String]!
+        chromosome: String!
+        entrezId: String!
+        id: ID!
+        jaxId: String!
+        name: String!
+        synonyms: [String]!
+    ): String
+    # Merge a Journal entity
+    mergeJournal(id: ID!, name: String!): String
+    # Merge a LiteratureReference entity
+    mergeLiteratureReference(
+        DOI: String
+        PMID: String
+        abstract: String
+        first_page: String!
+        id: ID!
+        last_page: String!
+        publication_Year: String!
+        shortReference: String!
+        title: String!
+        volume: String!
+    ): String
+    # Merge a MyGeneInfo_Gene entity
+    mergeMyGeneInfo_Gene(
+        chromosome: String!
+        end: Int
+        entrezId: String!
+        id: ID!
+        name: String!
+        start: Int
+        strand: Strand!
+        synonyms: [String]!
+    ): String
+    # Merge a NamedEntity entity
+    mergeNamedEntity(id: ID!, name: String!): String
+    # Merge a OmniGene entity
+    mergeOmniGene(id: ID!, name: String!, panelName: String!): String
+    # Merge a Reference entity
+    mergeReference(id: ID!, shortReference: String!): String
+    # Merge a StatementWithEvidence entity
+    mergeStatementWithEvidence(id: ID!, statement: String!): String
+    # Merge a Uniprot_Entry entity
+    mergeUniprot_Entry(
+        accessionNumber: String!
+        id: ID!
+        name: String!
+        uniprot_id: String!
+    ): String
+    # Merge a User entity
+    mergeUser(
+        id: ID!
+        isAdmin: Boolean!
+        name: String!
+        password: String!
+    ): String
+    # Updates a Author entity
+    updateAuthor(first_initial: String!, id: ID!, surname: String!): String
+    # Updates a EditableStatement entity
+    updateEditableStatement(
+        deleted: Boolean!
+        edit_date: String!
+        field: String!
+        id: ID!
+        statement: String!
+    ): String
+    # Updates a InternetReference entity
+    updateInternetReference(
+        accessed_date: String!
+        id: ID!
+        shortReference: String!
+        web_address: String!
+    ): String
+    # Updates a JaxGene entity
+    updateJaxGene(
+        canonicalTranscript: [String]!
+        chromosome: String!
+        entrezId: String!
+        id: ID!
+        jaxId: String!
+        name: String!
+        synonyms: [String]!
+    ): String
+    # Updates a Journal entity
+    updateJournal(id: ID!, name: String!): String
+    # Updates a LiteratureReference entity
+    updateLiteratureReference(
+        DOI: String
+        PMID: String
+        abstract: String
+        first_page: String!
+        id: ID!
+        last_page: String!
+        publication_Year: String!
+        shortReference: String!
+        title: String!
+        volume: String!
+    ): String
+    # Updates a MyGeneInfo_Gene entity
+    updateMyGeneInfo_Gene(
+        chromosome: String!
+        end: Int
+        entrezId: String!
+        id: ID!
+        name: String!
+        start: Int
+        strand: Strand!
+        synonyms: [String]!
+    ): String
+    # Updates a NamedEntity entity
+    updateNamedEntity(id: ID!, name: String!): String
+    # Updates a OmniGene entity
+    updateOmniGene(id: ID!, name: String!, panelName: String!): String
+    # Updates a Reference entity
+    updateReference(id: ID!, shortReference: String!): String
+    # Updates a StatementWithEvidence entity
+    updateStatementWithEvidence(id: ID!, statement: String!): String
+    # Updates a Uniprot_Entry entity
+    updateUniprot_Entry(
+        accessionNumber: String!
+        id: ID!
+        name: String!
+        uniprot_id: String!
+    ): String
+    # Updates a User entity
+    updateUser(
+        id: ID!
+        isAdmin: Boolean!
+        name: String!
+        password: String!
+    ): String
+}
+
+# MyGeneInfo_Gene-Node
+type MyGeneInfo_Gene implements NamedEntity {
+    # internal node id
+    _id: Long
+    # chromosome of  MyGeneInfo_Gene
+    chromosome: String!
+    # MyGeneInfo_Gene description EditableStatement
+    description(
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
+    # end of  MyGeneInfo_Gene
+    end: Int
+    # entrezId of  MyGeneInfo_Gene
+    entrezId: String!
+    # id of  MyGeneInfo_Gene
+    id: ID!
+    # name of  MyGeneInfo_Gene
+    name: String!
+    # start of  MyGeneInfo_Gene
+    start: Int
+    # strand of  MyGeneInfo_Gene
+    strand: Strand!
+    # synonyms of  MyGeneInfo_Gene
+    synonyms: [String]!
+    # MyGeneInfo_Gene uniprot_entry Uniprot_Entry
+    uniprot_entry(
+        # accessionNumber of Uniprot_Entry
+        accessionNumber: String
+        # accessionNumbers is list variant of accessionNumber of Uniprot_Entry
+        accessionNumbers: [String]
+        filter: _Uniprot_EntryFilter
+        # id of Uniprot_Entry
+        id: ID
+        # ids is list variant of id of Uniprot_Entry
+        ids: [ID]
+        # name of Uniprot_Entry
+        name: String
+        # names is list variant of name of Uniprot_Entry
+        names: [String]
+        orderBy: [_Uniprot_EntryOrdering]
+        # uniprot_id of Uniprot_Entry
+        uniprot_id: String
+        # uniprot_ids is list variant of uniprot_id of Uniprot_Entry
+        uniprot_ids: [String]
+    ): Uniprot_Entry!
+}
+
+# NamedEntity-Node
+interface NamedEntity {
+    # internal node id
+    _id: Long
+    # id of  NamedEntity
+    id: ID!
+    # name of  NamedEntity
+    name: String!
+}
+
+# OmniGene-Node
+type OmniGene implements NamedEntity {
+    # internal node id
+    _id: Long
+    # OmniGene geneDescription EditableStatement
+    geneDescription(
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
+    # id of  OmniGene
+    id: ID!
+    # OmniGene jaxGene JaxGene
+    jaxGene(
+        # canonicalTranscript of JaxGene
+        canonicalTranscript: [String]
+        # canonicalTranscripts is list variant of canonicalTranscript of JaxGene
+        canonicalTranscripts: [[String]]
+        # chromosome of JaxGene
+        chromosome: String
+        # chromosomes is list variant of chromosome of JaxGene
+        chromosomes: [String]
+        # entrezId of JaxGene
+        entrezId: String
+        # entrezIds is list variant of entrezId of JaxGene
+        entrezIds: [String]
+        filter: _JaxGeneFilter
+        # id of JaxGene
+        id: ID
+        # ids is list variant of id of JaxGene
+        ids: [ID]
+        # jaxId of JaxGene
+        jaxId: String
+        # jaxIds is list variant of jaxId of JaxGene
+        jaxIds: [String]
+        # name of JaxGene
+        name: String
+        # names is list variant of name of JaxGene
+        names: [String]
+        orderBy: [_JaxGeneOrdering]
+        # synonyms of JaxGene
+        synonyms: [String]
+        # synonymss is list variant of synonyms of JaxGene
+        synonymss: [[String]]
+    ): JaxGene
+    # OmniGene myGeneInfoGene MyGeneInfo_Gene
+    myGeneInfoGene(
+        # chromosome of MyGeneInfo_Gene
+        chromosome: String
+        # chromosomes is list variant of chromosome of MyGeneInfo_Gene
+        chromosomes: [String]
+        # end of MyGeneInfo_Gene
+        end: Int
+        # ends is list variant of end of MyGeneInfo_Gene
+        ends: [Int]
+        # entrezId of MyGeneInfo_Gene
+        entrezId: String
+        # entrezIds is list variant of entrezId of MyGeneInfo_Gene
+        entrezIds: [String]
+        filter: _MyGeneInfo_GeneFilter
+        # id of MyGeneInfo_Gene
+        id: ID
+        # ids is list variant of id of MyGeneInfo_Gene
+        ids: [ID]
+        # name of MyGeneInfo_Gene
+        name: String
+        # names is list variant of name of MyGeneInfo_Gene
+        names: [String]
+        orderBy: [_MyGeneInfo_GeneOrdering]
+        # start of MyGeneInfo_Gene
+        start: Int
+        # starts is list variant of start of MyGeneInfo_Gene
+        starts: [Int]
+        # strand of MyGeneInfo_Gene
+        strand: Strand
+        # strands is list variant of strand of MyGeneInfo_Gene
+        strands: [Strand]
+        # synonyms of MyGeneInfo_Gene
+        synonyms: [String]
+        # synonymss is list variant of synonyms of MyGeneInfo_Gene
+        synonymss: [[String]]
+    ): MyGeneInfo_Gene!
+    # name of  OmniGene
+    name: String!
+    # OmniGene oncogenicCategory EditableStatement
+    oncogenicCategory(
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
+    # panelName of  OmniGene
+    panelName: String!
+    # OmniGene synonymsString EditableStatement
+    synonymsString(
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
+    # OmniGene uniprot_entry Uniprot_Entry
+    uniprot_entry(
+        # accessionNumber of Uniprot_Entry
+        accessionNumber: String
+        # accessionNumbers is list variant of accessionNumber of Uniprot_Entry
+        accessionNumbers: [String]
+        filter: _Uniprot_EntryFilter
+        # id of Uniprot_Entry
+        id: ID
+        # ids is list variant of id of Uniprot_Entry
+        ids: [ID]
+        # name of Uniprot_Entry
+        name: String
+        # names is list variant of name of Uniprot_Entry
+        names: [String]
+        orderBy: [_Uniprot_EntryOrdering]
+        # uniprot_id of Uniprot_Entry
+        uniprot_id: String
+        # uniprot_ids is list variant of uniprot_id of Uniprot_Entry
+        uniprot_ids: [String]
+    ): Uniprot_Entry
+}
+
+type QueryType {
+    Author(
+        _id: Long
+        _ids: [Long]
+        filter: _AuthorFilter
+        first: Int
+        # first_initial of Author
+        first_initial: String
+        # first_initials is list variant of first_initial of Author
+        first_initials: [String]
+        # id of Author
+        id: ID
+        # ids is list variant of id of Author
+        ids: [ID]
+        offset: Int
+        orderBy: [_AuthorOrdering]
+        # surname of Author
+        surname: String
+        # surnames is list variant of surname of Author
+        surnames: [String]
+    ): [Author]
+    EditableStatement(
+        _id: Long
+        _ids: [Long]
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        first: Int
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): [EditableStatement]
+    InternetReference(
+        _id: Long
+        _ids: [Long]
+        # accessed_date of InternetReference
+        accessed_date: String
+        # accessed_dates is list variant of accessed_date of InternetReference
+        accessed_dates: [String]
+        filter: _InternetReferenceFilter
+        first: Int
+        # id of InternetReference
+        id: ID
+        # ids is list variant of id of InternetReference
+        ids: [ID]
+        offset: Int
+        orderBy: [_InternetReferenceOrdering]
+        # shortReference of InternetReference
+        shortReference: String
+        # shortReferences is list variant of shortReference of InternetReference
+        shortReferences: [String]
+        # web_address of InternetReference
+        web_address: String
+        # web_addresss is list variant of web_address of InternetReference
+        web_addresss: [String]
+    ): [InternetReference]
+    JaxGene(
+        _id: Long
+        _ids: [Long]
+        # canonicalTranscript of JaxGene
+        canonicalTranscript: [String]
+        # canonicalTranscripts is list variant of canonicalTranscript of JaxGene
+        canonicalTranscripts: [[String]]
+        # chromosome of JaxGene
+        chromosome: String
+        # chromosomes is list variant of chromosome of JaxGene
+        chromosomes: [String]
+        # entrezId of JaxGene
+        entrezId: String
+        # entrezIds is list variant of entrezId of JaxGene
+        entrezIds: [String]
+        filter: _JaxGeneFilter
+        first: Int
+        # id of JaxGene
+        id: ID
+        # ids is list variant of id of JaxGene
+        ids: [ID]
+        # jaxId of JaxGene
+        jaxId: String
+        # jaxIds is list variant of jaxId of JaxGene
+        jaxIds: [String]
+        # name of JaxGene
+        name: String
+        # names is list variant of name of JaxGene
+        names: [String]
+        offset: Int
+        orderBy: [_JaxGeneOrdering]
+        # synonyms of JaxGene
+        synonyms: [String]
+        # synonymss is list variant of synonyms of JaxGene
+        synonymss: [[String]]
+    ): [JaxGene]
+    Journal(
+        _id: Long
+        _ids: [Long]
+        filter: _JournalFilter
+        first: Int
+        # id of Journal
+        id: ID
+        # ids is list variant of id of Journal
+        ids: [ID]
+        # name of Journal
+        name: String
+        # names is list variant of name of Journal
+        names: [String]
+        offset: Int
+        orderBy: [_JournalOrdering]
+    ): [Journal]
+    LiteratureReference(
+        # DOI of LiteratureReference
+        DOI: String
+        # DOIs is list variant of DOI of LiteratureReference
+        DOIs: [String]
+        # PMID of LiteratureReference
+        PMID: String
+        # PMIDs is list variant of PMID of LiteratureReference
+        PMIDs: [String]
+        _id: Long
+        _ids: [Long]
+        # abstract of LiteratureReference
+        abstract: String
+        # abstracts is list variant of abstract of LiteratureReference
+        abstracts: [String]
+        filter: _LiteratureReferenceFilter
+        first: Int
+        # first_page of LiteratureReference
+        first_page: String
+        # first_pages is list variant of first_page of LiteratureReference
+        first_pages: [String]
+        # id of LiteratureReference
+        id: ID
+        # ids is list variant of id of LiteratureReference
+        ids: [ID]
+        # last_page of LiteratureReference
+        last_page: String
+        # last_pages is list variant of last_page of LiteratureReference
+        last_pages: [String]
+        offset: Int
+        orderBy: [_LiteratureReferenceOrdering]
+        # publication_Year of LiteratureReference
+        publication_Year: String
+        # publication_Years is list variant of publication_Year of LiteratureReference
+        publication_Years: [String]
+        # shortReference of LiteratureReference
+        shortReference: String
+        # shortReferences is list variant of shortReference of LiteratureReference
+        shortReferences: [String]
+        # title of LiteratureReference
+        title: String
+        # titles is list variant of title of LiteratureReference
+        titles: [String]
+        # volume of LiteratureReference
+        volume: String
+        # volumes is list variant of volume of LiteratureReference
+        volumes: [String]
+    ): [LiteratureReference]
+    MyGeneInfo_Gene(
+        _id: Long
+        _ids: [Long]
+        # chromosome of MyGeneInfo_Gene
+        chromosome: String
+        # chromosomes is list variant of chromosome of MyGeneInfo_Gene
+        chromosomes: [String]
+        # end of MyGeneInfo_Gene
+        end: Int
+        # ends is list variant of end of MyGeneInfo_Gene
+        ends: [Int]
+        # entrezId of MyGeneInfo_Gene
+        entrezId: String
+        # entrezIds is list variant of entrezId of MyGeneInfo_Gene
+        entrezIds: [String]
+        filter: _MyGeneInfo_GeneFilter
+        first: Int
+        # id of MyGeneInfo_Gene
+        id: ID
+        # ids is list variant of id of MyGeneInfo_Gene
+        ids: [ID]
+        # name of MyGeneInfo_Gene
+        name: String
+        # names is list variant of name of MyGeneInfo_Gene
+        names: [String]
+        offset: Int
+        orderBy: [_MyGeneInfo_GeneOrdering]
+        # start of MyGeneInfo_Gene
+        start: Int
+        # starts is list variant of start of MyGeneInfo_Gene
+        starts: [Int]
+        # strand of MyGeneInfo_Gene
+        strand: Strand
+        # strands is list variant of strand of MyGeneInfo_Gene
+        strands: [Strand]
+        # synonyms of MyGeneInfo_Gene
+        synonyms: [String]
+        # synonymss is list variant of synonyms of MyGeneInfo_Gene
+        synonymss: [[String]]
+    ): [MyGeneInfo_Gene]
+    NamedEntity(
+        _id: Long
+        _ids: [Long]
+        filter: _NamedEntityFilter
+        first: Int
+        # id of NamedEntity
+        id: ID
+        # ids is list variant of id of NamedEntity
+        ids: [ID]
+        # name of NamedEntity
+        name: String
+        # names is list variant of name of NamedEntity
+        names: [String]
+        offset: Int
+        orderBy: [_NamedEntityOrdering]
+    ): [NamedEntity]
+    OmniGene(
+        _id: Long
+        _ids: [Long]
+        filter: _OmniGeneFilter
+        first: Int
+        # id of OmniGene
+        id: ID
+        # ids is list variant of id of OmniGene
+        ids: [ID]
+        # name of OmniGene
+        name: String
+        # names is list variant of name of OmniGene
+        names: [String]
+        offset: Int
+        orderBy: [_OmniGeneOrdering]
+        # panelName of OmniGene
+        panelName: String
+        # panelNames is list variant of panelName of OmniGene
+        panelNames: [String]
+    ): [OmniGene]
+    Reference(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]
+    StatementWithEvidence(
+        _id: Long
+        _ids: [Long]
+        filter: _StatementWithEvidenceFilter
+        first: Int
+        # id of StatementWithEvidence
+        id: ID
+        # ids is list variant of id of StatementWithEvidence
+        ids: [ID]
+        offset: Int
+        orderBy: [_StatementWithEvidenceOrdering]
+        # statement of StatementWithEvidence
+        statement: String
+        # statements is list variant of statement of StatementWithEvidence
+        statements: [String]
+    ): [StatementWithEvidence]
+    Uniprot_Entry(
+        _id: Long
+        _ids: [Long]
+        # accessionNumber of Uniprot_Entry
+        accessionNumber: String
+        # accessionNumbers is list variant of accessionNumber of Uniprot_Entry
+        accessionNumbers: [String]
+        filter: _Uniprot_EntryFilter
+        first: Int
+        # id of Uniprot_Entry
+        id: ID
+        # ids is list variant of id of Uniprot_Entry
+        ids: [ID]
+        # name of Uniprot_Entry
+        name: String
+        # names is list variant of name of Uniprot_Entry
+        names: [String]
+        offset: Int
+        orderBy: [_Uniprot_EntryOrdering]
+        # uniprot_id of Uniprot_Entry
+        uniprot_id: String
+        # uniprot_ids is list variant of uniprot_id of Uniprot_Entry
+        uniprot_ids: [String]
+    ): [Uniprot_Entry]
+    User(
+        _id: Long
+        _ids: [Long]
+        filter: _UserFilter
+        first: Int
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        offset: Int
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): [User]
+}
+
+# Reference-Node
+interface Reference {
+    # internal node id
+    _id: Long
+    # id of  Reference
+    id: ID!
+    # shortReference of  Reference
+    shortReference: String!
+    # Reference statements_referenced StatementWithEvidence
+    statements_referenced(
+        _id: Long
+        _ids: [Long]
+        filter: _StatementWithEvidenceFilter
+        first: Int
+        # id of StatementWithEvidence
+        id: ID
+        # ids is list variant of id of StatementWithEvidence
+        ids: [ID]
+        offset: Int
+        orderBy: [_StatementWithEvidenceOrdering]
+        # statement of StatementWithEvidence
+        statement: String
+        # statements is list variant of statement of StatementWithEvidence
+        statements: [String]
+    ): [StatementWithEvidence!]!
+}
+
+# StatementWithEvidence-Node
+interface StatementWithEvidence {
+    # internal node id
+    _id: Long
+    # id of  StatementWithEvidence
+    id: ID!
+    # StatementWithEvidence references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+    # statement of  StatementWithEvidence
+    statement: String!
+}
+
+# Enum for Strand
+enum Strand {
+    # Value for FORWARD
+    FORWARD
+    # Value for REVERSE
+    REVERSE
+}
+
+# Uniprot_Entry-Node
+type Uniprot_Entry implements NamedEntity {
+    # internal node id
+    _id: Long
+    # accessionNumber of  Uniprot_Entry
+    accessionNumber: String!
+    # Uniprot_Entry function EditableStatement
+    function(
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
+    # Uniprot_Entry gene MyGeneInfo_Gene
+    gene(
+        # chromosome of MyGeneInfo_Gene
+        chromosome: String
+        # chromosomes is list variant of chromosome of MyGeneInfo_Gene
+        chromosomes: [String]
+        # end of MyGeneInfo_Gene
+        end: Int
+        # ends is list variant of end of MyGeneInfo_Gene
+        ends: [Int]
+        # entrezId of MyGeneInfo_Gene
+        entrezId: String
+        # entrezIds is list variant of entrezId of MyGeneInfo_Gene
+        entrezIds: [String]
+        filter: _MyGeneInfo_GeneFilter
+        # id of MyGeneInfo_Gene
+        id: ID
+        # ids is list variant of id of MyGeneInfo_Gene
+        ids: [ID]
+        # name of MyGeneInfo_Gene
+        name: String
+        # names is list variant of name of MyGeneInfo_Gene
+        names: [String]
+        orderBy: [_MyGeneInfo_GeneOrdering]
+        # start of MyGeneInfo_Gene
+        start: Int
+        # starts is list variant of start of MyGeneInfo_Gene
+        starts: [Int]
+        # strand of MyGeneInfo_Gene
+        strand: Strand
+        # strands is list variant of strand of MyGeneInfo_Gene
+        strands: [Strand]
+        # synonyms of MyGeneInfo_Gene
+        synonyms: [String]
+        # synonymss is list variant of synonyms of MyGeneInfo_Gene
+        synonymss: [[String]]
+    ): MyGeneInfo_Gene!
+    # id of  Uniprot_Entry
+    id: ID!
+    # name of  Uniprot_Entry
+    name: String!
+    # uniprot_id of  Uniprot_Entry
+    uniprot_id: String!
+}
+
+# User-Node
+type User implements NamedEntity {
+    # internal node id
+    _id: Long
+    # User edited_Statements EditableStatement
+    edited_Statements(
+        _id: Long
+        _ids: [Long]
+        # deleted of EditableStatement
+        deleted: Boolean
+        # deleteds is list variant of deleted of EditableStatement
+        deleteds: [Boolean]
+        # edit_date of EditableStatement
+        edit_date: String
+        # edit_dates is list variant of edit_date of EditableStatement
+        edit_dates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        first: Int
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): [EditableStatement]!
+    # id of  User
+    id: ID!
+    # isAdmin of  User
+    isAdmin: Boolean!
+    # name of  User
+    name: String!
+    # password of  User
+    password: String!
+}
+
