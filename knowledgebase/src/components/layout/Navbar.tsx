@@ -15,6 +15,10 @@ const Navbar: React.FC<Props> = ({logged_in, set_logged_in} : Props) => {
     }
     const authLinks = (
         <ul>
+            <li><Link to="/diseases">
+                <i className="far fa-disease"></i>{' '}
+                Diseases</Link>
+            </li>
             <li><Link to="/drugs">
                 <i className="fas fa-pills"></i>{' '}
                 Drugs</Link>

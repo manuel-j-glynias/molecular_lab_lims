@@ -9,6 +9,7 @@ import DrugsContainer from "./components/Drugs/DrugsContainer/DrugsContainer";
 
 import Landing from "./components/layout/Landing"
 import './App.css';
+import DiseasesContainer from "./components/Diseases/DiseasesContainer/DiseasesContainer";
 
 const App = () => {
     const [logged_in, set_logged_in] = React.useState(false);
@@ -25,6 +26,7 @@ const App = () => {
                             <Route exact path="/genes" render={() => <GenesContainer logged_in={logged_in}/>}/>
                             <Route exact path="/markers" render={() => <MarkersContainer logged_in={logged_in}/>}/>
                             <Route exact path="/drugs" render={() => <DrugsContainer logged_in={logged_in}/>}/>
+                            <Route exact path="/diseases" render={() => <DiseasesContainer logged_in={logged_in}/>}/>
                         </Switch>
                     </section>
                 </Fragment>
