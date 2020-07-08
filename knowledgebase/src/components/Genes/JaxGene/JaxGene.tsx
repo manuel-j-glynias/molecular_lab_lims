@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import {JaxGeneQuery} from '../../../generated/graphql';
+import {EditableStatement, JaxGeneQuery, Maybe} from '../../../generated/graphql';
 import './styles.css';
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
 
@@ -54,6 +54,16 @@ const JaxGene: React.FC<Props> = ({data,editing_description,editing_synonyms}) =
         setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: text})
         // handle_append_to_description('appended stuff')
     };
+    const get_canonicalTranscript = (ct_obj:Array<Maybe<({ __typename?: 'EditableStatement' } & Pick<EditableStatement, 'statement'>)>>): string => {
+        let ct: string = ''
+        //[0].statement
+        if (ct_obj != null){
+            if (ct_obj[0] != null){
+                ct = ct_obj[0].statement
+            }
+        }
+        return ct
+    }
     const add_hyperlinks = (description: string): DescriptionWithPmids[] => {
         let d: DescriptionWithPmids[] = []
         let pmids: Array<string> = []
@@ -72,7 +82,7 @@ const JaxGene: React.FC<Props> = ({data,editing_description,editing_synonyms}) =
 
                     const dwp: DescriptionWithPmids = {
                         text: splitted[i],
-                        pmid: pmids[i]
+                        pmid: pmid
                     }
                     d.push(dwp)
                 }
@@ -105,14 +115,16 @@ const JaxGene: React.FC<Props> = ({data,editing_description,editing_synonyms}) =
                 <div>{data.JaxGene[0].chromosome}</div>
                 <div>Synonyms</div>
 
-                <div>{data.JaxGene[0].synonyms.map((item, index) => (
+                <div>{data.JaxGene[0].synonyms.stringList.map((item, index) => (
                     <div className={`${className}__Synonym_Wrapper`} key={index}>
                     <div>{item}</div>
                         <div>
                         {editing_synonyms ?
+                            (
                             <button className={`${className}__small-btn`}
                                     onClick={() => copy_synonym(item)}>Copy Synonym
                             </button>
+                            )
                             :
                             (<span></span>)}
                         </div>
@@ -120,8 +132,8 @@ const JaxGene: React.FC<Props> = ({data,editing_description,editing_synonyms}) =
                 ))}</div>
                 <div>Canonical Transcript</div>
                 <div>{(
-                    <a href={'https://www.ncbi.nlm.nih.gov/nuccore/' + data.JaxGene[0].canonicalTranscript} target="_blank"
-                       rel="noopener noreferrer">{data.JaxGene[0].canonicalTranscript}</a>)}</div>
+                    <a href={'https://www.ncbi.nlm.nih.gov/nuccore/' + get_canonicalTranscript(data.JaxGene[0].canonicalTranscript)} target="_blank"
+                       rel="noopener noreferrer">{get_canonicalTranscript(data.JaxGene[0].canonicalTranscript)}</a>)}</div>
                 <div>Entrez Gene</div>
                 <div>{(
                     <a href={'https://www.ncbi.nlm.nih.gov/gene/' + data.JaxGene[0].entrezId} target="_blank"

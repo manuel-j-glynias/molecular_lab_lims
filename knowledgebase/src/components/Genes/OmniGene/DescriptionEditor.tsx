@@ -1,11 +1,10 @@
 import * as React from 'react';
-import test_pubmed from "./pubmed";
-// import { useGetPubMedIdLazyQuery }  from '../../generated/graphql';
 import {useAppendedContentState, AppendedContentActionTypes} from "../../../context/AppendedContentContext"
 import {useUserContentState} from "../../../context/UserContentContext"
 import {useAddOmniGeneGeneDescriptionMutation} from "../../../generated/graphql";
 import {get_description_mutation_object} from "./EditableStatementHelper";
 import {useEffect} from "react";
+import apiClient from "../../../axios/Axios"
 
 interface Props {
     description: string;
@@ -48,18 +47,43 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
     }
 
 
-    const save = async () => {
-        // console.log('save')
-        // console.log(description_string.current)
-        let pmids:Array<string> = parse_description(description_string.current)
-        const mutation_object = get_description_mutation_object(omnigene_ID,es_ID,es_field,description_string.current,user_ID,pmids)
-        // console.log(JSON.stringify(mutation_object))
-        await addOmniGeneGeneDescriptionMutation({variables:mutation_object})
-        // refetch()
-        // set_editing(false)
+    type preflightResult = {
+        result: string;
+        refs: string[]
+    }
+
+    const preflight = async (pmids:string ) => {
+        try {
+            // @ts-ignore
+            const response = await apiClient.get<preflightResult>("/reference_preflight/" + pmids);
+            const preflightResult = response.data;
+            return preflightResult;
+        } catch (err) {
+            if (err && err.response) {
+                // const axiosError = err as AxiosError<ServerError>
+                return err.response;
+            }
+
+            throw err;
+        }
     };
 
+    async function extracted(pmids: Array<string>) {
+        const mutation_object = get_description_mutation_object(omnigene_ID, es_ID, es_field, description_string.current, user_ID, pmids)
+        await addOmniGeneGeneDescriptionMutation({variables: mutation_object})
+    }
+
+    const save = async () => {
+         let pmids:Array<string> = parse_description(description_string.current)
+
+        const preflight_input = pmids.join(',')
+        preflight(preflight_input).then( (response:preflightResult) => {
+            extracted(response.refs)
+        })
+     };
+
     const post_save = () => {
+
         if (mutationData!=null){
             refetch()
             set_editing(false)
@@ -72,15 +96,11 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
         set_editing(false)
     };
 
-    // const test_append = async (string_to_append:string) => {
-    //     console.log('test_append')
-    //     set_description_value(description_value + string_to_append)
-    // };
 
 
     const extract_pmids_from_description =  (description:string) : Array<string> => {
         let pmids: Array<string> = []
-        const regex = /PMID:\s+\d{8}/g;
+        const regex = /PMID:\s+\d{7,}/g;
         const found = description.match(regex);
         if (found!=null){
             for (var i=0;i<found.length;i++){
@@ -99,7 +119,7 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
     const extract_pubmeds_from_description =  (description:string) : Array<string> => {
         let pmids: Array<string> = []
         //    pattern = r'PubMed:\d{8}'
-        const regex = /PubMed:\d{8}/g;
+        const regex = /PubMed:\d{7,}/g;
         const found = description.match(regex);
         if (found!=null){
             for (var i=0;i<found.length;i++){
@@ -116,21 +136,6 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
         return pmids
     }
 
-    // const [getPumEdId, { loading, data }] = useGetPubMedIdLazyQuery();
-
-    // const get_literature_reference_from_pmid = (pmid:string) : string | null => {
-    //     let ref_id = null;
-    //     let possible_ref_id = 'ref_' + pmid;
-    //     console.log('possible_ref_id=' + possible_ref_id)
-    //     const data = getPumEdId({ variables: { ref_id: possible_ref_id } })
-    //     // const { loading, error, data } = useQuery(GET_PUBMED_ID, {
-    //     //          variables: { ref_id: possible_ref_id },
-    //     //        });
-    //     if (data != null  ) {
-    //         console.log('data=' + JSON.stringify(data))
-    //     }
-    //     return ref_id
-    // }
 
      const {
         AppendedContentState: { textToAppend },
@@ -149,14 +154,7 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
             copied_string.current = textToAppend;
         }
         return description_string.current
-        // let d = description_string.current
-        // if (textToAppend != null && textToAppend.length>0){
-        //     d += textToAppend;
-        //     // set_description_value(d)
-        //     // setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})
-        // }
-        // return d
-    }
+     }
     const handle_change = async (targetValue:string) => {
         description_string.current = targetValue
         set_description_value(targetValue)

@@ -11,19 +11,18 @@
     background-color: #ececec;
     border-bottom: 1px solid #919191;
 }
-
 .GeneList__Panel_Wrapper {
     height: 220px;
 }
 .GeneList__Buttons {
     height: 50px;
     width: 250px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 20px;
 }
 
 .GeneList__Filter {
-    height: 150px;
+    height: 120px;
     width: 250px;
     padding-top: 20px;
     padding-left: 20px;

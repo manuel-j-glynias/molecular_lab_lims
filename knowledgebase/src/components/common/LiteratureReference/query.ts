@@ -13,14 +13,14 @@ export const QUERY_LiteratureReference = gql`
                 name
             }
             volume
-            first_page
-            last_page
-            publication_Year
+            firstPage
+            lastPage
+            publicationYear
             abstract
             authors{
                 id
                 surname
-                first_initial
+                firstInitial
             }
         }
     }  

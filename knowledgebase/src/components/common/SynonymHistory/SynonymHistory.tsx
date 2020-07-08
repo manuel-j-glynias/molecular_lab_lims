@@ -1,11 +1,11 @@
 
 import * as React from 'react'
-import { EditableStatementQuery } from '../../../generated/graphql'
+import { EditableStringListQuery } from '../../../generated/graphql'
 import './styles.css'
 
 
 export interface Props {
-    data: EditableStatementQuery;
+    data: EditableStringListQuery;
 }
 
 
@@ -16,18 +16,19 @@ const humanify_date =  (date_string:string) : string => {
     const d = toks[1] + '/' + toks[2]  + '/' + toks[0] + ' at ' + toks[3] + ':' + toks[4]
     return d
 }
-const History: React.FC<Props> = ({data}) => (
+const SynonymHistory: React.FC<Props> = ({data}) => (
 
     <div className={className}>
         <h3>History</h3>
         <ol className={`${className}__list`}>
-            {!!data.EditableStatement &&
-            data.EditableStatement.map(
+            {!!data.EditableStringList &&
+            data.EditableStringList.map(
                 (ES, i: string | number ) =>
                     !!ES && (
                         <li key={i} className={`${className}__item`}>
-                            <strong>Created by: {ES.editor.name} on {humanify_date(ES.edit_date)}:  </strong>
-                            {ES.statement}
+                            <strong>Created by: {ES.editor.name} on {humanify_date(ES.editDate)}:  </strong>
+
+                            {ES.stringList.join(',')}
                         </li>
                     ),
             )}
@@ -36,4 +37,4 @@ const History: React.FC<Props> = ({data}) => (
     </div>
 )
 
-export default History;
+export default SynonymHistory;

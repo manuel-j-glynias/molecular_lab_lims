@@ -2,11 +2,11 @@ import gql from 'graphql-tag';
 
 export const QUERY_MyGeneInfo = gql`
     query Uniprot($id:ID){
-        Uniprot_Entry(id:$id){
+        UniprotEntry(id:$id){
             id
             name
             accessionNumber
-            uniprot_id
+            uniprotId
             function{
                 id
                 statement
@@ -14,7 +14,7 @@ export const QUERY_MyGeneInfo = gql`
                 editor{
                     name
                 }
-                edit_date
+                editDate
                 references{
                     id
                 }

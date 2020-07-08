@@ -1,7 +1,8 @@
 import React, {Fragment, useState} from 'react'
 import {useGeneListQuery} from '../../../generated/graphql'
 import GeneList, {OwnProps} from './GeneList'
-
+import { useAlert } from 'react-alert'
+import apiClient from "../../../axios/Axios";
 
 const className = 'GeneList';
 
@@ -10,6 +11,7 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
     const [filter_term, set_filter_term] = useState('');
     const [all_caps, set_all_caps] = useState(true)
     const [add_gene, set_add_gene] = useState('');
+    const alert = useAlert()
 
     const handleNameFilter = () => {
         set_gene_query_string(filter_term)
@@ -23,8 +25,35 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
         set_gene_query_string('')
         set_filter_term('')
     }
+
+    type addGeneResult = {
+        result_id: string;
+        result_name: string;
+    }
+
+    const addGeneService = async (gene_name:string) => {
+        try{
+            const response = await apiClient.get<addGeneResult>("/new_gene/" + gene_name)
+            const addGeneResult = response.data;
+            return addGeneResult
+        } catch (err) {
+            if (err && err.response) {
+                // const axiosError = err as AxiosError<ServerError>
+                return err.response;
+            }
+
+            throw err;
+
+        }
+    }
+
     const handleAddGene = () => {
-        console.log('Add gene:' + add_gene)
+        addGeneService(add_gene).then( (response:addGeneResult) => {
+            set_filter_term(response.result_name)
+            set_gene_query_string(response.result_name)
+            set_add_gene('')
+        }).catch(err => alert.show(err))
+
     }
 
     const handle_all_caps = () => {
@@ -56,6 +85,7 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
 
                 <div className={`${className}__Panel_Wrapper`}>
                     <div className={`${className}__Panel`}>
+                        <div className={`${className}__Title`}>Genes</div>
                         <div className={`${className}__Buttons`}>
                             <input className={'add_gene_input'} type="text"
                                    placeholder="HGNC..."
@@ -82,7 +112,6 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
                             </div>
                             <button className={'btn btn-primary'} onClick={handleNameFilter}>Filter</button>
                             <button className={'btn btn-primary'} onClick={handleReset}>Reset</button>
-                            <div className={`${className}__Title`}>Genes</div>
                         </div>
                     </div>
 

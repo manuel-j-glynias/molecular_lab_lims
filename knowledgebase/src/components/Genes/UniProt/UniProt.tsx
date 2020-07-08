@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useAppendedContentState, AppendedContentActionTypes} from "../../../context/AppendedContentContext"
 import {UniprotQuery} from '../../../generated/graphql';
 import './styles.css';
-import LiteratureReferenceContainer from "../LiteratureReference";
+import LiteratureReferenceContainer from "../../common/LiteratureReference";
 
 interface Props {
     data: UniprotQuery;
@@ -18,11 +18,11 @@ const UniProt: React.FC<Props> = ({data,editing_description}) => {
     const getDescriptionString = (q: UniprotQuery): string => {
         let s = ''
         if (q != null) {
-            if (q.Uniprot_Entry != null) {
-                if (q.Uniprot_Entry[0] != null) {
-                    if (q.Uniprot_Entry[0].function != null) {
+            if (q.UniprotEntry != null) {
+                if (q.UniprotEntry[0] != null) {
+                    if (q.UniprotEntry[0].function != null) {
                         // @ts-ignore
-                        s = q.Uniprot_Entry[0].function.statement
+                        s = q.UniprotEntry[0].function.statement
                     }
                 }
             }
@@ -76,27 +76,27 @@ const UniProt: React.FC<Props> = ({data,editing_description}) => {
         return d;
     }
 
-    if (!data.Uniprot_Entry) {
+    if (!data.UniprotEntry) {
         return <div>No MyGeneInfo Gene</div>;
     }
-    if (!data.Uniprot_Entry[0]) {
+    if (!data.UniprotEntry[0]) {
         return <div>No OmniGene</div>;
     }
 
     return (
 
         <div className={className}>
-            <h3 className={`${className}__title`}>Uniprot: {data.Uniprot_Entry[0].uniprot_id}</h3>
+            <h3 className={`${className}__title`}>Uniprot: {data.UniprotEntry[0].uniprotId}</h3>
             <div className={`${className}__Wrapper`}>
                 <div>Accession Number</div>
                 <div>{(
-                    <a href={'https://www.uniprot.org/uniprot/' + data.Uniprot_Entry[0].accessionNumber} target="_blank"
-                       rel="noopener noreferrer">{data.Uniprot_Entry[0].accessionNumber}</a>)}</div>
+                    <a href={'https://www.uniprot.org/uniprot/' + data.UniprotEntry[0].accessionNumber} target="_blank"
+                       rel="noopener noreferrer">{data.UniprotEntry[0].accessionNumber}</a>)}</div>
 
                     <div>Function</div>
                     <div>
                         {/*{data.Uniprot_Entry[0].function.statement}*/}
-                        {add_hyperlinks(data.Uniprot_Entry[0].function.statement).map((item, index) => (
+                        {add_hyperlinks(data.UniprotEntry[0].function.statement).map((item, index) => (
                             <span key={index} >{item.text}
                                 { item.pmid !=='' ?
                                     <a href={'https://pubmed.ncbi.nlm.nih.gov/' + item.pmid} target="_blank"
@@ -118,8 +118,8 @@ const UniProt: React.FC<Props> = ({data,editing_description}) => {
                     </div>
 
                 <div>References</div>
-                <div>{data.Uniprot_Entry[0].function.references.length>0 ?
-                    data.Uniprot_Entry[0].function.references.map((item, index) => (
+                <div>{data.UniprotEntry[0].function.references.length>0 ?
+                    data.UniprotEntry[0].function.references.map((item, index) => (
                         <div key={index}> {item ? <LiteratureReferenceContainer id={item.id}/>: '' }</div>
 
                     )) : <span>None</span>}</div>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useAppendedContentState} from "../../../context/AppendedContentContext"
 import {useUserContentState} from "../../../context/UserContentContext"
 import {get_synonym_mutation_object} from "./EditableStatementHelper"
-import {useAddSynonymStringMutation} from "../../../generated/graphql";
+import {useAddSynonymsMutation} from "../../../generated/graphql";
 import {useEffect} from "react";
 
 interface Props {
@@ -29,8 +29,8 @@ const SynonymEditor: React.FC<Props> = ({synonym_string, set_editing, es_ID, es_
     const synonym_array = React.useRef(create_synonym_array(synonym_string));
 
 
-    const [addSynonymStringMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useAddSynonymStringMutation({variables:{gene_id:'', old_es_id:'',
-                date: '', es_field: '', es_statement:'', es_id: '', user_id: ''}})
+    const [addSynonymStringMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useAddSynonymsMutation({variables:{gene_id:'', old_esyn_id:'',
+                date: '', esyn_field: '', esyn_list:[], esyn_id: '', user_id: ''}})
 
     const {
         AppendedContentState: {synonymToAppend}
@@ -50,12 +50,17 @@ const SynonymEditor: React.FC<Props> = ({synonym_string, set_editing, es_ID, es_
 
     const [synonynm_value, set_synonynm_value] = React.useState('');
     const add_synonym = async () => {
-        synonym_array.current = synonym_array.current.concat(synonynm_value);
+        let synonyms = synonynm_value.split(',')
+       for (let syn of synonyms){
+           synonym_array.current = synonym_array.current.concat(syn.trim());
+        }
         set_synonym_string_value(synonym_array.current.join(','))
+        // synonym_array.current = synonym_array.current.concat(synonynm_value);
+        // set_synonym_string_value(synonym_array.current.join(','))
     }
 
     const save = async () => {
-        const synonyms = synonym_array.current.join(',');
+        const synonyms = synonym_array.current;
         const mutation_object = get_synonym_mutation_object(omnigene_ID,es_ID,es_field,synonyms,user_ID);
         // console.log(JSON.stringify(mutation_object))
         await addSynonymStringMutation({variables:mutation_object})

@@ -56,7 +56,7 @@ const ContentContainer: React.FC<Props> = ({
             </div>
             <div> {show_uniprot ?
                 <div>
-                     { data.OmniGene[0].uniprot_entry ? <UniProtContainer id={data.OmniGene[0].uniprot_entry.id} editing_description={editing_description} /> : <p>None</p> }
+                     { data.OmniGene[0].uniprotEntry ? <UniProtContainer id={data.OmniGene[0].uniprotEntry.id} editing_description={editing_description} /> : <p>None</p> }
 
                 </div>
                  : (<span></span>) }

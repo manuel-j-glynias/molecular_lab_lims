@@ -6,7 +6,7 @@ export const QUERY_OmniGene_Components = gql`
              myGeneInfoGene {
                 id
              }
-            uniprot_entry {
+            uniprotEntry {
                 id
              }
             jaxGene {

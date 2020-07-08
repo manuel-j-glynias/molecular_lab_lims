@@ -1,0 +1,94 @@
+.HotSpotVariant {
+    top:0px;
+    /*height: 100vh;*/
+    /*max-height: 100%;*/
+    width: 620px;
+    overflow: hidden auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.HotSpotVariant__title {
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.HotSpotVariant__Wrapper {
+    display: grid;
+    grid-template-columns: 150px 450px;
+    grid-row-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+    align-items: flex-start;
+}
+
+.HotSpotVariant__Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.HotSpotVariant__Wrapper_Span {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+.HotSpotVariant__Wrapper > div:nth-child(odd){
+    padding-left: 5px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.HotSpotVariant__Wrapper > div:nth-child(even){
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.HotSpotVariant__Link{
+    color: blue;
+    text-decoration: underline;
+}
+.HotSpotVariant__small-btn {
+    display: inline-block;
+    background-color: #005198;
+    color: white;
+    padding: 0.2rem 0.2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    outline: none;
+    transition: all 0.2s ease-in;
+}
+.HotSpotVariant__small-btn:hover {
+    background: #1ab6cf;
+}
+HotSpotVariant__small-btn:active {
+    border: 2px solid green;
+}
+.HotSpotVariant__Synonym_Wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    align-items: flex-start;
+}
+
+.HotSpotVariant__Occurrences_Wrapper {
+    display: grid;
+    width: 400px;
+    /*   disease    oncoTreeCode    occurrences/totalSamples    percentOccurrence    */
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    border-right-style: none;
+    border-left-style: none;
+    border-width: thin;
+}
+.HotSpotVariant__Occurrences_Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom-style: solid;
+    border-width: thin;
+}
+/*.HotSpotVariant__Occurrences_Wrapper > div:nth-child(odd){*/
+/*    background-color: lightgray;*/
+/*    color: black;*/
+/*}*/

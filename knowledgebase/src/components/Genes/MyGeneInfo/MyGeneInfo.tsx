@@ -22,17 +22,17 @@ const MyGeneInfo: React.FC<Props> = ({data, editing_description}) => {
     const get_internet_reference = (q: MyGeneInfo_GeneQuery): string => {
         let s = ''
         if (q != null) {
-            if (q.MyGeneInfo_Gene != null) {
-                if (q.MyGeneInfo_Gene[0] != null) {
-                    if (q.MyGeneInfo_Gene[0].description != null) {
-                        if (q.MyGeneInfo_Gene[0].description.references != null) {
-                            if (q.MyGeneInfo_Gene[0].description.references.length > 0) {
+            if (q.MyGeneInfoGene != null) {
+                if (q.MyGeneInfoGene[0] != null) {
+                    if (q.MyGeneInfoGene[0].description != null) {
+                        if (q.MyGeneInfoGene[0].description.references != null) {
+                            if (q.MyGeneInfoGene[0].description.references.length > 0) {
                                 // @ts-ignore
-                                if (q.MyGeneInfo_Gene[0].description.references[0].shortReference != null) {
+                                if (q.MyGeneInfoGene[0].description.references[0].shortReference != null) {
                                     // @ts-ignore
                                     // s = q.MyGeneInfo_Gene[0].description.references[0].shortReference
-                                    let ref = q.MyGeneInfo_Gene[0].description.references[0] as InternetReference
-                                    s = ref.web_address
+                                    let ref = q.MyGeneInfoGene[0].description.references[0] as InternetReference
+                                    s = ref.webAddress
                                 }
                             }
                         }
@@ -45,17 +45,17 @@ const MyGeneInfo: React.FC<Props> = ({data, editing_description}) => {
     const get_internet_reference_date = (q: MyGeneInfo_GeneQuery): string => {
         let s = ''
         if (q != null) {
-            if (q.MyGeneInfo_Gene != null) {
-                if (q.MyGeneInfo_Gene[0] != null) {
-                    if (q.MyGeneInfo_Gene[0].description != null) {
-                        if (q.MyGeneInfo_Gene[0].description.references != null) {
-                            if (q.MyGeneInfo_Gene[0].description.references.length > 0) {
+            if (q.MyGeneInfoGene != null) {
+                if (q.MyGeneInfoGene[0] != null) {
+                    if (q.MyGeneInfoGene[0].description != null) {
+                        if (q.MyGeneInfoGene[0].description.references != null) {
+                            if (q.MyGeneInfoGene[0].description.references.length > 0) {
                                 // @ts-ignore
-                                if (q.MyGeneInfo_Gene[0].description.references[0].shortReference != null) {
+                                if (q.MyGeneInfoGene[0].description.references[0].shortReference != null) {
                                     // @ts-ignore
                                     // s = q.MyGeneInfo_Gene[0].description.references[0].shortReference
-                                    let ref = q.MyGeneInfo_Gene[0].description.references[0] as InternetReference
-                                    let accessed = ref.accessed_date
+                                    let ref = q.MyGeneInfoGene[0].description.references[0] as InternetReference
+                                    let accessed = ref.accessedDate
                                     s = accessed
                                 }
                             }
@@ -69,11 +69,11 @@ const MyGeneInfo: React.FC<Props> = ({data, editing_description}) => {
     const getDescriptionString = (q: MyGeneInfo_GeneQuery): string => {
         let s = ''
         if (q != null) {
-            if (q.MyGeneInfo_Gene != null) {
-                if (q.MyGeneInfo_Gene[0] != null) {
-                    if (q.MyGeneInfo_Gene[0].description != null) {
+            if (q.MyGeneInfoGene != null) {
+                if (q.MyGeneInfoGene[0] != null) {
+                    if (q.MyGeneInfoGene[0].description != null) {
                         // @ts-ignore
-                        s = q.MyGeneInfo_Gene[0].description.statement
+                        s = q.MyGeneInfoGene[0].description.statement
                     }
                 }
             }
@@ -91,10 +91,10 @@ const MyGeneInfo: React.FC<Props> = ({data, editing_description}) => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: appended2})
         // handle_append_to_description('appended stuff')
     };
-    if (!data.MyGeneInfo_Gene) {
+    if (!data.MyGeneInfoGene) {
         return <div>No MyGeneInfo Gene</div>;
     }
-    if (!data.MyGeneInfo_Gene[0]) {
+    if (!data.MyGeneInfoGene[0]) {
         return <div>No OmniGene</div>;
     }
     //https://www.ncbi.nlm.nih.gov/gene/
@@ -103,18 +103,18 @@ const MyGeneInfo: React.FC<Props> = ({data, editing_description}) => {
     return (
 
         <div className={className}>
-            <h3 className={`${className}__title`}>myGeneInfo: {data.MyGeneInfo_Gene[0].name}</h3>
+            <h3 className={`${className}__title`}>myGeneInfo: {data.MyGeneInfoGene[0].name}</h3>
             <div className={`${className}__Wrapper`}>
                 <div>Chromosomal Position</div>
-                <div>{data.MyGeneInfo_Gene[0].chromosome} : {data.MyGeneInfo_Gene[0].start} - {data.MyGeneInfo_Gene[0].end} ( {convert_strand(data.MyGeneInfo_Gene[0].strand)} )</div>
+                <div>{data.MyGeneInfoGene[0].chromosome} : {data.MyGeneInfoGene[0].start} - {data.MyGeneInfoGene[0].end} ( {convert_strand(data.MyGeneInfoGene[0].strand)} )</div>
 
                 <div>Entrez Gene</div>
                 <div>{(
-                    <a href={'https://www.ncbi.nlm.nih.gov/gene/' + data.MyGeneInfo_Gene[0].entrezId} target="_blank"
-                       rel="noopener noreferrer">{data.MyGeneInfo_Gene[0].entrezId}</a>)}</div>
+                    <a href={'https://www.ncbi.nlm.nih.gov/gene/' + data.MyGeneInfoGene[0].entrezId} target="_blank"
+                       rel="noopener noreferrer">{data.MyGeneInfoGene[0].entrezId}</a>)}</div>
 
                 <div>Gene Description</div>
-                <div>{data.MyGeneInfo_Gene[0].description.statement}
+                <div>{data.MyGeneInfoGene[0].description.statement}
                     {editing_description ?
                         (
                             <div className="form-group">

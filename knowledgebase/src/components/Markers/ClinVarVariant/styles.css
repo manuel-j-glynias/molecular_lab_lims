@@ -1,0 +1,72 @@
+.ClinVarVariant {
+    top:0px;
+    /*height: 100vh;*/
+    /*max-height: 100%;*/
+    width: 620px;
+    overflow: hidden auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.ClinVarVariant__title {
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.ClinVarVariant__Wrapper {
+    display: grid;
+    grid-template-columns: 150px 450px;
+    grid-row-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+    align-items: flex-start;
+}
+
+.ClinVarVariant__Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.ClinVarVariant__Wrapper_Span {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+.ClinVarVariant__Wrapper > div:nth-child(odd){
+    padding-left: 5px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.ClinVarVariant__Wrapper > div:nth-child(even){
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.ClinVarVariant__Link{
+    color: blue;
+    text-decoration: underline;
+}
+.ClinVarVariant__small-btn {
+    display: inline-block;
+    background-color: #005198;
+    color: white;
+    padding: 0.2rem 0.2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    outline: none;
+    transition: all 0.2s ease-in;
+}
+.ClinVarVariant__small-btn:hover {
+    background: #1ab6cf;
+}
+ClinVarVariant__small-btn:active {
+    border: 2px solid green;
+}
+.ClinVarVariant__Synonym_Wrapper {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    align-items: flex-start;
+}
