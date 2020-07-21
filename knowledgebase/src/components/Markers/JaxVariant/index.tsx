@@ -4,9 +4,11 @@ import JaxVariant from './JaxVariant'
 
 interface Props {
     id: string;
+    editing_description: boolean;
+    editing_protein_effect: boolean;
 }
 
-const JaxVariantContainer = ({id}:Props) => {
+const JaxVariantContainer = ({id,editing_description,editing_protein_effect}:Props) => {
     const { data, error, loading, refetch } = useJaxVariantQuery(
         {variables:{id:id}})
     React.useEffect(() => {
@@ -24,7 +26,7 @@ const JaxVariantContainer = ({id}:Props) => {
     if (!data) {
         return <div>No Jax Variant</div>;
     }
-    return <JaxVariant data={data}/>;
+    return <JaxVariant data={data} editing_description={editing_description} editing_protein_effect={editing_protein_effect}/>;
 }
 
 export default JaxVariantContainer;

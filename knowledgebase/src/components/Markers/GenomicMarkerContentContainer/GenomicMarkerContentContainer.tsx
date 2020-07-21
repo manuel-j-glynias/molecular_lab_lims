@@ -9,9 +9,11 @@ import HotSpotVariantContainer from "../HotSpotVariant";
 interface Props {
     variant_id: string;
     data: GenomicVariantComponentsQuery;
+    editing_description: boolean;
+    editing_protein_effect: boolean;
 }
 const className = 'GenomicMarkerContentContainer';
-const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data}) => {
+const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editing_description,editing_protein_effect}) => {
     const [show_jax, set_show_jax] = React.useState(false);
     const [show_go, set_show_go] = React.useState(false);
     const [show_clinvar, set_show_clinvar] = React.useState(false);
@@ -40,16 +42,16 @@ const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data}) => {
         <div className = {`${className}__Wrapper`}>
             {/*<span>{variant_id}</span>*/}
             <div>
-                {show_jax && data.GenomicVariant[0].jaxVariant ? <JaxVariantContainer id={data.GenomicVariant[0].jaxVariant.id}/>: <span></span> }
+                {show_jax ? ( data.GenomicVariant[0].jaxVariant ? <JaxVariantContainer id={data.GenomicVariant[0].jaxVariant.id} editing_protein_effect={editing_protein_effect} editing_description={editing_description}/>: <span>No Jax Variant</span>) :<span></span> }
             </div>
             <div>
-                {show_go && data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id}/>: <span></span> }
+                {show_go ? ( data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id}/>: <span>No Go Variant</span>) : <span></span>}
             </div>
             <div>
-                {show_clinvar && data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id}/>: <span></span> }
+                {show_clinvar ? ( data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id}/>: <span>No ClinVar Variant</span>) : <span></span> }
             </div>
             <div>
-                {show_hotspot && data.GenomicVariant[0].hotSpotVariant ? <HotSpotVariantContainer id={data.GenomicVariant[0].hotSpotVariant.id}/> : <span></span>}
+                {show_hotspot ? ( data.GenomicVariant[0].hotSpotVariant ? <HotSpotVariantContainer id={data.GenomicVariant[0].hotSpotVariant.id}/> : <span>No HotSpot Variant</span>) : <span></span>}
             </div>
         </div>
     </div>)

@@ -62,11 +62,40 @@
 .GenomicMarkerSNVEditor__small-btn:hover {
     background: #1ab6cf;
 }
-GenomicMarkerSNVEditor__small-btn:active {
+
+.GenomicMarkerSNVEditor__small-btn:active {
     border: 2px solid green;
 }
 .GenomicMarkerSNVEditor__Synonym_Wrapper {
     display: grid;
     grid-template-columns: 100px 100px;
     align-items: flex-start;
+}
+
+.GenomicMarkerSNVEditor__FormGroup {
+    margin: 0  0;
+}
+.GenomicMarkerSNVEditor__Textarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 200px;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+.GenomicMarkerSNVEditor__ShortTextarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 50px;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+
+.GenomicMarkerSNVEditor__select {
+    width: 60%;
 }

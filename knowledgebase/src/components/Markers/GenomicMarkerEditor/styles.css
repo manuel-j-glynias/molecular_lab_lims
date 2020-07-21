@@ -16,7 +16,7 @@
 
 .GenomicMarkerEditor__Wrapper {
     display: grid;
-    grid-template-columns: 150px 450px;
+    grid-template-columns: 140px 460px;
     grid-row-gap: 10px;
     grid-auto-rows: minmax(30px, auto);
     align-items: flex-start;

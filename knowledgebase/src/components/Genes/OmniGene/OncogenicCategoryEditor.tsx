@@ -79,23 +79,33 @@ const OncogenicCategoryEditor : React.FC<Props> = ({category_string, set_editing
         // console.log('save:')
         // console.log('pmid_list:' + pmid_list)
         // console.log('url_list:' + url_list)
-        let pmids:Array<string> = ref_array
+        let pmids:Array<string> = []
+        if (ref_array.length>0 && ref_array[0] != "") {
+            pmids = ref_array
+        }
+
         let pmidstringarray = pmid_list.split(',')
         for (let pmid of pmidstringarray){
             if (pmid.includes(':')){
                 pmid = pmid.split(':')[1].trim()
             }
-            if (!pmids.includes(pmid)){
+            if (pmid!="" && !pmids.includes(pmid)){
                 pmids.push(pmid)
             }
             console.log('pmid:' + pmid)
         }
-        const preflight_input = pmids.join(',')
+        if (pmids.length>0){
+            const preflight_input = pmids.join(',')
 
-        // await extracted(refs);
-        preflight(preflight_input).then( (response:preflightResult) => {
-            extracted(response.refs)
-        })
+            // await extracted(refs);
+            preflight(preflight_input).then( (response:preflightResult) => {
+                extracted(response.refs)
+            })
+
+        }
+        else {
+            extracted([])
+        }
 
     };
     const post_save = () => {

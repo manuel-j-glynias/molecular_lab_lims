@@ -16,6 +16,7 @@ const humanify_date =  (date_string:string) : string => {
     const d = toks[1] + '/' + toks[2]  + '/' + toks[0] + ' at ' + toks[3] + ':' + toks[4]
     return d
 }
+
 const History: React.FC<Props> = ({data}) => (
 
     <div className={className}>
@@ -29,6 +30,9 @@ const History: React.FC<Props> = ({data}) => (
                             <strong>Created by: {ES.editor.name} on {humanify_date(ES.editDate)}:  </strong>
 
                             { ES.statement}
+                            <ul className="History__ref_list">
+                            {ES.references.map((item, index) => (<li key={index}>{item && item.shortReference} </li>)) }
+                            </ul>
                         </li>
                     ),
             )}

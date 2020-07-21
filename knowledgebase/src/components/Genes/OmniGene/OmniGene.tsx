@@ -13,11 +13,11 @@ import SynonymHistoryContainer from "../../common/SynonymHistory";
 
 interface Props {
     data: OmniGeneQuery;
-    editing_description: boolean
+    editing_description: boolean;
     set_editing_description: (newEditionDescription: boolean) => void;
-    editing_category: boolean
+    editing_category: boolean;
     set_editing_category: (newEditionDescription: boolean) => void;
-    editing_synonyms: boolean
+    editing_synonyms: boolean;
     set_editing_synonyms: (newEditionDescription: boolean) => void;
     refetch: () => void;
 

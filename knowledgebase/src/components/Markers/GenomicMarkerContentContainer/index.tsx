@@ -6,8 +6,10 @@ import GenomicMarkerContentContainer from "./GenomicMarkerContentContainer";
 
 interface Props {
     variant_id: string
+    editing_description: boolean;
+    editing_protein_effect: boolean;
 }
-const GenomicMarkerContentContainerContainer : React.FC<Props> = ({variant_id}) => {
+const GenomicMarkerContentContainerContainer : React.FC<Props> = ({variant_id,editing_protein_effect,editing_description}) => {
     const { data, error, loading, refetch } = useGenomicVariantComponentsQuery(
         {variables:{variant_id:variant_id}}
     )
@@ -27,7 +29,7 @@ const GenomicMarkerContentContainerContainer : React.FC<Props> = ({variant_id}) 
         return <div>Please select a variant from the panel</div>;
     }
 
-    return <GenomicMarkerContentContainer data={data} variant_id={variant_id}/>
+    return <GenomicMarkerContentContainer data={data} variant_id={variant_id} editing_description={editing_description} editing_protein_effect={editing_protein_effect}/>
 
 }
 export default GenomicMarkerContentContainerContainer;

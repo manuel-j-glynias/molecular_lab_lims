@@ -22,7 +22,7 @@ const HistoryContainer = ({field}:Props) => {
     }
 
     if (!data) {
-        return <div>No data for Protein</div>;
+        return <div>No history</div>;
     }
 
     return <History data={data}  />;

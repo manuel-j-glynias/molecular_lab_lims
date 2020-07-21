@@ -2,7 +2,7 @@ overwrite: true
 schema: "/Users/mglynias/git/knowledgeable_client/knowledgebase/src/schema.graphql"
 documents:
   - "./src/components/**/*.{ts,tsx}"
-  - "./src/components/Genes/**/*.{ts,tsx}"
+
 generates:
   src/generated/graphql.tsx:
     plugins:

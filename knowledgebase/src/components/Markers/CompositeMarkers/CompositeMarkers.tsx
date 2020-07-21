@@ -2,7 +2,7 @@ import * as React from "react";
 
 
 const CompositeMarkers: React.FC = () => {
-    return <h3>Composite Markers</h3>
+    return <h3>Marker Profile</h3>
 }
 
 export default CompositeMarkers;

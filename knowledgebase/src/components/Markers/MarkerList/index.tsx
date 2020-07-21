@@ -8,7 +8,10 @@ import DNAMarkers from "../DNAMarkers/DNAMarkers";
 import GenomicVariantMarkers from "../GenomicVariantMarkers/GenomicVariantMarkers";
 import GenomicVariantMarkersListContainer from "../GenomicVariantMarkersList/index";
 import CompositeMarkers from "../CompositeMarkers/CompositeMarkers";
-import GenomicMarkerContentContainerContainer from "../GenomicMarkerContentContainer";
+import TMBMarkers from "../TMBMarkers/TMBMarkers";
+import MSIMarkers from "../MSIMarkers/MSIMarkers";
+import MSIMarkersListContainer from "../MSIMarkersList";
+import TMBMarkersListContainer from "../TMBMarkersList";
 
 const className = 'MarkerList';
 
@@ -47,7 +50,9 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
         { value: 'ProteinExpressionMarker', label: 'Protein Expression Markers' },
         { value: 'RNASeqSignatureMarker', label: 'RNASeq Signature Marker' },
         { value: 'GenomicVariantMarker', label: 'Genomic Variant Markers' },
-        { value: 'MarkerProfile', label: 'Composite Markers' },
+        { value: 'MSIMarker', label: 'MSI Markers' },
+        { value: 'TMBMarker', label: 'TMB Markers' },
+        { value: 'MarkerProfile', label: 'Marker Profiles' },
 
     ];
     const state  = {
@@ -79,14 +84,16 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                         { (markerType==="ProteinExpressionMarker") && <ProteinExpressionMarkers/>}
                         { (markerType==="RNASeqSignatureMarker") && <RNASeqSignatureMarkers />}
                         { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkers gene_id={gene_id} handleGeneIdChange={set_gene_Id} set_query_string={set_query_string}/>}
+                        { (markerType==="MSIMarker") && <MSIMarkers/>}
+                        { (markerType==="TMBMarker") && <TMBMarkers/>}
                         { (markerType==="MarkerProfile") && <CompositeMarkers/>}
-                        <span>{variant_type_name}</span>
                     </div>
                 </div>
             </div>
             { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkersListContainer gene_id={gene_id} handleMarkerIdChange={handleMarkerIdChange} marker_id={marker_id}
                                                                                            set_variant_type_name={set_variant_type_name} set_variant_id={set_variant_id} query_string={query_string}/>}
-
+            { (markerType=="MSIMarker") && <MSIMarkersListContainer marker_id={marker_id} handleMarkerIdChange={handleMarkerIdChange}/>}
+            { (markerType=="TMBMarker") && <TMBMarkersListContainer marker_id={marker_id} handleMarkerIdChange={handleMarkerIdChange}/>}
         </div>
         </Fragment>
     )

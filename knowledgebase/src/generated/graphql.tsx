@@ -400,6 +400,10 @@ export type _DnaMarkerFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
 };
 
 export enum _DnaMarkerOrdering {
@@ -533,6 +537,80 @@ export type _DrugCategoryFilter = {
 };
 
 export enum _DrugCategoryOrdering {
+  IdAsc = 'id_asc',
+  IdDesc = 'id_desc'
+}
+
+export type _EditableAssayComparatorFilter = {
+  AND?: Maybe<Array<_EditableAssayComparatorFilter>>;
+  OR?: Maybe<Array<_EditableAssayComparatorFilter>>;
+  comparator?: Maybe<AssayComparator>;
+  comparator_in?: Maybe<Array<AssayComparator>>;
+  comparator_not?: Maybe<AssayComparator>;
+  comparator_not_in?: Maybe<Array<AssayComparator>>;
+  editDate?: Maybe<Scalars['String']>;
+  editDate_contains?: Maybe<Scalars['String']>;
+  editDate_ends_with?: Maybe<Scalars['String']>;
+  editDate_gt?: Maybe<Scalars['String']>;
+  editDate_gte?: Maybe<Scalars['String']>;
+  editDate_in?: Maybe<Array<Scalars['String']>>;
+  editDate_lt?: Maybe<Scalars['String']>;
+  editDate_lte?: Maybe<Scalars['String']>;
+  editDate_not?: Maybe<Scalars['String']>;
+  editDate_not_contains?: Maybe<Scalars['String']>;
+  editDate_not_ends_with?: Maybe<Scalars['String']>;
+  editDate_not_in?: Maybe<Array<Scalars['String']>>;
+  editDate_not_starts_with?: Maybe<Scalars['String']>;
+  editDate_starts_with?: Maybe<Scalars['String']>;
+  editor?: Maybe<_UserFilter>;
+  editor_in?: Maybe<_UserFilter>;
+  editor_not?: Maybe<_UserFilter>;
+  editor_not_in?: Maybe<_UserFilter>;
+  field?: Maybe<Scalars['String']>;
+  field_contains?: Maybe<Scalars['String']>;
+  field_ends_with?: Maybe<Scalars['String']>;
+  field_gt?: Maybe<Scalars['String']>;
+  field_gte?: Maybe<Scalars['String']>;
+  field_in?: Maybe<Array<Scalars['String']>>;
+  field_lt?: Maybe<Scalars['String']>;
+  field_lte?: Maybe<Scalars['String']>;
+  field_not?: Maybe<Scalars['String']>;
+  field_not_contains?: Maybe<Scalars['String']>;
+  field_not_ends_with?: Maybe<Scalars['String']>;
+  field_not_in?: Maybe<Array<Scalars['String']>>;
+  field_not_starts_with?: Maybe<Scalars['String']>;
+  field_starts_with?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  id_contains?: Maybe<Scalars['ID']>;
+  id_ends_with?: Maybe<Scalars['ID']>;
+  id_gt?: Maybe<Scalars['ID']>;
+  id_gte?: Maybe<Scalars['ID']>;
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  id_lt?: Maybe<Scalars['ID']>;
+  id_lte?: Maybe<Scalars['ID']>;
+  id_not?: Maybe<Scalars['ID']>;
+  id_not_contains?: Maybe<Scalars['ID']>;
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  id_starts_with?: Maybe<Scalars['ID']>;
+  references?: Maybe<_ReferenceFilter>;
+  references_every?: Maybe<_ReferenceFilter>;
+  references_in?: Maybe<_ReferenceFilter>;
+  references_none?: Maybe<_ReferenceFilter>;
+  references_not?: Maybe<_ReferenceFilter>;
+  references_not_in?: Maybe<_ReferenceFilter>;
+  references_single?: Maybe<_ReferenceFilter>;
+  references_some?: Maybe<_ReferenceFilter>;
+};
+
+export enum _EditableAssayComparatorOrdering {
+  ComparatorAsc = 'comparator_asc',
+  ComparatorDesc = 'comparator_desc',
+  EditDateAsc = 'editDate_asc',
+  EditDateDesc = 'editDate_desc',
+  FieldAsc = 'field_asc',
+  FieldDesc = 'field_desc',
   IdAsc = 'id_asc',
   IdDesc = 'id_desc'
 }
@@ -1291,82 +1369,6 @@ export enum _EditableJaxDiseaseListOrdering {
   IdDesc = 'id_desc'
 }
 
-export type _EditableMCodeListFilter = {
-  AND?: Maybe<Array<_EditableMCodeListFilter>>;
-  OR?: Maybe<Array<_EditableMCodeListFilter>>;
-  editDate?: Maybe<Scalars['String']>;
-  editDate_contains?: Maybe<Scalars['String']>;
-  editDate_ends_with?: Maybe<Scalars['String']>;
-  editDate_gt?: Maybe<Scalars['String']>;
-  editDate_gte?: Maybe<Scalars['String']>;
-  editDate_in?: Maybe<Array<Scalars['String']>>;
-  editDate_lt?: Maybe<Scalars['String']>;
-  editDate_lte?: Maybe<Scalars['String']>;
-  editDate_not?: Maybe<Scalars['String']>;
-  editDate_not_contains?: Maybe<Scalars['String']>;
-  editDate_not_ends_with?: Maybe<Scalars['String']>;
-  editDate_not_in?: Maybe<Array<Scalars['String']>>;
-  editDate_not_starts_with?: Maybe<Scalars['String']>;
-  editDate_starts_with?: Maybe<Scalars['String']>;
-  editor?: Maybe<_UserFilter>;
-  editor_in?: Maybe<_UserFilter>;
-  editor_not?: Maybe<_UserFilter>;
-  editor_not_in?: Maybe<_UserFilter>;
-  field?: Maybe<Scalars['String']>;
-  field_contains?: Maybe<Scalars['String']>;
-  field_ends_with?: Maybe<Scalars['String']>;
-  field_gt?: Maybe<Scalars['String']>;
-  field_gte?: Maybe<Scalars['String']>;
-  field_in?: Maybe<Array<Scalars['String']>>;
-  field_lt?: Maybe<Scalars['String']>;
-  field_lte?: Maybe<Scalars['String']>;
-  field_not?: Maybe<Scalars['String']>;
-  field_not_contains?: Maybe<Scalars['String']>;
-  field_not_ends_with?: Maybe<Scalars['String']>;
-  field_not_in?: Maybe<Array<Scalars['String']>>;
-  field_not_starts_with?: Maybe<Scalars['String']>;
-  field_starts_with?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['ID']>;
-  id_contains?: Maybe<Scalars['ID']>;
-  id_ends_with?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_not_contains?: Maybe<Scalars['ID']>;
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  id_starts_with?: Maybe<Scalars['ID']>;
-  list?: Maybe<_MCodeFilter>;
-  list_every?: Maybe<_MCodeFilter>;
-  list_in?: Maybe<_MCodeFilter>;
-  list_none?: Maybe<_MCodeFilter>;
-  list_not?: Maybe<_MCodeFilter>;
-  list_not_in?: Maybe<_MCodeFilter>;
-  list_single?: Maybe<_MCodeFilter>;
-  list_some?: Maybe<_MCodeFilter>;
-  references?: Maybe<_ReferenceFilter>;
-  references_every?: Maybe<_ReferenceFilter>;
-  references_in?: Maybe<_ReferenceFilter>;
-  references_none?: Maybe<_ReferenceFilter>;
-  references_not?: Maybe<_ReferenceFilter>;
-  references_not_in?: Maybe<_ReferenceFilter>;
-  references_single?: Maybe<_ReferenceFilter>;
-  references_some?: Maybe<_ReferenceFilter>;
-};
-
-export enum _EditableMCodeListOrdering {
-  EditDateAsc = 'editDate_asc',
-  EditDateDesc = 'editDate_desc',
-  FieldAsc = 'field_asc',
-  FieldDesc = 'field_desc',
-  IdAsc = 'id_asc',
-  IdDesc = 'id_desc'
-}
-
 export type _EditableObjectFilter = {
   AND?: Maybe<Array<_EditableObjectFilter>>;
   OR?: Maybe<Array<_EditableObjectFilter>>;
@@ -1427,82 +1429,6 @@ export type _EditableObjectFilter = {
 };
 
 export enum _EditableObjectOrdering {
-  EditDateAsc = 'editDate_asc',
-  EditDateDesc = 'editDate_desc',
-  FieldAsc = 'field_asc',
-  FieldDesc = 'field_desc',
-  IdAsc = 'id_asc',
-  IdDesc = 'id_desc'
-}
-
-export type _EditableOmniDiseaseListFilter = {
-  AND?: Maybe<Array<_EditableOmniDiseaseListFilter>>;
-  OR?: Maybe<Array<_EditableOmniDiseaseListFilter>>;
-  editDate?: Maybe<Scalars['String']>;
-  editDate_contains?: Maybe<Scalars['String']>;
-  editDate_ends_with?: Maybe<Scalars['String']>;
-  editDate_gt?: Maybe<Scalars['String']>;
-  editDate_gte?: Maybe<Scalars['String']>;
-  editDate_in?: Maybe<Array<Scalars['String']>>;
-  editDate_lt?: Maybe<Scalars['String']>;
-  editDate_lte?: Maybe<Scalars['String']>;
-  editDate_not?: Maybe<Scalars['String']>;
-  editDate_not_contains?: Maybe<Scalars['String']>;
-  editDate_not_ends_with?: Maybe<Scalars['String']>;
-  editDate_not_in?: Maybe<Array<Scalars['String']>>;
-  editDate_not_starts_with?: Maybe<Scalars['String']>;
-  editDate_starts_with?: Maybe<Scalars['String']>;
-  editor?: Maybe<_UserFilter>;
-  editor_in?: Maybe<_UserFilter>;
-  editor_not?: Maybe<_UserFilter>;
-  editor_not_in?: Maybe<_UserFilter>;
-  field?: Maybe<Scalars['String']>;
-  field_contains?: Maybe<Scalars['String']>;
-  field_ends_with?: Maybe<Scalars['String']>;
-  field_gt?: Maybe<Scalars['String']>;
-  field_gte?: Maybe<Scalars['String']>;
-  field_in?: Maybe<Array<Scalars['String']>>;
-  field_lt?: Maybe<Scalars['String']>;
-  field_lte?: Maybe<Scalars['String']>;
-  field_not?: Maybe<Scalars['String']>;
-  field_not_contains?: Maybe<Scalars['String']>;
-  field_not_ends_with?: Maybe<Scalars['String']>;
-  field_not_in?: Maybe<Array<Scalars['String']>>;
-  field_not_starts_with?: Maybe<Scalars['String']>;
-  field_starts_with?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['ID']>;
-  id_contains?: Maybe<Scalars['ID']>;
-  id_ends_with?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_not_contains?: Maybe<Scalars['ID']>;
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  id_starts_with?: Maybe<Scalars['ID']>;
-  list?: Maybe<_OmniDiseaseFilter>;
-  list_every?: Maybe<_OmniDiseaseFilter>;
-  list_in?: Maybe<_OmniDiseaseFilter>;
-  list_none?: Maybe<_OmniDiseaseFilter>;
-  list_not?: Maybe<_OmniDiseaseFilter>;
-  list_not_in?: Maybe<_OmniDiseaseFilter>;
-  list_single?: Maybe<_OmniDiseaseFilter>;
-  list_some?: Maybe<_OmniDiseaseFilter>;
-  references?: Maybe<_ReferenceFilter>;
-  references_every?: Maybe<_ReferenceFilter>;
-  references_in?: Maybe<_ReferenceFilter>;
-  references_none?: Maybe<_ReferenceFilter>;
-  references_not?: Maybe<_ReferenceFilter>;
-  references_not_in?: Maybe<_ReferenceFilter>;
-  references_single?: Maybe<_ReferenceFilter>;
-  references_some?: Maybe<_ReferenceFilter>;
-};
-
-export enum _EditableOmniDiseaseListOrdering {
   EditDateAsc = 'editDate_asc',
   EditDateDesc = 'editDate_desc',
   FieldAsc = 'field_asc',
@@ -1651,82 +1577,6 @@ export type _EditableOncoTreeDiseaseListFilter = {
 };
 
 export enum _EditableOncoTreeDiseaseListOrdering {
-  EditDateAsc = 'editDate_asc',
-  EditDateDesc = 'editDate_desc',
-  FieldAsc = 'field_asc',
-  FieldDesc = 'field_desc',
-  IdAsc = 'id_asc',
-  IdDesc = 'id_desc'
-}
-
-export type _EditableOntologicalDiseaseChildrenListFilter = {
-  AND?: Maybe<Array<_EditableOntologicalDiseaseChildrenListFilter>>;
-  OR?: Maybe<Array<_EditableOntologicalDiseaseChildrenListFilter>>;
-  children?: Maybe<_OntologicalDiseaseFilter>;
-  children_every?: Maybe<_OntologicalDiseaseFilter>;
-  children_in?: Maybe<_OntologicalDiseaseFilter>;
-  children_none?: Maybe<_OntologicalDiseaseFilter>;
-  children_not?: Maybe<_OntologicalDiseaseFilter>;
-  children_not_in?: Maybe<_OntologicalDiseaseFilter>;
-  children_single?: Maybe<_OntologicalDiseaseFilter>;
-  children_some?: Maybe<_OntologicalDiseaseFilter>;
-  editDate?: Maybe<Scalars['String']>;
-  editDate_contains?: Maybe<Scalars['String']>;
-  editDate_ends_with?: Maybe<Scalars['String']>;
-  editDate_gt?: Maybe<Scalars['String']>;
-  editDate_gte?: Maybe<Scalars['String']>;
-  editDate_in?: Maybe<Array<Scalars['String']>>;
-  editDate_lt?: Maybe<Scalars['String']>;
-  editDate_lte?: Maybe<Scalars['String']>;
-  editDate_not?: Maybe<Scalars['String']>;
-  editDate_not_contains?: Maybe<Scalars['String']>;
-  editDate_not_ends_with?: Maybe<Scalars['String']>;
-  editDate_not_in?: Maybe<Array<Scalars['String']>>;
-  editDate_not_starts_with?: Maybe<Scalars['String']>;
-  editDate_starts_with?: Maybe<Scalars['String']>;
-  editor?: Maybe<_UserFilter>;
-  editor_in?: Maybe<_UserFilter>;
-  editor_not?: Maybe<_UserFilter>;
-  editor_not_in?: Maybe<_UserFilter>;
-  field?: Maybe<Scalars['String']>;
-  field_contains?: Maybe<Scalars['String']>;
-  field_ends_with?: Maybe<Scalars['String']>;
-  field_gt?: Maybe<Scalars['String']>;
-  field_gte?: Maybe<Scalars['String']>;
-  field_in?: Maybe<Array<Scalars['String']>>;
-  field_lt?: Maybe<Scalars['String']>;
-  field_lte?: Maybe<Scalars['String']>;
-  field_not?: Maybe<Scalars['String']>;
-  field_not_contains?: Maybe<Scalars['String']>;
-  field_not_ends_with?: Maybe<Scalars['String']>;
-  field_not_in?: Maybe<Array<Scalars['String']>>;
-  field_not_starts_with?: Maybe<Scalars['String']>;
-  field_starts_with?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['ID']>;
-  id_contains?: Maybe<Scalars['ID']>;
-  id_ends_with?: Maybe<Scalars['ID']>;
-  id_gt?: Maybe<Scalars['ID']>;
-  id_gte?: Maybe<Scalars['ID']>;
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  id_lt?: Maybe<Scalars['ID']>;
-  id_lte?: Maybe<Scalars['ID']>;
-  id_not?: Maybe<Scalars['ID']>;
-  id_not_contains?: Maybe<Scalars['ID']>;
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  id_starts_with?: Maybe<Scalars['ID']>;
-  references?: Maybe<_ReferenceFilter>;
-  references_every?: Maybe<_ReferenceFilter>;
-  references_in?: Maybe<_ReferenceFilter>;
-  references_none?: Maybe<_ReferenceFilter>;
-  references_not?: Maybe<_ReferenceFilter>;
-  references_not_in?: Maybe<_ReferenceFilter>;
-  references_single?: Maybe<_ReferenceFilter>;
-  references_some?: Maybe<_ReferenceFilter>;
-};
-
-export enum _EditableOntologicalDiseaseChildrenListOrdering {
   EditDateAsc = 'editDate_asc',
   EditDateDesc = 'editDate_desc',
   FieldAsc = 'field_asc',
@@ -2379,6 +2229,10 @@ export type _GenomicVariantMarkerFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
   variant?: Maybe<_GenomicVariantFilter>;
   variant_in?: Maybe<_GenomicVariantFilter>;
   variant_not?: Maybe<_GenomicVariantFilter>;
@@ -2708,10 +2562,10 @@ export type _IhcAssayFilter = {
   antibodyClone_in?: Maybe<_EditableStatementFilter>;
   antibodyClone_not?: Maybe<_EditableStatementFilter>;
   antibodyClone_not_in?: Maybe<_EditableStatementFilter>;
-  comparator?: Maybe<AssayComparator>;
-  comparator_in?: Maybe<Array<AssayComparator>>;
-  comparator_not?: Maybe<AssayComparator>;
-  comparator_not_in?: Maybe<Array<AssayComparator>>;
+  comparator?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_in?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not_in?: Maybe<_EditableAssayComparatorFilter>;
   id?: Maybe<Scalars['ID']>;
   id_contains?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
@@ -2746,6 +2600,10 @@ export type _IhcAssayFilter = {
   resultMin_in?: Maybe<_EditableFloatFilter>;
   resultMin_not?: Maybe<_EditableFloatFilter>;
   resultMin_not_in?: Maybe<_EditableFloatFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
   resultUnits?: Maybe<_EditableStatementFilter>;
   resultUnits_in?: Maybe<_EditableStatementFilter>;
   resultUnits_not?: Maybe<_EditableStatementFilter>;
@@ -2753,8 +2611,6 @@ export type _IhcAssayFilter = {
 };
 
 export enum _IhcAssayOrdering {
-  ComparatorAsc = 'comparator_asc',
-  ComparatorDesc = 'comparator_desc',
   IdAsc = 'id_asc',
   IdDesc = 'id_desc'
 }
@@ -2846,10 +2702,6 @@ export type _JaxDiseaseFilter = {
   definition_in?: Maybe<_EditableStatementFilter>;
   definition_not?: Maybe<_EditableStatementFilter>;
   definition_not_in?: Maybe<_EditableStatementFilter>;
-  doDisease?: Maybe<_DoDiseaseFilter>;
-  doDisease_in?: Maybe<_DoDiseaseFilter>;
-  doDisease_not?: Maybe<_DoDiseaseFilter>;
-  doDisease_not_in?: Maybe<_DoDiseaseFilter>;
   id?: Maybe<Scalars['ID']>;
   id_contains?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
@@ -2882,13 +2734,45 @@ export type _JaxDiseaseFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  source?: Maybe<Scalars['String']>;
+  source_contains?: Maybe<Scalars['String']>;
+  source_ends_with?: Maybe<Scalars['String']>;
+  source_gt?: Maybe<Scalars['String']>;
+  source_gte?: Maybe<Scalars['String']>;
+  source_in?: Maybe<Array<Scalars['String']>>;
+  source_lt?: Maybe<Scalars['String']>;
+  source_lte?: Maybe<Scalars['String']>;
+  source_not?: Maybe<Scalars['String']>;
+  source_not_contains?: Maybe<Scalars['String']>;
+  source_not_ends_with?: Maybe<Scalars['String']>;
+  source_not_in?: Maybe<Array<Scalars['String']>>;
+  source_not_starts_with?: Maybe<Scalars['String']>;
+  source_starts_with?: Maybe<Scalars['String']>;
+  termId?: Maybe<Scalars['String']>;
+  termId_contains?: Maybe<Scalars['String']>;
+  termId_ends_with?: Maybe<Scalars['String']>;
+  termId_gt?: Maybe<Scalars['String']>;
+  termId_gte?: Maybe<Scalars['String']>;
+  termId_in?: Maybe<Array<Scalars['String']>>;
+  termId_lt?: Maybe<Scalars['String']>;
+  termId_lte?: Maybe<Scalars['String']>;
+  termId_not?: Maybe<Scalars['String']>;
+  termId_not_contains?: Maybe<Scalars['String']>;
+  termId_not_ends_with?: Maybe<Scalars['String']>;
+  termId_not_in?: Maybe<Array<Scalars['String']>>;
+  termId_not_starts_with?: Maybe<Scalars['String']>;
+  termId_starts_with?: Maybe<Scalars['String']>;
 };
 
 export enum _JaxDiseaseOrdering {
   IdAsc = 'id_asc',
   IdDesc = 'id_desc',
   JaxIdAsc = 'jaxId_asc',
-  JaxIdDesc = 'jaxId_desc'
+  JaxIdDesc = 'jaxId_desc',
+  SourceAsc = 'source_asc',
+  SourceDesc = 'source_desc',
+  TermIdAsc = 'termId_asc',
+  TermIdDesc = 'termId_desc'
 }
 
 export type _JaxDrugClassFilter = {
@@ -3508,6 +3392,10 @@ export type _MarkerComponentFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
 };
 
 export enum _MarkerComponentOrdering {
@@ -3560,10 +3448,10 @@ export type _MarkerProfileFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
-  rnaSeqSignatureMarker?: Maybe<_RnaSeqSignatureMarkerFilter>;
-  rnaSeqSignatureMarker_in?: Maybe<_RnaSeqSignatureMarkerFilter>;
-  rnaSeqSignatureMarker_not?: Maybe<_RnaSeqSignatureMarkerFilter>;
-  rnaSeqSignatureMarker_not_in?: Maybe<_RnaSeqSignatureMarkerFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
 };
 
 export enum _MarkerProfileOrdering {
@@ -3616,10 +3504,20 @@ export type _MCodeFilter = {
   mcodeId_not_in?: Maybe<Array<Scalars['String']>>;
   mcodeId_not_starts_with?: Maybe<Scalars['String']>;
   mcodeId_starts_with?: Maybe<Scalars['String']>;
-  omniDisease?: Maybe<_OmniDiseaseFilter>;
-  omniDisease_in?: Maybe<_OmniDiseaseFilter>;
-  omniDisease_not?: Maybe<_OmniDiseaseFilter>;
-  omniDisease_not_in?: Maybe<_OmniDiseaseFilter>;
+  omniDisease?: Maybe<Scalars['String']>;
+  omniDisease_contains?: Maybe<Scalars['String']>;
+  omniDisease_ends_with?: Maybe<Scalars['String']>;
+  omniDisease_gt?: Maybe<Scalars['String']>;
+  omniDisease_gte?: Maybe<Scalars['String']>;
+  omniDisease_in?: Maybe<Array<Scalars['String']>>;
+  omniDisease_lt?: Maybe<Scalars['String']>;
+  omniDisease_lte?: Maybe<Scalars['String']>;
+  omniDisease_not?: Maybe<Scalars['String']>;
+  omniDisease_not_contains?: Maybe<Scalars['String']>;
+  omniDisease_not_ends_with?: Maybe<Scalars['String']>;
+  omniDisease_not_in?: Maybe<Array<Scalars['String']>>;
+  omniDisease_not_starts_with?: Maybe<Scalars['String']>;
+  omniDisease_starts_with?: Maybe<Scalars['String']>;
   parents?: Maybe<_MCodeFilter>;
   parents_every?: Maybe<_MCodeFilter>;
   parents_in?: Maybe<_MCodeFilter>;
@@ -3634,7 +3532,9 @@ export enum _MCodeOrdering {
   IdAsc = 'id_asc',
   IdDesc = 'id_desc',
   McodeIdAsc = 'mcodeId_asc',
-  McodeIdDesc = 'mcodeId_desc'
+  McodeIdDesc = 'mcodeId_desc',
+  OmniDiseaseAsc = 'omniDisease_asc',
+  OmniDiseaseDesc = 'omniDisease_desc'
 }
 
 export type _MeetingAbstractReferenceFilter = {
@@ -3782,6 +3682,10 @@ export type _MsiMarkerFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
 };
 
 export enum _MsiMarkerOrdering {
@@ -4225,9 +4129,13 @@ export type _OncoTreeDiseaseFilter = {
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
   parent?: Maybe<_OncoTreeDiseaseFilter>;
+  parent_every?: Maybe<_OncoTreeDiseaseFilter>;
   parent_in?: Maybe<_OncoTreeDiseaseFilter>;
+  parent_none?: Maybe<_OncoTreeDiseaseFilter>;
   parent_not?: Maybe<_OncoTreeDiseaseFilter>;
   parent_not_in?: Maybe<_OncoTreeDiseaseFilter>;
+  parent_single?: Maybe<_OncoTreeDiseaseFilter>;
+  parent_some?: Maybe<_OncoTreeDiseaseFilter>;
   tissue?: Maybe<_EditableStatementFilter>;
   tissue_in?: Maybe<_EditableStatementFilter>;
   tissue_not?: Maybe<_EditableStatementFilter>;
@@ -4326,10 +4234,6 @@ export enum _OncoTreeOccurrenceOrdering {
 export type _OntologicalDiseaseFilter = {
   AND?: Maybe<Array<_OntologicalDiseaseFilter>>;
   OR?: Maybe<Array<_OntologicalDiseaseFilter>>;
-  children?: Maybe<_EditableOntologicalDiseaseChildrenListFilter>;
-  children_in?: Maybe<_EditableOntologicalDiseaseChildrenListFilter>;
-  children_not?: Maybe<_EditableOntologicalDiseaseChildrenListFilter>;
-  children_not_in?: Maybe<_EditableOntologicalDiseaseChildrenListFilter>;
   description?: Maybe<_EditableStatementFilter>;
   description_in?: Maybe<_EditableStatementFilter>;
   description_not?: Maybe<_EditableStatementFilter>;
@@ -4338,14 +4242,6 @@ export type _OntologicalDiseaseFilter = {
   doDiseases_in?: Maybe<_EditableDoDiseaseListFilter>;
   doDiseases_not?: Maybe<_EditableDoDiseaseListFilter>;
   doDiseases_not_in?: Maybe<_EditableDoDiseaseListFilter>;
-  evidenceAssociations?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_every?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_in?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_none?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_not?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_not_in?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_single?: Maybe<_EvidenceAssociationFilter>;
-  evidenceAssociations_some?: Maybe<_EvidenceAssociationFilter>;
   goDiseases?: Maybe<_EditableGoDiseaseListFilter>;
   goDiseases_in?: Maybe<_EditableGoDiseaseListFilter>;
   goDiseases_not?: Maybe<_EditableGoDiseaseListFilter>;
@@ -4368,30 +4264,14 @@ export type _OntologicalDiseaseFilter = {
   jaxDiseases_in?: Maybe<_EditableJaxDiseaseListFilter>;
   jaxDiseases_not?: Maybe<_EditableJaxDiseaseListFilter>;
   jaxDiseases_not_in?: Maybe<_EditableJaxDiseaseListFilter>;
-  mCodes?: Maybe<_EditableMCodeListFilter>;
-  mCodes_in?: Maybe<_EditableMCodeListFilter>;
-  mCodes_not?: Maybe<_EditableMCodeListFilter>;
-  mCodes_not_in?: Maybe<_EditableMCodeListFilter>;
   name?: Maybe<_EditableStatementFilter>;
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
-  omniDiseases?: Maybe<_EditableOmniDiseaseListFilter>;
-  omniDiseases_in?: Maybe<_EditableOmniDiseaseListFilter>;
-  omniDiseases_not?: Maybe<_EditableOmniDiseaseListFilter>;
-  omniDiseases_not_in?: Maybe<_EditableOmniDiseaseListFilter>;
   oncoTreeDiseases?: Maybe<_EditableOncoTreeDiseaseListFilter>;
   oncoTreeDiseases_in?: Maybe<_EditableOncoTreeDiseaseListFilter>;
   oncoTreeDiseases_not?: Maybe<_EditableOncoTreeDiseaseListFilter>;
   oncoTreeDiseases_not_in?: Maybe<_EditableOncoTreeDiseaseListFilter>;
-  parents?: Maybe<_OntologicalDiseaseFilter>;
-  parents_every?: Maybe<_OntologicalDiseaseFilter>;
-  parents_in?: Maybe<_OntologicalDiseaseFilter>;
-  parents_none?: Maybe<_OntologicalDiseaseFilter>;
-  parents_not?: Maybe<_OntologicalDiseaseFilter>;
-  parents_not_in?: Maybe<_OntologicalDiseaseFilter>;
-  parents_single?: Maybe<_OntologicalDiseaseFilter>;
-  parents_some?: Maybe<_OntologicalDiseaseFilter>;
   synonyms?: Maybe<_EditableStringListFilter>;
   synonyms_in?: Maybe<_EditableStringListFilter>;
   synonyms_not?: Maybe<_EditableStringListFilter>;
@@ -4708,6 +4588,10 @@ export type _ProteinExpressionMarkerFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
   synonyms?: Maybe<_EditableStringListFilter>;
   synonyms_in?: Maybe<_EditableStringListFilter>;
   synonyms_not?: Maybe<_EditableStringListFilter>;
@@ -4798,10 +4682,10 @@ export enum _ReferenceOrdering {
 export type _RnaSeqAssayFilter = {
   AND?: Maybe<Array<_RnaSeqAssayFilter>>;
   OR?: Maybe<Array<_RnaSeqAssayFilter>>;
-  comparator?: Maybe<AssayComparator>;
-  comparator_in?: Maybe<Array<AssayComparator>>;
-  comparator_not?: Maybe<AssayComparator>;
-  comparator_not_in?: Maybe<Array<AssayComparator>>;
+  comparator?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_in?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not_in?: Maybe<_EditableAssayComparatorFilter>;
   id?: Maybe<Scalars['ID']>;
   id_contains?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
@@ -4843,8 +4727,6 @@ export type _RnaSeqAssayFilter = {
 };
 
 export enum _RnaSeqAssayOrdering {
-  ComparatorAsc = 'comparator_asc',
-  ComparatorDesc = 'comparator_desc',
   IdAsc = 'id_asc',
   IdDesc = 'id_desc',
   ResultTypeAsc = 'resultType_asc',
@@ -4854,6 +4736,10 @@ export enum _RnaSeqAssayOrdering {
 export type _RnaSeqSignatureMarkerFilter = {
   AND?: Maybe<Array<_RnaSeqSignatureMarkerFilter>>;
   OR?: Maybe<Array<_RnaSeqSignatureMarkerFilter>>;
+  comparator?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_in?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not_in?: Maybe<_EditableAssayComparatorFilter>;
   definition?: Maybe<_EditableStatementFilter>;
   definition_in?: Maybe<_EditableStatementFilter>;
   definition_not?: Maybe<_EditableStatementFilter>;
@@ -4900,6 +4786,10 @@ export type _RnaSeqSignatureMarkerFilter = {
   resultMin_in?: Maybe<_EditableFloatFilter>;
   resultMin_not?: Maybe<_EditableFloatFilter>;
   resultMin_not_in?: Maybe<_EditableFloatFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
 };
 
 export enum _RnaSeqSignatureMarkerOrdering {
@@ -5168,6 +5058,10 @@ export enum _TherapyOrdering {
 export type _TmbMarkerFilter = {
   AND?: Maybe<Array<_TmbMarkerFilter>>;
   OR?: Maybe<Array<_TmbMarkerFilter>>;
+  comparator?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_in?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not?: Maybe<_EditableAssayComparatorFilter>;
+  comparator_not_in?: Maybe<_EditableAssayComparatorFilter>;
   id?: Maybe<Scalars['ID']>;
   id_contains?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
@@ -5206,6 +5100,14 @@ export type _TmbMarkerFilter = {
   resultMin_in?: Maybe<_EditableFloatFilter>;
   resultMin_not?: Maybe<_EditableFloatFilter>;
   resultMin_not_in?: Maybe<_EditableFloatFilter>;
+  resultString?: Maybe<_EditableStatementFilter>;
+  resultString_in?: Maybe<_EditableStatementFilter>;
+  resultString_not?: Maybe<_EditableStatementFilter>;
+  resultString_not_in?: Maybe<_EditableStatementFilter>;
+  resultUnits?: Maybe<_EditableStatementFilter>;
+  resultUnits_in?: Maybe<_EditableStatementFilter>;
+  resultUnits_not?: Maybe<_EditableStatementFilter>;
+  resultUnits_not_in?: Maybe<_EditableStatementFilter>;
 };
 
 export enum _TmbMarkerOrdering {
@@ -5744,8 +5646,13 @@ export type AdverseEvent = {
 };
 
 export enum AssayComparator {
+  Equals = 'Equals',
   EqualsMin = 'EqualsMin',
-  Range = 'Range'
+  EqualsString = 'EqualsString',
+  RangeClosed = 'RangeClosed',
+  RangeClosedOpen = 'RangeClosedOpen',
+  RangeOpen = 'RangeOpen',
+  RangeOpenClosed = 'RangeOpenClosed'
 }
 
 export type Author = {
@@ -5878,6 +5785,7 @@ export type DnaMarker = MarkerComponent & {
   markerType: DnaMarkerType;
   method: EditableStatement;
   name: EditableStatement;
+  resultString: EditableStatement;
 };
 
 
@@ -5910,6 +5818,20 @@ export type DnaMarkerMethodArgs = {
 
 
 export type DnaMarkerNameArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type DnaMarkerResultStringArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
   field?: Maybe<Scalars['String']>;
@@ -6114,6 +6036,45 @@ export type DrugCategoryNameArgs = {
   orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
   statement?: Maybe<Scalars['String']>;
   statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type EditableAssayComparator = EditableObject & {
+   __typename?: 'EditableAssayComparator';
+  _id?: Maybe<Scalars['Long']>;
+  comparator: AssayComparator;
+  editDate: Scalars['String'];
+  editor: User;
+  field: Scalars['String'];
+  id: Scalars['ID'];
+  references: Array<Maybe<Reference>>;
+};
+
+
+export type EditableAssayComparatorEditorArgs = {
+  filter?: Maybe<_UserFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  isAdmin?: Maybe<Scalars['Boolean']>;
+  isAdmins?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
+  name?: Maybe<Scalars['String']>;
+  names?: Maybe<Array<Maybe<Scalars['String']>>>;
+  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
+  password?: Maybe<Scalars['String']>;
+  passwords?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type EditableAssayComparatorReferencesArgs = {
+  _id?: Maybe<Scalars['Long']>;
+  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
+  filter?: Maybe<_ReferenceFilter>;
+  first?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_ReferenceOrdering>>>;
+  shortReference?: Maybe<Scalars['String']>;
+  shortReferences?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type EditableBoolean = EditableObject & {
@@ -6532,63 +6493,14 @@ export type EditableJaxDiseaseListListArgs = {
   jaxIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_JaxDiseaseOrdering>>>;
+  source?: Maybe<Scalars['String']>;
+  sources?: Maybe<Array<Maybe<Scalars['String']>>>;
+  termId?: Maybe<Scalars['String']>;
+  termIds?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
 export type EditableJaxDiseaseListReferencesArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_ReferenceFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReferenceOrdering>>>;
-  shortReference?: Maybe<Scalars['String']>;
-  shortReferences?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type EditableMCodeList = EditableObject & {
-   __typename?: 'EditableMCodeList';
-  _id?: Maybe<Scalars['Long']>;
-  editDate: Scalars['String'];
-  editor: User;
-  field: Scalars['String'];
-  id: Scalars['ID'];
-  list: Array<Maybe<MCode>>;
-  references: Array<Maybe<Reference>>;
-};
-
-
-export type EditableMCodeListEditorArgs = {
-  filter?: Maybe<_UserFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  isAdmin?: Maybe<Scalars['Boolean']>;
-  isAdmins?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  name?: Maybe<Scalars['String']>;
-  names?: Maybe<Array<Maybe<Scalars['String']>>>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  password?: Maybe<Scalars['String']>;
-  passwords?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type EditableMCodeListListArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_MCodeFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  mcodeId?: Maybe<Scalars['String']>;
-  mcodeIds?: Maybe<Array<Maybe<Scalars['String']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_MCodeOrdering>>>;
-};
-
-
-export type EditableMCodeListReferencesArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
   filter?: Maybe<_ReferenceFilter>;
@@ -6626,61 +6538,6 @@ export type EditableObjectEditorArgs = {
 
 
 export type EditableObjectReferencesArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_ReferenceFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReferenceOrdering>>>;
-  shortReference?: Maybe<Scalars['String']>;
-  shortReferences?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type EditableOmniDiseaseList = EditableObject & {
-   __typename?: 'EditableOmniDiseaseList';
-  _id?: Maybe<Scalars['Long']>;
-  editDate: Scalars['String'];
-  editor: User;
-  field: Scalars['String'];
-  id: Scalars['ID'];
-  list: Array<Maybe<OmniDisease>>;
-  references: Array<Maybe<Reference>>;
-};
-
-
-export type EditableOmniDiseaseListEditorArgs = {
-  filter?: Maybe<_UserFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  isAdmin?: Maybe<Scalars['Boolean']>;
-  isAdmins?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  name?: Maybe<Scalars['String']>;
-  names?: Maybe<Array<Maybe<Scalars['String']>>>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  password?: Maybe<Scalars['String']>;
-  passwords?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type EditableOmniDiseaseListListArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_OmniDiseaseFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  omniDiseaseId?: Maybe<Scalars['String']>;
-  omniDiseaseIds?: Maybe<Array<Maybe<Scalars['String']>>>;
-  omniDiseaseType?: Maybe<OmniDiseaseType>;
-  omniDiseaseTypes?: Maybe<Array<Maybe<OmniDiseaseType>>>;
-  orderBy?: Maybe<Array<Maybe<_OmniDiseaseOrdering>>>;
-};
-
-
-export type EditableOmniDiseaseListReferencesArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
   filter?: Maybe<_ReferenceFilter>;
@@ -6785,57 +6642,6 @@ export type EditableOncoTreeDiseaseListListArgs = {
 
 
 export type EditableOncoTreeDiseaseListReferencesArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_ReferenceFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_ReferenceOrdering>>>;
-  shortReference?: Maybe<Scalars['String']>;
-  shortReferences?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type EditableOntologicalDiseaseChildrenList = EditableObject & {
-   __typename?: 'EditableOntologicalDiseaseChildrenList';
-  _id?: Maybe<Scalars['Long']>;
-  children: Array<Maybe<OntologicalDisease>>;
-  editDate: Scalars['String'];
-  editor: User;
-  field: Scalars['String'];
-  id: Scalars['ID'];
-  references: Array<Maybe<Reference>>;
-};
-
-
-export type EditableOntologicalDiseaseChildrenListChildrenArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_OntologicalDiseaseFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_OntologicalDiseaseOrdering>>>;
-};
-
-
-export type EditableOntologicalDiseaseChildrenListEditorArgs = {
-  filter?: Maybe<_UserFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  isAdmin?: Maybe<Scalars['Boolean']>;
-  isAdmins?: Maybe<Array<Maybe<Scalars['Boolean']>>>;
-  name?: Maybe<Scalars['String']>;
-  names?: Maybe<Array<Maybe<Scalars['String']>>>;
-  orderBy?: Maybe<Array<Maybe<_UserOrdering>>>;
-  password?: Maybe<Scalars['String']>;
-  passwords?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type EditableOntologicalDiseaseChildrenListReferencesArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
   filter?: Maybe<_ReferenceFilter>;
@@ -7403,6 +7209,7 @@ export type GenomicVariantMarker = MarkerComponent & {
   id: Scalars['ID'];
   method: EditableStatement;
   name: EditableStatement;
+  resultString: EditableStatement;
   variant: GenomicVariant;
 };
 
@@ -7434,6 +7241,20 @@ export type GenomicVariantMarkerMethodArgs = {
 
 
 export type GenomicVariantMarkerNameArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type GenomicVariantMarkerResultStringArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
   field?: Maybe<Scalars['String']>;
@@ -7508,6 +7329,10 @@ export type GoDiseaseJaxDiseasesArgs = {
   jaxIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_JaxDiseaseOrdering>>>;
+  source?: Maybe<Scalars['String']>;
+  sources?: Maybe<Array<Maybe<Scalars['String']>>>;
+  termId?: Maybe<Scalars['String']>;
+  termIds?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -7663,12 +7488,13 @@ export type IhcAssay = ProteinLevelAssay & {
    __typename?: 'IHCAssay';
   _id?: Maybe<Scalars['Long']>;
   antibodyClone: EditableStatement;
-  comparator: AssayComparator;
+  comparator: EditableAssayComparator;
   id: Scalars['ID'];
   name: EditableStatement;
   proteinExpressionMarkers: Array<Maybe<ProteinExpressionMarker>>;
   resultMax?: Maybe<EditableFloat>;
   resultMin: EditableFloat;
+  resultString?: Maybe<EditableStatement>;
   resultUnits: EditableStatement;
 };
 
@@ -7684,6 +7510,20 @@ export type IhcAssayAntibodyCloneArgs = {
   orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
   statement?: Maybe<Scalars['String']>;
   statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type IhcAssayComparatorArgs = {
+  comparator?: Maybe<AssayComparator>;
+  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableAssayComparatorFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableAssayComparatorOrdering>>>;
 };
 
 
@@ -7741,6 +7581,20 @@ export type IhcAssayResultMinArgs = {
 };
 
 
+export type IhcAssayResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
 export type IhcAssayResultUnitsArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -7765,6 +7619,7 @@ export enum ImmuneCycleRole {
 
 export enum ImmuneFunction {
   AntiInflammatory = 'AntiInflammatory',
+  AntiTumorEffector = 'AntiTumorEffector',
   BCells = 'BCells',
   CoInhibitory = 'CoInhibitory',
   CoStimulatory = 'CoStimulatory',
@@ -7828,10 +7683,11 @@ export type JaxDisease = {
    __typename?: 'JaxDisease';
   _id?: Maybe<Scalars['Long']>;
   definition: EditableStatement;
-  doDisease?: Maybe<DoDisease>;
   id: Scalars['ID'];
   jaxId: Scalars['String'];
   name: EditableStatement;
+  source: Scalars['String'];
+  termId: Scalars['String'];
 };
 
 
@@ -7846,16 +7702,6 @@ export type JaxDiseaseDefinitionArgs = {
   orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
   statement?: Maybe<Scalars['String']>;
   statements?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type JaxDiseaseDoDiseaseArgs = {
-  doId?: Maybe<Scalars['String']>;
-  doIds?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_DoDiseaseFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  orderBy?: Maybe<Array<Maybe<_DoDiseaseOrdering>>>;
 };
 
 
@@ -8221,6 +8067,7 @@ export type MarkerComponent = {
   id: Scalars['ID'];
   method: EditableStatement;
   name: EditableStatement;
+  resultString: EditableStatement;
 };
 
 
@@ -8251,6 +8098,20 @@ export type MarkerComponentNameArgs = {
   statements?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
+
+export type MarkerComponentResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export type MarkerProfile = MarkerComponent & {
    __typename?: 'MarkerProfile';
   _id?: Maybe<Scalars['Long']>;
@@ -8260,7 +8121,7 @@ export type MarkerProfile = MarkerComponent & {
   id: Scalars['ID'];
   method: EditableStatement;
   name: EditableStatement;
-  rnaSeqSignatureMarker?: Maybe<RnaSeqSignatureMarker>;
+  resultString: EditableStatement;
 };
 
 
@@ -8318,11 +8179,17 @@ export type MarkerProfileNameArgs = {
 };
 
 
-export type MarkerProfileRnaSeqSignatureMarkerArgs = {
-  filter?: Maybe<_RnaSeqSignatureMarkerFilter>;
+export type MarkerProfileResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  orderBy?: Maybe<Array<Maybe<_RnaSeqSignatureMarkerOrdering>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type MCode = {
@@ -8332,7 +8199,7 @@ export type MCode = {
   diseasePath: EditableStatement;
   id: Scalars['ID'];
   mcodeId: Scalars['String'];
-  omniDisease?: Maybe<OmniDisease>;
+  omniDisease: Scalars['String'];
   parents?: Maybe<Array<Maybe<MCode>>>;
 };
 
@@ -8347,6 +8214,8 @@ export type MCodeChildrenArgs = {
   mcodeId?: Maybe<Scalars['String']>;
   mcodeIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   offset?: Maybe<Scalars['Int']>;
+  omniDisease?: Maybe<Scalars['String']>;
+  omniDiseases?: Maybe<Array<Maybe<Scalars['String']>>>;
   orderBy?: Maybe<Array<Maybe<_MCodeOrdering>>>;
 };
 
@@ -8365,18 +8234,6 @@ export type MCodeDiseasePathArgs = {
 };
 
 
-export type MCodeOmniDiseaseArgs = {
-  filter?: Maybe<_OmniDiseaseFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  omniDiseaseId?: Maybe<Scalars['String']>;
-  omniDiseaseIds?: Maybe<Array<Maybe<Scalars['String']>>>;
-  omniDiseaseType?: Maybe<OmniDiseaseType>;
-  omniDiseaseTypes?: Maybe<Array<Maybe<OmniDiseaseType>>>;
-  orderBy?: Maybe<Array<Maybe<_OmniDiseaseOrdering>>>;
-};
-
-
 export type MCodeParentsArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
@@ -8387,6 +8244,8 @@ export type MCodeParentsArgs = {
   mcodeId?: Maybe<Scalars['String']>;
   mcodeIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   offset?: Maybe<Scalars['Int']>;
+  omniDisease?: Maybe<Scalars['String']>;
+  omniDiseases?: Maybe<Array<Maybe<Scalars['String']>>>;
   orderBy?: Maybe<Array<Maybe<_MCodeOrdering>>>;
 };
 
@@ -8441,6 +8300,7 @@ export type MsiMarker = MarkerComponent & {
   id: Scalars['ID'];
   method: EditableStatement;
   name: EditableStatement;
+  resultString: EditableStatement;
 };
 
 
@@ -8471,6 +8331,20 @@ export type MsiMarkerNameArgs = {
   statements?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
+
+export type MsiMarkerResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export type MutationType = {
    __typename?: 'MutationType';
   addAuthorReferences?: Maybe<Scalars['String']>;
@@ -8481,6 +8355,7 @@ export type MutationType = {
   addDNAMarkerDefinition?: Maybe<Scalars['String']>;
   addDNAMarkerMethod?: Maybe<Scalars['String']>;
   addDNAMarkerName?: Maybe<Scalars['String']>;
+  addDNAMarkerResultString?: Maybe<Scalars['String']>;
   addDODiseaseChildren?: Maybe<Scalars['String']>;
   addDODiseaseDefinition?: Maybe<Scalars['String']>;
   addDODiseaseExactSynonyms?: Maybe<Scalars['String']>;
@@ -8493,6 +8368,8 @@ export type MutationType = {
   addDrugCategoryDrugs?: Maybe<Scalars['String']>;
   addDrugCategoryJaxDrugClass?: Maybe<Scalars['String']>;
   addDrugCategoryName?: Maybe<Scalars['String']>;
+  addEditableAssayComparatorEditor?: Maybe<Scalars['String']>;
+  addEditableAssayComparatorReferences?: Maybe<Scalars['String']>;
   addEditableBooleanEditor?: Maybe<Scalars['String']>;
   addEditableBooleanReferences?: Maybe<Scalars['String']>;
   addEditableCopyChangeEditor?: Maybe<Scalars['String']>;
@@ -8516,23 +8393,14 @@ export type MutationType = {
   addEditableJAXDiseaseListEditor?: Maybe<Scalars['String']>;
   addEditableJAXDiseaseListList?: Maybe<Scalars['String']>;
   addEditableJAXDiseaseListReferences?: Maybe<Scalars['String']>;
-  addEditableMCodeListEditor?: Maybe<Scalars['String']>;
-  addEditableMCodeListList?: Maybe<Scalars['String']>;
-  addEditableMCodeListReferences?: Maybe<Scalars['String']>;
   addEditableObjectEditor?: Maybe<Scalars['String']>;
   addEditableObjectReferences?: Maybe<Scalars['String']>;
-  addEditableOmniDiseaseListEditor?: Maybe<Scalars['String']>;
-  addEditableOmniDiseaseListList?: Maybe<Scalars['String']>;
-  addEditableOmniDiseaseListReferences?: Maybe<Scalars['String']>;
   addEditableOmniGeneReferenceEditor?: Maybe<Scalars['String']>;
   addEditableOmniGeneReferenceGene?: Maybe<Scalars['String']>;
   addEditableOmniGeneReferenceReferences?: Maybe<Scalars['String']>;
   addEditableOncoTreeDiseaseListEditor?: Maybe<Scalars['String']>;
   addEditableOncoTreeDiseaseListList?: Maybe<Scalars['String']>;
   addEditableOncoTreeDiseaseListReferences?: Maybe<Scalars['String']>;
-  addEditableOntologicalDiseaseChildrenListChildren?: Maybe<Scalars['String']>;
-  addEditableOntologicalDiseaseChildrenListEditor?: Maybe<Scalars['String']>;
-  addEditableOntologicalDiseaseChildrenListReferences?: Maybe<Scalars['String']>;
   addEditableProteinEffectEditor?: Maybe<Scalars['String']>;
   addEditableProteinEffectReferences?: Maybe<Scalars['String']>;
   addEditableStatementEditor?: Maybe<Scalars['String']>;
@@ -8571,20 +8439,22 @@ export type MutationType = {
   addGenomicVariantMarkerGene?: Maybe<Scalars['String']>;
   addGenomicVariantMarkerMethod?: Maybe<Scalars['String']>;
   addGenomicVariantMarkerName?: Maybe<Scalars['String']>;
+  addGenomicVariantMarkerResultString?: Maybe<Scalars['String']>;
   addGenomicVariantMarkerVariant?: Maybe<Scalars['String']>;
   addGenomicVariantName?: Maybe<Scalars['String']>;
   addGenomicVariantNonCanonicalTranscript?: Maybe<Scalars['String']>;
   addHotSpotVariantGenomicVariant?: Maybe<Scalars['String']>;
   addHotSpotVariantOccurrences?: Maybe<Scalars['String']>;
   addIHCAssayAntibodyClone?: Maybe<Scalars['String']>;
+  addIHCAssayComparator?: Maybe<Scalars['String']>;
   addIHCAssayName?: Maybe<Scalars['String']>;
   addIHCAssayProteinExpressionMarkers?: Maybe<Scalars['String']>;
   addIHCAssayResultMax?: Maybe<Scalars['String']>;
   addIHCAssayResultMin?: Maybe<Scalars['String']>;
+  addIHCAssayResultString?: Maybe<Scalars['String']>;
   addIHCAssayResultUnits?: Maybe<Scalars['String']>;
   addInternetReferenceStatementsReferenced?: Maybe<Scalars['String']>;
   addJaxDiseaseDefinition?: Maybe<Scalars['String']>;
-  addJaxDiseaseDoDisease?: Maybe<Scalars['String']>;
   addJaxDiseaseName?: Maybe<Scalars['String']>;
   addJaxDrugClassDrugs?: Maybe<Scalars['String']>;
   addJaxDrugClassName?: Maybe<Scalars['String']>;
@@ -8607,17 +8477,18 @@ export type MutationType = {
   addLiteratureReferenceStatementsReferenced?: Maybe<Scalars['String']>;
   addMCodeChildren?: Maybe<Scalars['String']>;
   addMCodeDiseasePath?: Maybe<Scalars['String']>;
-  addMCodeOmniDisease?: Maybe<Scalars['String']>;
   addMCodeParents?: Maybe<Scalars['String']>;
   addMSIMarkerMethod?: Maybe<Scalars['String']>;
   addMSIMarkerName?: Maybe<Scalars['String']>;
+  addMSIMarkerResultString?: Maybe<Scalars['String']>;
   addMarkerComponentMethod?: Maybe<Scalars['String']>;
   addMarkerComponentName?: Maybe<Scalars['String']>;
+  addMarkerComponentResultString?: Maybe<Scalars['String']>;
   addMarkerProfileComponents?: Maybe<Scalars['String']>;
   addMarkerProfileEvidenceAssociations?: Maybe<Scalars['String']>;
   addMarkerProfileMethod?: Maybe<Scalars['String']>;
   addMarkerProfileName?: Maybe<Scalars['String']>;
-  addMarkerProfileRnaSeqSignatureMarker?: Maybe<Scalars['String']>;
+  addMarkerProfileResultString?: Maybe<Scalars['String']>;
   addMeetingAbstractReferenceAuthors?: Maybe<Scalars['String']>;
   addMeetingAbstractReferenceStatementsReferenced?: Maybe<Scalars['String']>;
   addMyGeneInfoGeneDescription?: Maybe<Scalars['String']>;
@@ -8657,17 +8528,12 @@ export type MutationType = {
   addOncoTreeOccurrenceOccurrences?: Maybe<Scalars['String']>;
   addOncoTreeOccurrencePercentOccurrence?: Maybe<Scalars['String']>;
   addOncoTreeOccurrenceTotalSamples?: Maybe<Scalars['String']>;
-  addOntologicalDiseaseChildren?: Maybe<Scalars['String']>;
   addOntologicalDiseaseDescription?: Maybe<Scalars['String']>;
   addOntologicalDiseaseDoDiseases?: Maybe<Scalars['String']>;
-  addOntologicalDiseaseEvidenceAssociations?: Maybe<Scalars['String']>;
   addOntologicalDiseaseGoDiseases?: Maybe<Scalars['String']>;
   addOntologicalDiseaseJaxDiseases?: Maybe<Scalars['String']>;
-  addOntologicalDiseaseMCodes?: Maybe<Scalars['String']>;
   addOntologicalDiseaseName?: Maybe<Scalars['String']>;
-  addOntologicalDiseaseOmniDiseases?: Maybe<Scalars['String']>;
   addOntologicalDiseaseOncoTreeDiseases?: Maybe<Scalars['String']>;
-  addOntologicalDiseaseParents?: Maybe<Scalars['String']>;
   addOntologicalDiseaseSynonyms?: Maybe<Scalars['String']>;
   addOntologicalDiseaseXrefs?: Maybe<Scalars['String']>;
   addOutcomeEvidences?: Maybe<Scalars['String']>;
@@ -8680,12 +8546,15 @@ export type MutationType = {
   addProteinExpressionMarkerMethod?: Maybe<Scalars['String']>;
   addProteinExpressionMarkerName?: Maybe<Scalars['String']>;
   addProteinExpressionMarkerRNASeqAssay?: Maybe<Scalars['String']>;
+  addProteinExpressionMarkerResultString?: Maybe<Scalars['String']>;
   addProteinExpressionMarkerSynonyms?: Maybe<Scalars['String']>;
   addProteinLevelAssayName?: Maybe<Scalars['String']>;
+  addRNASeqAssayComparator?: Maybe<Scalars['String']>;
   addRNASeqAssayName?: Maybe<Scalars['String']>;
   addRNASeqAssayProteinExpressionMarkers?: Maybe<Scalars['String']>;
   addRNASeqAssayResultMax?: Maybe<Scalars['String']>;
   addRNASeqAssayResultMin?: Maybe<Scalars['String']>;
+  addRNASeqSignatureMarkerComparator?: Maybe<Scalars['String']>;
   addRNASeqSignatureMarkerDefinition?: Maybe<Scalars['String']>;
   addRNASeqSignatureMarkerInterpretations?: Maybe<Scalars['String']>;
   addRNASeqSignatureMarkerMarkerProfile?: Maybe<Scalars['String']>;
@@ -8693,15 +8562,19 @@ export type MutationType = {
   addRNASeqSignatureMarkerName?: Maybe<Scalars['String']>;
   addRNASeqSignatureMarkerResultMax?: Maybe<Scalars['String']>;
   addRNASeqSignatureMarkerResultMin?: Maybe<Scalars['String']>;
+  addRNASeqSignatureMarkerResultString?: Maybe<Scalars['String']>;
   addReferenceStatementsReferenced?: Maybe<Scalars['String']>;
   addTCodeChildren?: Maybe<Scalars['String']>;
   addTCodeParents?: Maybe<Scalars['String']>;
   addTCodeTissuePath?: Maybe<Scalars['String']>;
+  addTMBMarkerComparator?: Maybe<Scalars['String']>;
   addTMBMarkerInterpretations?: Maybe<Scalars['String']>;
   addTMBMarkerMethod?: Maybe<Scalars['String']>;
   addTMBMarkerName?: Maybe<Scalars['String']>;
   addTMBMarkerResultMax?: Maybe<Scalars['String']>;
   addTMBMarkerResultMin?: Maybe<Scalars['String']>;
+  addTMBMarkerResultString?: Maybe<Scalars['String']>;
+  addTMBMarkerResultUnits?: Maybe<Scalars['String']>;
   addTherapeuticInterventionConcurrentWith?: Maybe<Scalars['String']>;
   addTherapeuticInterventionDefinition?: Maybe<Scalars['String']>;
   addTherapeuticInterventionEvidenceAssociations?: Maybe<Scalars['String']>;
@@ -8773,6 +8646,7 @@ export type MutationType = {
   createDNAMarker?: Maybe<Scalars['String']>;
   createDODisease?: Maybe<Scalars['String']>;
   createDrugCategory?: Maybe<Scalars['String']>;
+  createEditableAssayComparator?: Maybe<Scalars['String']>;
   createEditableBoolean?: Maybe<Scalars['String']>;
   createEditableCopyChange?: Maybe<Scalars['String']>;
   createEditableDODiseaseList?: Maybe<Scalars['String']>;
@@ -8783,12 +8657,9 @@ export type MutationType = {
   createEditableImmunePhenotype?: Maybe<Scalars['String']>;
   createEditableInt?: Maybe<Scalars['String']>;
   createEditableJAXDiseaseList?: Maybe<Scalars['String']>;
-  createEditableMCodeList?: Maybe<Scalars['String']>;
   createEditableObject?: Maybe<Scalars['String']>;
-  createEditableOmniDiseaseList?: Maybe<Scalars['String']>;
   createEditableOmniGeneReference?: Maybe<Scalars['String']>;
   createEditableOncoTreeDiseaseList?: Maybe<Scalars['String']>;
-  createEditableOntologicalDiseaseChildrenList?: Maybe<Scalars['String']>;
   createEditableProteinEffect?: Maybe<Scalars['String']>;
   createEditableStatement?: Maybe<Scalars['String']>;
   createEditableStringList?: Maybe<Scalars['String']>;
@@ -8855,6 +8726,7 @@ export type MutationType = {
   deleteDNAMarkerDefinition?: Maybe<Scalars['String']>;
   deleteDNAMarkerMethod?: Maybe<Scalars['String']>;
   deleteDNAMarkerName?: Maybe<Scalars['String']>;
+  deleteDNAMarkerResultString?: Maybe<Scalars['String']>;
   deleteDODisease?: Maybe<Scalars['String']>;
   deleteDODiseaseChildren?: Maybe<Scalars['String']>;
   deleteDODiseaseDefinition?: Maybe<Scalars['String']>;
@@ -8869,6 +8741,9 @@ export type MutationType = {
   deleteDrugCategoryDrugs?: Maybe<Scalars['String']>;
   deleteDrugCategoryJaxDrugClass?: Maybe<Scalars['String']>;
   deleteDrugCategoryName?: Maybe<Scalars['String']>;
+  deleteEditableAssayComparator?: Maybe<Scalars['String']>;
+  deleteEditableAssayComparatorEditor?: Maybe<Scalars['String']>;
+  deleteEditableAssayComparatorReferences?: Maybe<Scalars['String']>;
   deleteEditableBoolean?: Maybe<Scalars['String']>;
   deleteEditableBooleanEditor?: Maybe<Scalars['String']>;
   deleteEditableBooleanReferences?: Maybe<Scalars['String']>;
@@ -8902,17 +8777,9 @@ export type MutationType = {
   deleteEditableJAXDiseaseListEditor?: Maybe<Scalars['String']>;
   deleteEditableJAXDiseaseListList?: Maybe<Scalars['String']>;
   deleteEditableJAXDiseaseListReferences?: Maybe<Scalars['String']>;
-  deleteEditableMCodeList?: Maybe<Scalars['String']>;
-  deleteEditableMCodeListEditor?: Maybe<Scalars['String']>;
-  deleteEditableMCodeListList?: Maybe<Scalars['String']>;
-  deleteEditableMCodeListReferences?: Maybe<Scalars['String']>;
   deleteEditableObject?: Maybe<Scalars['String']>;
   deleteEditableObjectEditor?: Maybe<Scalars['String']>;
   deleteEditableObjectReferences?: Maybe<Scalars['String']>;
-  deleteEditableOmniDiseaseList?: Maybe<Scalars['String']>;
-  deleteEditableOmniDiseaseListEditor?: Maybe<Scalars['String']>;
-  deleteEditableOmniDiseaseListList?: Maybe<Scalars['String']>;
-  deleteEditableOmniDiseaseListReferences?: Maybe<Scalars['String']>;
   deleteEditableOmniGeneReference?: Maybe<Scalars['String']>;
   deleteEditableOmniGeneReferenceEditor?: Maybe<Scalars['String']>;
   deleteEditableOmniGeneReferenceGene?: Maybe<Scalars['String']>;
@@ -8921,10 +8788,6 @@ export type MutationType = {
   deleteEditableOncoTreeDiseaseListEditor?: Maybe<Scalars['String']>;
   deleteEditableOncoTreeDiseaseListList?: Maybe<Scalars['String']>;
   deleteEditableOncoTreeDiseaseListReferences?: Maybe<Scalars['String']>;
-  deleteEditableOntologicalDiseaseChildrenList?: Maybe<Scalars['String']>;
-  deleteEditableOntologicalDiseaseChildrenListChildren?: Maybe<Scalars['String']>;
-  deleteEditableOntologicalDiseaseChildrenListEditor?: Maybe<Scalars['String']>;
-  deleteEditableOntologicalDiseaseChildrenListReferences?: Maybe<Scalars['String']>;
   deleteEditableProteinEffect?: Maybe<Scalars['String']>;
   deleteEditableProteinEffectEditor?: Maybe<Scalars['String']>;
   deleteEditableProteinEffectReferences?: Maybe<Scalars['String']>;
@@ -8974,6 +8837,7 @@ export type MutationType = {
   deleteGenomicVariantMarkerGene?: Maybe<Scalars['String']>;
   deleteGenomicVariantMarkerMethod?: Maybe<Scalars['String']>;
   deleteGenomicVariantMarkerName?: Maybe<Scalars['String']>;
+  deleteGenomicVariantMarkerResultString?: Maybe<Scalars['String']>;
   deleteGenomicVariantMarkerVariant?: Maybe<Scalars['String']>;
   deleteGenomicVariantName?: Maybe<Scalars['String']>;
   deleteGenomicVariantNonCanonicalTranscript?: Maybe<Scalars['String']>;
@@ -8982,16 +8846,17 @@ export type MutationType = {
   deleteHotSpotVariantOccurrences?: Maybe<Scalars['String']>;
   deleteIHCAssay?: Maybe<Scalars['String']>;
   deleteIHCAssayAntibodyClone?: Maybe<Scalars['String']>;
+  deleteIHCAssayComparator?: Maybe<Scalars['String']>;
   deleteIHCAssayName?: Maybe<Scalars['String']>;
   deleteIHCAssayProteinExpressionMarkers?: Maybe<Scalars['String']>;
   deleteIHCAssayResultMax?: Maybe<Scalars['String']>;
   deleteIHCAssayResultMin?: Maybe<Scalars['String']>;
+  deleteIHCAssayResultString?: Maybe<Scalars['String']>;
   deleteIHCAssayResultUnits?: Maybe<Scalars['String']>;
   deleteInternetReference?: Maybe<Scalars['String']>;
   deleteInternetReferenceStatementsReferenced?: Maybe<Scalars['String']>;
   deleteJaxDisease?: Maybe<Scalars['String']>;
   deleteJaxDiseaseDefinition?: Maybe<Scalars['String']>;
-  deleteJaxDiseaseDoDisease?: Maybe<Scalars['String']>;
   deleteJaxDiseaseName?: Maybe<Scalars['String']>;
   deleteJaxDrug?: Maybe<Scalars['String']>;
   deleteJaxDrugClass?: Maybe<Scalars['String']>;
@@ -9021,20 +8886,21 @@ export type MutationType = {
   deleteMCode?: Maybe<Scalars['String']>;
   deleteMCodeChildren?: Maybe<Scalars['String']>;
   deleteMCodeDiseasePath?: Maybe<Scalars['String']>;
-  deleteMCodeOmniDisease?: Maybe<Scalars['String']>;
   deleteMCodeParents?: Maybe<Scalars['String']>;
   deleteMSIMarker?: Maybe<Scalars['String']>;
   deleteMSIMarkerMethod?: Maybe<Scalars['String']>;
   deleteMSIMarkerName?: Maybe<Scalars['String']>;
+  deleteMSIMarkerResultString?: Maybe<Scalars['String']>;
   deleteMarkerComponent?: Maybe<Scalars['String']>;
   deleteMarkerComponentMethod?: Maybe<Scalars['String']>;
   deleteMarkerComponentName?: Maybe<Scalars['String']>;
+  deleteMarkerComponentResultString?: Maybe<Scalars['String']>;
   deleteMarkerProfile?: Maybe<Scalars['String']>;
   deleteMarkerProfileComponents?: Maybe<Scalars['String']>;
   deleteMarkerProfileEvidenceAssociations?: Maybe<Scalars['String']>;
   deleteMarkerProfileMethod?: Maybe<Scalars['String']>;
   deleteMarkerProfileName?: Maybe<Scalars['String']>;
-  deleteMarkerProfileRnaSeqSignatureMarker?: Maybe<Scalars['String']>;
+  deleteMarkerProfileResultString?: Maybe<Scalars['String']>;
   deleteMeetingAbstractReference?: Maybe<Scalars['String']>;
   deleteMeetingAbstractReferenceAuthors?: Maybe<Scalars['String']>;
   deleteMeetingAbstractReferenceStatementsReferenced?: Maybe<Scalars['String']>;
@@ -9083,17 +8949,12 @@ export type MutationType = {
   deleteOncoTreeOccurrencePercentOccurrence?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrenceTotalSamples?: Maybe<Scalars['String']>;
   deleteOntologicalDisease?: Maybe<Scalars['String']>;
-  deleteOntologicalDiseaseChildren?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseDescription?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseDoDiseases?: Maybe<Scalars['String']>;
-  deleteOntologicalDiseaseEvidenceAssociations?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseGoDiseases?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseJaxDiseases?: Maybe<Scalars['String']>;
-  deleteOntologicalDiseaseMCodes?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseName?: Maybe<Scalars['String']>;
-  deleteOntologicalDiseaseOmniDiseases?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseOncoTreeDiseases?: Maybe<Scalars['String']>;
-  deleteOntologicalDiseaseParents?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseSynonyms?: Maybe<Scalars['String']>;
   deleteOntologicalDiseaseXrefs?: Maybe<Scalars['String']>;
   deleteOutcome?: Maybe<Scalars['String']>;
@@ -9108,15 +8969,18 @@ export type MutationType = {
   deleteProteinExpressionMarkerMethod?: Maybe<Scalars['String']>;
   deleteProteinExpressionMarkerName?: Maybe<Scalars['String']>;
   deleteProteinExpressionMarkerRNASeqAssay?: Maybe<Scalars['String']>;
+  deleteProteinExpressionMarkerResultString?: Maybe<Scalars['String']>;
   deleteProteinExpressionMarkerSynonyms?: Maybe<Scalars['String']>;
   deleteProteinLevelAssay?: Maybe<Scalars['String']>;
   deleteProteinLevelAssayName?: Maybe<Scalars['String']>;
   deleteRNASeqAssay?: Maybe<Scalars['String']>;
+  deleteRNASeqAssayComparator?: Maybe<Scalars['String']>;
   deleteRNASeqAssayName?: Maybe<Scalars['String']>;
   deleteRNASeqAssayProteinExpressionMarkers?: Maybe<Scalars['String']>;
   deleteRNASeqAssayResultMax?: Maybe<Scalars['String']>;
   deleteRNASeqAssayResultMin?: Maybe<Scalars['String']>;
   deleteRNASeqSignatureMarker?: Maybe<Scalars['String']>;
+  deleteRNASeqSignatureMarkerComparator?: Maybe<Scalars['String']>;
   deleteRNASeqSignatureMarkerDefinition?: Maybe<Scalars['String']>;
   deleteRNASeqSignatureMarkerInterpretations?: Maybe<Scalars['String']>;
   deleteRNASeqSignatureMarkerMarkerProfile?: Maybe<Scalars['String']>;
@@ -9124,6 +8988,7 @@ export type MutationType = {
   deleteRNASeqSignatureMarkerName?: Maybe<Scalars['String']>;
   deleteRNASeqSignatureMarkerResultMax?: Maybe<Scalars['String']>;
   deleteRNASeqSignatureMarkerResultMin?: Maybe<Scalars['String']>;
+  deleteRNASeqSignatureMarkerResultString?: Maybe<Scalars['String']>;
   deleteReference?: Maybe<Scalars['String']>;
   deleteReferenceStatementsReferenced?: Maybe<Scalars['String']>;
   deleteTCode?: Maybe<Scalars['String']>;
@@ -9131,11 +8996,14 @@ export type MutationType = {
   deleteTCodeParents?: Maybe<Scalars['String']>;
   deleteTCodeTissuePath?: Maybe<Scalars['String']>;
   deleteTMBMarker?: Maybe<Scalars['String']>;
+  deleteTMBMarkerComparator?: Maybe<Scalars['String']>;
   deleteTMBMarkerInterpretations?: Maybe<Scalars['String']>;
   deleteTMBMarkerMethod?: Maybe<Scalars['String']>;
   deleteTMBMarkerName?: Maybe<Scalars['String']>;
   deleteTMBMarkerResultMax?: Maybe<Scalars['String']>;
   deleteTMBMarkerResultMin?: Maybe<Scalars['String']>;
+  deleteTMBMarkerResultString?: Maybe<Scalars['String']>;
+  deleteTMBMarkerResultUnits?: Maybe<Scalars['String']>;
   deleteTarget?: Maybe<Scalars['String']>;
   deleteTherapeuticIntervention?: Maybe<Scalars['String']>;
   deleteTherapeuticInterventionConcurrentWith?: Maybe<Scalars['String']>;
@@ -9218,6 +9086,7 @@ export type MutationType = {
   mergeDNAMarker?: Maybe<Scalars['String']>;
   mergeDODisease?: Maybe<Scalars['String']>;
   mergeDrugCategory?: Maybe<Scalars['String']>;
+  mergeEditableAssayComparator?: Maybe<Scalars['String']>;
   mergeEditableBoolean?: Maybe<Scalars['String']>;
   mergeEditableCopyChange?: Maybe<Scalars['String']>;
   mergeEditableDODiseaseList?: Maybe<Scalars['String']>;
@@ -9228,12 +9097,9 @@ export type MutationType = {
   mergeEditableImmunePhenotype?: Maybe<Scalars['String']>;
   mergeEditableInt?: Maybe<Scalars['String']>;
   mergeEditableJAXDiseaseList?: Maybe<Scalars['String']>;
-  mergeEditableMCodeList?: Maybe<Scalars['String']>;
   mergeEditableObject?: Maybe<Scalars['String']>;
-  mergeEditableOmniDiseaseList?: Maybe<Scalars['String']>;
   mergeEditableOmniGeneReference?: Maybe<Scalars['String']>;
   mergeEditableOncoTreeDiseaseList?: Maybe<Scalars['String']>;
-  mergeEditableOntologicalDiseaseChildrenList?: Maybe<Scalars['String']>;
   mergeEditableProteinEffect?: Maybe<Scalars['String']>;
   mergeEditableStatement?: Maybe<Scalars['String']>;
   mergeEditableStringList?: Maybe<Scalars['String']>;
@@ -9294,6 +9160,7 @@ export type MutationType = {
   updateDNAMarker?: Maybe<Scalars['String']>;
   updateDODisease?: Maybe<Scalars['String']>;
   updateDrugCategory?: Maybe<Scalars['String']>;
+  updateEditableAssayComparator?: Maybe<Scalars['String']>;
   updateEditableBoolean?: Maybe<Scalars['String']>;
   updateEditableCopyChange?: Maybe<Scalars['String']>;
   updateEditableDODiseaseList?: Maybe<Scalars['String']>;
@@ -9304,12 +9171,9 @@ export type MutationType = {
   updateEditableImmunePhenotype?: Maybe<Scalars['String']>;
   updateEditableInt?: Maybe<Scalars['String']>;
   updateEditableJAXDiseaseList?: Maybe<Scalars['String']>;
-  updateEditableMCodeList?: Maybe<Scalars['String']>;
   updateEditableObject?: Maybe<Scalars['String']>;
-  updateEditableOmniDiseaseList?: Maybe<Scalars['String']>;
   updateEditableOmniGeneReference?: Maybe<Scalars['String']>;
   updateEditableOncoTreeDiseaseList?: Maybe<Scalars['String']>;
-  updateEditableOntologicalDiseaseChildrenList?: Maybe<Scalars['String']>;
   updateEditableProteinEffect?: Maybe<Scalars['String']>;
   updateEditableStatement?: Maybe<Scalars['String']>;
   updateEditableStringList?: Maybe<Scalars['String']>;
@@ -9414,6 +9278,12 @@ export type MutationTypeAddDnaMarkerNameArgs = {
 };
 
 
+export type MutationTypeAddDnaMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddDoDiseaseChildrenArgs = {
   children: Array<Scalars['ID']>;
   id: Scalars['ID'];
@@ -9483,6 +9353,18 @@ export type MutationTypeAddDrugCategoryJaxDrugClassArgs = {
 export type MutationTypeAddDrugCategoryNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddEditableAssayComparatorEditorArgs = {
+  editor: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeAddEditableAssayComparatorReferencesArgs = {
+  id: Scalars['ID'];
+  references: Array<Scalars['ID']>;
 };
 
 
@@ -9624,24 +9506,6 @@ export type MutationTypeAddEditableJaxDiseaseListReferencesArgs = {
 };
 
 
-export type MutationTypeAddEditableMCodeListEditorArgs = {
-  editor: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeAddEditableMCodeListListArgs = {
-  id: Scalars['ID'];
-  list: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeAddEditableMCodeListReferencesArgs = {
-  id: Scalars['ID'];
-  references: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeAddEditableObjectEditorArgs = {
   editor: Array<Scalars['ID']>;
   id: Scalars['ID'];
@@ -9649,24 +9513,6 @@ export type MutationTypeAddEditableObjectEditorArgs = {
 
 
 export type MutationTypeAddEditableObjectReferencesArgs = {
-  id: Scalars['ID'];
-  references: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeAddEditableOmniDiseaseListEditorArgs = {
-  editor: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeAddEditableOmniDiseaseListListArgs = {
-  id: Scalars['ID'];
-  list: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeAddEditableOmniDiseaseListReferencesArgs = {
   id: Scalars['ID'];
   references: Array<Scalars['ID']>;
 };
@@ -9703,24 +9549,6 @@ export type MutationTypeAddEditableOncoTreeDiseaseListListArgs = {
 
 
 export type MutationTypeAddEditableOncoTreeDiseaseListReferencesArgs = {
-  id: Scalars['ID'];
-  references: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeAddEditableOntologicalDiseaseChildrenListChildrenArgs = {
-  children: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeAddEditableOntologicalDiseaseChildrenListEditorArgs = {
-  editor: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeAddEditableOntologicalDiseaseChildrenListReferencesArgs = {
   id: Scalars['ID'];
   references: Array<Scalars['ID']>;
 };
@@ -9954,6 +9782,12 @@ export type MutationTypeAddGenomicVariantMarkerNameArgs = {
 };
 
 
+export type MutationTypeAddGenomicVariantMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddGenomicVariantMarkerVariantArgs = {
   id: Scalars['ID'];
   variant: Array<Scalars['ID']>;
@@ -9990,6 +9824,12 @@ export type MutationTypeAddIhcAssayAntibodyCloneArgs = {
 };
 
 
+export type MutationTypeAddIhcAssayComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
 export type MutationTypeAddIhcAssayNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
@@ -10014,6 +9854,12 @@ export type MutationTypeAddIhcAssayResultMinArgs = {
 };
 
 
+export type MutationTypeAddIhcAssayResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddIhcAssayResultUnitsArgs = {
   id: Scalars['ID'];
   resultUnits: Array<Scalars['ID']>;
@@ -10028,12 +9874,6 @@ export type MutationTypeAddInternetReferenceStatementsReferencedArgs = {
 
 export type MutationTypeAddJaxDiseaseDefinitionArgs = {
   definition: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeAddJaxDiseaseDoDiseaseArgs = {
-  doDisease: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -10170,12 +10010,6 @@ export type MutationTypeAddMCodeDiseasePathArgs = {
 };
 
 
-export type MutationTypeAddMCodeOmniDiseaseArgs = {
-  id: Scalars['ID'];
-  omniDisease: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeAddMCodeParentsArgs = {
   id: Scalars['ID'];
   parents: Array<Scalars['ID']>;
@@ -10194,6 +10028,12 @@ export type MutationTypeAddMsiMarkerNameArgs = {
 };
 
 
+export type MutationTypeAddMsiMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddMarkerComponentMethodArgs = {
   id: Scalars['ID'];
   method: Array<Scalars['ID']>;
@@ -10203,6 +10043,12 @@ export type MutationTypeAddMarkerComponentMethodArgs = {
 export type MutationTypeAddMarkerComponentNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddMarkerComponentResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
 };
 
 
@@ -10230,9 +10076,9 @@ export type MutationTypeAddMarkerProfileNameArgs = {
 };
 
 
-export type MutationTypeAddMarkerProfileRnaSeqSignatureMarkerArgs = {
+export type MutationTypeAddMarkerProfileResultStringArgs = {
   id: Scalars['ID'];
-  rnaSeqSignatureMarker: Array<Scalars['ID']>;
+  resultString: Array<Scalars['ID']>;
 };
 
 
@@ -10470,12 +10316,6 @@ export type MutationTypeAddOncoTreeOccurrenceTotalSamplesArgs = {
 };
 
 
-export type MutationTypeAddOntologicalDiseaseChildrenArgs = {
-  children: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
 export type MutationTypeAddOntologicalDiseaseDescriptionArgs = {
   description: Array<Scalars['ID']>;
   id: Scalars['ID'];
@@ -10484,12 +10324,6 @@ export type MutationTypeAddOntologicalDiseaseDescriptionArgs = {
 
 export type MutationTypeAddOntologicalDiseaseDoDiseasesArgs = {
   doDiseases: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeAddOntologicalDiseaseEvidenceAssociationsArgs = {
-  evidenceAssociations: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -10506,33 +10340,15 @@ export type MutationTypeAddOntologicalDiseaseJaxDiseasesArgs = {
 };
 
 
-export type MutationTypeAddOntologicalDiseaseMCodesArgs = {
-  id: Scalars['ID'];
-  mCodes: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeAddOntologicalDiseaseNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
 };
 
 
-export type MutationTypeAddOntologicalDiseaseOmniDiseasesArgs = {
-  id: Scalars['ID'];
-  omniDiseases: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeAddOntologicalDiseaseOncoTreeDiseasesArgs = {
   id: Scalars['ID'];
   oncoTreeDiseases: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeAddOntologicalDiseaseParentsArgs = {
-  id: Scalars['ID'];
-  parents: Array<Scalars['ID']>;
 };
 
 
@@ -10608,6 +10424,12 @@ export type MutationTypeAddProteinExpressionMarkerRnaSeqAssayArgs = {
 };
 
 
+export type MutationTypeAddProteinExpressionMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddProteinExpressionMarkerSynonymsArgs = {
   id: Scalars['ID'];
   synonyms: Array<Scalars['ID']>;
@@ -10617,6 +10439,12 @@ export type MutationTypeAddProteinExpressionMarkerSynonymsArgs = {
 export type MutationTypeAddProteinLevelAssayNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddRnaSeqAssayComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
@@ -10641,6 +10469,12 @@ export type MutationTypeAddRnaSeqAssayResultMaxArgs = {
 export type MutationTypeAddRnaSeqAssayResultMinArgs = {
   id: Scalars['ID'];
   resultMin: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddRnaSeqSignatureMarkerComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
@@ -10686,6 +10520,12 @@ export type MutationTypeAddRnaSeqSignatureMarkerResultMinArgs = {
 };
 
 
+export type MutationTypeAddRnaSeqSignatureMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddReferenceStatementsReferencedArgs = {
   id: Scalars['ID'];
   statementsReferenced: Array<Scalars['ID']>;
@@ -10707,6 +10547,12 @@ export type MutationTypeAddTCodeParentsArgs = {
 export type MutationTypeAddTCodeTissuePathArgs = {
   id: Scalars['ID'];
   tissuePath: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddTmbMarkerComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
@@ -10737,6 +10583,18 @@ export type MutationTypeAddTmbMarkerResultMaxArgs = {
 export type MutationTypeAddTmbMarkerResultMinArgs = {
   id: Scalars['ID'];
   resultMin: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddTmbMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddTmbMarkerResultUnitsArgs = {
+  id: Scalars['ID'];
+  resultUnits: Array<Scalars['ID']>;
 };
 
 
@@ -11175,6 +11033,14 @@ export type MutationTypeCreateDrugCategoryArgs = {
 };
 
 
+export type MutationTypeCreateEditableAssayComparatorArgs = {
+  comparator: AssayComparator;
+  editDate: Scalars['String'];
+  field: Scalars['String'];
+  id: Scalars['ID'];
+};
+
+
 export type MutationTypeCreateEditableBooleanArgs = {
   booleanValue: ExtendedBoolean;
   editDate: Scalars['String'];
@@ -11252,21 +11118,7 @@ export type MutationTypeCreateEditableJaxDiseaseListArgs = {
 };
 
 
-export type MutationTypeCreateEditableMCodeListArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
 export type MutationTypeCreateEditableObjectArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeCreateEditableOmniDiseaseListArgs = {
   editDate: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['ID'];
@@ -11281,13 +11133,6 @@ export type MutationTypeCreateEditableOmniGeneReferenceArgs = {
 
 
 export type MutationTypeCreateEditableOncoTreeDiseaseListArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeCreateEditableOntologicalDiseaseChildrenListArgs = {
   editDate: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['ID'];
@@ -11386,7 +11231,6 @@ export type MutationTypeCreateHotSpotVariantArgs = {
 
 
 export type MutationTypeCreateIhcAssayArgs = {
-  comparator: AssayComparator;
   id: Scalars['ID'];
 };
 
@@ -11402,6 +11246,8 @@ export type MutationTypeCreateInternetReferenceArgs = {
 export type MutationTypeCreateJaxDiseaseArgs = {
   id: Scalars['ID'];
   jaxId: Scalars['String'];
+  source: Scalars['String'];
+  termId: Scalars['String'];
 };
 
 
@@ -11460,6 +11306,7 @@ export type MutationTypeCreateLiteratureReferenceArgs = {
 export type MutationTypeCreateMCodeArgs = {
   id: Scalars['ID'];
   mcodeId: Scalars['String'];
+  omniDisease: Scalars['String'];
 };
 
 
@@ -11577,7 +11424,6 @@ export type MutationTypeCreateProteinLevelAssayArgs = {
 
 
 export type MutationTypeCreateRnaSeqAssayArgs = {
-  comparator: AssayComparator;
   id: Scalars['ID'];
   resultType: RnaSeqResultType;
 };
@@ -11655,9 +11501,9 @@ export type MutationTypeCreateVariantFusionArgs = {
 
 export type MutationTypeCreateVariantRegionArgs = {
   id: Scalars['ID'];
-  indelType?: Maybe<IndelType>;
+  indelType: IndelType;
   regionType: RegionType;
-  variantType?: Maybe<VariantType>;
+  variantType: VariantType;
 };
 
 
@@ -11748,6 +11594,12 @@ export type MutationTypeDeleteDnaMarkerNameArgs = {
 };
 
 
+export type MutationTypeDeleteDnaMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeDeleteDoDiseaseArgs = {
   id: Scalars['ID'];
 };
@@ -11827,6 +11679,23 @@ export type MutationTypeDeleteDrugCategoryJaxDrugClassArgs = {
 export type MutationTypeDeleteDrugCategoryNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeDeleteEditableAssayComparatorArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeDeleteEditableAssayComparatorEditorArgs = {
+  editor: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeDeleteEditableAssayComparatorReferencesArgs = {
+  id: Scalars['ID'];
+  references: Array<Scalars['ID']>;
 };
 
 
@@ -12018,29 +11887,6 @@ export type MutationTypeDeleteEditableJaxDiseaseListReferencesArgs = {
 };
 
 
-export type MutationTypeDeleteEditableMCodeListArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableMCodeListEditorArgs = {
-  editor: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableMCodeListListArgs = {
-  id: Scalars['ID'];
-  list: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeDeleteEditableMCodeListReferencesArgs = {
-  id: Scalars['ID'];
-  references: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeDeleteEditableObjectArgs = {
   id: Scalars['ID'];
 };
@@ -12053,29 +11899,6 @@ export type MutationTypeDeleteEditableObjectEditorArgs = {
 
 
 export type MutationTypeDeleteEditableObjectReferencesArgs = {
-  id: Scalars['ID'];
-  references: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeDeleteEditableOmniDiseaseListArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableOmniDiseaseListEditorArgs = {
-  editor: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableOmniDiseaseListListArgs = {
-  id: Scalars['ID'];
-  list: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeDeleteEditableOmniDiseaseListReferencesArgs = {
   id: Scalars['ID'];
   references: Array<Scalars['ID']>;
 };
@@ -12122,29 +11945,6 @@ export type MutationTypeDeleteEditableOncoTreeDiseaseListListArgs = {
 
 
 export type MutationTypeDeleteEditableOncoTreeDiseaseListReferencesArgs = {
-  id: Scalars['ID'];
-  references: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeDeleteEditableOntologicalDiseaseChildrenListArgs = {
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableOntologicalDiseaseChildrenListChildrenArgs = {
-  children: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableOntologicalDiseaseChildrenListEditorArgs = {
-  editor: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteEditableOntologicalDiseaseChildrenListReferencesArgs = {
   id: Scalars['ID'];
   references: Array<Scalars['ID']>;
 };
@@ -12433,6 +12233,12 @@ export type MutationTypeDeleteGenomicVariantMarkerNameArgs = {
 };
 
 
+export type MutationTypeDeleteGenomicVariantMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeDeleteGenomicVariantMarkerVariantArgs = {
   id: Scalars['ID'];
   variant: Array<Scalars['ID']>;
@@ -12479,6 +12285,12 @@ export type MutationTypeDeleteIhcAssayAntibodyCloneArgs = {
 };
 
 
+export type MutationTypeDeleteIhcAssayComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
 export type MutationTypeDeleteIhcAssayNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
@@ -12500,6 +12312,12 @@ export type MutationTypeDeleteIhcAssayResultMaxArgs = {
 export type MutationTypeDeleteIhcAssayResultMinArgs = {
   id: Scalars['ID'];
   resultMin: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeDeleteIhcAssayResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
 };
 
 
@@ -12527,12 +12345,6 @@ export type MutationTypeDeleteJaxDiseaseArgs = {
 
 export type MutationTypeDeleteJaxDiseaseDefinitionArgs = {
   definition: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteJaxDiseaseDoDiseaseArgs = {
-  doDisease: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -12704,12 +12516,6 @@ export type MutationTypeDeleteMCodeDiseasePathArgs = {
 };
 
 
-export type MutationTypeDeleteMCodeOmniDiseaseArgs = {
-  id: Scalars['ID'];
-  omniDisease: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeDeleteMCodeParentsArgs = {
   id: Scalars['ID'];
   parents: Array<Scalars['ID']>;
@@ -12733,6 +12539,12 @@ export type MutationTypeDeleteMsiMarkerNameArgs = {
 };
 
 
+export type MutationTypeDeleteMsiMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeDeleteMarkerComponentArgs = {
   id: Scalars['ID'];
 };
@@ -12747,6 +12559,12 @@ export type MutationTypeDeleteMarkerComponentMethodArgs = {
 export type MutationTypeDeleteMarkerComponentNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeDeleteMarkerComponentResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
 };
 
 
@@ -12779,9 +12597,9 @@ export type MutationTypeDeleteMarkerProfileNameArgs = {
 };
 
 
-export type MutationTypeDeleteMarkerProfileRnaSeqSignatureMarkerArgs = {
+export type MutationTypeDeleteMarkerProfileResultStringArgs = {
   id: Scalars['ID'];
-  rnaSeqSignatureMarker: Array<Scalars['ID']>;
+  resultString: Array<Scalars['ID']>;
 };
 
 
@@ -13064,12 +12882,6 @@ export type MutationTypeDeleteOntologicalDiseaseArgs = {
 };
 
 
-export type MutationTypeDeleteOntologicalDiseaseChildrenArgs = {
-  children: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
 export type MutationTypeDeleteOntologicalDiseaseDescriptionArgs = {
   description: Array<Scalars['ID']>;
   id: Scalars['ID'];
@@ -13078,12 +12890,6 @@ export type MutationTypeDeleteOntologicalDiseaseDescriptionArgs = {
 
 export type MutationTypeDeleteOntologicalDiseaseDoDiseasesArgs = {
   doDiseases: Array<Scalars['ID']>;
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeDeleteOntologicalDiseaseEvidenceAssociationsArgs = {
-  evidenceAssociations: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -13100,33 +12906,15 @@ export type MutationTypeDeleteOntologicalDiseaseJaxDiseasesArgs = {
 };
 
 
-export type MutationTypeDeleteOntologicalDiseaseMCodesArgs = {
-  id: Scalars['ID'];
-  mCodes: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeDeleteOntologicalDiseaseNameArgs = {
   id: Scalars['ID'];
   name: Array<Scalars['ID']>;
 };
 
 
-export type MutationTypeDeleteOntologicalDiseaseOmniDiseasesArgs = {
-  id: Scalars['ID'];
-  omniDiseases: Array<Scalars['ID']>;
-};
-
-
 export type MutationTypeDeleteOntologicalDiseaseOncoTreeDiseasesArgs = {
   id: Scalars['ID'];
   oncoTreeDiseases: Array<Scalars['ID']>;
-};
-
-
-export type MutationTypeDeleteOntologicalDiseaseParentsArgs = {
-  id: Scalars['ID'];
-  parents: Array<Scalars['ID']>;
 };
 
 
@@ -13212,6 +13000,12 @@ export type MutationTypeDeleteProteinExpressionMarkerRnaSeqAssayArgs = {
 };
 
 
+export type MutationTypeDeleteProteinExpressionMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeDeleteProteinExpressionMarkerSynonymsArgs = {
   id: Scalars['ID'];
   synonyms: Array<Scalars['ID']>;
@@ -13230,6 +13024,12 @@ export type MutationTypeDeleteProteinLevelAssayNameArgs = {
 
 
 export type MutationTypeDeleteRnaSeqAssayArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeDeleteRnaSeqAssayComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -13259,6 +13059,12 @@ export type MutationTypeDeleteRnaSeqAssayResultMinArgs = {
 
 
 export type MutationTypeDeleteRnaSeqSignatureMarkerArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeDeleteRnaSeqSignatureMarkerComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -13305,6 +13111,12 @@ export type MutationTypeDeleteRnaSeqSignatureMarkerResultMinArgs = {
 };
 
 
+export type MutationTypeDeleteRnaSeqSignatureMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeDeleteReferenceArgs = {
   id: Scalars['ID'];
 };
@@ -13344,6 +13156,12 @@ export type MutationTypeDeleteTmbMarkerArgs = {
 };
 
 
+export type MutationTypeDeleteTmbMarkerComparatorArgs = {
+  comparator: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
 export type MutationTypeDeleteTmbMarkerInterpretationsArgs = {
   id: Scalars['ID'];
   interpretations: Array<Scalars['ID']>;
@@ -13371,6 +13189,18 @@ export type MutationTypeDeleteTmbMarkerResultMaxArgs = {
 export type MutationTypeDeleteTmbMarkerResultMinArgs = {
   id: Scalars['ID'];
   resultMin: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeDeleteTmbMarkerResultStringArgs = {
+  id: Scalars['ID'];
+  resultString: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeDeleteTmbMarkerResultUnitsArgs = {
+  id: Scalars['ID'];
+  resultUnits: Array<Scalars['ID']>;
 };
 
 
@@ -13864,6 +13694,14 @@ export type MutationTypeMergeDrugCategoryArgs = {
 };
 
 
+export type MutationTypeMergeEditableAssayComparatorArgs = {
+  comparator: AssayComparator;
+  editDate: Scalars['String'];
+  field: Scalars['String'];
+  id: Scalars['ID'];
+};
+
+
 export type MutationTypeMergeEditableBooleanArgs = {
   booleanValue: ExtendedBoolean;
   editDate: Scalars['String'];
@@ -13941,21 +13779,7 @@ export type MutationTypeMergeEditableJaxDiseaseListArgs = {
 };
 
 
-export type MutationTypeMergeEditableMCodeListArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
 export type MutationTypeMergeEditableObjectArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeMergeEditableOmniDiseaseListArgs = {
   editDate: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['ID'];
@@ -13970,13 +13794,6 @@ export type MutationTypeMergeEditableOmniGeneReferenceArgs = {
 
 
 export type MutationTypeMergeEditableOncoTreeDiseaseListArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeMergeEditableOntologicalDiseaseChildrenListArgs = {
   editDate: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['ID'];
@@ -14075,7 +13892,6 @@ export type MutationTypeMergeHotSpotVariantArgs = {
 
 
 export type MutationTypeMergeIhcAssayArgs = {
-  comparator: AssayComparator;
   id: Scalars['ID'];
 };
 
@@ -14091,6 +13907,8 @@ export type MutationTypeMergeInternetReferenceArgs = {
 export type MutationTypeMergeJaxDiseaseArgs = {
   id: Scalars['ID'];
   jaxId: Scalars['String'];
+  source: Scalars['String'];
+  termId: Scalars['String'];
 };
 
 
@@ -14149,6 +13967,7 @@ export type MutationTypeMergeLiteratureReferenceArgs = {
 export type MutationTypeMergeMCodeArgs = {
   id: Scalars['ID'];
   mcodeId: Scalars['String'];
+  omniDisease: Scalars['String'];
 };
 
 
@@ -14266,7 +14085,6 @@ export type MutationTypeMergeProteinLevelAssayArgs = {
 
 
 export type MutationTypeMergeRnaSeqAssayArgs = {
-  comparator: AssayComparator;
   id: Scalars['ID'];
   resultType: RnaSeqResultType;
 };
@@ -14344,9 +14162,9 @@ export type MutationTypeMergeVariantFusionArgs = {
 
 export type MutationTypeMergeVariantRegionArgs = {
   id: Scalars['ID'];
-  indelType?: Maybe<IndelType>;
+  indelType: IndelType;
   regionType: RegionType;
-  variantType?: Maybe<VariantType>;
+  variantType: VariantType;
 };
 
 
@@ -14411,6 +14229,14 @@ export type MutationTypeUpdateDoDiseaseArgs = {
 
 
 export type MutationTypeUpdateDrugCategoryArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeUpdateEditableAssayComparatorArgs = {
+  comparator: AssayComparator;
+  editDate: Scalars['String'];
+  field: Scalars['String'];
   id: Scalars['ID'];
 };
 
@@ -14492,21 +14318,7 @@ export type MutationTypeUpdateEditableJaxDiseaseListArgs = {
 };
 
 
-export type MutationTypeUpdateEditableMCodeListArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
 export type MutationTypeUpdateEditableObjectArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeUpdateEditableOmniDiseaseListArgs = {
   editDate: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['ID'];
@@ -14521,13 +14333,6 @@ export type MutationTypeUpdateEditableOmniGeneReferenceArgs = {
 
 
 export type MutationTypeUpdateEditableOncoTreeDiseaseListArgs = {
-  editDate: Scalars['String'];
-  field: Scalars['String'];
-  id: Scalars['ID'];
-};
-
-
-export type MutationTypeUpdateEditableOntologicalDiseaseChildrenListArgs = {
   editDate: Scalars['String'];
   field: Scalars['String'];
   id: Scalars['ID'];
@@ -14626,7 +14431,6 @@ export type MutationTypeUpdateHotSpotVariantArgs = {
 
 
 export type MutationTypeUpdateIhcAssayArgs = {
-  comparator: AssayComparator;
   id: Scalars['ID'];
 };
 
@@ -14642,6 +14446,8 @@ export type MutationTypeUpdateInternetReferenceArgs = {
 export type MutationTypeUpdateJaxDiseaseArgs = {
   id: Scalars['ID'];
   jaxId: Scalars['String'];
+  source: Scalars['String'];
+  termId: Scalars['String'];
 };
 
 
@@ -14700,6 +14506,7 @@ export type MutationTypeUpdateLiteratureReferenceArgs = {
 export type MutationTypeUpdateMCodeArgs = {
   id: Scalars['ID'];
   mcodeId: Scalars['String'];
+  omniDisease: Scalars['String'];
 };
 
 
@@ -14817,7 +14624,6 @@ export type MutationTypeUpdateProteinLevelAssayArgs = {
 
 
 export type MutationTypeUpdateRnaSeqAssayArgs = {
-  comparator: AssayComparator;
   id: Scalars['ID'];
   resultType: RnaSeqResultType;
 };
@@ -14895,9 +14701,9 @@ export type MutationTypeUpdateVariantFusionArgs = {
 
 export type MutationTypeUpdateVariantRegionArgs = {
   id: Scalars['ID'];
-  indelType?: Maybe<IndelType>;
+  indelType: IndelType;
   regionType: RegionType;
-  variantType?: Maybe<VariantType>;
+  variantType: VariantType;
 };
 
 
@@ -15392,7 +15198,7 @@ export type OncoTreeDisease = {
   id: Scalars['ID'];
   mainType: EditableStatement;
   name: EditableStatement;
-  parent?: Maybe<OncoTreeDisease>;
+  parent?: Maybe<Array<Maybe<OncoTreeDisease>>>;
   tissue: EditableStatement;
   xrefs: EditableXRefList;
 };
@@ -15441,11 +15247,15 @@ export type OncoTreeDiseaseNameArgs = {
 
 
 export type OncoTreeDiseaseParentArgs = {
+  _id?: Maybe<Scalars['Long']>;
+  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
   code?: Maybe<Scalars['String']>;
   codes?: Maybe<Array<Maybe<Scalars['String']>>>;
   filter?: Maybe<_OncoTreeDiseaseFilter>;
+  first?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_OncoTreeDiseaseOrdering>>>;
 };
 
@@ -15532,32 +15342,15 @@ export type OncoTreeOccurrenceTotalSamplesArgs = {
 export type OntologicalDisease = {
    __typename?: 'OntologicalDisease';
   _id?: Maybe<Scalars['Long']>;
-  children: EditableOntologicalDiseaseChildrenList;
   description: EditableStatement;
   doDiseases: EditableDoDiseaseList;
-  evidenceAssociations?: Maybe<Array<Maybe<EvidenceAssociation>>>;
   goDiseases: EditableGoDiseaseList;
   id: Scalars['ID'];
   jaxDiseases: EditableJaxDiseaseList;
-  mCodes: EditableMCodeList;
   name: EditableStatement;
-  omniDiseases: EditableOmniDiseaseList;
   oncoTreeDiseases: EditableOncoTreeDiseaseList;
-  parents: Array<Maybe<OntologicalDisease>>;
   synonyms: EditableStringList;
   xrefs: EditableXRefList;
-};
-
-
-export type OntologicalDiseaseChildrenArgs = {
-  editDate?: Maybe<Scalars['String']>;
-  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
-  field?: Maybe<Scalars['String']>;
-  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_EditableOntologicalDiseaseChildrenListFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  orderBy?: Maybe<Array<Maybe<_EditableOntologicalDiseaseChildrenListOrdering>>>;
 };
 
 
@@ -15587,20 +15380,6 @@ export type OntologicalDiseaseDoDiseasesArgs = {
 };
 
 
-export type OntologicalDiseaseEvidenceAssociationsArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_EvidenceAssociationFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  name?: Maybe<Scalars['String']>;
-  names?: Maybe<Array<Maybe<Scalars['String']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EvidenceAssociationOrdering>>>;
-};
-
-
 export type OntologicalDiseaseGoDiseasesArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -15625,18 +15404,6 @@ export type OntologicalDiseaseJaxDiseasesArgs = {
 };
 
 
-export type OntologicalDiseaseMCodesArgs = {
-  editDate?: Maybe<Scalars['String']>;
-  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
-  field?: Maybe<Scalars['String']>;
-  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_EditableMCodeListFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  orderBy?: Maybe<Array<Maybe<_EditableMCodeListOrdering>>>;
-};
-
-
 export type OntologicalDiseaseNameArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -15651,18 +15418,6 @@ export type OntologicalDiseaseNameArgs = {
 };
 
 
-export type OntologicalDiseaseOmniDiseasesArgs = {
-  editDate?: Maybe<Scalars['String']>;
-  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
-  field?: Maybe<Scalars['String']>;
-  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_EditableOmniDiseaseListFilter>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  orderBy?: Maybe<Array<Maybe<_EditableOmniDiseaseListOrdering>>>;
-};
-
-
 export type OntologicalDiseaseOncoTreeDiseasesArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -15672,18 +15427,6 @@ export type OntologicalDiseaseOncoTreeDiseasesArgs = {
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   orderBy?: Maybe<Array<Maybe<_EditableOncoTreeDiseaseListOrdering>>>;
-};
-
-
-export type OntologicalDiseaseParentsArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  filter?: Maybe<_OntologicalDiseaseFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_OntologicalDiseaseOrdering>>>;
 };
 
 
@@ -15770,13 +15513,12 @@ export type ProteinExpressionMarker = MarkerComponent & {
   immunePhenotypes: Array<Maybe<EditableImmunePhenotype>>;
   method: EditableStatement;
   name: EditableStatement;
+  resultString: EditableStatement;
   synonyms: EditableStringList;
 };
 
 
 export type ProteinExpressionMarkerIhcAssayArgs = {
-  comparator?: Maybe<AssayComparator>;
-  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
   filter?: Maybe<_IhcAssayFilter>;
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
@@ -15785,8 +15527,6 @@ export type ProteinExpressionMarkerIhcAssayArgs = {
 
 
 export type ProteinExpressionMarkerRnaSeqAssayArgs = {
-  comparator?: Maybe<AssayComparator>;
-  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
   filter?: Maybe<_RnaSeqAssayFilter>;
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
@@ -15898,6 +15638,20 @@ export type ProteinExpressionMarkerNameArgs = {
 };
 
 
+export type ProteinExpressionMarkerResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
 export type ProteinExpressionMarkerSynonymsArgs = {
   editDate?: Maybe<Scalars['String']>;
   editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -15940,6 +15694,7 @@ export type QueryType = {
   DNAMarker?: Maybe<Array<Maybe<DnaMarker>>>;
   DODisease?: Maybe<Array<Maybe<DoDisease>>>;
   DrugCategory?: Maybe<Array<Maybe<DrugCategory>>>;
+  EditableAssayComparator?: Maybe<Array<Maybe<EditableAssayComparator>>>;
   EditableBoolean?: Maybe<Array<Maybe<EditableBoolean>>>;
   EditableCopyChange?: Maybe<Array<Maybe<EditableCopyChange>>>;
   EditableDODiseaseList?: Maybe<Array<Maybe<EditableDoDiseaseList>>>;
@@ -15950,12 +15705,9 @@ export type QueryType = {
   EditableImmunePhenotype?: Maybe<Array<Maybe<EditableImmunePhenotype>>>;
   EditableInt?: Maybe<Array<Maybe<EditableInt>>>;
   EditableJAXDiseaseList?: Maybe<Array<Maybe<EditableJaxDiseaseList>>>;
-  EditableMCodeList?: Maybe<Array<Maybe<EditableMCodeList>>>;
   EditableObject?: Maybe<Array<Maybe<EditableObject>>>;
-  EditableOmniDiseaseList?: Maybe<Array<Maybe<EditableOmniDiseaseList>>>;
   EditableOmniGeneReference?: Maybe<Array<Maybe<EditableOmniGeneReference>>>;
   EditableOncoTreeDiseaseList?: Maybe<Array<Maybe<EditableOncoTreeDiseaseList>>>;
-  EditableOntologicalDiseaseChildrenList?: Maybe<Array<Maybe<EditableOntologicalDiseaseChildrenList>>>;
   EditableProteinEffect?: Maybe<Array<Maybe<EditableProteinEffect>>>;
   EditableStatement?: Maybe<Array<Maybe<EditableStatement>>>;
   EditableStringList?: Maybe<Array<Maybe<EditableStringList>>>;
@@ -16125,6 +15877,24 @@ export type QueryTypeDrugCategoryArgs = {
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_DrugCategoryOrdering>>>;
+};
+
+
+export type QueryTypeEditableAssayComparatorArgs = {
+  _id?: Maybe<Scalars['Long']>;
+  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
+  comparator?: Maybe<AssayComparator>;
+  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableAssayComparatorFilter>;
+  first?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_EditableAssayComparatorOrdering>>>;
 };
 
 
@@ -16302,22 +16072,6 @@ export type QueryTypeEditableJaxDiseaseListArgs = {
 };
 
 
-export type QueryTypeEditableMCodeListArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  editDate?: Maybe<Scalars['String']>;
-  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
-  field?: Maybe<Scalars['String']>;
-  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_EditableMCodeListFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EditableMCodeListOrdering>>>;
-};
-
-
 export type QueryTypeEditableObjectArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
@@ -16331,22 +16085,6 @@ export type QueryTypeEditableObjectArgs = {
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_EditableObjectOrdering>>>;
-};
-
-
-export type QueryTypeEditableOmniDiseaseListArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  editDate?: Maybe<Scalars['String']>;
-  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
-  field?: Maybe<Scalars['String']>;
-  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_EditableOmniDiseaseListFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EditableOmniDiseaseListOrdering>>>;
 };
 
 
@@ -16379,22 +16117,6 @@ export type QueryTypeEditableOncoTreeDiseaseListArgs = {
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_EditableOncoTreeDiseaseListOrdering>>>;
-};
-
-
-export type QueryTypeEditableOntologicalDiseaseChildrenListArgs = {
-  _id?: Maybe<Scalars['Long']>;
-  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  editDate?: Maybe<Scalars['String']>;
-  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
-  field?: Maybe<Scalars['String']>;
-  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
-  filter?: Maybe<_EditableOntologicalDiseaseChildrenListFilter>;
-  first?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['ID']>;
-  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  offset?: Maybe<Scalars['Int']>;
-  orderBy?: Maybe<Array<Maybe<_EditableOntologicalDiseaseChildrenListOrdering>>>;
 };
 
 
@@ -16607,8 +16329,6 @@ export type QueryTypeHotSpotVariantArgs = {
 export type QueryTypeIhcAssayArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  comparator?: Maybe<AssayComparator>;
-  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
   filter?: Maybe<_IhcAssayFilter>;
   first?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['ID']>;
@@ -16647,6 +16367,10 @@ export type QueryTypeJaxDiseaseArgs = {
   jaxIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   offset?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<Array<Maybe<_JaxDiseaseOrdering>>>;
+  source?: Maybe<Scalars['String']>;
+  sources?: Maybe<Array<Maybe<Scalars['String']>>>;
+  termId?: Maybe<Scalars['String']>;
+  termIds?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -16776,6 +16500,8 @@ export type QueryTypeMCodeArgs = {
   mcodeId?: Maybe<Scalars['String']>;
   mcodeIds?: Maybe<Array<Maybe<Scalars['String']>>>;
   offset?: Maybe<Scalars['Int']>;
+  omniDisease?: Maybe<Scalars['String']>;
+  omniDiseases?: Maybe<Array<Maybe<Scalars['String']>>>;
   orderBy?: Maybe<Array<Maybe<_MCodeOrdering>>>;
 };
 
@@ -17039,8 +16765,6 @@ export type QueryTypeProteinLevelAssayArgs = {
 export type QueryTypeRnaSeqAssayArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  comparator?: Maybe<AssayComparator>;
-  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
   filter?: Maybe<_RnaSeqAssayFilter>;
   first?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['ID']>;
@@ -17307,13 +17031,27 @@ export enum ResponseType {
 export type RnaSeqAssay = ProteinLevelAssay & {
    __typename?: 'RNASeqAssay';
   _id?: Maybe<Scalars['Long']>;
-  comparator: AssayComparator;
+  comparator: EditableAssayComparator;
   id: Scalars['ID'];
   name: EditableStatement;
   proteinExpressionMarkers: Array<Maybe<ProteinExpressionMarker>>;
   resultMax?: Maybe<EditableFloat>;
   resultMin: EditableFloat;
   resultType: RnaSeqResultType;
+};
+
+
+export type RnaSeqAssayComparatorArgs = {
+  comparator?: Maybe<AssayComparator>;
+  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableAssayComparatorFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableAssayComparatorOrdering>>>;
 };
 
 
@@ -17378,6 +17116,7 @@ export enum RnaSeqResultType {
 export type RnaSeqSignatureMarker = MarkerComponent & {
    __typename?: 'RNASeqSignatureMarker';
   _id?: Maybe<Scalars['Long']>;
+  comparator: EditableAssayComparator;
   definition: EditableStatement;
   id: Scalars['ID'];
   interpretations?: Maybe<Array<Maybe<EditableTmbInterpretation>>>;
@@ -17386,6 +17125,21 @@ export type RnaSeqSignatureMarker = MarkerComponent & {
   name: EditableStatement;
   resultMax?: Maybe<EditableFloat>;
   resultMin?: Maybe<EditableFloat>;
+  resultString: EditableStatement;
+};
+
+
+export type RnaSeqSignatureMarkerComparatorArgs = {
+  comparator?: Maybe<AssayComparator>;
+  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableAssayComparatorFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableAssayComparatorOrdering>>>;
 };
 
 
@@ -17484,6 +17238,20 @@ export type RnaSeqSignatureMarkerResultMinArgs = {
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   orderBy?: Maybe<Array<Maybe<_EditableFloatOrdering>>>;
+};
+
+
+export type RnaSeqSignatureMarkerResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export enum Strand {
@@ -17759,12 +17527,29 @@ export enum TmbInterpretationType {
 export type TmbMarker = MarkerComponent & {
    __typename?: 'TMBMarker';
   _id?: Maybe<Scalars['Long']>;
+  comparator: EditableAssayComparator;
   id: Scalars['ID'];
-  interpretations?: Maybe<Array<Maybe<EditableTmbInterpretation>>>;
+  interpretations: Array<Maybe<EditableTmbInterpretation>>;
   method: EditableStatement;
   name: EditableStatement;
   resultMax?: Maybe<EditableFloat>;
-  resultMin?: Maybe<EditableFloat>;
+  resultMin: EditableFloat;
+  resultString: EditableStatement;
+  resultUnits: EditableStatement;
+};
+
+
+export type TmbMarkerComparatorArgs = {
+  comparator?: Maybe<AssayComparator>;
+  comparators?: Maybe<Array<Maybe<AssayComparator>>>;
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableAssayComparatorFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableAssayComparatorOrdering>>>;
 };
 
 
@@ -17839,6 +17624,34 @@ export type TmbMarkerResultMinArgs = {
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   orderBy?: Maybe<Array<Maybe<_EditableFloatOrdering>>>;
+};
+
+
+export type TmbMarkerResultStringArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type TmbMarkerResultUnitsArgs = {
+  editDate?: Maybe<Scalars['String']>;
+  editDates?: Maybe<Array<Maybe<Scalars['String']>>>;
+  field?: Maybe<Scalars['String']>;
+  fields?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_EditableStatementFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_EditableStatementOrdering>>>;
+  statement?: Maybe<Scalars['String']>;
+  statements?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type UniprotEntry = {
@@ -18296,17 +18109,17 @@ export type VariantRegion = GenomicVariant & {
   goVariant?: Maybe<GoVariant>;
   hotSpotVariant?: Maybe<HotSpotVariant>;
   id: Scalars['ID'];
-  indelType?: Maybe<IndelType>;
-  isDeleterious?: Maybe<EditableBoolean>;
-  isFrameshift?: Maybe<EditableBoolean>;
-  isTruncating?: Maybe<EditableBoolean>;
+  indelType: IndelType;
+  isDeleterious: EditableBoolean;
+  isFrameshift: EditableBoolean;
+  isTruncating: EditableBoolean;
   jaxVariant?: Maybe<JaxVariant>;
   name: EditableStatement;
   nonCanonicalTranscript?: Maybe<EditableStatement>;
   proteinEffect: EditableProteinEffect;
   regionType: RegionType;
   regionValue: EditableInt;
-  variantType?: Maybe<VariantType>;
+  variantType: VariantType;
 };
 
 
@@ -18879,6 +18692,24 @@ export type OmniGeneQuery = (
   )>>> }
 );
 
+export type Es_FieldsFragment = (
+  { __typename?: 'EditableStatement' }
+  & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'PMID' | 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
 export type GetPubMedIdQueryVariables = {
   ref_id?: Maybe<Scalars['ID']>;
 };
@@ -19057,11 +18888,7 @@ export type VariantCnvQuery = (
       & Pick<OmniGene, 'id' | 'name'>
     ), description: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'id' | 'statement'>
-      & { references: Array<Maybe<{ __typename?: 'InternetReference' } | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id' | 'PMID'>
-      ) | { __typename?: 'MeetingAbstractReference' }>> }
+      & Es_FieldsFragment
     ), jaxVariant?: Maybe<(
       { __typename?: 'JaxVariant' }
       & Pick<JaxVariant, 'id'>
@@ -19076,6 +18903,40 @@ export type VariantCnvQuery = (
       & Pick<HotSpotVariant, 'id'>
     )> }
   )>>> }
+);
+
+export type VariantCnvAddCopyChangeMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_id: Scalars['ID'];
+  date: Scalars['String'];
+  field: Scalars['String'];
+  copy_change: CnvType;
+  id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantCnvAddCopyChangeMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantCNVCopyChange' | 'createEditableCopyChange' | 'addEditableCopyChangeEditor' | 'addEditableCopyChangeReferences' | 'addVariantCNVCopyChange'>
+);
+
+export type VariantCnvAddDescriptionMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantCnvAddDescriptionMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantCNVDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantCNVDescription'>
 );
 
 export type GenomicVariantComponentsQueryVariables = {
@@ -19230,10 +19091,36 @@ export type VariantFusionQuery = (
       ) }
     ), exon3Prime: (
       { __typename?: 'EditableInt' }
-      & Ei_FieldsFragment
+      & Pick<EditableInt, 'id' | 'intValue' | 'field' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
     ), exon5Prime: (
       { __typename?: 'EditableInt' }
-      & Ei_FieldsFragment
+      & Pick<EditableInt, 'id' | 'intValue' | 'field' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
     ), gene3Prime: (
       { __typename?: 'EditableOmniGeneReference' }
       & Eog_FieldsFragment
@@ -19242,11 +19129,7 @@ export type VariantFusionQuery = (
       & Eog_FieldsFragment
     ), description: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'id' | 'statement'>
-      & { references: Array<Maybe<{ __typename?: 'InternetReference' } | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id' | 'PMID'>
-      ) | { __typename?: 'MeetingAbstractReference' }>> }
+      & Es_FieldsFragment
     ), jaxVariant?: Maybe<(
       { __typename?: 'JaxVariant' }
       & Pick<JaxVariant, 'id'>
@@ -19268,7 +19151,7 @@ export type Eog_FieldsFragment = (
   & Pick<EditableOmniGeneReference, 'id' | 'field' | 'editDate'>
   & { gene: (
     { __typename?: 'OmniGene' }
-    & Pick<OmniGene, 'id'>
+    & Pick<OmniGene, 'id' | 'name'>
   ), references: Array<Maybe<(
     { __typename?: 'InternetReference' }
     & Pick<InternetReference, 'id'>
@@ -19282,6 +19165,108 @@ export type Eog_FieldsFragment = (
     { __typename?: 'User' }
     & Pick<User, 'id' | 'name'>
   ) }
+);
+
+export type VariantFusionAddCopyChangeMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_id: Scalars['ID'];
+  date: Scalars['String'];
+  field: Scalars['String'];
+  copy_change: CnvType;
+  id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantFusionAddCopyChangeMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantFusionCopyChange' | 'createEditableCopyChange' | 'addEditableCopyChangeEditor' | 'addEditableCopyChangeReferences' | 'addVariantFusionCopyChange'>
+);
+
+export type VariantFusionAddExon3PrimeMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_id: Scalars['ID'];
+  date: Scalars['String'];
+  field: Scalars['String'];
+  exon3: Scalars['Int'];
+  id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantFusionAddExon3PrimeMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantFusionExon3Prime' | 'createEditableInt' | 'addEditableIntEditor' | 'addEditableIntReferences' | 'addVariantFusionExon3Prime'>
+);
+
+export type VariantFusionAddExon5PrimeMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_id: Scalars['ID'];
+  date: Scalars['String'];
+  field: Scalars['String'];
+  exon5: Scalars['Int'];
+  id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantFusionAddExon5PrimeMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantFusionExon5Prime' | 'createEditableInt' | 'addEditableIntEditor' | 'addEditableIntReferences' | 'addVariantFusionExon5Prime'>
+);
+
+export type VariantFusionAddGene3PrimeMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_id: Scalars['ID'];
+  date: Scalars['String'];
+  field: Scalars['String'];
+  gene: Scalars['ID'];
+  id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantFusionAddGene3PrimeMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantFusionGene3Prime' | 'createEditableOmniGeneReference' | 'addEditableOmniGeneReferenceGene' | 'addEditableOmniGeneReferenceEditor' | 'addEditableOmniGeneReferenceReferences' | 'addVariantFusionGene3Prime'>
+);
+
+export type VariantFusionAddGene5PrimeMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_id: Scalars['ID'];
+  date: Scalars['String'];
+  field: Scalars['String'];
+  gene: Scalars['ID'];
+  id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantFusionAddGene5PrimeMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantFusionGene5Prime' | 'createEditableOmniGeneReference' | 'addEditableOmniGeneReferenceGene' | 'addEditableOmniGeneReferenceEditor' | 'addEditableOmniGeneReferenceReferences' | 'addVariantFusionGene5Prime'>
+);
+
+export type VariantFusionAddDescriptionMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantFusionAddDescriptionMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantFusionDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantFusionDescription'>
 );
 
 export type VariantRegionQueryVariables = {
@@ -19338,16 +19323,16 @@ export type VariantRegionQuery = (
         { __typename?: 'User' }
         & Pick<User, 'id' | 'name'>
       ) }
-    ), isFrameshift?: Maybe<(
+    ), isFrameshift: (
       { __typename?: 'EditableBoolean' }
       & EbFragment
-    )>, isTruncating?: Maybe<(
+    ), isTruncating: (
       { __typename?: 'EditableBoolean' }
       & EbFragment
-    )>, isDeleterious?: Maybe<(
+    ), isDeleterious: (
       { __typename?: 'EditableBoolean' }
       & EbFragment
-    )>, jaxVariant?: Maybe<(
+    ), jaxVariant?: Maybe<(
       { __typename?: 'JaxVariant' }
       & Pick<JaxVariant, 'id'>
     )>, goVariant?: Maybe<(
@@ -19379,6 +19364,91 @@ export type EbFragment = (
     { __typename?: 'User' }
     & Pick<User, 'id' | 'name'>
   ) }
+);
+
+export type VariantRegionAddDescriptionMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantRegionAddDescriptionMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantRegionDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantRegionDescription'>
+);
+
+export type VariantRegionAddProteinEffectMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_epe_id: Scalars['ID'];
+  date: Scalars['String'];
+  epe_field: Scalars['String'];
+  epe_vpe: VariantProteinEffect;
+  epe_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantRegionAddProteinEffectMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantRegionProteinEffect' | 'createEditableProteinEffect' | 'addEditableProteinEffectEditor' | 'addEditableProteinEffectReferences' | 'addVariantRegionProteinEffect'>
+);
+
+export type VariantRegionAddIsFrameshiftMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_eb_id: Scalars['ID'];
+  date: Scalars['String'];
+  eb_field: Scalars['String'];
+  eb_vpe: ExtendedBoolean;
+  eb_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantRegionAddIsFrameshiftMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantRegionIsFrameshift' | 'createEditableBoolean' | 'addEditableBooleanEditor' | 'addEditableBooleanReferences' | 'addVariantRegionIsFrameshift'>
+);
+
+export type VariantRegionAddIsDeleteriousMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_eb_id: Scalars['ID'];
+  date: Scalars['String'];
+  eb_field: Scalars['String'];
+  eb_vpe: ExtendedBoolean;
+  eb_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantRegionAddIsDeleteriousMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantRegionIsDeleterious' | 'createEditableBoolean' | 'addEditableBooleanEditor' | 'addEditableBooleanReferences' | 'addVariantRegionIsDeleterious'>
+);
+
+export type VariantRegionAddIsTruncatingMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_eb_id: Scalars['ID'];
+  date: Scalars['String'];
+  eb_field: Scalars['String'];
+  eb_vpe: ExtendedBoolean;
+  eb_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantRegionAddIsTruncatingMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantRegionIsTruncating' | 'createEditableBoolean' | 'addEditableBooleanEditor' | 'addEditableBooleanReferences' | 'addVariantRegionIsTruncating'>
 );
 
 export type VariantSnvIndelQueryVariables = {
@@ -19442,6 +19512,108 @@ export type VariantSnvIndelQuery = (
       & Pick<HotSpotVariant, 'id'>
     )> }
   )>>> }
+);
+
+export type VariantSnvIndelAddDescriptionMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantSnvIndelAddDescriptionMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantSNVIndelDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelDescription'>
+);
+
+export type VariantSnvIndelAddProteinEffectMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_epe_id: Scalars['ID'];
+  date: Scalars['String'];
+  epe_field: Scalars['String'];
+  epe_vpe: VariantProteinEffect;
+  epe_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantSnvIndelAddProteinEffectMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantSNVIndelProteinEffect' | 'createEditableProteinEffect' | 'addEditableProteinEffectEditor' | 'addEditableProteinEffectReferences' | 'addVariantSNVIndelProteinEffect'>
+);
+
+export type VariantSnvIndelAddPDotMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantSnvIndelAddPDotMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantSNVIndelPDot' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelPDot'>
+);
+
+export type VariantSnvIndelAddCDotMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantSnvIndelAddCDotMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantSNVIndelCDot' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelCDot'>
+);
+
+export type VariantSnvIndelAddGDotMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantSnvIndelAddGDotMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantSNVIndelGDot' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelGDot'>
+);
+
+export type VariantSnvIndelAddExonMutationVariables = {
+  variant_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type VariantSnvIndelAddExonMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteVariantSNVIndelExon' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelExon'>
 );
 
 export type GeneList_For_VariantsQueryVariables = {};
@@ -19588,22 +19760,488 @@ export type JaxVariantQuery = (
   )>>> }
 );
 
-export type Es_FieldsFragment = (
-  { __typename?: 'EditableStatement' }
-  & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
-  & { references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'PMID' | 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
+export type Msi_MarkerQueryVariables = {
+  marker_id?: Maybe<Scalars['ID']>;
+};
+
+
+export type Msi_MarkerQuery = (
+  { __typename?: 'QueryType' }
+  & { MSIMarker?: Maybe<Array<Maybe<(
+    { __typename?: 'MSIMarker' }
+    & Pick<MsiMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), method: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), resultString: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ) }
+  )>>> }
+);
+
+export type MsiMarkerAddNameMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type MsiMarkerAddNameMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteMSIMarkerName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMSIMarkerName'>
+);
+
+export type MsiMarkerAddMethodMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type MsiMarkerAddMethodMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteMSIMarkerMethod' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMSIMarkerMethod'>
+);
+
+export type MsiMarkerAddResultsMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type MsiMarkerAddResultsMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteMSIMarkerResultString' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMSIMarkerResultString'>
+);
+
+export type Msi_MarkersQueryVariables = {};
+
+
+export type Msi_MarkersQuery = (
+  { __typename?: 'QueryType' }
+  & { MSIMarker?: Maybe<Array<Maybe<(
+    { __typename?: 'MSIMarker' }
+    & Pick<MsiMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), method: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), resultString: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ) }
+  )>>> }
+);
+
+export type Tmb_MarkerQueryVariables = {
+  marker_id?: Maybe<Scalars['ID']>;
+};
+
+
+export type Tmb_MarkerQuery = (
+  { __typename?: 'QueryType' }
+  & { TMBMarker?: Maybe<Array<Maybe<(
+    { __typename?: 'TMBMarker' }
+    & Pick<TmbMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), method: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), comparator: (
+      { __typename?: 'EditableAssayComparator' }
+      & Pick<EditableAssayComparator, 'id' | 'field' | 'comparator' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
+    ), resultMin: (
+      { __typename?: 'EditableFloat' }
+      & Pick<EditableFloat, 'id' | 'field' | 'floatValue' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
+    ), resultMax?: Maybe<(
+      { __typename?: 'EditableFloat' }
+      & Pick<EditableFloat, 'id' | 'field' | 'floatValue' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
+    )>, resultUnits: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), interpretations: Array<Maybe<(
+      { __typename?: 'EditableTMBInterpretation' }
+      & Pick<EditableTmbInterpretation, 'id' | 'field' | 'tmbInterpretation' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
+    )>>, resultString: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ) }
+  )>>> }
+);
+
+export type TmbMarkerAddNameMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddNameMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerName'>
+);
+
+export type TmbMarkerAddMethodMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddMethodMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerMethod' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerMethod'>
+);
+
+export type TmbMarkerAddResultsMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddResultsMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerResultString' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerResultString'>
+);
+
+export type TmbMarkerAddResultUnitsMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddResultUnitsMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerResultUnits' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerResultUnits'>
+);
+
+export type TmbMarkerAddResultMinMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  ef_float: Scalars['Float'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddResultMinMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerResultMin' | 'createEditableFloat' | 'addEditableFloatEditor' | 'addEditableFloatReferences' | 'addTMBMarkerResultMin'>
+);
+
+export type TmbMarkerAddResultMaxMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  ef_float: Scalars['Float'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddResultMaxMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerResultMax' | 'createEditableFloat' | 'addEditableFloatEditor' | 'addEditableFloatReferences' | 'addTMBMarkerResultMax'>
+);
+
+export type TmbMarkerAddComparatorMutationVariables = {
+  marker_id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  comp: AssayComparator;
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type TmbMarkerAddComparatorMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteTMBMarkerComparator' | 'createEditableAssayComparator' | 'addEditableAssayComparatorEditor' | 'addEditableAssayComparatorReferences' | 'addTMBMarkerComparator'>
+);
+
+export type Tmb_MarkersQueryVariables = {};
+
+
+export type Tmb_MarkersQuery = (
+  { __typename?: 'QueryType' }
+  & { TMBMarker?: Maybe<Array<Maybe<(
+    { __typename?: 'TMBMarker' }
+    & Pick<TmbMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), method: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), resultString: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ) }
+  )>>> }
+);
+
+export type EditableAssayComparatorQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableAssayComparatorQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableAssayComparator?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableAssayComparator' }
+    & Pick<EditableAssayComparator, 'field' | 'comparator' | 'editDate'>
+    & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
+export type EditableCopyChangeQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableCopyChangeQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableCopyChange?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableCopyChange' }
+    & Pick<EditableCopyChange, 'field' | 'cnvType' | 'editDate'>
+    & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
+export type EditableBooleanQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableBooleanQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableBoolean?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableBoolean' }
+    & Pick<EditableBoolean, 'field' | 'booleanValue' | 'editDate'>
+    & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
+export type EditableFloatQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableFloatQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableFloat?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableFloat' }
+    & Pick<EditableFloat, 'field' | 'floatValue' | 'editDate'>
+    & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
+export type EditableIntQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableIntQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableInt?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableInt' }
+    & Pick<EditableInt, 'field' | 'intValue' | 'editDate'>
+    & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
+export type EditableOmniGeneReferenceQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableOmniGeneReferenceQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableOmniGeneReference?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableOmniGeneReference' }
+    & Pick<EditableOmniGeneReference, 'field' | 'editDate'>
+    & { gene: (
+      { __typename?: 'OmniGene' }
+      & Pick<OmniGene, 'name'>
+    ), editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
 );
 
 export type EditableStatementQueryVariables = {
@@ -19619,7 +20257,16 @@ export type EditableStatementQuery = (
     & { editor: (
       { __typename?: 'User' }
       & Pick<User, 'name'>
-    ) }
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
   )>>> }
 );
 
@@ -19643,6 +20290,32 @@ export type LiteratureReferenceQuery = (
   )>>> }
 );
 
+export type EditableProteinEffectQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableProteinEffectQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableProteinEffect?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableProteinEffect' }
+    & Pick<EditableProteinEffect, 'field' | 'proteinEffect' | 'editDate'>
+    & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
 export type EditableStringListQueryVariables = {
   field?: Maybe<Scalars['String']>;
 };
@@ -19660,11 +20333,30 @@ export type EditableStringListQuery = (
   )>>> }
 );
 
+export const Es_FieldsFragmentDoc = gql`
+    fragment es_fields on EditableStatement {
+  id
+  statement
+  field
+  references {
+    id
+    ... on LiteratureReference {
+      PMID
+    }
+  }
+  editor {
+    id
+    name
+  }
+  editDate
+}
+    `;
 export const Eog_FieldsFragmentDoc = gql`
     fragment eog_fields on EditableOmniGeneReference {
   id
   gene {
     id
+    name
   }
   field
   references {
@@ -19698,24 +20390,6 @@ export const Ei_FieldsFragmentDoc = gql`
   intValue
   references {
     id
-  }
-  editor {
-    id
-    name
-  }
-  editDate
-}
-    `;
-export const Es_FieldsFragmentDoc = gql`
-    fragment es_fields on EditableStatement {
-  id
-  statement
-  field
-  references {
-    id
-    ... on LiteratureReference {
-      PMID
-    }
   }
   editor {
     id
@@ -20566,14 +21240,7 @@ export const VariantCnvDocument = gql`
       name
     }
     description {
-      id
-      statement
-      references {
-        ... on LiteratureReference {
-          id
-          PMID
-        }
-      }
+      ...es_fields
     }
     jaxVariant {
       id
@@ -20635,6 +21302,126 @@ export function useVariantCnvLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type VariantCnvQueryHookResult = ReturnType<typeof useVariantCnvQuery>;
 export type VariantCnvLazyQueryHookResult = ReturnType<typeof useVariantCnvLazyQuery>;
 export type VariantCnvQueryResult = ApolloReactCommon.QueryResult<VariantCnvQuery, VariantCnvQueryVariables>;
+export const VariantCnvAddCopyChangeDocument = gql`
+    mutation VariantCNVAddCopyChange($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $copy_change: CNVType!, $id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantCNVCopyChange(id: $variant_id, copyChange: [$old_id])
+  createEditableCopyChange(editDate: $date, field: $field, id: $id, cnvType: $copy_change)
+  addEditableCopyChangeEditor(editor: [$user_id], id: $id)
+  addEditableCopyChangeReferences(id: $id, references: $ref_aray)
+  addVariantCNVCopyChange(id: $variant_id, copyChange: [$id])
+}
+    `;
+export type VariantCnvAddCopyChangeMutationFn = ApolloReactCommon.MutationFunction<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables>;
+export type VariantCnvAddCopyChangeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables>, 'mutation'>;
+
+    export const VariantCnvAddCopyChangeComponent = (props: VariantCnvAddCopyChangeComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables> mutation={VariantCnvAddCopyChangeDocument} {...props} />
+    );
+    
+export type VariantCnvAddCopyChangeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables>
+    } & TChildProps;
+export function withVariantCnvAddCopyChange<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantCnvAddCopyChangeMutation,
+  VariantCnvAddCopyChangeMutationVariables,
+  VariantCnvAddCopyChangeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables, VariantCnvAddCopyChangeProps<TChildProps, TDataName>>(VariantCnvAddCopyChangeDocument, {
+      alias: 'variantCnvAddCopyChange',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantCnvAddCopyChangeMutation__
+ *
+ * To run a mutation, you first call `useVariantCnvAddCopyChangeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantCnvAddCopyChangeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantCnvAddCopyChangeMutation, { data, loading, error }] = useVariantCnvAddCopyChangeMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_id: // value for 'old_id'
+ *      date: // value for 'date'
+ *      field: // value for 'field'
+ *      copy_change: // value for 'copy_change'
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantCnvAddCopyChangeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables>(VariantCnvAddCopyChangeDocument, baseOptions);
+      }
+export type VariantCnvAddCopyChangeMutationHookResult = ReturnType<typeof useVariantCnvAddCopyChangeMutation>;
+export type VariantCnvAddCopyChangeMutationResult = ApolloReactCommon.MutationResult<VariantCnvAddCopyChangeMutation>;
+export type VariantCnvAddCopyChangeMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantCnvAddCopyChangeMutation, VariantCnvAddCopyChangeMutationVariables>;
+export const VariantCnvAddDescriptionDocument = gql`
+    mutation VariantCNVAddDescription($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantCNVDescription(id: $variant_id, description: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantCNVDescription(id: $variant_id, description: [$es_id])
+}
+    `;
+export type VariantCnvAddDescriptionMutationFn = ApolloReactCommon.MutationFunction<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables>;
+export type VariantCnvAddDescriptionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables>, 'mutation'>;
+
+    export const VariantCnvAddDescriptionComponent = (props: VariantCnvAddDescriptionComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables> mutation={VariantCnvAddDescriptionDocument} {...props} />
+    );
+    
+export type VariantCnvAddDescriptionProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables>
+    } & TChildProps;
+export function withVariantCnvAddDescription<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantCnvAddDescriptionMutation,
+  VariantCnvAddDescriptionMutationVariables,
+  VariantCnvAddDescriptionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables, VariantCnvAddDescriptionProps<TChildProps, TDataName>>(VariantCnvAddDescriptionDocument, {
+      alias: 'variantCnvAddDescription',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantCnvAddDescriptionMutation__
+ *
+ * To run a mutation, you first call `useVariantCnvAddDescriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantCnvAddDescriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantCnvAddDescriptionMutation, { data, loading, error }] = useVariantCnvAddDescriptionMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantCnvAddDescriptionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables>(VariantCnvAddDescriptionDocument, baseOptions);
+      }
+export type VariantCnvAddDescriptionMutationHookResult = ReturnType<typeof useVariantCnvAddDescriptionMutation>;
+export type VariantCnvAddDescriptionMutationResult = ApolloReactCommon.MutationResult<VariantCnvAddDescriptionMutation>;
+export type VariantCnvAddDescriptionMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantCnvAddDescriptionMutation, VariantCnvAddDescriptionMutationVariables>;
 export const GenomicVariantComponentsDocument = gql`
     query GenomicVariantComponents($variant_id: ID) {
   GenomicVariant(id: $variant_id) {
@@ -20787,10 +21574,30 @@ export const VariantFusionDocument = gql`
       editDate
     }
     exon3Prime {
-      ...ei_fields
+      id
+      intValue
+      field
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
     }
     exon5Prime {
-      ...ei_fields
+      id
+      intValue
+      field
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
     }
     gene3Prime {
       ...eog_fields
@@ -20799,14 +21606,7 @@ export const VariantFusionDocument = gql`
       ...eog_fields
     }
     description {
-      id
-      statement
-      references {
-        ... on LiteratureReference {
-          id
-          PMID
-        }
-      }
+      ...es_fields
     }
     jaxVariant {
       id
@@ -20823,7 +21623,6 @@ export const VariantFusionDocument = gql`
   }
 }
     ${Es_FieldsFragmentDoc}
-${Ei_FieldsFragmentDoc}
 ${Eog_FieldsFragmentDoc}`;
 export type VariantFusionComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<VariantFusionQuery, VariantFusionQueryVariables>, 'query'>;
 
@@ -20870,6 +21669,368 @@ export function useVariantFusionLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type VariantFusionQueryHookResult = ReturnType<typeof useVariantFusionQuery>;
 export type VariantFusionLazyQueryHookResult = ReturnType<typeof useVariantFusionLazyQuery>;
 export type VariantFusionQueryResult = ApolloReactCommon.QueryResult<VariantFusionQuery, VariantFusionQueryVariables>;
+export const VariantFusionAddCopyChangeDocument = gql`
+    mutation VariantFusionAddCopyChange($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $copy_change: CNVType!, $id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantFusionCopyChange(id: $variant_id, copyChange: [$old_id])
+  createEditableCopyChange(editDate: $date, field: $field, id: $id, cnvType: $copy_change)
+  addEditableCopyChangeEditor(editor: [$user_id], id: $id)
+  addEditableCopyChangeReferences(id: $id, references: $ref_aray)
+  addVariantFusionCopyChange(id: $variant_id, copyChange: [$id])
+}
+    `;
+export type VariantFusionAddCopyChangeMutationFn = ApolloReactCommon.MutationFunction<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables>;
+export type VariantFusionAddCopyChangeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables>, 'mutation'>;
+
+    export const VariantFusionAddCopyChangeComponent = (props: VariantFusionAddCopyChangeComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables> mutation={VariantFusionAddCopyChangeDocument} {...props} />
+    );
+    
+export type VariantFusionAddCopyChangeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables>
+    } & TChildProps;
+export function withVariantFusionAddCopyChange<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantFusionAddCopyChangeMutation,
+  VariantFusionAddCopyChangeMutationVariables,
+  VariantFusionAddCopyChangeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables, VariantFusionAddCopyChangeProps<TChildProps, TDataName>>(VariantFusionAddCopyChangeDocument, {
+      alias: 'variantFusionAddCopyChange',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantFusionAddCopyChangeMutation__
+ *
+ * To run a mutation, you first call `useVariantFusionAddCopyChangeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantFusionAddCopyChangeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantFusionAddCopyChangeMutation, { data, loading, error }] = useVariantFusionAddCopyChangeMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_id: // value for 'old_id'
+ *      date: // value for 'date'
+ *      field: // value for 'field'
+ *      copy_change: // value for 'copy_change'
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantFusionAddCopyChangeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables>(VariantFusionAddCopyChangeDocument, baseOptions);
+      }
+export type VariantFusionAddCopyChangeMutationHookResult = ReturnType<typeof useVariantFusionAddCopyChangeMutation>;
+export type VariantFusionAddCopyChangeMutationResult = ApolloReactCommon.MutationResult<VariantFusionAddCopyChangeMutation>;
+export type VariantFusionAddCopyChangeMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantFusionAddCopyChangeMutation, VariantFusionAddCopyChangeMutationVariables>;
+export const VariantFusionAddExon3PrimeDocument = gql`
+    mutation VariantFusionAddExon3Prime($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $exon3: Int!, $id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantFusionExon3Prime(id: $variant_id, exon3Prime: [$old_id])
+  createEditableInt(editDate: $date, field: $field, id: $id, intValue: $exon3)
+  addEditableIntEditor(editor: [$user_id], id: $id)
+  addEditableIntReferences(id: $id, references: $ref_aray)
+  addVariantFusionExon3Prime(id: $variant_id, exon3Prime: [$id])
+}
+    `;
+export type VariantFusionAddExon3PrimeMutationFn = ApolloReactCommon.MutationFunction<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables>;
+export type VariantFusionAddExon3PrimeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables>, 'mutation'>;
+
+    export const VariantFusionAddExon3PrimeComponent = (props: VariantFusionAddExon3PrimeComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables> mutation={VariantFusionAddExon3PrimeDocument} {...props} />
+    );
+    
+export type VariantFusionAddExon3PrimeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables>
+    } & TChildProps;
+export function withVariantFusionAddExon3Prime<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantFusionAddExon3PrimeMutation,
+  VariantFusionAddExon3PrimeMutationVariables,
+  VariantFusionAddExon3PrimeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables, VariantFusionAddExon3PrimeProps<TChildProps, TDataName>>(VariantFusionAddExon3PrimeDocument, {
+      alias: 'variantFusionAddExon3Prime',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantFusionAddExon3PrimeMutation__
+ *
+ * To run a mutation, you first call `useVariantFusionAddExon3PrimeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantFusionAddExon3PrimeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantFusionAddExon3PrimeMutation, { data, loading, error }] = useVariantFusionAddExon3PrimeMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_id: // value for 'old_id'
+ *      date: // value for 'date'
+ *      field: // value for 'field'
+ *      exon3: // value for 'exon3'
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantFusionAddExon3PrimeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables>(VariantFusionAddExon3PrimeDocument, baseOptions);
+      }
+export type VariantFusionAddExon3PrimeMutationHookResult = ReturnType<typeof useVariantFusionAddExon3PrimeMutation>;
+export type VariantFusionAddExon3PrimeMutationResult = ApolloReactCommon.MutationResult<VariantFusionAddExon3PrimeMutation>;
+export type VariantFusionAddExon3PrimeMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantFusionAddExon3PrimeMutation, VariantFusionAddExon3PrimeMutationVariables>;
+export const VariantFusionAddExon5PrimeDocument = gql`
+    mutation VariantFusionAddExon5Prime($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $exon5: Int!, $id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantFusionExon5Prime(id: $variant_id, exon5Prime: [$old_id])
+  createEditableInt(editDate: $date, field: $field, id: $id, intValue: $exon5)
+  addEditableIntEditor(editor: [$user_id], id: $id)
+  addEditableIntReferences(id: $id, references: $ref_aray)
+  addVariantFusionExon5Prime(id: $variant_id, exon5Prime: [$id])
+}
+    `;
+export type VariantFusionAddExon5PrimeMutationFn = ApolloReactCommon.MutationFunction<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables>;
+export type VariantFusionAddExon5PrimeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables>, 'mutation'>;
+
+    export const VariantFusionAddExon5PrimeComponent = (props: VariantFusionAddExon5PrimeComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables> mutation={VariantFusionAddExon5PrimeDocument} {...props} />
+    );
+    
+export type VariantFusionAddExon5PrimeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables>
+    } & TChildProps;
+export function withVariantFusionAddExon5Prime<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantFusionAddExon5PrimeMutation,
+  VariantFusionAddExon5PrimeMutationVariables,
+  VariantFusionAddExon5PrimeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables, VariantFusionAddExon5PrimeProps<TChildProps, TDataName>>(VariantFusionAddExon5PrimeDocument, {
+      alias: 'variantFusionAddExon5Prime',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantFusionAddExon5PrimeMutation__
+ *
+ * To run a mutation, you first call `useVariantFusionAddExon5PrimeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantFusionAddExon5PrimeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantFusionAddExon5PrimeMutation, { data, loading, error }] = useVariantFusionAddExon5PrimeMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_id: // value for 'old_id'
+ *      date: // value for 'date'
+ *      field: // value for 'field'
+ *      exon5: // value for 'exon5'
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantFusionAddExon5PrimeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables>(VariantFusionAddExon5PrimeDocument, baseOptions);
+      }
+export type VariantFusionAddExon5PrimeMutationHookResult = ReturnType<typeof useVariantFusionAddExon5PrimeMutation>;
+export type VariantFusionAddExon5PrimeMutationResult = ApolloReactCommon.MutationResult<VariantFusionAddExon5PrimeMutation>;
+export type VariantFusionAddExon5PrimeMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantFusionAddExon5PrimeMutation, VariantFusionAddExon5PrimeMutationVariables>;
+export const VariantFusionAddGene3PrimeDocument = gql`
+    mutation VariantFusionAddGene3Prime($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $gene: ID!, $id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantFusionGene3Prime(id: $variant_id, gene3Prime: [$old_id])
+  createEditableOmniGeneReference(editDate: $date, field: $field, id: $id)
+  addEditableOmniGeneReferenceGene(id: $id, gene: [$gene])
+  addEditableOmniGeneReferenceEditor(editor: [$user_id], id: $id)
+  addEditableOmniGeneReferenceReferences(id: $id, references: $ref_aray)
+  addVariantFusionGene3Prime(id: $variant_id, gene3Prime: [$id])
+}
+    `;
+export type VariantFusionAddGene3PrimeMutationFn = ApolloReactCommon.MutationFunction<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables>;
+export type VariantFusionAddGene3PrimeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables>, 'mutation'>;
+
+    export const VariantFusionAddGene3PrimeComponent = (props: VariantFusionAddGene3PrimeComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables> mutation={VariantFusionAddGene3PrimeDocument} {...props} />
+    );
+    
+export type VariantFusionAddGene3PrimeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables>
+    } & TChildProps;
+export function withVariantFusionAddGene3Prime<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantFusionAddGene3PrimeMutation,
+  VariantFusionAddGene3PrimeMutationVariables,
+  VariantFusionAddGene3PrimeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables, VariantFusionAddGene3PrimeProps<TChildProps, TDataName>>(VariantFusionAddGene3PrimeDocument, {
+      alias: 'variantFusionAddGene3Prime',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantFusionAddGene3PrimeMutation__
+ *
+ * To run a mutation, you first call `useVariantFusionAddGene3PrimeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantFusionAddGene3PrimeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantFusionAddGene3PrimeMutation, { data, loading, error }] = useVariantFusionAddGene3PrimeMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_id: // value for 'old_id'
+ *      date: // value for 'date'
+ *      field: // value for 'field'
+ *      gene: // value for 'gene'
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantFusionAddGene3PrimeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables>(VariantFusionAddGene3PrimeDocument, baseOptions);
+      }
+export type VariantFusionAddGene3PrimeMutationHookResult = ReturnType<typeof useVariantFusionAddGene3PrimeMutation>;
+export type VariantFusionAddGene3PrimeMutationResult = ApolloReactCommon.MutationResult<VariantFusionAddGene3PrimeMutation>;
+export type VariantFusionAddGene3PrimeMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantFusionAddGene3PrimeMutation, VariantFusionAddGene3PrimeMutationVariables>;
+export const VariantFusionAddGene5PrimeDocument = gql`
+    mutation VariantFusionAddGene5Prime($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $gene: ID!, $id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantFusionGene5Prime(id: $variant_id, gene5Prime: [$old_id])
+  createEditableOmniGeneReference(editDate: $date, field: $field, id: $id)
+  addEditableOmniGeneReferenceGene(id: $id, gene: [$gene])
+  addEditableOmniGeneReferenceEditor(editor: [$user_id], id: $id)
+  addEditableOmniGeneReferenceReferences(id: $id, references: $ref_aray)
+  addVariantFusionGene5Prime(id: $variant_id, gene5Prime: [$id])
+}
+    `;
+export type VariantFusionAddGene5PrimeMutationFn = ApolloReactCommon.MutationFunction<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables>;
+export type VariantFusionAddGene5PrimeComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables>, 'mutation'>;
+
+    export const VariantFusionAddGene5PrimeComponent = (props: VariantFusionAddGene5PrimeComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables> mutation={VariantFusionAddGene5PrimeDocument} {...props} />
+    );
+    
+export type VariantFusionAddGene5PrimeProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables>
+    } & TChildProps;
+export function withVariantFusionAddGene5Prime<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantFusionAddGene5PrimeMutation,
+  VariantFusionAddGene5PrimeMutationVariables,
+  VariantFusionAddGene5PrimeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables, VariantFusionAddGene5PrimeProps<TChildProps, TDataName>>(VariantFusionAddGene5PrimeDocument, {
+      alias: 'variantFusionAddGene5Prime',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantFusionAddGene5PrimeMutation__
+ *
+ * To run a mutation, you first call `useVariantFusionAddGene5PrimeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantFusionAddGene5PrimeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantFusionAddGene5PrimeMutation, { data, loading, error }] = useVariantFusionAddGene5PrimeMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_id: // value for 'old_id'
+ *      date: // value for 'date'
+ *      field: // value for 'field'
+ *      gene: // value for 'gene'
+ *      id: // value for 'id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantFusionAddGene5PrimeMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables>(VariantFusionAddGene5PrimeDocument, baseOptions);
+      }
+export type VariantFusionAddGene5PrimeMutationHookResult = ReturnType<typeof useVariantFusionAddGene5PrimeMutation>;
+export type VariantFusionAddGene5PrimeMutationResult = ApolloReactCommon.MutationResult<VariantFusionAddGene5PrimeMutation>;
+export type VariantFusionAddGene5PrimeMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantFusionAddGene5PrimeMutation, VariantFusionAddGene5PrimeMutationVariables>;
+export const VariantFusionAddDescriptionDocument = gql`
+    mutation VariantFusionAddDescription($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantFusionDescription(id: $variant_id, description: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantFusionDescription(id: $variant_id, description: [$es_id])
+}
+    `;
+export type VariantFusionAddDescriptionMutationFn = ApolloReactCommon.MutationFunction<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables>;
+export type VariantFusionAddDescriptionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables>, 'mutation'>;
+
+    export const VariantFusionAddDescriptionComponent = (props: VariantFusionAddDescriptionComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables> mutation={VariantFusionAddDescriptionDocument} {...props} />
+    );
+    
+export type VariantFusionAddDescriptionProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables>
+    } & TChildProps;
+export function withVariantFusionAddDescription<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantFusionAddDescriptionMutation,
+  VariantFusionAddDescriptionMutationVariables,
+  VariantFusionAddDescriptionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables, VariantFusionAddDescriptionProps<TChildProps, TDataName>>(VariantFusionAddDescriptionDocument, {
+      alias: 'variantFusionAddDescription',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantFusionAddDescriptionMutation__
+ *
+ * To run a mutation, you first call `useVariantFusionAddDescriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantFusionAddDescriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantFusionAddDescriptionMutation, { data, loading, error }] = useVariantFusionAddDescriptionMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantFusionAddDescriptionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables>(VariantFusionAddDescriptionDocument, baseOptions);
+      }
+export type VariantFusionAddDescriptionMutationHookResult = ReturnType<typeof useVariantFusionAddDescriptionMutation>;
+export type VariantFusionAddDescriptionMutationResult = ApolloReactCommon.MutationResult<VariantFusionAddDescriptionMutation>;
+export type VariantFusionAddDescriptionMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantFusionAddDescriptionMutation, VariantFusionAddDescriptionMutationVariables>;
 export const VariantRegionDocument = gql`
     query VariantRegion($variant_id: ID) {
   VariantRegion(id: $variant_id) {
@@ -20986,6 +22147,306 @@ export function useVariantRegionLazyQuery(baseOptions?: ApolloReactHooks.LazyQue
 export type VariantRegionQueryHookResult = ReturnType<typeof useVariantRegionQuery>;
 export type VariantRegionLazyQueryHookResult = ReturnType<typeof useVariantRegionLazyQuery>;
 export type VariantRegionQueryResult = ApolloReactCommon.QueryResult<VariantRegionQuery, VariantRegionQueryVariables>;
+export const VariantRegionAddDescriptionDocument = gql`
+    mutation VariantRegionAddDescription($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantRegionDescription(id: $variant_id, description: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantRegionDescription(id: $variant_id, description: [$es_id])
+}
+    `;
+export type VariantRegionAddDescriptionMutationFn = ApolloReactCommon.MutationFunction<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables>;
+export type VariantRegionAddDescriptionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables>, 'mutation'>;
+
+    export const VariantRegionAddDescriptionComponent = (props: VariantRegionAddDescriptionComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables> mutation={VariantRegionAddDescriptionDocument} {...props} />
+    );
+    
+export type VariantRegionAddDescriptionProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables>
+    } & TChildProps;
+export function withVariantRegionAddDescription<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantRegionAddDescriptionMutation,
+  VariantRegionAddDescriptionMutationVariables,
+  VariantRegionAddDescriptionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables, VariantRegionAddDescriptionProps<TChildProps, TDataName>>(VariantRegionAddDescriptionDocument, {
+      alias: 'variantRegionAddDescription',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantRegionAddDescriptionMutation__
+ *
+ * To run a mutation, you first call `useVariantRegionAddDescriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantRegionAddDescriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantRegionAddDescriptionMutation, { data, loading, error }] = useVariantRegionAddDescriptionMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantRegionAddDescriptionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables>(VariantRegionAddDescriptionDocument, baseOptions);
+      }
+export type VariantRegionAddDescriptionMutationHookResult = ReturnType<typeof useVariantRegionAddDescriptionMutation>;
+export type VariantRegionAddDescriptionMutationResult = ApolloReactCommon.MutationResult<VariantRegionAddDescriptionMutation>;
+export type VariantRegionAddDescriptionMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantRegionAddDescriptionMutation, VariantRegionAddDescriptionMutationVariables>;
+export const VariantRegionAddProteinEffectDocument = gql`
+    mutation VariantRegionAddProteinEffect($variant_id: ID!, $old_epe_id: ID!, $date: String!, $epe_field: String!, $epe_vpe: VariantProteinEffect!, $epe_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantRegionProteinEffect(id: $variant_id, proteinEffect: [$old_epe_id])
+  createEditableProteinEffect(editDate: $date, field: $epe_field, id: $epe_id, proteinEffect: $epe_vpe)
+  addEditableProteinEffectEditor(editor: [$user_id], id: $epe_id)
+  addEditableProteinEffectReferences(id: $epe_id, references: $ref_aray)
+  addVariantRegionProteinEffect(id: $variant_id, proteinEffect: [$epe_id])
+}
+    `;
+export type VariantRegionAddProteinEffectMutationFn = ApolloReactCommon.MutationFunction<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables>;
+export type VariantRegionAddProteinEffectComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables>, 'mutation'>;
+
+    export const VariantRegionAddProteinEffectComponent = (props: VariantRegionAddProteinEffectComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables> mutation={VariantRegionAddProteinEffectDocument} {...props} />
+    );
+    
+export type VariantRegionAddProteinEffectProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables>
+    } & TChildProps;
+export function withVariantRegionAddProteinEffect<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantRegionAddProteinEffectMutation,
+  VariantRegionAddProteinEffectMutationVariables,
+  VariantRegionAddProteinEffectProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables, VariantRegionAddProteinEffectProps<TChildProps, TDataName>>(VariantRegionAddProteinEffectDocument, {
+      alias: 'variantRegionAddProteinEffect',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantRegionAddProteinEffectMutation__
+ *
+ * To run a mutation, you first call `useVariantRegionAddProteinEffectMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantRegionAddProteinEffectMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantRegionAddProteinEffectMutation, { data, loading, error }] = useVariantRegionAddProteinEffectMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_epe_id: // value for 'old_epe_id'
+ *      date: // value for 'date'
+ *      epe_field: // value for 'epe_field'
+ *      epe_vpe: // value for 'epe_vpe'
+ *      epe_id: // value for 'epe_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantRegionAddProteinEffectMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables>(VariantRegionAddProteinEffectDocument, baseOptions);
+      }
+export type VariantRegionAddProteinEffectMutationHookResult = ReturnType<typeof useVariantRegionAddProteinEffectMutation>;
+export type VariantRegionAddProteinEffectMutationResult = ApolloReactCommon.MutationResult<VariantRegionAddProteinEffectMutation>;
+export type VariantRegionAddProteinEffectMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantRegionAddProteinEffectMutation, VariantRegionAddProteinEffectMutationVariables>;
+export const VariantRegionAddIsFrameshiftDocument = gql`
+    mutation VariantRegionAddIsFrameshift($variant_id: ID!, $old_eb_id: ID!, $date: String!, $eb_field: String!, $eb_vpe: ExtendedBoolean!, $eb_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantRegionIsFrameshift(id: $variant_id, isFrameshift: [$old_eb_id])
+  createEditableBoolean(editDate: $date, field: $eb_field, id: $eb_id, booleanValue: $eb_vpe)
+  addEditableBooleanEditor(editor: [$user_id], id: $eb_id)
+  addEditableBooleanReferences(id: $eb_id, references: $ref_aray)
+  addVariantRegionIsFrameshift(id: $variant_id, isFrameshift: [$eb_id])
+}
+    `;
+export type VariantRegionAddIsFrameshiftMutationFn = ApolloReactCommon.MutationFunction<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables>;
+export type VariantRegionAddIsFrameshiftComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables>, 'mutation'>;
+
+    export const VariantRegionAddIsFrameshiftComponent = (props: VariantRegionAddIsFrameshiftComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables> mutation={VariantRegionAddIsFrameshiftDocument} {...props} />
+    );
+    
+export type VariantRegionAddIsFrameshiftProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables>
+    } & TChildProps;
+export function withVariantRegionAddIsFrameshift<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantRegionAddIsFrameshiftMutation,
+  VariantRegionAddIsFrameshiftMutationVariables,
+  VariantRegionAddIsFrameshiftProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables, VariantRegionAddIsFrameshiftProps<TChildProps, TDataName>>(VariantRegionAddIsFrameshiftDocument, {
+      alias: 'variantRegionAddIsFrameshift',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantRegionAddIsFrameshiftMutation__
+ *
+ * To run a mutation, you first call `useVariantRegionAddIsFrameshiftMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantRegionAddIsFrameshiftMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantRegionAddIsFrameshiftMutation, { data, loading, error }] = useVariantRegionAddIsFrameshiftMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_eb_id: // value for 'old_eb_id'
+ *      date: // value for 'date'
+ *      eb_field: // value for 'eb_field'
+ *      eb_vpe: // value for 'eb_vpe'
+ *      eb_id: // value for 'eb_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantRegionAddIsFrameshiftMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables>(VariantRegionAddIsFrameshiftDocument, baseOptions);
+      }
+export type VariantRegionAddIsFrameshiftMutationHookResult = ReturnType<typeof useVariantRegionAddIsFrameshiftMutation>;
+export type VariantRegionAddIsFrameshiftMutationResult = ApolloReactCommon.MutationResult<VariantRegionAddIsFrameshiftMutation>;
+export type VariantRegionAddIsFrameshiftMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantRegionAddIsFrameshiftMutation, VariantRegionAddIsFrameshiftMutationVariables>;
+export const VariantRegionAddIsDeleteriousDocument = gql`
+    mutation VariantRegionAddIsDeleterious($variant_id: ID!, $old_eb_id: ID!, $date: String!, $eb_field: String!, $eb_vpe: ExtendedBoolean!, $eb_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantRegionIsDeleterious(id: $variant_id, isDeleterious: [$old_eb_id])
+  createEditableBoolean(editDate: $date, field: $eb_field, id: $eb_id, booleanValue: $eb_vpe)
+  addEditableBooleanEditor(editor: [$user_id], id: $eb_id)
+  addEditableBooleanReferences(id: $eb_id, references: $ref_aray)
+  addVariantRegionIsDeleterious(id: $variant_id, isDeleterious: [$eb_id])
+}
+    `;
+export type VariantRegionAddIsDeleteriousMutationFn = ApolloReactCommon.MutationFunction<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables>;
+export type VariantRegionAddIsDeleteriousComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables>, 'mutation'>;
+
+    export const VariantRegionAddIsDeleteriousComponent = (props: VariantRegionAddIsDeleteriousComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables> mutation={VariantRegionAddIsDeleteriousDocument} {...props} />
+    );
+    
+export type VariantRegionAddIsDeleteriousProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables>
+    } & TChildProps;
+export function withVariantRegionAddIsDeleterious<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantRegionAddIsDeleteriousMutation,
+  VariantRegionAddIsDeleteriousMutationVariables,
+  VariantRegionAddIsDeleteriousProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables, VariantRegionAddIsDeleteriousProps<TChildProps, TDataName>>(VariantRegionAddIsDeleteriousDocument, {
+      alias: 'variantRegionAddIsDeleterious',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantRegionAddIsDeleteriousMutation__
+ *
+ * To run a mutation, you first call `useVariantRegionAddIsDeleteriousMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantRegionAddIsDeleteriousMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantRegionAddIsDeleteriousMutation, { data, loading, error }] = useVariantRegionAddIsDeleteriousMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_eb_id: // value for 'old_eb_id'
+ *      date: // value for 'date'
+ *      eb_field: // value for 'eb_field'
+ *      eb_vpe: // value for 'eb_vpe'
+ *      eb_id: // value for 'eb_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantRegionAddIsDeleteriousMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables>(VariantRegionAddIsDeleteriousDocument, baseOptions);
+      }
+export type VariantRegionAddIsDeleteriousMutationHookResult = ReturnType<typeof useVariantRegionAddIsDeleteriousMutation>;
+export type VariantRegionAddIsDeleteriousMutationResult = ApolloReactCommon.MutationResult<VariantRegionAddIsDeleteriousMutation>;
+export type VariantRegionAddIsDeleteriousMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantRegionAddIsDeleteriousMutation, VariantRegionAddIsDeleteriousMutationVariables>;
+export const VariantRegionAddIsTruncatingDocument = gql`
+    mutation VariantRegionAddIsTruncating($variant_id: ID!, $old_eb_id: ID!, $date: String!, $eb_field: String!, $eb_vpe: ExtendedBoolean!, $eb_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantRegionIsTruncating(id: $variant_id, isTruncating: [$old_eb_id])
+  createEditableBoolean(editDate: $date, field: $eb_field, id: $eb_id, booleanValue: $eb_vpe)
+  addEditableBooleanEditor(editor: [$user_id], id: $eb_id)
+  addEditableBooleanReferences(id: $eb_id, references: $ref_aray)
+  addVariantRegionIsTruncating(id: $variant_id, isTruncating: [$eb_id])
+}
+    `;
+export type VariantRegionAddIsTruncatingMutationFn = ApolloReactCommon.MutationFunction<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables>;
+export type VariantRegionAddIsTruncatingComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables>, 'mutation'>;
+
+    export const VariantRegionAddIsTruncatingComponent = (props: VariantRegionAddIsTruncatingComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables> mutation={VariantRegionAddIsTruncatingDocument} {...props} />
+    );
+    
+export type VariantRegionAddIsTruncatingProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables>
+    } & TChildProps;
+export function withVariantRegionAddIsTruncating<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantRegionAddIsTruncatingMutation,
+  VariantRegionAddIsTruncatingMutationVariables,
+  VariantRegionAddIsTruncatingProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables, VariantRegionAddIsTruncatingProps<TChildProps, TDataName>>(VariantRegionAddIsTruncatingDocument, {
+      alias: 'variantRegionAddIsTruncating',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantRegionAddIsTruncatingMutation__
+ *
+ * To run a mutation, you first call `useVariantRegionAddIsTruncatingMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantRegionAddIsTruncatingMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantRegionAddIsTruncatingMutation, { data, loading, error }] = useVariantRegionAddIsTruncatingMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_eb_id: // value for 'old_eb_id'
+ *      date: // value for 'date'
+ *      eb_field: // value for 'eb_field'
+ *      eb_vpe: // value for 'eb_vpe'
+ *      eb_id: // value for 'eb_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantRegionAddIsTruncatingMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables>(VariantRegionAddIsTruncatingDocument, baseOptions);
+      }
+export type VariantRegionAddIsTruncatingMutationHookResult = ReturnType<typeof useVariantRegionAddIsTruncatingMutation>;
+export type VariantRegionAddIsTruncatingMutationResult = ApolloReactCommon.MutationResult<VariantRegionAddIsTruncatingMutation>;
+export type VariantRegionAddIsTruncatingMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantRegionAddIsTruncatingMutation, VariantRegionAddIsTruncatingMutationVariables>;
 export const VariantSnvIndelDocument = gql`
     query VariantSNVIndel($variant_id: ID) {
   VariantSNVIndel(id: $variant_id) {
@@ -21087,6 +22548,366 @@ export function useVariantSnvIndelLazyQuery(baseOptions?: ApolloReactHooks.LazyQ
 export type VariantSnvIndelQueryHookResult = ReturnType<typeof useVariantSnvIndelQuery>;
 export type VariantSnvIndelLazyQueryHookResult = ReturnType<typeof useVariantSnvIndelLazyQuery>;
 export type VariantSnvIndelQueryResult = ApolloReactCommon.QueryResult<VariantSnvIndelQuery, VariantSnvIndelQueryVariables>;
+export const VariantSnvIndelAddDescriptionDocument = gql`
+    mutation VariantSNVIndelAddDescription($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantSNVIndelDescription(id: $variant_id, description: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantSNVIndelDescription(id: $variant_id, description: [$es_id])
+}
+    `;
+export type VariantSnvIndelAddDescriptionMutationFn = ApolloReactCommon.MutationFunction<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables>;
+export type VariantSnvIndelAddDescriptionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables>, 'mutation'>;
+
+    export const VariantSnvIndelAddDescriptionComponent = (props: VariantSnvIndelAddDescriptionComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables> mutation={VariantSnvIndelAddDescriptionDocument} {...props} />
+    );
+    
+export type VariantSnvIndelAddDescriptionProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables>
+    } & TChildProps;
+export function withVariantSnvIndelAddDescription<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantSnvIndelAddDescriptionMutation,
+  VariantSnvIndelAddDescriptionMutationVariables,
+  VariantSnvIndelAddDescriptionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables, VariantSnvIndelAddDescriptionProps<TChildProps, TDataName>>(VariantSnvIndelAddDescriptionDocument, {
+      alias: 'variantSnvIndelAddDescription',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantSnvIndelAddDescriptionMutation__
+ *
+ * To run a mutation, you first call `useVariantSnvIndelAddDescriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantSnvIndelAddDescriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantSnvIndelAddDescriptionMutation, { data, loading, error }] = useVariantSnvIndelAddDescriptionMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantSnvIndelAddDescriptionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables>(VariantSnvIndelAddDescriptionDocument, baseOptions);
+      }
+export type VariantSnvIndelAddDescriptionMutationHookResult = ReturnType<typeof useVariantSnvIndelAddDescriptionMutation>;
+export type VariantSnvIndelAddDescriptionMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddDescriptionMutation>;
+export type VariantSnvIndelAddDescriptionMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddDescriptionMutation, VariantSnvIndelAddDescriptionMutationVariables>;
+export const VariantSnvIndelAddProteinEffectDocument = gql`
+    mutation VariantSNVIndelAddProteinEffect($variant_id: ID!, $old_epe_id: ID!, $date: String!, $epe_field: String!, $epe_vpe: VariantProteinEffect!, $epe_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantSNVIndelProteinEffect(id: $variant_id, proteinEffect: [$old_epe_id])
+  createEditableProteinEffect(editDate: $date, field: $epe_field, id: $epe_id, proteinEffect: $epe_vpe)
+  addEditableProteinEffectEditor(editor: [$user_id], id: $epe_id)
+  addEditableProteinEffectReferences(id: $epe_id, references: $ref_aray)
+  addVariantSNVIndelProteinEffect(id: $variant_id, proteinEffect: [$epe_id])
+}
+    `;
+export type VariantSnvIndelAddProteinEffectMutationFn = ApolloReactCommon.MutationFunction<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables>;
+export type VariantSnvIndelAddProteinEffectComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables>, 'mutation'>;
+
+    export const VariantSnvIndelAddProteinEffectComponent = (props: VariantSnvIndelAddProteinEffectComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables> mutation={VariantSnvIndelAddProteinEffectDocument} {...props} />
+    );
+    
+export type VariantSnvIndelAddProteinEffectProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables>
+    } & TChildProps;
+export function withVariantSnvIndelAddProteinEffect<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantSnvIndelAddProteinEffectMutation,
+  VariantSnvIndelAddProteinEffectMutationVariables,
+  VariantSnvIndelAddProteinEffectProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables, VariantSnvIndelAddProteinEffectProps<TChildProps, TDataName>>(VariantSnvIndelAddProteinEffectDocument, {
+      alias: 'variantSnvIndelAddProteinEffect',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantSnvIndelAddProteinEffectMutation__
+ *
+ * To run a mutation, you first call `useVariantSnvIndelAddProteinEffectMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantSnvIndelAddProteinEffectMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantSnvIndelAddProteinEffectMutation, { data, loading, error }] = useVariantSnvIndelAddProteinEffectMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_epe_id: // value for 'old_epe_id'
+ *      date: // value for 'date'
+ *      epe_field: // value for 'epe_field'
+ *      epe_vpe: // value for 'epe_vpe'
+ *      epe_id: // value for 'epe_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantSnvIndelAddProteinEffectMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables>(VariantSnvIndelAddProteinEffectDocument, baseOptions);
+      }
+export type VariantSnvIndelAddProteinEffectMutationHookResult = ReturnType<typeof useVariantSnvIndelAddProteinEffectMutation>;
+export type VariantSnvIndelAddProteinEffectMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddProteinEffectMutation>;
+export type VariantSnvIndelAddProteinEffectMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddProteinEffectMutation, VariantSnvIndelAddProteinEffectMutationVariables>;
+export const VariantSnvIndelAddPDotDocument = gql`
+    mutation VariantSNVIndelAddPDot($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantSNVIndelPDot(id: $variant_id, pDot: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantSNVIndelPDot(id: $variant_id, pDot: [$es_id])
+}
+    `;
+export type VariantSnvIndelAddPDotMutationFn = ApolloReactCommon.MutationFunction<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables>;
+export type VariantSnvIndelAddPDotComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables>, 'mutation'>;
+
+    export const VariantSnvIndelAddPDotComponent = (props: VariantSnvIndelAddPDotComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables> mutation={VariantSnvIndelAddPDotDocument} {...props} />
+    );
+    
+export type VariantSnvIndelAddPDotProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables>
+    } & TChildProps;
+export function withVariantSnvIndelAddPDot<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantSnvIndelAddPDotMutation,
+  VariantSnvIndelAddPDotMutationVariables,
+  VariantSnvIndelAddPDotProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables, VariantSnvIndelAddPDotProps<TChildProps, TDataName>>(VariantSnvIndelAddPDotDocument, {
+      alias: 'variantSnvIndelAddPDot',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantSnvIndelAddPDotMutation__
+ *
+ * To run a mutation, you first call `useVariantSnvIndelAddPDotMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantSnvIndelAddPDotMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantSnvIndelAddPDotMutation, { data, loading, error }] = useVariantSnvIndelAddPDotMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantSnvIndelAddPDotMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables>(VariantSnvIndelAddPDotDocument, baseOptions);
+      }
+export type VariantSnvIndelAddPDotMutationHookResult = ReturnType<typeof useVariantSnvIndelAddPDotMutation>;
+export type VariantSnvIndelAddPDotMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddPDotMutation>;
+export type VariantSnvIndelAddPDotMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddPDotMutation, VariantSnvIndelAddPDotMutationVariables>;
+export const VariantSnvIndelAddCDotDocument = gql`
+    mutation VariantSNVIndelAddCDot($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantSNVIndelCDot(id: $variant_id, cDot: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantSNVIndelCDot(id: $variant_id, cDot: [$es_id])
+}
+    `;
+export type VariantSnvIndelAddCDotMutationFn = ApolloReactCommon.MutationFunction<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables>;
+export type VariantSnvIndelAddCDotComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables>, 'mutation'>;
+
+    export const VariantSnvIndelAddCDotComponent = (props: VariantSnvIndelAddCDotComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables> mutation={VariantSnvIndelAddCDotDocument} {...props} />
+    );
+    
+export type VariantSnvIndelAddCDotProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables>
+    } & TChildProps;
+export function withVariantSnvIndelAddCDot<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantSnvIndelAddCDotMutation,
+  VariantSnvIndelAddCDotMutationVariables,
+  VariantSnvIndelAddCDotProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables, VariantSnvIndelAddCDotProps<TChildProps, TDataName>>(VariantSnvIndelAddCDotDocument, {
+      alias: 'variantSnvIndelAddCDot',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantSnvIndelAddCDotMutation__
+ *
+ * To run a mutation, you first call `useVariantSnvIndelAddCDotMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantSnvIndelAddCDotMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantSnvIndelAddCDotMutation, { data, loading, error }] = useVariantSnvIndelAddCDotMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantSnvIndelAddCDotMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables>(VariantSnvIndelAddCDotDocument, baseOptions);
+      }
+export type VariantSnvIndelAddCDotMutationHookResult = ReturnType<typeof useVariantSnvIndelAddCDotMutation>;
+export type VariantSnvIndelAddCDotMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddCDotMutation>;
+export type VariantSnvIndelAddCDotMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddCDotMutation, VariantSnvIndelAddCDotMutationVariables>;
+export const VariantSnvIndelAddGDotDocument = gql`
+    mutation VariantSNVIndelAddGDot($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantSNVIndelGDot(id: $variant_id, gDot: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantSNVIndelGDot(id: $variant_id, gDot: [$es_id])
+}
+    `;
+export type VariantSnvIndelAddGDotMutationFn = ApolloReactCommon.MutationFunction<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables>;
+export type VariantSnvIndelAddGDotComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables>, 'mutation'>;
+
+    export const VariantSnvIndelAddGDotComponent = (props: VariantSnvIndelAddGDotComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables> mutation={VariantSnvIndelAddGDotDocument} {...props} />
+    );
+    
+export type VariantSnvIndelAddGDotProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables>
+    } & TChildProps;
+export function withVariantSnvIndelAddGDot<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantSnvIndelAddGDotMutation,
+  VariantSnvIndelAddGDotMutationVariables,
+  VariantSnvIndelAddGDotProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables, VariantSnvIndelAddGDotProps<TChildProps, TDataName>>(VariantSnvIndelAddGDotDocument, {
+      alias: 'variantSnvIndelAddGDot',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantSnvIndelAddGDotMutation__
+ *
+ * To run a mutation, you first call `useVariantSnvIndelAddGDotMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantSnvIndelAddGDotMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantSnvIndelAddGDotMutation, { data, loading, error }] = useVariantSnvIndelAddGDotMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantSnvIndelAddGDotMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables>(VariantSnvIndelAddGDotDocument, baseOptions);
+      }
+export type VariantSnvIndelAddGDotMutationHookResult = ReturnType<typeof useVariantSnvIndelAddGDotMutation>;
+export type VariantSnvIndelAddGDotMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddGDotMutation>;
+export type VariantSnvIndelAddGDotMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddGDotMutation, VariantSnvIndelAddGDotMutationVariables>;
+export const VariantSnvIndelAddExonDocument = gql`
+    mutation VariantSNVIndelAddExon($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteVariantSNVIndelExon(id: $variant_id, exon: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addVariantSNVIndelExon(id: $variant_id, exon: [$es_id])
+}
+    `;
+export type VariantSnvIndelAddExonMutationFn = ApolloReactCommon.MutationFunction<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>;
+export type VariantSnvIndelAddExonComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>, 'mutation'>;
+
+    export const VariantSnvIndelAddExonComponent = (props: VariantSnvIndelAddExonComponentProps) => (
+      <ApolloReactComponents.Mutation<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables> mutation={VariantSnvIndelAddExonDocument} {...props} />
+    );
+    
+export type VariantSnvIndelAddExonProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>
+    } & TChildProps;
+export function withVariantSnvIndelAddExon<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  VariantSnvIndelAddExonMutation,
+  VariantSnvIndelAddExonMutationVariables,
+  VariantSnvIndelAddExonProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables, VariantSnvIndelAddExonProps<TChildProps, TDataName>>(VariantSnvIndelAddExonDocument, {
+      alias: 'variantSnvIndelAddExon',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useVariantSnvIndelAddExonMutation__
+ *
+ * To run a mutation, you first call `useVariantSnvIndelAddExonMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useVariantSnvIndelAddExonMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [variantSnvIndelAddExonMutation, { data, loading, error }] = useVariantSnvIndelAddExonMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useVariantSnvIndelAddExonMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>) {
+        return ApolloReactHooks.useMutation<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>(VariantSnvIndelAddExonDocument, baseOptions);
+      }
+export type VariantSnvIndelAddExonMutationHookResult = ReturnType<typeof useVariantSnvIndelAddExonMutation>;
+export type VariantSnvIndelAddExonMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddExonMutation>;
+export type VariantSnvIndelAddExonMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>;
 export const GeneList_For_VariantsDocument = gql`
     query GeneList_For_Variants {
   OmniGene(orderBy: name_asc, filter: {variantMarkers_some: {id_starts_with: "genomicvariantmarker_"}}) {
@@ -21359,6 +23180,1265 @@ export function useJaxVariantLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type JaxVariantQueryHookResult = ReturnType<typeof useJaxVariantQuery>;
 export type JaxVariantLazyQueryHookResult = ReturnType<typeof useJaxVariantLazyQuery>;
 export type JaxVariantQueryResult = ApolloReactCommon.QueryResult<JaxVariantQuery, JaxVariantQueryVariables>;
+export const Msi_MarkerDocument = gql`
+    query MSI_Marker($marker_id: ID) {
+  MSIMarker(id: $marker_id) {
+    id
+    name {
+      ...es_fields
+    }
+    method {
+      ...es_fields
+    }
+    resultString {
+      ...es_fields
+    }
+  }
+}
+    ${Es_FieldsFragmentDoc}`;
+export type Msi_MarkerComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<Msi_MarkerQuery, Msi_MarkerQueryVariables>, 'query'>;
+
+    export const Msi_MarkerComponent = (props: Msi_MarkerComponentProps) => (
+      <ApolloReactComponents.Query<Msi_MarkerQuery, Msi_MarkerQueryVariables> query={Msi_MarkerDocument} {...props} />
+    );
+    
+export type Msi_MarkerProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<Msi_MarkerQuery, Msi_MarkerQueryVariables>
+    } & TChildProps;
+export function withMsi_Marker<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  Msi_MarkerQuery,
+  Msi_MarkerQueryVariables,
+  Msi_MarkerProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, Msi_MarkerQuery, Msi_MarkerQueryVariables, Msi_MarkerProps<TChildProps, TDataName>>(Msi_MarkerDocument, {
+      alias: 'msiMarker',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMsi_MarkerQuery__
+ *
+ * To run a query within a React component, call `useMsi_MarkerQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsi_MarkerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsi_MarkerQuery({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *   },
+ * });
+ */
+export function useMsi_MarkerQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Msi_MarkerQuery, Msi_MarkerQueryVariables>) {
+        return ApolloReactHooks.useQuery<Msi_MarkerQuery, Msi_MarkerQueryVariables>(Msi_MarkerDocument, baseOptions);
+      }
+export function useMsi_MarkerLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Msi_MarkerQuery, Msi_MarkerQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<Msi_MarkerQuery, Msi_MarkerQueryVariables>(Msi_MarkerDocument, baseOptions);
+        }
+export type Msi_MarkerQueryHookResult = ReturnType<typeof useMsi_MarkerQuery>;
+export type Msi_MarkerLazyQueryHookResult = ReturnType<typeof useMsi_MarkerLazyQuery>;
+export type Msi_MarkerQueryResult = ApolloReactCommon.QueryResult<Msi_MarkerQuery, Msi_MarkerQueryVariables>;
+export const MsiMarkerAddNameDocument = gql`
+    mutation MsiMarkerAddName($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteMSIMarkerName(id: $marker_id, name: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addMSIMarkerName(id: $marker_id, name: [$es_id])
+}
+    `;
+export type MsiMarkerAddNameMutationFn = ApolloReactCommon.MutationFunction<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables>;
+export type MsiMarkerAddNameComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables>, 'mutation'>;
+
+    export const MsiMarkerAddNameComponent = (props: MsiMarkerAddNameComponentProps) => (
+      <ApolloReactComponents.Mutation<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables> mutation={MsiMarkerAddNameDocument} {...props} />
+    );
+    
+export type MsiMarkerAddNameProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables>
+    } & TChildProps;
+export function withMsiMarkerAddName<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  MsiMarkerAddNameMutation,
+  MsiMarkerAddNameMutationVariables,
+  MsiMarkerAddNameProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables, MsiMarkerAddNameProps<TChildProps, TDataName>>(MsiMarkerAddNameDocument, {
+      alias: 'msiMarkerAddName',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMsiMarkerAddNameMutation__
+ *
+ * To run a mutation, you first call `useMsiMarkerAddNameMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMsiMarkerAddNameMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [msiMarkerAddNameMutation, { data, loading, error }] = useMsiMarkerAddNameMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useMsiMarkerAddNameMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables>) {
+        return ApolloReactHooks.useMutation<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables>(MsiMarkerAddNameDocument, baseOptions);
+      }
+export type MsiMarkerAddNameMutationHookResult = ReturnType<typeof useMsiMarkerAddNameMutation>;
+export type MsiMarkerAddNameMutationResult = ApolloReactCommon.MutationResult<MsiMarkerAddNameMutation>;
+export type MsiMarkerAddNameMutationOptions = ApolloReactCommon.BaseMutationOptions<MsiMarkerAddNameMutation, MsiMarkerAddNameMutationVariables>;
+export const MsiMarkerAddMethodDocument = gql`
+    mutation MsiMarkerAddMethod($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteMSIMarkerMethod(id: $marker_id, method: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addMSIMarkerMethod(id: $marker_id, method: [$es_id])
+}
+    `;
+export type MsiMarkerAddMethodMutationFn = ApolloReactCommon.MutationFunction<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables>;
+export type MsiMarkerAddMethodComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables>, 'mutation'>;
+
+    export const MsiMarkerAddMethodComponent = (props: MsiMarkerAddMethodComponentProps) => (
+      <ApolloReactComponents.Mutation<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables> mutation={MsiMarkerAddMethodDocument} {...props} />
+    );
+    
+export type MsiMarkerAddMethodProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables>
+    } & TChildProps;
+export function withMsiMarkerAddMethod<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  MsiMarkerAddMethodMutation,
+  MsiMarkerAddMethodMutationVariables,
+  MsiMarkerAddMethodProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables, MsiMarkerAddMethodProps<TChildProps, TDataName>>(MsiMarkerAddMethodDocument, {
+      alias: 'msiMarkerAddMethod',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMsiMarkerAddMethodMutation__
+ *
+ * To run a mutation, you first call `useMsiMarkerAddMethodMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMsiMarkerAddMethodMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [msiMarkerAddMethodMutation, { data, loading, error }] = useMsiMarkerAddMethodMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useMsiMarkerAddMethodMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables>) {
+        return ApolloReactHooks.useMutation<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables>(MsiMarkerAddMethodDocument, baseOptions);
+      }
+export type MsiMarkerAddMethodMutationHookResult = ReturnType<typeof useMsiMarkerAddMethodMutation>;
+export type MsiMarkerAddMethodMutationResult = ApolloReactCommon.MutationResult<MsiMarkerAddMethodMutation>;
+export type MsiMarkerAddMethodMutationOptions = ApolloReactCommon.BaseMutationOptions<MsiMarkerAddMethodMutation, MsiMarkerAddMethodMutationVariables>;
+export const MsiMarkerAddResultsDocument = gql`
+    mutation MsiMarkerAddResults($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteMSIMarkerResultString(id: $marker_id, resultString: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addMSIMarkerResultString(id: $marker_id, resultString: [$es_id])
+}
+    `;
+export type MsiMarkerAddResultsMutationFn = ApolloReactCommon.MutationFunction<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables>;
+export type MsiMarkerAddResultsComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables>, 'mutation'>;
+
+    export const MsiMarkerAddResultsComponent = (props: MsiMarkerAddResultsComponentProps) => (
+      <ApolloReactComponents.Mutation<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables> mutation={MsiMarkerAddResultsDocument} {...props} />
+    );
+    
+export type MsiMarkerAddResultsProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables>
+    } & TChildProps;
+export function withMsiMarkerAddResults<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  MsiMarkerAddResultsMutation,
+  MsiMarkerAddResultsMutationVariables,
+  MsiMarkerAddResultsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables, MsiMarkerAddResultsProps<TChildProps, TDataName>>(MsiMarkerAddResultsDocument, {
+      alias: 'msiMarkerAddResults',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMsiMarkerAddResultsMutation__
+ *
+ * To run a mutation, you first call `useMsiMarkerAddResultsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMsiMarkerAddResultsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [msiMarkerAddResultsMutation, { data, loading, error }] = useMsiMarkerAddResultsMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useMsiMarkerAddResultsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables>) {
+        return ApolloReactHooks.useMutation<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables>(MsiMarkerAddResultsDocument, baseOptions);
+      }
+export type MsiMarkerAddResultsMutationHookResult = ReturnType<typeof useMsiMarkerAddResultsMutation>;
+export type MsiMarkerAddResultsMutationResult = ApolloReactCommon.MutationResult<MsiMarkerAddResultsMutation>;
+export type MsiMarkerAddResultsMutationOptions = ApolloReactCommon.BaseMutationOptions<MsiMarkerAddResultsMutation, MsiMarkerAddResultsMutationVariables>;
+export const Msi_MarkersDocument = gql`
+    query MSI_Markers {
+  MSIMarker(orderBy: id_asc) {
+    id
+    name {
+      ...es_fields
+    }
+    method {
+      ...es_fields
+    }
+    resultString {
+      ...es_fields
+    }
+  }
+}
+    ${Es_FieldsFragmentDoc}`;
+export type Msi_MarkersComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<Msi_MarkersQuery, Msi_MarkersQueryVariables>, 'query'>;
+
+    export const Msi_MarkersComponent = (props: Msi_MarkersComponentProps) => (
+      <ApolloReactComponents.Query<Msi_MarkersQuery, Msi_MarkersQueryVariables> query={Msi_MarkersDocument} {...props} />
+    );
+    
+export type Msi_MarkersProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<Msi_MarkersQuery, Msi_MarkersQueryVariables>
+    } & TChildProps;
+export function withMsi_Markers<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  Msi_MarkersQuery,
+  Msi_MarkersQueryVariables,
+  Msi_MarkersProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, Msi_MarkersQuery, Msi_MarkersQueryVariables, Msi_MarkersProps<TChildProps, TDataName>>(Msi_MarkersDocument, {
+      alias: 'msiMarkers',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMsi_MarkersQuery__
+ *
+ * To run a query within a React component, call `useMsi_MarkersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsi_MarkersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsi_MarkersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMsi_MarkersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Msi_MarkersQuery, Msi_MarkersQueryVariables>) {
+        return ApolloReactHooks.useQuery<Msi_MarkersQuery, Msi_MarkersQueryVariables>(Msi_MarkersDocument, baseOptions);
+      }
+export function useMsi_MarkersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Msi_MarkersQuery, Msi_MarkersQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<Msi_MarkersQuery, Msi_MarkersQueryVariables>(Msi_MarkersDocument, baseOptions);
+        }
+export type Msi_MarkersQueryHookResult = ReturnType<typeof useMsi_MarkersQuery>;
+export type Msi_MarkersLazyQueryHookResult = ReturnType<typeof useMsi_MarkersLazyQuery>;
+export type Msi_MarkersQueryResult = ApolloReactCommon.QueryResult<Msi_MarkersQuery, Msi_MarkersQueryVariables>;
+export const Tmb_MarkerDocument = gql`
+    query TMB_Marker($marker_id: ID) {
+  TMBMarker(id: $marker_id) {
+    id
+    name {
+      ...es_fields
+    }
+    method {
+      ...es_fields
+    }
+    comparator {
+      id
+      field
+      comparator
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
+    }
+    resultMin {
+      id
+      field
+      floatValue
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
+    }
+    resultMax {
+      id
+      field
+      floatValue
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
+    }
+    resultUnits {
+      ...es_fields
+    }
+    interpretations {
+      id
+      field
+      tmbInterpretation
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
+    }
+    resultString {
+      ...es_fields
+    }
+  }
+}
+    ${Es_FieldsFragmentDoc}`;
+export type Tmb_MarkerComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>, 'query'>;
+
+    export const Tmb_MarkerComponent = (props: Tmb_MarkerComponentProps) => (
+      <ApolloReactComponents.Query<Tmb_MarkerQuery, Tmb_MarkerQueryVariables> query={Tmb_MarkerDocument} {...props} />
+    );
+    
+export type Tmb_MarkerProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>
+    } & TChildProps;
+export function withTmb_Marker<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  Tmb_MarkerQuery,
+  Tmb_MarkerQueryVariables,
+  Tmb_MarkerProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, Tmb_MarkerQuery, Tmb_MarkerQueryVariables, Tmb_MarkerProps<TChildProps, TDataName>>(Tmb_MarkerDocument, {
+      alias: 'tmbMarker',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmb_MarkerQuery__
+ *
+ * To run a query within a React component, call `useTmb_MarkerQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTmb_MarkerQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTmb_MarkerQuery({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *   },
+ * });
+ */
+export function useTmb_MarkerQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>) {
+        return ApolloReactHooks.useQuery<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>(Tmb_MarkerDocument, baseOptions);
+      }
+export function useTmb_MarkerLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>(Tmb_MarkerDocument, baseOptions);
+        }
+export type Tmb_MarkerQueryHookResult = ReturnType<typeof useTmb_MarkerQuery>;
+export type Tmb_MarkerLazyQueryHookResult = ReturnType<typeof useTmb_MarkerLazyQuery>;
+export type Tmb_MarkerQueryResult = ApolloReactCommon.QueryResult<Tmb_MarkerQuery, Tmb_MarkerQueryVariables>;
+export const TmbMarkerAddNameDocument = gql`
+    mutation TmbMarkerAddName($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerName(id: $marker_id, name: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerName(id: $marker_id, name: [$es_id])
+}
+    `;
+export type TmbMarkerAddNameMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables>;
+export type TmbMarkerAddNameComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddNameComponent = (props: TmbMarkerAddNameComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables> mutation={TmbMarkerAddNameDocument} {...props} />
+    );
+    
+export type TmbMarkerAddNameProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddName<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddNameMutation,
+  TmbMarkerAddNameMutationVariables,
+  TmbMarkerAddNameProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables, TmbMarkerAddNameProps<TChildProps, TDataName>>(TmbMarkerAddNameDocument, {
+      alias: 'tmbMarkerAddName',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddNameMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddNameMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddNameMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddNameMutation, { data, loading, error }] = useTmbMarkerAddNameMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddNameMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables>(TmbMarkerAddNameDocument, baseOptions);
+      }
+export type TmbMarkerAddNameMutationHookResult = ReturnType<typeof useTmbMarkerAddNameMutation>;
+export type TmbMarkerAddNameMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddNameMutation>;
+export type TmbMarkerAddNameMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddNameMutation, TmbMarkerAddNameMutationVariables>;
+export const TmbMarkerAddMethodDocument = gql`
+    mutation TmbMarkerAddMethod($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerMethod(id: $marker_id, method: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerMethod(id: $marker_id, method: [$es_id])
+}
+    `;
+export type TmbMarkerAddMethodMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables>;
+export type TmbMarkerAddMethodComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddMethodComponent = (props: TmbMarkerAddMethodComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables> mutation={TmbMarkerAddMethodDocument} {...props} />
+    );
+    
+export type TmbMarkerAddMethodProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddMethod<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddMethodMutation,
+  TmbMarkerAddMethodMutationVariables,
+  TmbMarkerAddMethodProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables, TmbMarkerAddMethodProps<TChildProps, TDataName>>(TmbMarkerAddMethodDocument, {
+      alias: 'tmbMarkerAddMethod',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddMethodMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddMethodMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddMethodMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddMethodMutation, { data, loading, error }] = useTmbMarkerAddMethodMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddMethodMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables>(TmbMarkerAddMethodDocument, baseOptions);
+      }
+export type TmbMarkerAddMethodMutationHookResult = ReturnType<typeof useTmbMarkerAddMethodMutation>;
+export type TmbMarkerAddMethodMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddMethodMutation>;
+export type TmbMarkerAddMethodMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddMethodMutation, TmbMarkerAddMethodMutationVariables>;
+export const TmbMarkerAddResultsDocument = gql`
+    mutation TmbMarkerAddResults($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerResultString(id: $marker_id, resultString: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerResultString(id: $marker_id, resultString: [$es_id])
+}
+    `;
+export type TmbMarkerAddResultsMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables>;
+export type TmbMarkerAddResultsComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddResultsComponent = (props: TmbMarkerAddResultsComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables> mutation={TmbMarkerAddResultsDocument} {...props} />
+    );
+    
+export type TmbMarkerAddResultsProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddResults<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddResultsMutation,
+  TmbMarkerAddResultsMutationVariables,
+  TmbMarkerAddResultsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables, TmbMarkerAddResultsProps<TChildProps, TDataName>>(TmbMarkerAddResultsDocument, {
+      alias: 'tmbMarkerAddResults',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddResultsMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddResultsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddResultsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddResultsMutation, { data, loading, error }] = useTmbMarkerAddResultsMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddResultsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables>(TmbMarkerAddResultsDocument, baseOptions);
+      }
+export type TmbMarkerAddResultsMutationHookResult = ReturnType<typeof useTmbMarkerAddResultsMutation>;
+export type TmbMarkerAddResultsMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddResultsMutation>;
+export type TmbMarkerAddResultsMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddResultsMutation, TmbMarkerAddResultsMutationVariables>;
+export const TmbMarkerAddResultUnitsDocument = gql`
+    mutation TmbMarkerAddResultUnits($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerResultUnits(id: $marker_id, resultUnits: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerResultUnits(id: $marker_id, resultUnits: [$es_id])
+}
+    `;
+export type TmbMarkerAddResultUnitsMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables>;
+export type TmbMarkerAddResultUnitsComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddResultUnitsComponent = (props: TmbMarkerAddResultUnitsComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables> mutation={TmbMarkerAddResultUnitsDocument} {...props} />
+    );
+    
+export type TmbMarkerAddResultUnitsProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddResultUnits<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddResultUnitsMutation,
+  TmbMarkerAddResultUnitsMutationVariables,
+  TmbMarkerAddResultUnitsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables, TmbMarkerAddResultUnitsProps<TChildProps, TDataName>>(TmbMarkerAddResultUnitsDocument, {
+      alias: 'tmbMarkerAddResultUnits',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddResultUnitsMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddResultUnitsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddResultUnitsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddResultUnitsMutation, { data, loading, error }] = useTmbMarkerAddResultUnitsMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddResultUnitsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables>(TmbMarkerAddResultUnitsDocument, baseOptions);
+      }
+export type TmbMarkerAddResultUnitsMutationHookResult = ReturnType<typeof useTmbMarkerAddResultUnitsMutation>;
+export type TmbMarkerAddResultUnitsMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddResultUnitsMutation>;
+export type TmbMarkerAddResultUnitsMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddResultUnitsMutation, TmbMarkerAddResultUnitsMutationVariables>;
+export const TmbMarkerAddResultMinDocument = gql`
+    mutation TmbMarkerAddResultMin($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $ef_float: Float!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerResultMin(id: $marker_id, resultMin: [$old_es_id])
+  createEditableFloat(editDate: $date, field: $es_field, id: $es_id, floatValue: $ef_float)
+  addEditableFloatEditor(editor: [$user_id], id: $es_id)
+  addEditableFloatReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerResultMin(id: $marker_id, resultMin: [$es_id])
+}
+    `;
+export type TmbMarkerAddResultMinMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables>;
+export type TmbMarkerAddResultMinComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddResultMinComponent = (props: TmbMarkerAddResultMinComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables> mutation={TmbMarkerAddResultMinDocument} {...props} />
+    );
+    
+export type TmbMarkerAddResultMinProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddResultMin<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddResultMinMutation,
+  TmbMarkerAddResultMinMutationVariables,
+  TmbMarkerAddResultMinProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables, TmbMarkerAddResultMinProps<TChildProps, TDataName>>(TmbMarkerAddResultMinDocument, {
+      alias: 'tmbMarkerAddResultMin',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddResultMinMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddResultMinMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddResultMinMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddResultMinMutation, { data, loading, error }] = useTmbMarkerAddResultMinMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      ef_float: // value for 'ef_float'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddResultMinMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables>(TmbMarkerAddResultMinDocument, baseOptions);
+      }
+export type TmbMarkerAddResultMinMutationHookResult = ReturnType<typeof useTmbMarkerAddResultMinMutation>;
+export type TmbMarkerAddResultMinMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddResultMinMutation>;
+export type TmbMarkerAddResultMinMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddResultMinMutation, TmbMarkerAddResultMinMutationVariables>;
+export const TmbMarkerAddResultMaxDocument = gql`
+    mutation TmbMarkerAddResultMax($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $ef_float: Float!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerResultMax(id: $marker_id, resultMax: [$old_es_id])
+  createEditableFloat(editDate: $date, field: $es_field, id: $es_id, floatValue: $ef_float)
+  addEditableFloatEditor(editor: [$user_id], id: $es_id)
+  addEditableFloatReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerResultMax(id: $marker_id, resultMax: [$es_id])
+}
+    `;
+export type TmbMarkerAddResultMaxMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables>;
+export type TmbMarkerAddResultMaxComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddResultMaxComponent = (props: TmbMarkerAddResultMaxComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables> mutation={TmbMarkerAddResultMaxDocument} {...props} />
+    );
+    
+export type TmbMarkerAddResultMaxProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddResultMax<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddResultMaxMutation,
+  TmbMarkerAddResultMaxMutationVariables,
+  TmbMarkerAddResultMaxProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables, TmbMarkerAddResultMaxProps<TChildProps, TDataName>>(TmbMarkerAddResultMaxDocument, {
+      alias: 'tmbMarkerAddResultMax',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddResultMaxMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddResultMaxMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddResultMaxMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddResultMaxMutation, { data, loading, error }] = useTmbMarkerAddResultMaxMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      ef_float: // value for 'ef_float'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddResultMaxMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables>(TmbMarkerAddResultMaxDocument, baseOptions);
+      }
+export type TmbMarkerAddResultMaxMutationHookResult = ReturnType<typeof useTmbMarkerAddResultMaxMutation>;
+export type TmbMarkerAddResultMaxMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddResultMaxMutation>;
+export type TmbMarkerAddResultMaxMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddResultMaxMutation, TmbMarkerAddResultMaxMutationVariables>;
+export const TmbMarkerAddComparatorDocument = gql`
+    mutation TmbMarkerAddComparator($marker_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $comp: AssayComparator!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteTMBMarkerComparator(id: $marker_id, comparator: [$old_es_id])
+  createEditableAssayComparator(editDate: $date, field: $es_field, id: $es_id, comparator: $comp)
+  addEditableAssayComparatorEditor(editor: [$user_id], id: $es_id)
+  addEditableAssayComparatorReferences(id: $es_id, references: $ref_aray)
+  addTMBMarkerComparator(id: $marker_id, comparator: [$es_id])
+}
+    `;
+export type TmbMarkerAddComparatorMutationFn = ApolloReactCommon.MutationFunction<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables>;
+export type TmbMarkerAddComparatorComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables>, 'mutation'>;
+
+    export const TmbMarkerAddComparatorComponent = (props: TmbMarkerAddComparatorComponentProps) => (
+      <ApolloReactComponents.Mutation<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables> mutation={TmbMarkerAddComparatorDocument} {...props} />
+    );
+    
+export type TmbMarkerAddComparatorProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables>
+    } & TChildProps;
+export function withTmbMarkerAddComparator<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbMarkerAddComparatorMutation,
+  TmbMarkerAddComparatorMutationVariables,
+  TmbMarkerAddComparatorProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables, TmbMarkerAddComparatorProps<TChildProps, TDataName>>(TmbMarkerAddComparatorDocument, {
+      alias: 'tmbMarkerAddComparator',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbMarkerAddComparatorMutation__
+ *
+ * To run a mutation, you first call `useTmbMarkerAddComparatorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTmbMarkerAddComparatorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tmbMarkerAddComparatorMutation, { data, loading, error }] = useTmbMarkerAddComparatorMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      comp: // value for 'comp'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useTmbMarkerAddComparatorMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables>) {
+        return ApolloReactHooks.useMutation<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables>(TmbMarkerAddComparatorDocument, baseOptions);
+      }
+export type TmbMarkerAddComparatorMutationHookResult = ReturnType<typeof useTmbMarkerAddComparatorMutation>;
+export type TmbMarkerAddComparatorMutationResult = ApolloReactCommon.MutationResult<TmbMarkerAddComparatorMutation>;
+export type TmbMarkerAddComparatorMutationOptions = ApolloReactCommon.BaseMutationOptions<TmbMarkerAddComparatorMutation, TmbMarkerAddComparatorMutationVariables>;
+export const Tmb_MarkersDocument = gql`
+    query TMB_Markers {
+  TMBMarker(orderBy: id_asc) {
+    id
+    name {
+      ...es_fields
+    }
+    method {
+      ...es_fields
+    }
+    resultString {
+      ...es_fields
+    }
+  }
+}
+    ${Es_FieldsFragmentDoc}`;
+export type Tmb_MarkersComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>, 'query'>;
+
+    export const Tmb_MarkersComponent = (props: Tmb_MarkersComponentProps) => (
+      <ApolloReactComponents.Query<Tmb_MarkersQuery, Tmb_MarkersQueryVariables> query={Tmb_MarkersDocument} {...props} />
+    );
+    
+export type Tmb_MarkersProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>
+    } & TChildProps;
+export function withTmb_Markers<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  Tmb_MarkersQuery,
+  Tmb_MarkersQueryVariables,
+  Tmb_MarkersProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, Tmb_MarkersQuery, Tmb_MarkersQueryVariables, Tmb_MarkersProps<TChildProps, TDataName>>(Tmb_MarkersDocument, {
+      alias: 'tmbMarkers',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmb_MarkersQuery__
+ *
+ * To run a query within a React component, call `useTmb_MarkersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTmb_MarkersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTmb_MarkersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTmb_MarkersQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>) {
+        return ApolloReactHooks.useQuery<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>(Tmb_MarkersDocument, baseOptions);
+      }
+export function useTmb_MarkersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>(Tmb_MarkersDocument, baseOptions);
+        }
+export type Tmb_MarkersQueryHookResult = ReturnType<typeof useTmb_MarkersQuery>;
+export type Tmb_MarkersLazyQueryHookResult = ReturnType<typeof useTmb_MarkersLazyQuery>;
+export type Tmb_MarkersQueryResult = ApolloReactCommon.QueryResult<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>;
+export const EditableAssayComparatorDocument = gql`
+    query EditableAssayComparator($field: String) {
+  EditableAssayComparator(field: $field, orderBy: editDate_desc) {
+    field
+    comparator
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableAssayComparatorComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>, 'query'>;
+
+    export const EditableAssayComparatorComponent = (props: EditableAssayComparatorComponentProps) => (
+      <ApolloReactComponents.Query<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables> query={EditableAssayComparatorDocument} {...props} />
+    );
+    
+export type EditableAssayComparatorProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>
+    } & TChildProps;
+export function withEditableAssayComparator<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableAssayComparatorQuery,
+  EditableAssayComparatorQueryVariables,
+  EditableAssayComparatorProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables, EditableAssayComparatorProps<TChildProps, TDataName>>(EditableAssayComparatorDocument, {
+      alias: 'editableAssayComparator',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableAssayComparatorQuery__
+ *
+ * To run a query within a React component, call `useEditableAssayComparatorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableAssayComparatorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableAssayComparatorQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableAssayComparatorQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>(EditableAssayComparatorDocument, baseOptions);
+      }
+export function useEditableAssayComparatorLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>(EditableAssayComparatorDocument, baseOptions);
+        }
+export type EditableAssayComparatorQueryHookResult = ReturnType<typeof useEditableAssayComparatorQuery>;
+export type EditableAssayComparatorLazyQueryHookResult = ReturnType<typeof useEditableAssayComparatorLazyQuery>;
+export type EditableAssayComparatorQueryResult = ApolloReactCommon.QueryResult<EditableAssayComparatorQuery, EditableAssayComparatorQueryVariables>;
+export const EditableCopyChangeDocument = gql`
+    query EditableCopyChange($field: String) {
+  EditableCopyChange(field: $field, orderBy: editDate_desc) {
+    field
+    cnvType
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableCopyChangeComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>, 'query'>;
+
+    export const EditableCopyChangeComponent = (props: EditableCopyChangeComponentProps) => (
+      <ApolloReactComponents.Query<EditableCopyChangeQuery, EditableCopyChangeQueryVariables> query={EditableCopyChangeDocument} {...props} />
+    );
+    
+export type EditableCopyChangeProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>
+    } & TChildProps;
+export function withEditableCopyChange<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableCopyChangeQuery,
+  EditableCopyChangeQueryVariables,
+  EditableCopyChangeProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableCopyChangeQuery, EditableCopyChangeQueryVariables, EditableCopyChangeProps<TChildProps, TDataName>>(EditableCopyChangeDocument, {
+      alias: 'editableCopyChange',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableCopyChangeQuery__
+ *
+ * To run a query within a React component, call `useEditableCopyChangeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableCopyChangeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableCopyChangeQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableCopyChangeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>(EditableCopyChangeDocument, baseOptions);
+      }
+export function useEditableCopyChangeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>(EditableCopyChangeDocument, baseOptions);
+        }
+export type EditableCopyChangeQueryHookResult = ReturnType<typeof useEditableCopyChangeQuery>;
+export type EditableCopyChangeLazyQueryHookResult = ReturnType<typeof useEditableCopyChangeLazyQuery>;
+export type EditableCopyChangeQueryResult = ApolloReactCommon.QueryResult<EditableCopyChangeQuery, EditableCopyChangeQueryVariables>;
+export const EditableBooleanDocument = gql`
+    query EditableBoolean($field: String) {
+  EditableBoolean(field: $field, orderBy: editDate_desc) {
+    field
+    booleanValue
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableBooleanComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableBooleanQuery, EditableBooleanQueryVariables>, 'query'>;
+
+    export const EditableBooleanComponent = (props: EditableBooleanComponentProps) => (
+      <ApolloReactComponents.Query<EditableBooleanQuery, EditableBooleanQueryVariables> query={EditableBooleanDocument} {...props} />
+    );
+    
+export type EditableBooleanProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableBooleanQuery, EditableBooleanQueryVariables>
+    } & TChildProps;
+export function withEditableBoolean<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableBooleanQuery,
+  EditableBooleanQueryVariables,
+  EditableBooleanProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableBooleanQuery, EditableBooleanQueryVariables, EditableBooleanProps<TChildProps, TDataName>>(EditableBooleanDocument, {
+      alias: 'editableBoolean',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableBooleanQuery__
+ *
+ * To run a query within a React component, call `useEditableBooleanQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableBooleanQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableBooleanQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableBooleanQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableBooleanQuery, EditableBooleanQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableBooleanQuery, EditableBooleanQueryVariables>(EditableBooleanDocument, baseOptions);
+      }
+export function useEditableBooleanLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableBooleanQuery, EditableBooleanQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableBooleanQuery, EditableBooleanQueryVariables>(EditableBooleanDocument, baseOptions);
+        }
+export type EditableBooleanQueryHookResult = ReturnType<typeof useEditableBooleanQuery>;
+export type EditableBooleanLazyQueryHookResult = ReturnType<typeof useEditableBooleanLazyQuery>;
+export type EditableBooleanQueryResult = ApolloReactCommon.QueryResult<EditableBooleanQuery, EditableBooleanQueryVariables>;
+export const EditableFloatDocument = gql`
+    query EditableFloat($field: String) {
+  EditableFloat(field: $field, orderBy: editDate_desc) {
+    field
+    floatValue
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableFloatComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableFloatQuery, EditableFloatQueryVariables>, 'query'>;
+
+    export const EditableFloatComponent = (props: EditableFloatComponentProps) => (
+      <ApolloReactComponents.Query<EditableFloatQuery, EditableFloatQueryVariables> query={EditableFloatDocument} {...props} />
+    );
+    
+export type EditableFloatProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableFloatQuery, EditableFloatQueryVariables>
+    } & TChildProps;
+export function withEditableFloat<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableFloatQuery,
+  EditableFloatQueryVariables,
+  EditableFloatProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableFloatQuery, EditableFloatQueryVariables, EditableFloatProps<TChildProps, TDataName>>(EditableFloatDocument, {
+      alias: 'editableFloat',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableFloatQuery__
+ *
+ * To run a query within a React component, call `useEditableFloatQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableFloatQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableFloatQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableFloatQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableFloatQuery, EditableFloatQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableFloatQuery, EditableFloatQueryVariables>(EditableFloatDocument, baseOptions);
+      }
+export function useEditableFloatLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableFloatQuery, EditableFloatQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableFloatQuery, EditableFloatQueryVariables>(EditableFloatDocument, baseOptions);
+        }
+export type EditableFloatQueryHookResult = ReturnType<typeof useEditableFloatQuery>;
+export type EditableFloatLazyQueryHookResult = ReturnType<typeof useEditableFloatLazyQuery>;
+export type EditableFloatQueryResult = ApolloReactCommon.QueryResult<EditableFloatQuery, EditableFloatQueryVariables>;
+export const EditableIntDocument = gql`
+    query EditableInt($field: String) {
+  EditableInt(field: $field, orderBy: editDate_desc) {
+    field
+    intValue
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableIntComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableIntQuery, EditableIntQueryVariables>, 'query'>;
+
+    export const EditableIntComponent = (props: EditableIntComponentProps) => (
+      <ApolloReactComponents.Query<EditableIntQuery, EditableIntQueryVariables> query={EditableIntDocument} {...props} />
+    );
+    
+export type EditableIntProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableIntQuery, EditableIntQueryVariables>
+    } & TChildProps;
+export function withEditableInt<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableIntQuery,
+  EditableIntQueryVariables,
+  EditableIntProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableIntQuery, EditableIntQueryVariables, EditableIntProps<TChildProps, TDataName>>(EditableIntDocument, {
+      alias: 'editableInt',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableIntQuery__
+ *
+ * To run a query within a React component, call `useEditableIntQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableIntQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableIntQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableIntQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableIntQuery, EditableIntQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableIntQuery, EditableIntQueryVariables>(EditableIntDocument, baseOptions);
+      }
+export function useEditableIntLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableIntQuery, EditableIntQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableIntQuery, EditableIntQueryVariables>(EditableIntDocument, baseOptions);
+        }
+export type EditableIntQueryHookResult = ReturnType<typeof useEditableIntQuery>;
+export type EditableIntLazyQueryHookResult = ReturnType<typeof useEditableIntLazyQuery>;
+export type EditableIntQueryResult = ApolloReactCommon.QueryResult<EditableIntQuery, EditableIntQueryVariables>;
+export const EditableOmniGeneReferenceDocument = gql`
+    query EditableOmniGeneReference($field: String) {
+  EditableOmniGeneReference(field: $field, orderBy: editDate_desc) {
+    field
+    gene {
+      name
+    }
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableOmniGeneReferenceComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>, 'query'>;
+
+    export const EditableOmniGeneReferenceComponent = (props: EditableOmniGeneReferenceComponentProps) => (
+      <ApolloReactComponents.Query<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables> query={EditableOmniGeneReferenceDocument} {...props} />
+    );
+    
+export type EditableOmniGeneReferenceProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>
+    } & TChildProps;
+export function withEditableOmniGeneReference<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableOmniGeneReferenceQuery,
+  EditableOmniGeneReferenceQueryVariables,
+  EditableOmniGeneReferenceProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables, EditableOmniGeneReferenceProps<TChildProps, TDataName>>(EditableOmniGeneReferenceDocument, {
+      alias: 'editableOmniGeneReference',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableOmniGeneReferenceQuery__
+ *
+ * To run a query within a React component, call `useEditableOmniGeneReferenceQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableOmniGeneReferenceQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableOmniGeneReferenceQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableOmniGeneReferenceQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>(EditableOmniGeneReferenceDocument, baseOptions);
+      }
+export function useEditableOmniGeneReferenceLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>(EditableOmniGeneReferenceDocument, baseOptions);
+        }
+export type EditableOmniGeneReferenceQueryHookResult = ReturnType<typeof useEditableOmniGeneReferenceQuery>;
+export type EditableOmniGeneReferenceLazyQueryHookResult = ReturnType<typeof useEditableOmniGeneReferenceLazyQuery>;
+export type EditableOmniGeneReferenceQueryResult = ApolloReactCommon.QueryResult<EditableOmniGeneReferenceQuery, EditableOmniGeneReferenceQueryVariables>;
 export const EditableStatementDocument = gql`
     query EditableStatement($field: String) {
   EditableStatement(field: $field, orderBy: editDate_desc) {
@@ -21367,6 +24447,9 @@ export const EditableStatementDocument = gql`
     editDate
     editor {
       name
+    }
+    references {
+      shortReference
     }
   }
 }
@@ -21486,6 +24569,66 @@ export function useLiteratureReferenceLazyQuery(baseOptions?: ApolloReactHooks.L
 export type LiteratureReferenceQueryHookResult = ReturnType<typeof useLiteratureReferenceQuery>;
 export type LiteratureReferenceLazyQueryHookResult = ReturnType<typeof useLiteratureReferenceLazyQuery>;
 export type LiteratureReferenceQueryResult = ApolloReactCommon.QueryResult<LiteratureReferenceQuery, LiteratureReferenceQueryVariables>;
+export const EditableProteinEffectDocument = gql`
+    query EditableProteinEffect($field: String) {
+  EditableProteinEffect(field: $field, orderBy: editDate_desc) {
+    field
+    proteinEffect
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableProteinEffectComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>, 'query'>;
+
+    export const EditableProteinEffectComponent = (props: EditableProteinEffectComponentProps) => (
+      <ApolloReactComponents.Query<EditableProteinEffectQuery, EditableProteinEffectQueryVariables> query={EditableProteinEffectDocument} {...props} />
+    );
+    
+export type EditableProteinEffectProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>
+    } & TChildProps;
+export function withEditableProteinEffect<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableProteinEffectQuery,
+  EditableProteinEffectQueryVariables,
+  EditableProteinEffectProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableProteinEffectQuery, EditableProteinEffectQueryVariables, EditableProteinEffectProps<TChildProps, TDataName>>(EditableProteinEffectDocument, {
+      alias: 'editableProteinEffect',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableProteinEffectQuery__
+ *
+ * To run a query within a React component, call `useEditableProteinEffectQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableProteinEffectQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableProteinEffectQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableProteinEffectQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>(EditableProteinEffectDocument, baseOptions);
+      }
+export function useEditableProteinEffectLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>(EditableProteinEffectDocument, baseOptions);
+        }
+export type EditableProteinEffectQueryHookResult = ReturnType<typeof useEditableProteinEffectQuery>;
+export type EditableProteinEffectLazyQueryHookResult = ReturnType<typeof useEditableProteinEffectLazyQuery>;
+export type EditableProteinEffectQueryResult = ApolloReactCommon.QueryResult<EditableProteinEffectQuery, EditableProteinEffectQueryVariables>;
 export const EditableStringListDocument = gql`
     query EditableStringList($field: String) {
   EditableStringList(field: $field, orderBy: editDate_desc) {

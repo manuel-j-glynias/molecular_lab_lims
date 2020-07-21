@@ -4,7 +4,7 @@ import {useUserContentState} from "../../../context/UserContentContext"
 import {useAddOmniGeneGeneDescriptionMutation} from "../../../generated/graphql";
 import {get_description_mutation_object} from "./EditableStatementHelper";
 import {useEffect} from "react";
-import apiClient from "../../../axios/Axios"
+import {preflight, parse_description,preflightResult} from "../../common/Helpers/Ref_helpers"
 
 interface Props {
     description: string;
@@ -34,39 +34,6 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
 
     const user_ID : string = userID;
 
-    const parse_description =  (description:string): Array<string> => {
-        let pmids: Array<string> = extract_pmids_from_description(description)
-        let pubmeds: Array<string> = extract_pubmeds_from_description(description)
-        for (var j=0;j<pubmeds.length;j++){
-            let pubmed = pubmeds[j]
-            if (!pmids.includes(pubmed)){
-                pmids.push(pubmed)
-            }
-        }
-        return pmids;
-    }
-
-
-    type preflightResult = {
-        result: string;
-        refs: string[]
-    }
-
-    const preflight = async (pmids:string ) => {
-        try {
-            // @ts-ignore
-            const response = await apiClient.get<preflightResult>("/reference_preflight/" + pmids);
-            const preflightResult = response.data;
-            return preflightResult;
-        } catch (err) {
-            if (err && err.response) {
-                // const axiosError = err as AxiosError<ServerError>
-                return err.response;
-            }
-
-            throw err;
-        }
-    };
 
     async function extracted(pmids: Array<string>) {
         const mutation_object = get_description_mutation_object(omnigene_ID, es_ID, es_field, description_string.current, user_ID, pmids)
@@ -92,50 +59,8 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
     useEffect(post_save,[mutationData])
 
     const cancelEdit = async () => {
-        // console.log('cancelEdit')
         set_editing(false)
     };
-
-
-
-    const extract_pmids_from_description =  (description:string) : Array<string> => {
-        let pmids: Array<string> = []
-        const regex = /PMID:\s+\d{7,}/g;
-        const found = description.match(regex);
-        if (found!=null){
-            for (var i=0;i<found.length;i++){
-                const toks = found[i].split(" ")
-                if (toks.length>0){
-                    const pmid = toks[1]
-                    if (!pmids.includes(pmid)){
-                        pmids.push(pmid)
-                     }
-                }
-
-            }
-        }
-        return pmids
-    }
-    const extract_pubmeds_from_description =  (description:string) : Array<string> => {
-        let pmids: Array<string> = []
-        //    pattern = r'PubMed:\d{8}'
-        const regex = /PubMed:\d{7,}/g;
-        const found = description.match(regex);
-        if (found!=null){
-            for (var i=0;i<found.length;i++){
-                const toks = found[i].split(":")
-                if (toks.length>0){
-                    const pmid = toks[1]
-                    if (!pmids.includes(pmid)){
-                        pmids.push(pmid)
-                    }
-                }
-
-            }
-        }
-        return pmids
-    }
-
 
      const {
         AppendedContentState: { textToAppend },
@@ -158,9 +83,7 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
     const handle_change = async (targetValue:string) => {
         description_string.current = targetValue
         set_description_value(targetValue)
-        // console.log("description_string.current=" + description_string.current)
-        // console.log("description_value=" + description_value)
-    }
+     }
 
 
     return ( <div className="form-group">
@@ -181,6 +104,6 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
 
         </div>
     )
-        };
+};
 
 export default DescriptionEditor;

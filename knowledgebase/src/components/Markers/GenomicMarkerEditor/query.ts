@@ -22,3 +22,4 @@ export const VARIANT_MARKERS_FOR_ID = gql`
     }
 
 `;
+

@@ -1,12 +1,14 @@
 import React, {createContext, useReducer, useContext, ReducerState} from 'react';
+import {VariantProteinEffect} from "../generated/graphql";
 
 export type AppendedContentState = {
     textToAppend: string | null;
     synonymToAppend: string | null;
+    proteinEffectToAppend: VariantProteinEffect;
     userName: string;
     userID: string;
 };
-export enum AppendedContentActionTypes  {appendToDescription='appendToDescription', appendToSynonyms='appendToSynonyms'}
+export enum AppendedContentActionTypes  {appendToDescription='appendToDescription', appendToSynonyms='appendToSynonyms',appendToProteinEffect='appendToProteinEffect'}
 
 export type AppendedContentActions =
     | {
@@ -18,13 +20,16 @@ export type AppendedContentActions =
     nextSynonym: string;
 
 }
+    | {
+    type: AppendedContentActionTypes.appendToProteinEffect;
+    nextProteinEffect: VariantProteinEffect;
 
-
-const initialState: AppendedContentState = {
-    textToAppend: '',synonymToAppend:'',userName:'manuel.glynias@omniseq.com',userID:'user_20200419151555871926'
 }
 
-// By setting the typings here, we ensure we get intellisense in VS Code
+const initialState: AppendedContentState = {
+    textToAppend: '',synonymToAppend:'', proteinEffectToAppend: VariantProteinEffect.Unknown, userName:'manuel.glynias@omniseq.com',userID:'user_20200419151555871926'
+}
+
 const initialAppendedContentContext: { AppendedContentState: AppendedContentState; setAppendedContentState: React.Dispatch<AppendedContentActions> } = {
     AppendedContentState: initialState,
     // will update to the reducer we provide in AppendedContentProvider
@@ -44,6 +49,10 @@ const reducer = (state: AppendedContentState, action: AppendedContentActions) =>
         case 'appendToSynonyms':
             return {
                 synonymToAppend: action.nextSynonym
+            };
+        case 'appendToProteinEffect':
+            return {
+                proteinEffectToAppend: action.nextProteinEffect
             };
 
         default:

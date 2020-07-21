@@ -9,6 +9,9 @@ export const QUERY_EditableStatement = gql`
             editor{
                 name
             }
+            references{
+                shortReference
+            }
         }
     }
 `;

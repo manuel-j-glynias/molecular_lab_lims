@@ -1,17 +1,21 @@
 import * as React from 'react';
-import {JaxVariantQuery} from "../../../generated/graphql";
+import {JaxVariantQuery, VariantProteinEffect} from "../../../generated/graphql";
 import './styles.css'
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
+import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
 
 interface Props {
     data: JaxVariantQuery;
+    editing_description: boolean;
+    editing_protein_effect: boolean;
+
 }
 type DescriptionWithPmids = {
     text: string;
     pmid: string;
 }
 const className = 'JaxVariant';
-const JaxVariant: React.FC<Props> = ({data}) => {
+const JaxVariant: React.FC<Props> = ({data,editing_description,editing_protein_effect}) => {
 
     const add_hyperlinks = (description: string): DescriptionWithPmids[] => {
         let d: DescriptionWithPmids[] = []
@@ -45,6 +49,38 @@ const JaxVariant: React.FC<Props> = ({data}) => {
 
         return d;
     }
+    const {
+        AppendedContentState: {},
+        setAppendedContentState
+    } = useAppendedContentState();
+
+    const copy_description = async (appended: string) => {
+        // console.log('copy_description')
+        const appended2 = '\n' + appended
+        setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: appended2})
+        // handle_append_to_description('appended stuff')
+    };
+
+    const getDescriptionString = (q:JaxVariantQuery):string =>{
+        let s = ''
+        if (q && q.JaxVariant && q.JaxVariant[0] && q.JaxVariant[0].description && q.JaxVariant[0].description.statement)
+        {
+            s = q.JaxVariant[0].description.statement
+        }
+        return s
+    }
+    const getProteinEffect = (q:JaxVariantQuery): VariantProteinEffect => {
+        let pe :VariantProteinEffect = VariantProteinEffect.Unknown
+        if (q && q.JaxVariant && q.JaxVariant[0] && q.JaxVariant[0].proteinEffect && q.JaxVariant[0].proteinEffect.proteinEffect)
+        {
+            pe = q.JaxVariant[0].proteinEffect.proteinEffect
+        }
+
+        return pe
+    }
+    const copy_ProteinEffect = async (pe :VariantProteinEffect) => {
+        setAppendedContentState({type: AppendedContentActionTypes.appendToProteinEffect, nextProteinEffect: pe})
+    };
 
     if (!data.JaxVariant) {
         return <div>No MyGeneInfo Gene</div>;
@@ -52,6 +88,8 @@ const JaxVariant: React.FC<Props> = ({data}) => {
     if (!data.JaxVariant[0]) {
         return <div>No OmniGene</div>;
     }
+
+
 
 
     return (
@@ -62,35 +100,43 @@ const JaxVariant: React.FC<Props> = ({data}) => {
                 <div>Gene</div>
                 <div>{data.JaxVariant[0].gene.name} </div>
 
-                <div>cDot</div>
-                <div>{data.JaxVariant[0].cDot}</div>
-
-                <div>pDot</div>
-                <div>{data.JaxVariant[0].pDot}</div>
-
-                <div>gDot</div>
-                <div>{data.JaxVariant[0].gDot}</div>
-
-                <div>Protein Effect</div>
-                <div>{data.JaxVariant[0].proteinEffect.proteinEffect}</div>
-
-                <div>Transcript</div>
-                <div>{data.JaxVariant[0].transcript.statement}</div>
-
                 <div>Variant Type</div>
                 <div>{data.JaxVariant[0].variantType}</div>
 
+                <div>Protein Effect</div>
+                <div>{data.JaxVariant[0].proteinEffect.proteinEffect}
+                    {editing_protein_effect ?
+                        (
+                            <div className="form-group">
+                                <button className="btn btn-primary my-1"
+                                        onClick={() => copy_ProteinEffect(getProteinEffect(data))}>Copy Prot Effect
+                                </button>
+                            </div>
+
+                        ) :
+                        (<span></span>)}</div>
+
                 <div>Description</div>
                 <div>
-                {add_hyperlinks(data.JaxVariant[0].description.statement).map((item, index) => (
-                    <span key={index} >{item.text}
-                        { item.pmid !=='' ?
-                            <a href={'https://pubmed.ncbi.nlm.nih.gov/' + item.pmid} target="_blank"
-                               rel="noopener noreferrer">PMID: {item.pmid}</a>
-                            : <span></span> }
+                    {add_hyperlinks(data.JaxVariant[0].description.statement).map((item, index) => (
+                        <span key={index} >{item.text}
+                            { item.pmid !=='' ?
+                                <a href={'https://pubmed.ncbi.nlm.nih.gov/' + item.pmid} target="_blank"
+                                   rel="noopener noreferrer">PMID: {item.pmid}</a>
+                                : <span></span> }
                             </span>
-                ))
-                }</div>
+                    ))
+                    }
+                    {editing_description ?
+                        (
+                            <div className="form-group">
+                                <button className="btn btn-primary my-1"
+                                        onClick={() => copy_description(getDescriptionString(data))}>Copy Description
+                                </button>
+                            </div>
+
+                        ) :
+                        (<span></span>)}</div>
                 <div>References</div>
                 <div>{data.JaxVariant[0].description.references.length>0 ?
                     data.JaxVariant[0].description.references.map((item, index) => (
@@ -98,6 +144,21 @@ const JaxVariant: React.FC<Props> = ({data}) => {
                         <div key={index}> {item ? <LiteratureReferenceContainer id={item.id}/>: '' }</div>
 
                     )) : <span>None</span>}</div>
+
+                <div>pDot</div>
+                <div>{data.JaxVariant[0].pDot}</div>
+
+                <div>cDot</div>
+                <div>{data.JaxVariant[0].cDot}</div>
+
+                <div>gDot</div>
+                <div>{data.JaxVariant[0].gDot}</div>
+
+
+                <div>Transcript</div>
+                <div>{data.JaxVariant[0].transcript.statement}</div>
+
+
             </div>
         </div>
     )
