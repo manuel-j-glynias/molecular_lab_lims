@@ -7,11 +7,13 @@ import ProteinExpressionMarkers from '../ProteinExpressionMarkers/ProteinExpress
 import DNAMarkers from "../DNAMarkers/DNAMarkers";
 import GenomicVariantMarkers from "../GenomicVariantMarkers/GenomicVariantMarkers";
 import GenomicVariantMarkersListContainer from "../GenomicVariantMarkersList/index";
-import CompositeMarkers from "../CompositeMarkers/CompositeMarkers";
+import MarkerProfiles from "../MarkerProfiles/MarkerProfiles";
 import TMBMarkers from "../TMBMarkers/TMBMarkers";
 import MSIMarkers from "../MSIMarkers/MSIMarkers";
 import MSIMarkersListContainer from "../MSIMarkersList";
 import TMBMarkersListContainer from "../TMBMarkersList";
+import ProteinExpressionMarkersListContainer from "../ProteinExpressionMarkersList/index"
+import MarkerProfilesListContainer from "../MarkerProfilesList";
 
 const className = 'MarkerList';
 
@@ -81,12 +83,12 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                                 value={state.selectedOption}
                         />
                         { (markerType==="DNAMarker") && <DNAMarkers/>}
-                        { (markerType==="ProteinExpressionMarker") && <ProteinExpressionMarkers/>}
+                        { (markerType==="ProteinExpressionMarker") && <ProteinExpressionMarkers set_query_string={set_query_string}/>}
                         { (markerType==="RNASeqSignatureMarker") && <RNASeqSignatureMarkers />}
                         { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkers gene_id={gene_id} handleGeneIdChange={set_gene_Id} set_query_string={set_query_string}/>}
                         { (markerType==="MSIMarker") && <MSIMarkers/>}
                         { (markerType==="TMBMarker") && <TMBMarkers/>}
-                        { (markerType==="MarkerProfile") && <CompositeMarkers/>}
+                        { (markerType==="MarkerProfile") && <MarkerProfiles set_query_string={set_query_string}/>}
                     </div>
                 </div>
             </div>
@@ -94,6 +96,10 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                                                                                            set_variant_type_name={set_variant_type_name} set_variant_id={set_variant_id} query_string={query_string}/>}
             { (markerType=="MSIMarker") && <MSIMarkersListContainer marker_id={marker_id} handleMarkerIdChange={handleMarkerIdChange}/>}
             { (markerType=="TMBMarker") && <TMBMarkersListContainer marker_id={marker_id} handleMarkerIdChange={handleMarkerIdChange}/>}
+            { (markerType=="ProteinExpressionMarker") && <ProteinExpressionMarkersListContainer marker_id={marker_id} handleMarkerIdChange={handleMarkerIdChange} query_string={query_string}/>}
+            { (markerType=="MarkerProfile") && <MarkerProfilesListContainer marker_id={marker_id} handleMarkerIdChange={handleMarkerIdChange}  query_string={query_string}/>}
+
+
         </div>
         </Fragment>
     )

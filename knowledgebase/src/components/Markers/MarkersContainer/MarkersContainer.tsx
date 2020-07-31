@@ -22,6 +22,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
 
     const [editing_description, set_editing_description] = React.useState(false);
     const [editing_protein_effect, set_editing_protein_effect] = React.useState(false);
+    const [editing_components, set_editing_components] = React.useState(false);
 
 
     if (!logged_in) {
@@ -40,17 +41,17 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                                   variant_id={variant_id} editing_description={editing_description}
                                                   set_editing_description={set_editing_description}
                                                   editing_protein_effect={editing_protein_effect}
-                                                  set_editing_protein_effect={set_editing_protein_effect}/>
+                                                  set_editing_protein_effect={set_editing_protein_effect}
+                                  editing_components={editing_components}
+                                  set_editing_components={set_editing_components}
+                    />
 
-                    {/*<GenomicMarkerEditorContainer marker_id={marker_id} variant_type_name={variant_type_name}*/}
-                    {/*                              variant_id={variant_id} editing_description={editing_description}*/}
-                    {/*                              set_editing_description={set_editing_description}*/}
-                    {/*                              editing_protein_effect={editing_protein_effect}*/}
-                    {/*                              set_editing_protein_effect={set_editing_protein_effect}/>*/}
 
                     <MarkerContentContainer markerType={markerType} variant_id={variant_id}
                                                             editing_protein_effect={editing_protein_effect}
-                                                            editing_description={editing_description}/>
+                                                            editing_description={editing_description}
+                                            editing_components={editing_components}
+                                            set_editing_components={set_editing_components}/>
                 </React.Fragment>
             </AppendedContentProvider>
         </div>

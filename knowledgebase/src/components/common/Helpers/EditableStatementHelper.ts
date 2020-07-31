@@ -1,7 +1,7 @@
 import {
     AssayComparator,
     CnvType,
-    ExtendedBoolean, MsiMarkerAddNameMutationVariables,
+    ExtendedBoolean, MsiMarkerAddNameMutationVariables, ProteinExpressionMarkerAddSynonymsMutationVariables,
     Scalars, TmbMarkerAddComparatorMutationVariables, TmbMarkerAddResultMinMutationVariables,
     VariantFusionAddCopyChangeMutationVariables,
     VariantFusionAddExon3PrimeMutationVariables,
@@ -19,7 +19,7 @@ const get_number_as_two_digit_string = (n: Number): string => {
     }
     return s
 }
-const get_date_as_hyphenated_string = (): string => {
+export const get_date_as_hyphenated_string = (): string => {
     const now: Date = new Date();
     // getMonth is zero based so add 1!
     let dateTimeString: string = now.getFullYear().toString() + '-' + get_number_as_two_digit_string(1+now.getMonth()) + '-' + get_number_as_two_digit_string(now.getDate()) + '-' + get_number_as_two_digit_string(now.getHours()) + '-' + get_number_as_two_digit_string(now.getMinutes()) + '-' + get_number_as_two_digit_string(now.getSeconds())
@@ -29,7 +29,7 @@ function getRandomInt() {
     return Math.floor(Math.random() * Math.floor(1000000));
 }
 
-const get_unique_graph_id = (tag:string): string => {
+export const get_unique_graph_id = (tag:string): string => {
     const now: Date = new Date();
     let end:string = getRandomInt().toString().padStart(6, "0")
     // getMonth is zero based so add 1!
@@ -147,6 +147,28 @@ export const get_editable_comparator_mutation_object = (markerID:string, oldESID
         es_id: get_unique_graph_id('es_' ),
         user_id: userID,
         ref_aray:refs_array
+    }
+    return variables;
+}
+
+//export type ProteinExpressionMarkerAddSynonymsMutationVariables = {
+//   gene_id: Scalars['ID'];
+//   old_esyn_id: Scalars['ID'];
+//   date: Scalars['String'];
+//   esyn_field: Scalars['String'];
+//   esyn_list: Array<Maybe<Scalars['String']>>;
+//   esyn_id: Scalars['ID'];
+//   user_id: Scalars['ID'];
+// };
+export const get_editable_synonym_mutation_object = (markerID:string, oldESID:string, esField:string, synonyms:string[], userID:string): ProteinExpressionMarkerAddSynonymsMutationVariables=> {
+    const  variables :ProteinExpressionMarkerAddSynonymsMutationVariables = {
+        marker_id: markerID,
+        old_esyn_id:oldESID,
+        date: get_date_as_hyphenated_string(),
+        esyn_field: esField,
+        esyn_list:synonyms,
+        esyn_id: get_unique_graph_id('es_' ),
+        user_id: userID,
     }
     return variables;
 }

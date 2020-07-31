@@ -1,0 +1,22 @@
+
+.ProteinExpressionMarkersList__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ProteinExpressionMarkersList__item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-top: 1px solid #919191;
+    cursor: pointer;
+}
+
+.ProteinExpressionMarkersList__selected_item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #919191;
+    cursor: pointer;
+    color: blue;
+}

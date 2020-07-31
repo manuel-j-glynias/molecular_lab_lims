@@ -882,6 +882,14 @@ input _DODiseaseFilter {
     name_not: _EditableStatementFilter
     # name_not_in
     name_not_in: _EditableStatementFilter
+    # narrowSynonyms
+    narrowSynonyms: _EditableStringListFilter
+    # narrowSynonyms_in
+    narrowSynonyms_in: _EditableStringListFilter
+    # narrowSynonyms_not
+    narrowSynonyms_not: _EditableStringListFilter
+    # narrowSynonyms_not_in
+    narrowSynonyms_not_in: _EditableStringListFilter
     # parents
     parents: _DODiseaseFilter
     # parents_every
@@ -2640,6 +2648,154 @@ enum _EditableJAXDiseaseListOrdering {
     id_desc
 }
 
+# Filter Input Type for EditableMarkerComponentList
+input _EditableMarkerComponentListFilter {
+    # AND
+    AND: [_EditableMarkerComponentListFilter!]
+    # OR
+    OR: [_EditableMarkerComponentListFilter!]
+    # components
+    components: _MarkerComponentFilter
+    # components_every
+    components_every: _MarkerComponentFilter
+    # components_in
+    components_in: _MarkerComponentFilter
+    # components_none
+    components_none: _MarkerComponentFilter
+    # components_not
+    components_not: _MarkerComponentFilter
+    # components_not_in
+    components_not_in: _MarkerComponentFilter
+    # components_single
+    components_single: _MarkerComponentFilter
+    # components_some
+    components_some: _MarkerComponentFilter
+    # editDate
+    editDate: String
+    # editDate_contains
+    editDate_contains: String
+    # editDate_ends_with
+    editDate_ends_with: String
+    # editDate_gt
+    editDate_gt: String
+    # editDate_gte
+    editDate_gte: String
+    # editDate_in
+    editDate_in: [String!]
+    # editDate_lt
+    editDate_lt: String
+    # editDate_lte
+    editDate_lte: String
+    # editDate_not
+    editDate_not: String
+    # editDate_not_contains
+    editDate_not_contains: String
+    # editDate_not_ends_with
+    editDate_not_ends_with: String
+    # editDate_not_in
+    editDate_not_in: [String!]
+    # editDate_not_starts_with
+    editDate_not_starts_with: String
+    # editDate_starts_with
+    editDate_starts_with: String
+    # editor
+    editor: _UserFilter
+    # editor_in
+    editor_in: _UserFilter
+    # editor_not
+    editor_not: _UserFilter
+    # editor_not_in
+    editor_not_in: _UserFilter
+    # field
+    field: String
+    # field_contains
+    field_contains: String
+    # field_ends_with
+    field_ends_with: String
+    # field_gt
+    field_gt: String
+    # field_gte
+    field_gte: String
+    # field_in
+    field_in: [String!]
+    # field_lt
+    field_lt: String
+    # field_lte
+    field_lte: String
+    # field_not
+    field_not: String
+    # field_not_contains
+    field_not_contains: String
+    # field_not_ends_with
+    field_not_ends_with: String
+    # field_not_in
+    field_not_in: [String!]
+    # field_not_starts_with
+    field_not_starts_with: String
+    # field_starts_with
+    field_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+}
+
+# Ordering Enum for EditableMarkerComponentList
+enum _EditableMarkerComponentListOrdering {
+    # Ascending sort for editDate
+    editDate_asc
+    # Descending sort for editDate
+    editDate_desc
+    # Ascending sort for field
+    field_asc
+    # Descending sort for field
+    field_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+}
+
 # Filter Input Type for EditableObject
 input _EditableObjectFilter {
     # AND
@@ -2758,6 +2914,298 @@ input _EditableObjectFilter {
 
 # Ordering Enum for EditableObject
 enum _EditableObjectOrdering {
+    # Ascending sort for editDate
+    editDate_asc
+    # Descending sort for editDate
+    editDate_desc
+    # Ascending sort for field
+    field_asc
+    # Descending sort for field
+    field_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+}
+
+# Filter Input Type for EditableOmniConjunction
+input _EditableOmniConjunctionFilter {
+    # AND
+    AND: [_EditableOmniConjunctionFilter!]
+    # OR
+    OR: [_EditableOmniConjunctionFilter!]
+    # conjunction
+    conjunction: OmniConjunction
+    # conjunction_in
+    conjunction_in: [OmniConjunction!]
+    # conjunction_not
+    conjunction_not: OmniConjunction
+    # conjunction_not_in
+    conjunction_not_in: [OmniConjunction!]
+    # editDate
+    editDate: String
+    # editDate_contains
+    editDate_contains: String
+    # editDate_ends_with
+    editDate_ends_with: String
+    # editDate_gt
+    editDate_gt: String
+    # editDate_gte
+    editDate_gte: String
+    # editDate_in
+    editDate_in: [String!]
+    # editDate_lt
+    editDate_lt: String
+    # editDate_lte
+    editDate_lte: String
+    # editDate_not
+    editDate_not: String
+    # editDate_not_contains
+    editDate_not_contains: String
+    # editDate_not_ends_with
+    editDate_not_ends_with: String
+    # editDate_not_in
+    editDate_not_in: [String!]
+    # editDate_not_starts_with
+    editDate_not_starts_with: String
+    # editDate_starts_with
+    editDate_starts_with: String
+    # editor
+    editor: _UserFilter
+    # editor_in
+    editor_in: _UserFilter
+    # editor_not
+    editor_not: _UserFilter
+    # editor_not_in
+    editor_not_in: _UserFilter
+    # field
+    field: String
+    # field_contains
+    field_contains: String
+    # field_ends_with
+    field_ends_with: String
+    # field_gt
+    field_gt: String
+    # field_gte
+    field_gte: String
+    # field_in
+    field_in: [String!]
+    # field_lt
+    field_lt: String
+    # field_lte
+    field_lte: String
+    # field_not
+    field_not: String
+    # field_not_contains
+    field_not_contains: String
+    # field_not_ends_with
+    field_not_ends_with: String
+    # field_not_in
+    field_not_in: [String!]
+    # field_not_starts_with
+    field_not_starts_with: String
+    # field_starts_with
+    field_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+}
+
+# Ordering Enum for EditableOmniConjunction
+enum _EditableOmniConjunctionOrdering {
+    # Ascending sort for conjunction
+    conjunction_asc
+    # Descending sort for conjunction
+    conjunction_desc
+    # Ascending sort for editDate
+    editDate_asc
+    # Descending sort for editDate
+    editDate_desc
+    # Ascending sort for field
+    field_asc
+    # Descending sort for field
+    field_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+}
+
+# Filter Input Type for EditableOmniGeneList
+input _EditableOmniGeneListFilter {
+    # AND
+    AND: [_EditableOmniGeneListFilter!]
+    # OR
+    OR: [_EditableOmniGeneListFilter!]
+    # editDate
+    editDate: String
+    # editDate_contains
+    editDate_contains: String
+    # editDate_ends_with
+    editDate_ends_with: String
+    # editDate_gt
+    editDate_gt: String
+    # editDate_gte
+    editDate_gte: String
+    # editDate_in
+    editDate_in: [String!]
+    # editDate_lt
+    editDate_lt: String
+    # editDate_lte
+    editDate_lte: String
+    # editDate_not
+    editDate_not: String
+    # editDate_not_contains
+    editDate_not_contains: String
+    # editDate_not_ends_with
+    editDate_not_ends_with: String
+    # editDate_not_in
+    editDate_not_in: [String!]
+    # editDate_not_starts_with
+    editDate_not_starts_with: String
+    # editDate_starts_with
+    editDate_starts_with: String
+    # editor
+    editor: _UserFilter
+    # editor_in
+    editor_in: _UserFilter
+    # editor_not
+    editor_not: _UserFilter
+    # editor_not_in
+    editor_not_in: _UserFilter
+    # field
+    field: String
+    # field_contains
+    field_contains: String
+    # field_ends_with
+    field_ends_with: String
+    # field_gt
+    field_gt: String
+    # field_gte
+    field_gte: String
+    # field_in
+    field_in: [String!]
+    # field_lt
+    field_lt: String
+    # field_lte
+    field_lte: String
+    # field_not
+    field_not: String
+    # field_not_contains
+    field_not_contains: String
+    # field_not_ends_with
+    field_not_ends_with: String
+    # field_not_in
+    field_not_in: [String!]
+    # field_not_starts_with
+    field_not_starts_with: String
+    # field_starts_with
+    field_starts_with: String
+    # genes
+    genes: _OmniGeneFilter
+    # genes_every
+    genes_every: _OmniGeneFilter
+    # genes_in
+    genes_in: _OmniGeneFilter
+    # genes_none
+    genes_none: _OmniGeneFilter
+    # genes_not
+    genes_not: _OmniGeneFilter
+    # genes_not_in
+    genes_not_in: _OmniGeneFilter
+    # genes_single
+    genes_single: _OmniGeneFilter
+    # genes_some
+    genes_some: _OmniGeneFilter
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+}
+
+# Ordering Enum for EditableOmniGeneList
+enum _EditableOmniGeneListOrdering {
     # Ascending sort for editDate
     editDate_asc
     # Descending sort for editDate
@@ -2898,6 +3346,154 @@ input _EditableOmniGeneReferenceFilter {
 
 # Ordering Enum for EditableOmniGeneReference
 enum _EditableOmniGeneReferenceOrdering {
+    # Ascending sort for editDate
+    editDate_asc
+    # Descending sort for editDate
+    editDate_desc
+    # Ascending sort for field
+    field_asc
+    # Descending sort for field
+    field_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+}
+
+# Filter Input Type for EditableOmniMapList
+input _EditableOmniMapListFilter {
+    # AND
+    AND: [_EditableOmniMapListFilter!]
+    # OR
+    OR: [_EditableOmniMapListFilter!]
+    # editDate
+    editDate: String
+    # editDate_contains
+    editDate_contains: String
+    # editDate_ends_with
+    editDate_ends_with: String
+    # editDate_gt
+    editDate_gt: String
+    # editDate_gte
+    editDate_gte: String
+    # editDate_in
+    editDate_in: [String!]
+    # editDate_lt
+    editDate_lt: String
+    # editDate_lte
+    editDate_lte: String
+    # editDate_not
+    editDate_not: String
+    # editDate_not_contains
+    editDate_not_contains: String
+    # editDate_not_ends_with
+    editDate_not_ends_with: String
+    # editDate_not_in
+    editDate_not_in: [String!]
+    # editDate_not_starts_with
+    editDate_not_starts_with: String
+    # editDate_starts_with
+    editDate_starts_with: String
+    # editor
+    editor: _UserFilter
+    # editor_in
+    editor_in: _UserFilter
+    # editor_not
+    editor_not: _UserFilter
+    # editor_not_in
+    editor_not_in: _UserFilter
+    # field
+    field: String
+    # field_contains
+    field_contains: String
+    # field_ends_with
+    field_ends_with: String
+    # field_gt
+    field_gt: String
+    # field_gte
+    field_gte: String
+    # field_in
+    field_in: [String!]
+    # field_lt
+    field_lt: String
+    # field_lte
+    field_lte: String
+    # field_not
+    field_not: String
+    # field_not_contains
+    field_not_contains: String
+    # field_not_ends_with
+    field_not_ends_with: String
+    # field_not_in
+    field_not_in: [String!]
+    # field_not_starts_with
+    field_not_starts_with: String
+    # field_starts_with
+    field_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # list
+    list: _OmniMapFilter
+    # list_every
+    list_every: _OmniMapFilter
+    # list_in
+    list_in: _OmniMapFilter
+    # list_none
+    list_none: _OmniMapFilter
+    # list_not
+    list_not: _OmniMapFilter
+    # list_not_in
+    list_not_in: _OmniMapFilter
+    # list_single
+    list_single: _OmniMapFilter
+    # list_some
+    list_some: _OmniMapFilter
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+}
+
+# Ordering Enum for EditableOmniMapList
+enum _EditableOmniMapListOrdering {
     # Ascending sort for editDate
     editDate_asc
     # Descending sort for editDate
@@ -3202,6 +3798,150 @@ enum _EditableProteinEffectOrdering {
     proteinEffect_asc
     # Descending sort for proteinEffect
     proteinEffect_desc
+}
+
+# Filter Input Type for EditableRNASeqResultType
+input _EditableRNASeqResultTypeFilter {
+    # AND
+    AND: [_EditableRNASeqResultTypeFilter!]
+    # OR
+    OR: [_EditableRNASeqResultTypeFilter!]
+    # editDate
+    editDate: String
+    # editDate_contains
+    editDate_contains: String
+    # editDate_ends_with
+    editDate_ends_with: String
+    # editDate_gt
+    editDate_gt: String
+    # editDate_gte
+    editDate_gte: String
+    # editDate_in
+    editDate_in: [String!]
+    # editDate_lt
+    editDate_lt: String
+    # editDate_lte
+    editDate_lte: String
+    # editDate_not
+    editDate_not: String
+    # editDate_not_contains
+    editDate_not_contains: String
+    # editDate_not_ends_with
+    editDate_not_ends_with: String
+    # editDate_not_in
+    editDate_not_in: [String!]
+    # editDate_not_starts_with
+    editDate_not_starts_with: String
+    # editDate_starts_with
+    editDate_starts_with: String
+    # editor
+    editor: _UserFilter
+    # editor_in
+    editor_in: _UserFilter
+    # editor_not
+    editor_not: _UserFilter
+    # editor_not_in
+    editor_not_in: _UserFilter
+    # field
+    field: String
+    # field_contains
+    field_contains: String
+    # field_ends_with
+    field_ends_with: String
+    # field_gt
+    field_gt: String
+    # field_gte
+    field_gte: String
+    # field_in
+    field_in: [String!]
+    # field_lt
+    field_lt: String
+    # field_lte
+    field_lte: String
+    # field_not
+    field_not: String
+    # field_not_contains
+    field_not_contains: String
+    # field_not_ends_with
+    field_not_ends_with: String
+    # field_not_in
+    field_not_in: [String!]
+    # field_not_starts_with
+    field_not_starts_with: String
+    # field_starts_with
+    field_starts_with: String
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # references
+    references: _ReferenceFilter
+    # references_every
+    references_every: _ReferenceFilter
+    # references_in
+    references_in: _ReferenceFilter
+    # references_none
+    references_none: _ReferenceFilter
+    # references_not
+    references_not: _ReferenceFilter
+    # references_not_in
+    references_not_in: _ReferenceFilter
+    # references_single
+    references_single: _ReferenceFilter
+    # references_some
+    references_some: _ReferenceFilter
+    # resultType
+    resultType: RNASeqResultType
+    # resultType_in
+    resultType_in: [RNASeqResultType!]
+    # resultType_not
+    resultType_not: RNASeqResultType
+    # resultType_not_in
+    resultType_not_in: [RNASeqResultType!]
+}
+
+# Ordering Enum for EditableRNASeqResultType
+enum _EditableRNASeqResultTypeOrdering {
+    # Ascending sort for editDate
+    editDate_asc
+    # Descending sort for editDate
+    editDate_desc
+    # Ascending sort for field
+    field_asc
+    # Descending sort for field
+    field_desc
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+    # Ascending sort for resultType
+    resultType_asc
+    # Descending sort for resultType
+    resultType_desc
 }
 
 # Filter Input Type for EditableStatement
@@ -6615,29 +7355,21 @@ input _MarkerProfileFilter {
     # OR
     OR: [_MarkerProfileFilter!]
     # components
-    components: _MarkerComponentFilter
-    # components_every
-    components_every: _MarkerComponentFilter
+    components: _EditableMarkerComponentListFilter
     # components_in
-    components_in: _MarkerComponentFilter
-    # components_none
-    components_none: _MarkerComponentFilter
+    components_in: _EditableMarkerComponentListFilter
     # components_not
-    components_not: _MarkerComponentFilter
+    components_not: _EditableMarkerComponentListFilter
     # components_not_in
-    components_not_in: _MarkerComponentFilter
-    # components_single
-    components_single: _MarkerComponentFilter
-    # components_some
-    components_some: _MarkerComponentFilter
+    components_not_in: _EditableMarkerComponentListFilter
     # conjunction
-    conjunction: OmniConjunction
+    conjunction: _EditableOmniConjunctionFilter
     # conjunction_in
-    conjunction_in: [OmniConjunction!]
+    conjunction_in: _EditableOmniConjunctionFilter
     # conjunction_not
-    conjunction_not: OmniConjunction
+    conjunction_not: _EditableOmniConjunctionFilter
     # conjunction_not_in
-    conjunction_not_in: [OmniConjunction!]
+    conjunction_not_in: _EditableOmniConjunctionFilter
     # evidenceAssociations
     evidenceAssociations: _EvidenceAssociationFilter
     # evidenceAssociations_every
@@ -6710,10 +7442,6 @@ input _MarkerProfileFilter {
 
 # Ordering Enum for MarkerProfile
 enum _MarkerProfileOrdering {
-    # Ascending sort for conjunction
-    conjunction_asc
-    # Descending sort for conjunction
-    conjunction_desc
     # Ascending sort for id
     id_asc
     # Descending sort for id
@@ -6726,6 +7454,14 @@ input _MCodeFilter {
     AND: [_MCodeFilter!]
     # OR
     OR: [_MCodeFilter!]
+    # active
+    active: _EditableBooleanFilter
+    # active_in
+    active_in: _EditableBooleanFilter
+    # active_not
+    active_not: _EditableBooleanFilter
+    # active_not_in
+    active_not_in: _EditableBooleanFilter
     # children
     children: _MCodeFilter
     # children_every
@@ -6807,33 +7543,13 @@ input _MCodeFilter {
     # mcodeId_starts_with
     mcodeId_starts_with: String
     # omniDisease
-    omniDisease: String
-    # omniDisease_contains
-    omniDisease_contains: String
-    # omniDisease_ends_with
-    omniDisease_ends_with: String
-    # omniDisease_gt
-    omniDisease_gt: String
-    # omniDisease_gte
-    omniDisease_gte: String
+    omniDisease: _OmniDiseaseFilter
     # omniDisease_in
-    omniDisease_in: [String!]
-    # omniDisease_lt
-    omniDisease_lt: String
-    # omniDisease_lte
-    omniDisease_lte: String
+    omniDisease_in: _OmniDiseaseFilter
     # omniDisease_not
-    omniDisease_not: String
-    # omniDisease_not_contains
-    omniDisease_not_contains: String
-    # omniDisease_not_ends_with
-    omniDisease_not_ends_with: String
+    omniDisease_not: _OmniDiseaseFilter
     # omniDisease_not_in
-    omniDisease_not_in: [String!]
-    # omniDisease_not_starts_with
-    omniDisease_not_starts_with: String
-    # omniDisease_starts_with
-    omniDisease_starts_with: String
+    omniDisease_not_in: _OmniDiseaseFilter
     # parents
     parents: _MCodeFilter
     # parents_every
@@ -6862,10 +7578,6 @@ enum _MCodeOrdering {
     mcodeId_asc
     # Descending sort for mcodeId
     mcodeId_desc
-    # Ascending sort for omniDisease
-    omniDisease_asc
-    # Descending sort for omniDisease
-    omniDisease_desc
 }
 
 # Filter Input Type for MeetingAbstractReference
@@ -7928,6 +8640,74 @@ enum _OmniGeneOrdering {
     panelName_desc
 }
 
+# Filter Input Type for OmniMap
+input _OmniMapFilter {
+    # AND
+    AND: [_OmniMapFilter!]
+    # OR
+    OR: [_OmniMapFilter!]
+    # id
+    id: ID
+    # id_contains
+    id_contains: ID
+    # id_ends_with
+    id_ends_with: ID
+    # id_gt
+    id_gt: ID
+    # id_gte
+    id_gte: ID
+    # id_in
+    id_in: [ID!]
+    # id_lt
+    id_lt: ID
+    # id_lte
+    id_lte: ID
+    # id_not
+    id_not: ID
+    # id_not_contains
+    id_not_contains: ID
+    # id_not_ends_with
+    id_not_ends_with: ID
+    # id_not_in
+    id_not_in: [ID!]
+    # id_not_starts_with
+    id_not_starts_with: ID
+    # id_starts_with
+    id_starts_with: ID
+    # mCodes
+    mCodes: _MCodeFilter
+    # mCodes_every
+    mCodes_every: _MCodeFilter
+    # mCodes_in
+    mCodes_in: _MCodeFilter
+    # mCodes_none
+    mCodes_none: _MCodeFilter
+    # mCodes_not
+    mCodes_not: _MCodeFilter
+    # mCodes_not_in
+    mCodes_not_in: _MCodeFilter
+    # mCodes_single
+    mCodes_single: _MCodeFilter
+    # mCodes_some
+    mCodes_some: _MCodeFilter
+    # omniDisease
+    omniDisease: _OmniDiseaseFilter
+    # omniDisease_in
+    omniDisease_in: _OmniDiseaseFilter
+    # omniDisease_not
+    omniDisease_not: _OmniDiseaseFilter
+    # omniDisease_not_in
+    omniDisease_not_in: _OmniDiseaseFilter
+}
+
+# Ordering Enum for OmniMap
+enum _OmniMapOrdering {
+    # Ascending sort for id
+    id_asc
+    # Descending sort for id
+    id_desc
+}
+
 # Filter Input Type for OncoTreeDisease
 input _OncoTreeDiseaseFilter {
     # AND
@@ -8226,6 +9006,22 @@ input _OntologicalDiseaseFilter {
     AND: [_OntologicalDiseaseFilter!]
     # OR
     OR: [_OntologicalDiseaseFilter!]
+    # children
+    children: _OntologicalDiseaseFilter
+    # children_every
+    children_every: _OntologicalDiseaseFilter
+    # children_in
+    children_in: _OntologicalDiseaseFilter
+    # children_none
+    children_none: _OntologicalDiseaseFilter
+    # children_not
+    children_not: _OntologicalDiseaseFilter
+    # children_not_in
+    children_not_in: _OntologicalDiseaseFilter
+    # children_single
+    children_single: _OntologicalDiseaseFilter
+    # children_some
+    children_some: _OntologicalDiseaseFilter
     # description
     description: _EditableStatementFilter
     # description_in
@@ -8294,6 +9090,14 @@ input _OntologicalDiseaseFilter {
     name_not: _EditableStatementFilter
     # name_not_in
     name_not_in: _EditableStatementFilter
+    # omniMaps
+    omniMaps: _EditableOmniMapListFilter
+    # omniMaps_in
+    omniMaps_in: _EditableOmniMapListFilter
+    # omniMaps_not
+    omniMaps_not: _EditableOmniMapListFilter
+    # omniMaps_not_in
+    omniMaps_not_in: _EditableOmniMapListFilter
     # oncoTreeDiseases
     oncoTreeDiseases: _EditableOncoTreeDiseaseListFilter
     # oncoTreeDiseases_in
@@ -8302,6 +9106,22 @@ input _OntologicalDiseaseFilter {
     oncoTreeDiseases_not: _EditableOncoTreeDiseaseListFilter
     # oncoTreeDiseases_not_in
     oncoTreeDiseases_not_in: _EditableOncoTreeDiseaseListFilter
+    # parents
+    parents: _OntologicalDiseaseFilter
+    # parents_every
+    parents_every: _OntologicalDiseaseFilter
+    # parents_in
+    parents_in: _OntologicalDiseaseFilter
+    # parents_none
+    parents_none: _OntologicalDiseaseFilter
+    # parents_not
+    parents_not: _OntologicalDiseaseFilter
+    # parents_not_in
+    parents_not_in: _OntologicalDiseaseFilter
+    # parents_single
+    parents_single: _OntologicalDiseaseFilter
+    # parents_some
+    parents_some: _OntologicalDiseaseFilter
     # synonyms
     synonyms: _EditableStringListFilter
     # synonyms_in
@@ -8800,24 +9620,8 @@ enum _OutcomeOrdering {
 input _ProteinExpressionMarkerFilter {
     # AND
     AND: [_ProteinExpressionMarkerFilter!]
-    # IHCAssay
-    IHCAssay: _IHCAssayFilter
-    # IHCAssay_in
-    IHCAssay_in: _IHCAssayFilter
-    # IHCAssay_not
-    IHCAssay_not: _IHCAssayFilter
-    # IHCAssay_not_in
-    IHCAssay_not_in: _IHCAssayFilter
     # OR
     OR: [_ProteinExpressionMarkerFilter!]
-    # RNASeqAssay
-    RNASeqAssay: _RNASeqAssayFilter
-    # RNASeqAssay_in
-    RNASeqAssay_in: _RNASeqAssayFilter
-    # RNASeqAssay_not
-    RNASeqAssay_not: _RNASeqAssayFilter
-    # RNASeqAssay_not_in
-    RNASeqAssay_not_in: _RNASeqAssayFilter
     # assay
     assay: _ProteinLevelAssayFilter
     # assay_in
@@ -8826,14 +9630,14 @@ input _ProteinExpressionMarkerFilter {
     assay_not: _ProteinLevelAssayFilter
     # assay_not_in
     assay_not_in: _ProteinLevelAssayFilter
-    # gene
-    gene: _OmniGeneFilter
-    # gene_in
-    gene_in: _OmniGeneFilter
-    # gene_not
-    gene_not: _OmniGeneFilter
-    # gene_not_in
-    gene_not_in: _OmniGeneFilter
+    # genes
+    genes: _EditableOmniGeneListFilter
+    # genes_in
+    genes_in: _EditableOmniGeneListFilter
+    # genes_not
+    genes_not: _EditableOmniGeneListFilter
+    # genes_not_in
+    genes_not_in: _EditableOmniGeneListFilter
     # id
     id: ID
     # id_contains
@@ -9179,13 +9983,13 @@ input _RNASeqAssayFilter {
     # resultMin_not_in
     resultMin_not_in: _EditableFloatFilter
     # resultType
-    resultType: RNASeqResultType
+    resultType: _EditableRNASeqResultTypeFilter
     # resultType_in
-    resultType_in: [RNASeqResultType!]
+    resultType_in: _EditableRNASeqResultTypeFilter
     # resultType_not
-    resultType_not: RNASeqResultType
+    resultType_not: _EditableRNASeqResultTypeFilter
     # resultType_not_in
-    resultType_not_in: [RNASeqResultType!]
+    resultType_not_in: _EditableRNASeqResultTypeFilter
 }
 
 # Ordering Enum for RNASeqAssay
@@ -9194,10 +9998,6 @@ enum _RNASeqAssayOrdering {
     id_asc
     # Descending sort for id
     id_desc
-    # Ascending sort for resultType
-    resultType_asc
-    # Descending sort for resultType
-    resultType_desc
 }
 
 # Filter Input Type for RNASeqSignatureMarker
@@ -10146,6 +10946,10 @@ input _UserFilter {
     isAdmin: Boolean
     # isAdmin_not
     isAdmin_not: Boolean
+    # isEditor
+    isEditor: Boolean
+    # isEditor_not
+    isEditor_not: Boolean
     # name
     name: String
     # name_contains
@@ -10214,6 +11018,10 @@ enum _UserOrdering {
     isAdmin_asc
     # Descending sort for isAdmin
     isAdmin_desc
+    # Ascending sort for isEditor
+    isEditor_asc
+    # Descending sort for isEditor
+    isEditor_desc
     # Ascending sort for name
     name_asc
     # Descending sort for name
@@ -11349,6 +12157,27 @@ type DODisease {
         # statements is list variant of statement of EditableStatement
         statements: [String]
     ): EditableStatement!
+    # DODisease narrowSynonyms EditableStringList
+    narrowSynonyms(
+        # editDate of EditableStringList
+        editDate: String
+        # editDates is list variant of editDate of EditableStringList
+        editDates: [String]
+        # field of EditableStringList
+        field: String
+        # fields is list variant of field of EditableStringList
+        fields: [String]
+        filter: _EditableStringListFilter
+        # id of EditableStringList
+        id: ID
+        # ids is list variant of id of EditableStringList
+        ids: [ID]
+        orderBy: [_EditableStringListOrdering]
+        # stringList of EditableStringList
+        stringList: [String]
+        # stringLists is list variant of stringList of EditableStringList
+        stringLists: [[String]]
+    ): EditableStringList
     # DODisease parents DODisease
     parents(
         _id: Long
@@ -11526,6 +12355,10 @@ type EditableAssayComparator implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11578,6 +12411,10 @@ type EditableBoolean implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11630,6 +12467,10 @@ type EditableCopyChange implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11680,6 +12521,10 @@ type EditableDODiseaseList implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11747,6 +12592,10 @@ type EditableFloat implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11799,6 +12648,10 @@ type EditableGODiseaseList implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11866,6 +12719,10 @@ type EditableImmuneCycleRole implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11918,6 +12775,10 @@ type EditableImmuneFunction implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -11970,6 +12831,10 @@ type EditableImmunePhenotype implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12022,6 +12887,10 @@ type EditableInt implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12074,6 +12943,10 @@ type EditableJAXDiseaseList implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12132,6 +13005,73 @@ type EditableJAXDiseaseList implements EditableObject {
     ): [Reference]!
 }
 
+# EditableMarkerComponentList-Node
+type EditableMarkerComponentList implements EditableObject {
+    # internal node id
+    _id: Long
+    # EditableMarkerComponentList components MarkerComponent
+    components(
+        _id: Long
+        _ids: [Long]
+        filter: _MarkerComponentFilter
+        first: Int
+        # id of MarkerComponent
+        id: ID
+        # ids is list variant of id of MarkerComponent
+        ids: [ID]
+        offset: Int
+        orderBy: [_MarkerComponentOrdering]
+    ): [MarkerComponent]!
+    # editDate of  EditableMarkerComponentList
+    editDate: String!
+    # EditableMarkerComponentList editor User
+    editor(
+        filter: _UserFilter
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): User!
+    # field of  EditableMarkerComponentList
+    field: String!
+    # id of  EditableMarkerComponentList
+    id: ID!
+    # EditableMarkerComponentList references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+}
+
 # EditableObject-Node
 interface EditableObject {
     # internal node id
@@ -12149,6 +13089,10 @@ interface EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12164,6 +13108,137 @@ interface EditableObject {
     # id of  EditableObject
     id: ID!
     # EditableObject references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+}
+
+# EditableOmniConjunction-Node
+type EditableOmniConjunction implements EditableObject {
+    # internal node id
+    _id: Long
+    # conjunction of  EditableOmniConjunction
+    conjunction: OmniConjunction!
+    # editDate of  EditableOmniConjunction
+    editDate: String!
+    # EditableOmniConjunction editor User
+    editor(
+        filter: _UserFilter
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): User!
+    # field of  EditableOmniConjunction
+    field: String!
+    # id of  EditableOmniConjunction
+    id: ID!
+    # EditableOmniConjunction references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+}
+
+# EditableOmniGeneList-Node
+type EditableOmniGeneList implements EditableObject {
+    # internal node id
+    _id: Long
+    # editDate of  EditableOmniGeneList
+    editDate: String!
+    # EditableOmniGeneList editor User
+    editor(
+        filter: _UserFilter
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): User!
+    # field of  EditableOmniGeneList
+    field: String!
+    # EditableOmniGeneList genes OmniGene
+    genes(
+        _id: Long
+        _ids: [Long]
+        filter: _OmniGeneFilter
+        first: Int
+        # id of OmniGene
+        id: ID
+        # ids is list variant of id of OmniGene
+        ids: [ID]
+        # name of OmniGene
+        name: String
+        # names is list variant of name of OmniGene
+        names: [String]
+        offset: Int
+        orderBy: [_OmniGeneOrdering]
+        # panelName of OmniGene
+        panelName: String
+        # panelNames is list variant of panelName of OmniGene
+        panelNames: [String]
+    ): [OmniGene]!
+    # id of  EditableOmniGeneList
+    id: ID!
+    # EditableOmniGeneList references Reference
     references(
         _id: Long
         _ids: [Long]
@@ -12199,6 +13274,10 @@ type EditableOmniGeneReference implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12249,6 +13328,73 @@ type EditableOmniGeneReference implements EditableObject {
     ): [Reference]!
 }
 
+# EditableOmniMapList-Node
+type EditableOmniMapList {
+    # internal node id
+    _id: Long
+    # editDate of  EditableOmniMapList
+    editDate: String!
+    # EditableOmniMapList editor User
+    editor(
+        filter: _UserFilter
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): User!
+    # field of  EditableOmniMapList
+    field: String!
+    # id of  EditableOmniMapList
+    id: ID!
+    # EditableOmniMapList list OmniMap
+    list(
+        _id: Long
+        _ids: [Long]
+        filter: _OmniMapFilter
+        first: Int
+        # id of OmniMap
+        id: ID
+        # ids is list variant of id of OmniMap
+        ids: [ID]
+        offset: Int
+        orderBy: [_OmniMapOrdering]
+    ): [OmniMap]!
+    # EditableOmniMapList references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+}
+
 # EditableOncoTreeDiseaseList-Node
 type EditableOncoTreeDiseaseList implements EditableObject {
     # internal node id
@@ -12266,6 +13412,10 @@ type EditableOncoTreeDiseaseList implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12333,6 +13483,10 @@ type EditableProteinEffect implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12368,6 +13522,62 @@ type EditableProteinEffect implements EditableObject {
     ): [Reference]!
 }
 
+# EditableRNASeqResultType-Node
+type EditableRNASeqResultType implements EditableObject {
+    # internal node id
+    _id: Long
+    # editDate of  EditableRNASeqResultType
+    editDate: String!
+    # EditableRNASeqResultType editor User
+    editor(
+        filter: _UserFilter
+        # id of User
+        id: ID
+        # ids is list variant of id of User
+        ids: [ID]
+        # isAdmin of User
+        isAdmin: Boolean
+        # isAdmins is list variant of isAdmin of User
+        isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
+        # name of User
+        name: String
+        # names is list variant of name of User
+        names: [String]
+        orderBy: [_UserOrdering]
+        # password of User
+        password: String
+        # passwords is list variant of password of User
+        passwords: [String]
+    ): User!
+    # field of  EditableRNASeqResultType
+    field: String!
+    # id of  EditableRNASeqResultType
+    id: ID!
+    # EditableRNASeqResultType references Reference
+    references(
+        _id: Long
+        _ids: [Long]
+        filter: _ReferenceFilter
+        first: Int
+        # id of Reference
+        id: ID
+        # ids is list variant of id of Reference
+        ids: [ID]
+        offset: Int
+        orderBy: [_ReferenceOrdering]
+        # shortReference of Reference
+        shortReference: String
+        # shortReferences is list variant of shortReference of Reference
+        shortReferences: [String]
+    ): [Reference]!
+    # resultType of  EditableRNASeqResultType
+    resultType: RNASeqResultType!
+}
+
 # EditableStatement-Node
 type EditableStatement implements EditableObject {
     # internal node id
@@ -12385,6 +13595,10 @@ type EditableStatement implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12437,6 +13651,10 @@ type EditableStringList implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12489,6 +13707,10 @@ type EditableTMBInterpretation implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12541,6 +13763,10 @@ type EditableXRefList implements EditableObject {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -12823,10 +14049,6 @@ type EvidenceAssociation {
     id: ID!
     # EvidenceAssociation marker MarkerProfile
     marker(
-        # conjunction of MarkerProfile
-        conjunction: OmniConjunction
-        # conjunctions is list variant of conjunction of MarkerProfile
-        conjunctions: [OmniConjunction]
         filter: _MarkerProfileFilter
         # id of MarkerProfile
         id: ID
@@ -13575,7 +14797,7 @@ type IHCAssay implements ProteinLevelAssay {
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
     ): EditableFloat
-    # percentPositive: Int!  Need to handle non-numeric IHC results?
+    # IHCAssay resultMin EditableFloat
     resultMin(
         # editDate of EditableFloat
         editDate: String
@@ -13642,8 +14864,8 @@ type IHCAssay implements ProteinLevelAssay {
 
 # Enum for ImmuneCycleRole
 enum ImmuneCycleRole {
-    # Value for CancerTestisAntigens
-    CancerTestisAntigens
+    # Value for CancerTestisAntigen
+    CancerTestisAntigen
     # Value for KillingCancerCells
     KillingCancerCells
     # Value for TCellInfiltration
@@ -13654,6 +14876,8 @@ enum ImmuneCycleRole {
     TCellRecognition
     # Value for TCellTrafficking
     TCellTrafficking
+    # Value for Unknown
+    Unknown
 }
 
 # Enum for ImmuneFunction
@@ -13704,6 +14928,8 @@ enum ImmunePhenotype {
     TCellPrimed
     # Value for TumorInfiltratingLymphocytes
     TumorInfiltratingLymphocytes
+    # Value for Unknown
+    Unknown
 }
 
 # Enum for IndelType
@@ -14362,21 +15588,44 @@ interface MarkerComponent {
 type MarkerProfile implements MarkerComponent {
     # internal node id
     _id: Long
-    # MarkerProfile components MarkerComponent
+    # MarkerProfile components EditableMarkerComponentList
     components(
-        _id: Long
-        _ids: [Long]
-        filter: _MarkerComponentFilter
-        first: Int
-        # id of MarkerComponent
+        # editDate of EditableMarkerComponentList
+        editDate: String
+        # editDates is list variant of editDate of EditableMarkerComponentList
+        editDates: [String]
+        # field of EditableMarkerComponentList
+        field: String
+        # fields is list variant of field of EditableMarkerComponentList
+        fields: [String]
+        filter: _EditableMarkerComponentListFilter
+        # id of EditableMarkerComponentList
         id: ID
-        # ids is list variant of id of MarkerComponent
+        # ids is list variant of id of EditableMarkerComponentList
         ids: [ID]
-        offset: Int
-        orderBy: [_MarkerComponentOrdering]
-    ): [MarkerComponent]!
-    # conjunction of  MarkerProfile
-    conjunction: OmniConjunction!
+        orderBy: [_EditableMarkerComponentListOrdering]
+    ): EditableMarkerComponentList!
+    # MarkerProfile conjunction EditableOmniConjunction
+    conjunction(
+        # conjunction of EditableOmniConjunction
+        conjunction: OmniConjunction
+        # conjunctions is list variant of conjunction of EditableOmniConjunction
+        conjunctions: [OmniConjunction]
+        # editDate of EditableOmniConjunction
+        editDate: String
+        # editDates is list variant of editDate of EditableOmniConjunction
+        editDates: [String]
+        # field of EditableOmniConjunction
+        field: String
+        # fields is list variant of field of EditableOmniConjunction
+        fields: [String]
+        filter: _EditableOmniConjunctionFilter
+        # id of EditableOmniConjunction
+        id: ID
+        # ids is list variant of id of EditableOmniConjunction
+        ids: [ID]
+        orderBy: [_EditableOmniConjunctionOrdering]
+    ): EditableOmniConjunction!
     # MarkerProfile evidenceAssociations EvidenceAssociation
     evidenceAssociations(
         _id: Long
@@ -14465,6 +15714,27 @@ type MarkerProfile implements MarkerComponent {
 type MCode {
     # internal node id
     _id: Long
+    # MCode active EditableBoolean
+    active(
+        # booleanValue of EditableBoolean
+        booleanValue: ExtendedBoolean
+        # booleanValues is list variant of booleanValue of EditableBoolean
+        booleanValues: [ExtendedBoolean]
+        # editDate of EditableBoolean
+        editDate: String
+        # editDates is list variant of editDate of EditableBoolean
+        editDates: [String]
+        # field of EditableBoolean
+        field: String
+        # fields is list variant of field of EditableBoolean
+        fields: [String]
+        filter: _EditableBooleanFilter
+        # id of EditableBoolean
+        id: ID
+        # ids is list variant of id of EditableBoolean
+        ids: [ID]
+        orderBy: [_EditableBooleanOrdering]
+    ): EditableBoolean!
     # MCode children MCode
     children(
         _id: Long
@@ -14480,10 +15750,6 @@ type MCode {
         # mcodeIds is list variant of mcodeId of MCode
         mcodeIds: [String]
         offset: Int
-        # omniDisease of MCode
-        omniDisease: String
-        # omniDiseases is list variant of omniDisease of MCode
-        omniDiseases: [String]
         orderBy: [_MCodeOrdering]
     ): [MCode]
     # MCode diseasePath EditableStatement
@@ -14511,8 +15777,23 @@ type MCode {
     id: ID!
     # mcodeId of  MCode
     mcodeId: String!
-    # omniDisease of  MCode
-    omniDisease: String!
+    # MCode omniDisease OmniDisease
+    omniDisease(
+        filter: _OmniDiseaseFilter
+        # id of OmniDisease
+        id: ID
+        # ids is list variant of id of OmniDisease
+        ids: [ID]
+        # omniDiseaseId of OmniDisease
+        omniDiseaseId: String
+        # omniDiseaseIds is list variant of omniDiseaseId of OmniDisease
+        omniDiseaseIds: [String]
+        # omniDiseaseType of OmniDisease
+        omniDiseaseType: OmniDiseaseType
+        # omniDiseaseTypes is list variant of omniDiseaseType of OmniDisease
+        omniDiseaseTypes: [OmniDiseaseType]
+        orderBy: [_OmniDiseaseOrdering]
+    ): OmniDisease!
     # MCode parents MCode
     parents(
         _id: Long
@@ -14528,10 +15809,6 @@ type MCode {
         # mcodeIds is list variant of mcodeId of MCode
         mcodeIds: [String]
         offset: Int
-        # omniDisease of MCode
-        omniDisease: String
-        # omniDiseases is list variant of omniDisease of MCode
-        omniDiseases: [String]
         orderBy: [_MCodeOrdering]
     ): [MCode]
 }
@@ -14697,6 +15974,8 @@ type MutationType {
     addDODiseaseExactSynonyms(exactSynonyms: [ID!]!, id: ID!): String
     # Adds Name to DODisease entity
     addDODiseaseName(id: ID!, name: [ID!]!): String
+    # Adds NarrowSynonyms to DODisease entity
+    addDODiseaseNarrowSynonyms(id: ID!, narrowSynonyms: [ID!]!): String
     # Adds Parents to DODisease entity
     addDODiseaseParents(id: ID!, parents: [ID!]!): String
     # Adds RelatedSynonyms to DODisease entity
@@ -14763,16 +16042,38 @@ type MutationType {
     addEditableJAXDiseaseListList(id: ID!, list: [ID!]!): String
     # Adds References to EditableJAXDiseaseList entity
     addEditableJAXDiseaseListReferences(id: ID!, references: [ID!]!): String
+    # Adds Components to EditableMarkerComponentList entity
+    addEditableMarkerComponentListComponents(components: [ID!]!, id: ID!): String
+    # Adds Editor to EditableMarkerComponentList entity
+    addEditableMarkerComponentListEditor(editor: [ID!]!, id: ID!): String
+    # Adds References to EditableMarkerComponentList entity
+    addEditableMarkerComponentListReferences(id: ID!, references: [ID!]!): String
     # Adds Editor to EditableObject entity
     addEditableObjectEditor(editor: [ID!]!, id: ID!): String
     # Adds References to EditableObject entity
     addEditableObjectReferences(id: ID!, references: [ID!]!): String
+    # Adds Editor to EditableOmniConjunction entity
+    addEditableOmniConjunctionEditor(editor: [ID!]!, id: ID!): String
+    # Adds References to EditableOmniConjunction entity
+    addEditableOmniConjunctionReferences(id: ID!, references: [ID!]!): String
+    # Adds Editor to EditableOmniGeneList entity
+    addEditableOmniGeneListEditor(editor: [ID!]!, id: ID!): String
+    # Adds Genes to EditableOmniGeneList entity
+    addEditableOmniGeneListGenes(genes: [ID!]!, id: ID!): String
+    # Adds References to EditableOmniGeneList entity
+    addEditableOmniGeneListReferences(id: ID!, references: [ID!]!): String
     # Adds Editor to EditableOmniGeneReference entity
     addEditableOmniGeneReferenceEditor(editor: [ID!]!, id: ID!): String
     # Adds Gene to EditableOmniGeneReference entity
     addEditableOmniGeneReferenceGene(gene: [ID!]!, id: ID!): String
     # Adds References to EditableOmniGeneReference entity
     addEditableOmniGeneReferenceReferences(id: ID!, references: [ID!]!): String
+    # Adds Editor to EditableOmniMapList entity
+    addEditableOmniMapListEditor(editor: [ID!]!, id: ID!): String
+    # Adds List to EditableOmniMapList entity
+    addEditableOmniMapListList(id: ID!, list: [ID!]!): String
+    # Adds References to EditableOmniMapList entity
+    addEditableOmniMapListReferences(id: ID!, references: [ID!]!): String
     # Adds Editor to EditableOncoTreeDiseaseList entity
     addEditableOncoTreeDiseaseListEditor(editor: [ID!]!, id: ID!): String
     # Adds List to EditableOncoTreeDiseaseList entity
@@ -14783,6 +16084,10 @@ type MutationType {
     addEditableProteinEffectEditor(editor: [ID!]!, id: ID!): String
     # Adds References to EditableProteinEffect entity
     addEditableProteinEffectReferences(id: ID!, references: [ID!]!): String
+    # Adds Editor to EditableRNASeqResultType entity
+    addEditableRNASeqResultTypeEditor(editor: [ID!]!, id: ID!): String
+    # Adds References to EditableRNASeqResultType entity
+    addEditableRNASeqResultTypeReferences(id: ID!, references: [ID!]!): String
     # Adds Editor to EditableStatement entity
     addEditableStatementEditor(editor: [ID!]!, id: ID!): String
     # Adds References to EditableStatement entity
@@ -14939,10 +16244,14 @@ type MutationType {
         id: ID!
         statementsReferenced: [ID!]!
     ): String
+    # Adds Active to MCode entity
+    addMCodeActive(active: [ID!]!, id: ID!): String
     # Adds Children to MCode entity
     addMCodeChildren(children: [ID!]!, id: ID!): String
     # Adds DiseasePath to MCode entity
     addMCodeDiseasePath(diseasePath: [ID!]!, id: ID!): String
+    # Adds OmniDisease to MCode entity
+    addMCodeOmniDisease(id: ID!, omniDisease: [ID!]!): String
     # Adds Parents to MCode entity
     addMCodeParents(id: ID!, parents: [ID!]!): String
     # Adds Method to MSIMarker entity
@@ -14959,6 +16268,8 @@ type MutationType {
     addMarkerComponentResultString(id: ID!, resultString: [ID!]!): String
     # Adds Components to MarkerProfile entity
     addMarkerProfileComponents(components: [ID!]!, id: ID!): String
+    # Adds Conjunction to MarkerProfile entity
+    addMarkerProfileConjunction(conjunction: [ID!]!, id: ID!): String
     # Adds EvidenceAssociations to MarkerProfile entity
     addMarkerProfileEvidenceAssociations(
         evidenceAssociations: [ID!]!
@@ -15033,6 +16344,10 @@ type MutationType {
     addOmniGeneVariantMarkers(id: ID!, variantMarkers: [ID!]!): String
     # Adds Variants to OmniGene entity
     addOmniGeneVariants(id: ID!, variants: [ID!]!): String
+    # Adds MCodes to OmniMap entity
+    addOmniMapMCodes(id: ID!, mCodes: [ID!]!): String
+    # Adds OmniDisease to OmniMap entity
+    addOmniMapOmniDisease(id: ID!, omniDisease: [ID!]!): String
     # Adds Children to OncoTreeDisease entity
     addOncoTreeDiseaseChildren(children: [ID!]!, id: ID!): String
     # Adds MainType to OncoTreeDisease entity
@@ -15054,6 +16369,8 @@ type MutationType {
     ): String
     # Adds TotalSamples to OncoTreeOccurrence entity
     addOncoTreeOccurrenceTotalSamples(id: ID!, totalSamples: [ID!]!): String
+    # Adds Children to OntologicalDisease entity
+    addOntologicalDiseaseChildren(children: [ID!]!, id: ID!): String
     # Adds Description to OntologicalDisease entity
     addOntologicalDiseaseDescription(description: [ID!]!, id: ID!): String
     # Adds DoDiseases to OntologicalDisease entity
@@ -15064,11 +16381,15 @@ type MutationType {
     addOntologicalDiseaseJaxDiseases(id: ID!, jaxDiseases: [ID!]!): String
     # Adds Name to OntologicalDisease entity
     addOntologicalDiseaseName(id: ID!, name: [ID!]!): String
+    # Adds OmniMaps to OntologicalDisease entity
+    addOntologicalDiseaseOmniMaps(id: ID!, omniMaps: [ID!]!): String
     # Adds OncoTreeDiseases to OntologicalDisease entity
     addOntologicalDiseaseOncoTreeDiseases(
         id: ID!
         oncoTreeDiseases: [ID!]!
     ): String
+    # Adds Parents to OntologicalDisease entity
+    addOntologicalDiseaseParents(id: ID!, parents: [ID!]!): String
     # Adds Synonyms to OntologicalDisease entity
     addOntologicalDiseaseSynonyms(id: ID!, synonyms: [ID!]!): String
     # Adds Xrefs to OntologicalDisease entity
@@ -15077,10 +16398,8 @@ type MutationType {
     addOutcomeEvidences(evidences: [ID!]!, id: ID!): String
     # Adds Assay to ProteinExpressionMarker entity
     addProteinExpressionMarkerAssay(assay: [ID!]!, id: ID!): String
-    # Adds Gene to ProteinExpressionMarker entity
-    addProteinExpressionMarkerGene(gene: [ID!]!, id: ID!): String
-    # Adds IHCAssay to ProteinExpressionMarker entity
-    addProteinExpressionMarkerIHCAssay(IHCAssay: [ID!]!, id: ID!): String
+    # Adds Genes to ProteinExpressionMarker entity
+    addProteinExpressionMarkerGenes(genes: [ID!]!, id: ID!): String
     # Adds ImmuneCycleRoles to ProteinExpressionMarker entity
     addProteinExpressionMarkerImmuneCycleRoles(
         id: ID!
@@ -15100,8 +16419,6 @@ type MutationType {
     addProteinExpressionMarkerMethod(id: ID!, method: [ID!]!): String
     # Adds Name to ProteinExpressionMarker entity
     addProteinExpressionMarkerName(id: ID!, name: [ID!]!): String
-    # Adds RNASeqAssay to ProteinExpressionMarker entity
-    addProteinExpressionMarkerRNASeqAssay(RNASeqAssay: [ID!]!, id: ID!): String
     # Adds ResultString to ProteinExpressionMarker entity
     addProteinExpressionMarkerResultString(id: ID!, resultString: [ID!]!): String
     # Adds Synonyms to ProteinExpressionMarker entity
@@ -15121,6 +16438,8 @@ type MutationType {
     addRNASeqAssayResultMax(id: ID!, resultMax: [ID!]!): String
     # Adds ResultMin to RNASeqAssay entity
     addRNASeqAssayResultMin(id: ID!, resultMin: [ID!]!): String
+    # Adds ResultType to RNASeqAssay entity
+    addRNASeqAssayResultType(id: ID!, resultType: [ID!]!): String
     # Adds Comparator to RNASeqSignatureMarker entity
     addRNASeqSignatureMarkerComparator(comparator: [ID!]!, id: ID!): String
     # Adds Definition to RNASeqSignatureMarker entity
@@ -15417,14 +16736,31 @@ type MutationType {
         field: String!
         id: ID!
     ): String
+    # Creates a EditableMarkerComponentList entity
+    createEditableMarkerComponentList(
+        editDate: String!
+        field: String!
+        id: ID!
+    ): String
     # Creates a EditableObject entity
     createEditableObject(editDate: String!, field: String!, id: ID!): String
+    # Creates a EditableOmniConjunction entity
+    createEditableOmniConjunction(
+        conjunction: OmniConjunction!
+        editDate: String!
+        field: String!
+        id: ID!
+    ): String
+    # Creates a EditableOmniGeneList entity
+    createEditableOmniGeneList(editDate: String!, field: String!, id: ID!): String
     # Creates a EditableOmniGeneReference entity
     createEditableOmniGeneReference(
         editDate: String!
         field: String!
         id: ID!
     ): String
+    # Creates a EditableOmniMapList entity
+    createEditableOmniMapList(editDate: String!, field: String!, id: ID!): String
     # Creates a EditableOncoTreeDiseaseList entity
     createEditableOncoTreeDiseaseList(
         editDate: String!
@@ -15437,6 +16773,13 @@ type MutationType {
         field: String!
         id: ID!
         proteinEffect: VariantProteinEffect!
+    ): String
+    # Creates a EditableRNASeqResultType entity
+    createEditableRNASeqResultType(
+        editDate: String!
+        field: String!
+        id: ID!
+        resultType: RNASeqResultType!
     ): String
     # Creates a EditableStatement entity
     createEditableStatement(
@@ -15550,13 +16893,13 @@ type MutationType {
         volume: String!
     ): String
     # Creates a MCode entity
-    createMCode(id: ID!, mcodeId: String!, omniDisease: String!): String
+    createMCode(id: ID!, mcodeId: String!): String
     # Creates a MSIMarker entity
     createMSIMarker(id: ID!): String
     # Creates a MarkerComponent entity
     createMarkerComponent(id: ID!): String
     # Creates a MarkerProfile entity
-    createMarkerProfile(conjunction: OmniConjunction!, id: ID!): String
+    createMarkerProfile(id: ID!): String
     # Creates a MeetingAbstractReference entity
     createMeetingAbstractReference(
         abstract: String
@@ -15588,6 +16931,8 @@ type MutationType {
     createOmniDrug(id: ID!): String
     # Creates a OmniGene entity
     createOmniGene(id: ID!, name: String!, panelName: String!): String
+    # Creates a OmniMap entity
+    createOmniMap(id: ID!): String
     # Creates a OncoTreeDisease entity
     createOncoTreeDisease(code: String!, id: ID!): String
     # Creates a OncoTreeOccurrence entity
@@ -15624,7 +16969,7 @@ type MutationType {
     # Creates a ProteinLevelAssay entity
     createProteinLevelAssay(id: ID!): String
     # Creates a RNASeqAssay entity
-    createRNASeqAssay(id: ID!, resultType: RNASeqResultType!): String
+    createRNASeqAssay(id: ID!): String
     # Creates a RNASeqSignatureMarker entity
     createRNASeqSignatureMarker(id: ID!): String
     # Creates a Reference entity
@@ -15652,6 +16997,7 @@ type MutationType {
     createUser(
         id: ID!
         isAdmin: Boolean!
+        isEditor: Boolean!
         name: String!
         password: String!
     ): String
@@ -15715,6 +17061,8 @@ type MutationType {
     deleteDODiseaseExactSynonyms(exactSynonyms: [ID!]!, id: ID!): String
     # Deletes Name from DODisease entity
     deleteDODiseaseName(id: ID!, name: [ID!]!): String
+    # Deletes NarrowSynonyms from DODisease entity
+    deleteDODiseaseNarrowSynonyms(id: ID!, narrowSynonyms: [ID!]!): String
     # Deletes Parents from DODisease entity
     deleteDODiseaseParents(id: ID!, parents: [ID!]!): String
     # Deletes RelatedSynonyms from DODisease entity
@@ -15805,12 +17153,40 @@ type MutationType {
     deleteEditableJAXDiseaseListList(id: ID!, list: [ID!]!): String
     # Deletes References from EditableJAXDiseaseList entity
     deleteEditableJAXDiseaseListReferences(id: ID!, references: [ID!]!): String
+    # Deletes a EditableMarkerComponentList entity
+    deleteEditableMarkerComponentList(id: ID!): String
+    # Deletes Components from EditableMarkerComponentList entity
+    deleteEditableMarkerComponentListComponents(
+        components: [ID!]!
+        id: ID!
+    ): String
+    # Deletes Editor from EditableMarkerComponentList entity
+    deleteEditableMarkerComponentListEditor(editor: [ID!]!, id: ID!): String
+    # Deletes References from EditableMarkerComponentList entity
+    deleteEditableMarkerComponentListReferences(
+        id: ID!
+        references: [ID!]!
+    ): String
     # Deletes a EditableObject entity
     deleteEditableObject(id: ID!): String
     # Deletes Editor from EditableObject entity
     deleteEditableObjectEditor(editor: [ID!]!, id: ID!): String
     # Deletes References from EditableObject entity
     deleteEditableObjectReferences(id: ID!, references: [ID!]!): String
+    # Deletes a EditableOmniConjunction entity
+    deleteEditableOmniConjunction(id: ID!): String
+    # Deletes Editor from EditableOmniConjunction entity
+    deleteEditableOmniConjunctionEditor(editor: [ID!]!, id: ID!): String
+    # Deletes References from EditableOmniConjunction entity
+    deleteEditableOmniConjunctionReferences(id: ID!, references: [ID!]!): String
+    # Deletes a EditableOmniGeneList entity
+    deleteEditableOmniGeneList(id: ID!): String
+    # Deletes Editor from EditableOmniGeneList entity
+    deleteEditableOmniGeneListEditor(editor: [ID!]!, id: ID!): String
+    # Deletes Genes from EditableOmniGeneList entity
+    deleteEditableOmniGeneListGenes(genes: [ID!]!, id: ID!): String
+    # Deletes References from EditableOmniGeneList entity
+    deleteEditableOmniGeneListReferences(id: ID!, references: [ID!]!): String
     # Deletes a EditableOmniGeneReference entity
     deleteEditableOmniGeneReference(id: ID!): String
     # Deletes Editor from EditableOmniGeneReference entity
@@ -15819,6 +17195,14 @@ type MutationType {
     deleteEditableOmniGeneReferenceGene(gene: [ID!]!, id: ID!): String
     # Deletes References from EditableOmniGeneReference entity
     deleteEditableOmniGeneReferenceReferences(id: ID!, references: [ID!]!): String
+    # Deletes a EditableOmniMapList entity
+    deleteEditableOmniMapList(id: ID!): String
+    # Deletes Editor from EditableOmniMapList entity
+    deleteEditableOmniMapListEditor(editor: [ID!]!, id: ID!): String
+    # Deletes List from EditableOmniMapList entity
+    deleteEditableOmniMapListList(id: ID!, list: [ID!]!): String
+    # Deletes References from EditableOmniMapList entity
+    deleteEditableOmniMapListReferences(id: ID!, references: [ID!]!): String
     # Deletes a EditableOncoTreeDiseaseList entity
     deleteEditableOncoTreeDiseaseList(id: ID!): String
     # Deletes Editor from EditableOncoTreeDiseaseList entity
@@ -15836,6 +17220,12 @@ type MutationType {
     deleteEditableProteinEffectEditor(editor: [ID!]!, id: ID!): String
     # Deletes References from EditableProteinEffect entity
     deleteEditableProteinEffectReferences(id: ID!, references: [ID!]!): String
+    # Deletes a EditableRNASeqResultType entity
+    deleteEditableRNASeqResultType(id: ID!): String
+    # Deletes Editor from EditableRNASeqResultType entity
+    deleteEditableRNASeqResultTypeEditor(editor: [ID!]!, id: ID!): String
+    # Deletes References from EditableRNASeqResultType entity
+    deleteEditableRNASeqResultTypeReferences(id: ID!, references: [ID!]!): String
     # Deletes a EditableStatement entity
     deleteEditableStatement(id: ID!): String
     # Deletes Editor from EditableStatement entity
@@ -16037,10 +17427,14 @@ type MutationType {
     ): String
     # Deletes a MCode entity
     deleteMCode(id: ID!): String
+    # Deletes Active from MCode entity
+    deleteMCodeActive(active: [ID!]!, id: ID!): String
     # Deletes Children from MCode entity
     deleteMCodeChildren(children: [ID!]!, id: ID!): String
     # Deletes DiseasePath from MCode entity
     deleteMCodeDiseasePath(diseasePath: [ID!]!, id: ID!): String
+    # Deletes OmniDisease from MCode entity
+    deleteMCodeOmniDisease(id: ID!, omniDisease: [ID!]!): String
     # Deletes Parents from MCode entity
     deleteMCodeParents(id: ID!, parents: [ID!]!): String
     # Deletes a MSIMarker entity
@@ -16063,6 +17457,8 @@ type MutationType {
     deleteMarkerProfile(id: ID!): String
     # Deletes Components from MarkerProfile entity
     deleteMarkerProfileComponents(components: [ID!]!, id: ID!): String
+    # Deletes Conjunction from MarkerProfile entity
+    deleteMarkerProfileConjunction(conjunction: [ID!]!, id: ID!): String
     # Deletes EvidenceAssociations from MarkerProfile entity
     deleteMarkerProfileEvidenceAssociations(
         evidenceAssociations: [ID!]!
@@ -16149,6 +17545,12 @@ type MutationType {
     deleteOmniGeneVariantMarkers(id: ID!, variantMarkers: [ID!]!): String
     # Deletes Variants from OmniGene entity
     deleteOmniGeneVariants(id: ID!, variants: [ID!]!): String
+    # Deletes a OmniMap entity
+    deleteOmniMap(id: ID!): String
+    # Deletes MCodes from OmniMap entity
+    deleteOmniMapMCodes(id: ID!, mCodes: [ID!]!): String
+    # Deletes OmniDisease from OmniMap entity
+    deleteOmniMapOmniDisease(id: ID!, omniDisease: [ID!]!): String
     # Deletes a OncoTreeDisease entity
     deleteOncoTreeDisease(id: ID!): String
     # Deletes Children from OncoTreeDisease entity
@@ -16176,6 +17578,8 @@ type MutationType {
     deleteOncoTreeOccurrenceTotalSamples(id: ID!, totalSamples: [ID!]!): String
     # Deletes a OntologicalDisease entity
     deleteOntologicalDisease(id: ID!): String
+    # Deletes Children from OntologicalDisease entity
+    deleteOntologicalDiseaseChildren(children: [ID!]!, id: ID!): String
     # Deletes Description from OntologicalDisease entity
     deleteOntologicalDiseaseDescription(description: [ID!]!, id: ID!): String
     # Deletes DoDiseases from OntologicalDisease entity
@@ -16186,11 +17590,15 @@ type MutationType {
     deleteOntologicalDiseaseJaxDiseases(id: ID!, jaxDiseases: [ID!]!): String
     # Deletes Name from OntologicalDisease entity
     deleteOntologicalDiseaseName(id: ID!, name: [ID!]!): String
+    # Deletes OmniMaps from OntologicalDisease entity
+    deleteOntologicalDiseaseOmniMaps(id: ID!, omniMaps: [ID!]!): String
     # Deletes OncoTreeDiseases from OntologicalDisease entity
     deleteOntologicalDiseaseOncoTreeDiseases(
         id: ID!
         oncoTreeDiseases: [ID!]!
     ): String
+    # Deletes Parents from OntologicalDisease entity
+    deleteOntologicalDiseaseParents(id: ID!, parents: [ID!]!): String
     # Deletes Synonyms from OntologicalDisease entity
     deleteOntologicalDiseaseSynonyms(id: ID!, synonyms: [ID!]!): String
     # Deletes Xrefs from OntologicalDisease entity
@@ -16203,10 +17611,8 @@ type MutationType {
     deleteProteinExpressionMarker(id: ID!): String
     # Deletes Assay from ProteinExpressionMarker entity
     deleteProteinExpressionMarkerAssay(assay: [ID!]!, id: ID!): String
-    # Deletes Gene from ProteinExpressionMarker entity
-    deleteProteinExpressionMarkerGene(gene: [ID!]!, id: ID!): String
-    # Deletes IHCAssay from ProteinExpressionMarker entity
-    deleteProteinExpressionMarkerIHCAssay(IHCAssay: [ID!]!, id: ID!): String
+    # Deletes Genes from ProteinExpressionMarker entity
+    deleteProteinExpressionMarkerGenes(genes: [ID!]!, id: ID!): String
     # Deletes ImmuneCycleRoles from ProteinExpressionMarker entity
     deleteProteinExpressionMarkerImmuneCycleRoles(
         id: ID!
@@ -16226,8 +17632,6 @@ type MutationType {
     deleteProteinExpressionMarkerMethod(id: ID!, method: [ID!]!): String
     # Deletes Name from ProteinExpressionMarker entity
     deleteProteinExpressionMarkerName(id: ID!, name: [ID!]!): String
-    # Deletes RNASeqAssay from ProteinExpressionMarker entity
-    deleteProteinExpressionMarkerRNASeqAssay(RNASeqAssay: [ID!]!, id: ID!): String
     # Deletes ResultString from ProteinExpressionMarker entity
     deleteProteinExpressionMarkerResultString(
         id: ID!
@@ -16254,6 +17658,8 @@ type MutationType {
     deleteRNASeqAssayResultMax(id: ID!, resultMax: [ID!]!): String
     # Deletes ResultMin from RNASeqAssay entity
     deleteRNASeqAssayResultMin(id: ID!, resultMin: [ID!]!): String
+    # Deletes ResultType from RNASeqAssay entity
+    deleteRNASeqAssayResultType(id: ID!, resultType: [ID!]!): String
     # Deletes a RNASeqSignatureMarker entity
     deleteRNASeqSignatureMarker(id: ID!): String
     # Deletes Comparator from RNASeqSignatureMarker entity
@@ -16575,14 +17981,31 @@ type MutationType {
         field: String!
         id: ID!
     ): String
+    # Merge a EditableMarkerComponentList entity
+    mergeEditableMarkerComponentList(
+        editDate: String!
+        field: String!
+        id: ID!
+    ): String
     # Merge a EditableObject entity
     mergeEditableObject(editDate: String!, field: String!, id: ID!): String
+    # Merge a EditableOmniConjunction entity
+    mergeEditableOmniConjunction(
+        conjunction: OmniConjunction!
+        editDate: String!
+        field: String!
+        id: ID!
+    ): String
+    # Merge a EditableOmniGeneList entity
+    mergeEditableOmniGeneList(editDate: String!, field: String!, id: ID!): String
     # Merge a EditableOmniGeneReference entity
     mergeEditableOmniGeneReference(
         editDate: String!
         field: String!
         id: ID!
     ): String
+    # Merge a EditableOmniMapList entity
+    mergeEditableOmniMapList(editDate: String!, field: String!, id: ID!): String
     # Merge a EditableOncoTreeDiseaseList entity
     mergeEditableOncoTreeDiseaseList(
         editDate: String!
@@ -16595,6 +18018,13 @@ type MutationType {
         field: String!
         id: ID!
         proteinEffect: VariantProteinEffect!
+    ): String
+    # Merge a EditableRNASeqResultType entity
+    mergeEditableRNASeqResultType(
+        editDate: String!
+        field: String!
+        id: ID!
+        resultType: RNASeqResultType!
     ): String
     # Merge a EditableStatement entity
     mergeEditableStatement(
@@ -16708,13 +18138,13 @@ type MutationType {
         volume: String!
     ): String
     # Merge a MCode entity
-    mergeMCode(id: ID!, mcodeId: String!, omniDisease: String!): String
+    mergeMCode(id: ID!, mcodeId: String!): String
     # Merge a MSIMarker entity
     mergeMSIMarker(id: ID!): String
     # Merge a MarkerComponent entity
     mergeMarkerComponent(id: ID!): String
     # Merge a MarkerProfile entity
-    mergeMarkerProfile(conjunction: OmniConjunction!, id: ID!): String
+    mergeMarkerProfile(id: ID!): String
     # Merge a MeetingAbstractReference entity
     mergeMeetingAbstractReference(
         abstract: String
@@ -16746,6 +18176,8 @@ type MutationType {
     mergeOmniDrug(id: ID!): String
     # Merge a OmniGene entity
     mergeOmniGene(id: ID!, name: String!, panelName: String!): String
+    # Merge a OmniMap entity
+    mergeOmniMap(id: ID!): String
     # Merge a OncoTreeDisease entity
     mergeOncoTreeDisease(code: String!, id: ID!): String
     # Merge a OncoTreeOccurrence entity
@@ -16782,7 +18214,7 @@ type MutationType {
     # Merge a ProteinLevelAssay entity
     mergeProteinLevelAssay(id: ID!): String
     # Merge a RNASeqAssay entity
-    mergeRNASeqAssay(id: ID!, resultType: RNASeqResultType!): String
+    mergeRNASeqAssay(id: ID!): String
     # Merge a RNASeqSignatureMarker entity
     mergeRNASeqSignatureMarker(id: ID!): String
     # Merge a Reference entity
@@ -16810,6 +18242,7 @@ type MutationType {
     mergeUser(
         id: ID!
         isAdmin: Boolean!
+        isEditor: Boolean!
         name: String!
         password: String!
     ): String
@@ -16934,14 +18367,31 @@ type MutationType {
         field: String!
         id: ID!
     ): String
+    # Updates a EditableMarkerComponentList entity
+    updateEditableMarkerComponentList(
+        editDate: String!
+        field: String!
+        id: ID!
+    ): String
     # Updates a EditableObject entity
     updateEditableObject(editDate: String!, field: String!, id: ID!): String
+    # Updates a EditableOmniConjunction entity
+    updateEditableOmniConjunction(
+        conjunction: OmniConjunction!
+        editDate: String!
+        field: String!
+        id: ID!
+    ): String
+    # Updates a EditableOmniGeneList entity
+    updateEditableOmniGeneList(editDate: String!, field: String!, id: ID!): String
     # Updates a EditableOmniGeneReference entity
     updateEditableOmniGeneReference(
         editDate: String!
         field: String!
         id: ID!
     ): String
+    # Updates a EditableOmniMapList entity
+    updateEditableOmniMapList(editDate: String!, field: String!, id: ID!): String
     # Updates a EditableOncoTreeDiseaseList entity
     updateEditableOncoTreeDiseaseList(
         editDate: String!
@@ -16954,6 +18404,13 @@ type MutationType {
         field: String!
         id: ID!
         proteinEffect: VariantProteinEffect!
+    ): String
+    # Updates a EditableRNASeqResultType entity
+    updateEditableRNASeqResultType(
+        editDate: String!
+        field: String!
+        id: ID!
+        resultType: RNASeqResultType!
     ): String
     # Updates a EditableStatement entity
     updateEditableStatement(
@@ -17067,13 +18524,13 @@ type MutationType {
         volume: String!
     ): String
     # Updates a MCode entity
-    updateMCode(id: ID!, mcodeId: String!, omniDisease: String!): String
+    updateMCode(id: ID!, mcodeId: String!): String
     # Updates a MSIMarker entity
     updateMSIMarker(id: ID!): String
     # Updates a MarkerComponent entity
     updateMarkerComponent(id: ID!): String
     # Updates a MarkerProfile entity
-    updateMarkerProfile(conjunction: OmniConjunction!, id: ID!): String
+    updateMarkerProfile(id: ID!): String
     # Updates a MeetingAbstractReference entity
     updateMeetingAbstractReference(
         abstract: String
@@ -17105,6 +18562,8 @@ type MutationType {
     updateOmniDrug(id: ID!): String
     # Updates a OmniGene entity
     updateOmniGene(id: ID!, name: String!, panelName: String!): String
+    # Updates a OmniMap entity
+    updateOmniMap(id: ID!): String
     # Updates a OncoTreeDisease entity
     updateOncoTreeDisease(code: String!, id: ID!): String
     # Updates a OncoTreeOccurrence entity
@@ -17141,7 +18600,7 @@ type MutationType {
     # Updates a ProteinLevelAssay entity
     updateProteinLevelAssay(id: ID!): String
     # Updates a RNASeqAssay entity
-    updateRNASeqAssay(id: ID!, resultType: RNASeqResultType!): String
+    updateRNASeqAssay(id: ID!): String
     # Updates a RNASeqSignatureMarker entity
     updateRNASeqSignatureMarker(id: ID!): String
     # Updates a Reference entity
@@ -17169,6 +18628,7 @@ type MutationType {
     updateUser(
         id: ID!
         isAdmin: Boolean!
+        isEditor: Boolean!
         name: String!
         password: String!
     ): String
@@ -17837,6 +19297,48 @@ type OmniGene implements Target {
     ): [GenomicVariant]!
 }
 
+# OmniMap-Node
+type OmniMap {
+    # internal node id
+    _id: Long
+    # id of  OmniMap
+    id: ID!
+    # OmniMap mCodes MCode
+    mCodes(
+        _id: Long
+        _ids: [Long]
+        filter: _MCodeFilter
+        first: Int
+        # id of MCode
+        id: ID
+        # ids is list variant of id of MCode
+        ids: [ID]
+        # mcodeId of MCode
+        mcodeId: String
+        # mcodeIds is list variant of mcodeId of MCode
+        mcodeIds: [String]
+        offset: Int
+        orderBy: [_MCodeOrdering]
+    ): [MCode]!
+    # OmniMap omniDisease OmniDisease
+    omniDisease(
+        filter: _OmniDiseaseFilter
+        # id of OmniDisease
+        id: ID
+        # ids is list variant of id of OmniDisease
+        ids: [ID]
+        # omniDiseaseId of OmniDisease
+        omniDiseaseId: String
+        # omniDiseaseIds is list variant of omniDiseaseId of OmniDisease
+        omniDiseaseIds: [String]
+        # omniDiseaseType of OmniDisease
+        omniDiseaseType: OmniDiseaseType
+        # omniDiseaseTypes is list variant of omniDiseaseType of OmniDisease
+        omniDiseaseTypes: [OmniDiseaseType]
+        orderBy: [_OmniDiseaseOrdering]
+    ): OmniDisease!
+}
+
 # OncoTreeDisease-Node
 type OncoTreeDisease {
     # internal node id
@@ -18042,6 +19544,19 @@ type OncoTreeOccurrence {
 type OntologicalDisease {
     # internal node id
     _id: Long
+    # OntologicalDisease children OntologicalDisease
+    children(
+        _id: Long
+        _ids: [Long]
+        filter: _OntologicalDiseaseFilter
+        first: Int
+        # id of OntologicalDisease
+        id: ID
+        # ids is list variant of id of OntologicalDisease
+        ids: [ID]
+        offset: Int
+        orderBy: [_OntologicalDiseaseOrdering]
+    ): [OntologicalDisease]!
     # OntologicalDisease description EditableStatement
     description(
         # editDate of EditableStatement
@@ -18137,6 +19652,23 @@ type OntologicalDisease {
         # statements is list variant of statement of EditableStatement
         statements: [String]
     ): EditableStatement!
+    # OntologicalDisease omniMaps EditableOmniMapList
+    omniMaps(
+        # editDate of EditableOmniMapList
+        editDate: String
+        # editDates is list variant of editDate of EditableOmniMapList
+        editDates: [String]
+        # field of EditableOmniMapList
+        field: String
+        # fields is list variant of field of EditableOmniMapList
+        fields: [String]
+        filter: _EditableOmniMapListFilter
+        # id of EditableOmniMapList
+        id: ID
+        # ids is list variant of id of EditableOmniMapList
+        ids: [ID]
+        orderBy: [_EditableOmniMapListOrdering]
+    ): EditableOmniMapList!
     # OntologicalDisease oncoTreeDiseases EditableOncoTreeDiseaseList
     oncoTreeDiseases(
         # editDate of EditableOncoTreeDiseaseList
@@ -18154,6 +19686,19 @@ type OntologicalDisease {
         ids: [ID]
         orderBy: [_EditableOncoTreeDiseaseListOrdering]
     ): EditableOncoTreeDiseaseList!
+    # OntologicalDisease parents OntologicalDisease
+    parents(
+        _id: Long
+        _ids: [Long]
+        filter: _OntologicalDiseaseFilter
+        first: Int
+        # id of OntologicalDisease
+        id: ID
+        # ids is list variant of id of OntologicalDisease
+        ids: [ID]
+        offset: Int
+        orderBy: [_OntologicalDiseaseOrdering]
+    ): [OntologicalDisease]
     # OntologicalDisease synonyms EditableStringList
     synonyms(
         # editDate of EditableStringList
@@ -18269,31 +19814,9 @@ type Outcome {
 
 # ProteinExpressionMarker-Node
 type ProteinExpressionMarker implements MarkerComponent {
-    # ProteinExpressionMarker IHCAssay IHCAssay
-    IHCAssay(
-        filter: _IHCAssayFilter
-        # id of IHCAssay
-        id: ID
-        # ids is list variant of id of IHCAssay
-        ids: [ID]
-        orderBy: [_IHCAssayOrdering]
-    ): IHCAssay!
-    # ProteinExpressionMarker RNASeqAssay RNASeqAssay
-    RNASeqAssay(
-        filter: _RNASeqAssayFilter
-        # id of RNASeqAssay
-        id: ID
-        # ids is list variant of id of RNASeqAssay
-        ids: [ID]
-        orderBy: [_RNASeqAssayOrdering]
-        # resultType of RNASeqAssay
-        resultType: RNASeqResultType
-        # resultTypes is list variant of resultType of RNASeqAssay
-        resultTypes: [RNASeqResultType]
-    ): RNASeqAssay!
     # internal node id
     _id: Long
-    # ProteinExpressionMarker assay ProteinLevelAssay
+    # assay is either IHCAssay or  RNASeqAssay
     assay(
         filter: _ProteinLevelAssayFilter
         # id of ProteinLevelAssay
@@ -18302,23 +19825,23 @@ type ProteinExpressionMarker implements MarkerComponent {
         ids: [ID]
         orderBy: [_ProteinLevelAssayOrdering]
     ): ProteinLevelAssay!
-    # ProteinExpressionMarker gene OmniGene
-    gene(
-        filter: _OmniGeneFilter
-        # id of OmniGene
+    # ProteinExpressionMarker genes EditableOmniGeneList
+    genes(
+        # editDate of EditableOmniGeneList
+        editDate: String
+        # editDates is list variant of editDate of EditableOmniGeneList
+        editDates: [String]
+        # field of EditableOmniGeneList
+        field: String
+        # fields is list variant of field of EditableOmniGeneList
+        fields: [String]
+        filter: _EditableOmniGeneListFilter
+        # id of EditableOmniGeneList
         id: ID
-        # ids is list variant of id of OmniGene
+        # ids is list variant of id of EditableOmniGeneList
         ids: [ID]
-        # name of OmniGene
-        name: String
-        # names is list variant of name of OmniGene
-        names: [String]
-        orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
-    ): OmniGene
+        orderBy: [_EditableOmniGeneListOrdering]
+    ): EditableOmniGeneList!
     # id of  ProteinExpressionMarker
     id: ID!
     # ProteinExpressionMarker immuneCycleRoles EditableImmuneCycleRole
@@ -18912,6 +20435,26 @@ type QueryType {
         offset: Int
         orderBy: [_EditableJAXDiseaseListOrdering]
     ): [EditableJAXDiseaseList]
+    EditableMarkerComponentList(
+        _id: Long
+        _ids: [Long]
+        # editDate of EditableMarkerComponentList
+        editDate: String
+        # editDates is list variant of editDate of EditableMarkerComponentList
+        editDates: [String]
+        # field of EditableMarkerComponentList
+        field: String
+        # fields is list variant of field of EditableMarkerComponentList
+        fields: [String]
+        filter: _EditableMarkerComponentListFilter
+        first: Int
+        # id of EditableMarkerComponentList
+        id: ID
+        # ids is list variant of id of EditableMarkerComponentList
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableMarkerComponentListOrdering]
+    ): [EditableMarkerComponentList]
     EditableObject(
         _id: Long
         _ids: [Long]
@@ -18932,6 +20475,50 @@ type QueryType {
         offset: Int
         orderBy: [_EditableObjectOrdering]
     ): [EditableObject]
+    EditableOmniConjunction(
+        _id: Long
+        _ids: [Long]
+        # conjunction of EditableOmniConjunction
+        conjunction: OmniConjunction
+        # conjunctions is list variant of conjunction of EditableOmniConjunction
+        conjunctions: [OmniConjunction]
+        # editDate of EditableOmniConjunction
+        editDate: String
+        # editDates is list variant of editDate of EditableOmniConjunction
+        editDates: [String]
+        # field of EditableOmniConjunction
+        field: String
+        # fields is list variant of field of EditableOmniConjunction
+        fields: [String]
+        filter: _EditableOmniConjunctionFilter
+        first: Int
+        # id of EditableOmniConjunction
+        id: ID
+        # ids is list variant of id of EditableOmniConjunction
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableOmniConjunctionOrdering]
+    ): [EditableOmniConjunction]
+    EditableOmniGeneList(
+        _id: Long
+        _ids: [Long]
+        # editDate of EditableOmniGeneList
+        editDate: String
+        # editDates is list variant of editDate of EditableOmniGeneList
+        editDates: [String]
+        # field of EditableOmniGeneList
+        field: String
+        # fields is list variant of field of EditableOmniGeneList
+        fields: [String]
+        filter: _EditableOmniGeneListFilter
+        first: Int
+        # id of EditableOmniGeneList
+        id: ID
+        # ids is list variant of id of EditableOmniGeneList
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableOmniGeneListOrdering]
+    ): [EditableOmniGeneList]
     EditableOmniGeneReference(
         _id: Long
         _ids: [Long]
@@ -18952,6 +20539,26 @@ type QueryType {
         offset: Int
         orderBy: [_EditableOmniGeneReferenceOrdering]
     ): [EditableOmniGeneReference]
+    EditableOmniMapList(
+        _id: Long
+        _ids: [Long]
+        # editDate of EditableOmniMapList
+        editDate: String
+        # editDates is list variant of editDate of EditableOmniMapList
+        editDates: [String]
+        # field of EditableOmniMapList
+        field: String
+        # fields is list variant of field of EditableOmniMapList
+        fields: [String]
+        filter: _EditableOmniMapListFilter
+        first: Int
+        # id of EditableOmniMapList
+        id: ID
+        # ids is list variant of id of EditableOmniMapList
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableOmniMapListOrdering]
+    ): [EditableOmniMapList]
     EditableOncoTreeDiseaseList(
         _id: Long
         _ids: [Long]
@@ -18996,6 +20603,30 @@ type QueryType {
         # proteinEffects is list variant of proteinEffect of EditableProteinEffect
         proteinEffects: [VariantProteinEffect]
     ): [EditableProteinEffect]
+    EditableRNASeqResultType(
+        _id: Long
+        _ids: [Long]
+        # editDate of EditableRNASeqResultType
+        editDate: String
+        # editDates is list variant of editDate of EditableRNASeqResultType
+        editDates: [String]
+        # field of EditableRNASeqResultType
+        field: String
+        # fields is list variant of field of EditableRNASeqResultType
+        fields: [String]
+        filter: _EditableRNASeqResultTypeFilter
+        first: Int
+        # id of EditableRNASeqResultType
+        id: ID
+        # ids is list variant of id of EditableRNASeqResultType
+        ids: [ID]
+        offset: Int
+        orderBy: [_EditableRNASeqResultTypeOrdering]
+        # resultType of EditableRNASeqResultType
+        resultType: RNASeqResultType
+        # resultTypes is list variant of resultType of EditableRNASeqResultType
+        resultTypes: [RNASeqResultType]
+    ): [EditableRNASeqResultType]
     EditableStatement(
         _id: Long
         _ids: [Long]
@@ -19474,10 +21105,6 @@ type QueryType {
         # mcodeIds is list variant of mcodeId of MCode
         mcodeIds: [String]
         offset: Int
-        # omniDisease of MCode
-        omniDisease: String
-        # omniDiseases is list variant of omniDisease of MCode
-        omniDiseases: [String]
         orderBy: [_MCodeOrdering]
     ): [MCode]
     MSIMarker(
@@ -19507,10 +21134,6 @@ type QueryType {
     MarkerProfile(
         _id: Long
         _ids: [Long]
-        # conjunction of MarkerProfile
-        conjunction: OmniConjunction
-        # conjunctions is list variant of conjunction of MarkerProfile
-        conjunctions: [OmniConjunction]
         filter: _MarkerProfileFilter
         first: Int
         # id of MarkerProfile
@@ -19660,6 +21283,18 @@ type QueryType {
         # panelNames is list variant of panelName of OmniGene
         panelNames: [String]
     ): [OmniGene]
+    OmniMap(
+        _id: Long
+        _ids: [Long]
+        filter: _OmniMapFilter
+        first: Int
+        # id of OmniMap
+        id: ID
+        # ids is list variant of id of OmniMap
+        ids: [ID]
+        offset: Int
+        orderBy: [_OmniMapOrdering]
+    ): [OmniMap]
     OncoTreeDisease(
         _id: Long
         _ids: [Long]
@@ -19823,10 +21458,6 @@ type QueryType {
         ids: [ID]
         offset: Int
         orderBy: [_RNASeqAssayOrdering]
-        # resultType of RNASeqAssay
-        resultType: RNASeqResultType
-        # resultTypes is list variant of resultType of RNASeqAssay
-        resultTypes: [RNASeqResultType]
     ): [RNASeqAssay]
     RNASeqSignatureMarker(
         _id: Long
@@ -19977,6 +21608,10 @@ type QueryType {
         isAdmin: Boolean
         # isAdmins is list variant of isAdmin of User
         isAdmins: [Boolean]
+        # isEditor of User
+        isEditor: Boolean
+        # isEditors is list variant of isEditor of User
+        isEditors: [Boolean]
         # name of User
         name: String
         # names is list variant of name of User
@@ -20219,7 +21854,7 @@ type RNASeqAssay implements ProteinLevelAssay {
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
     ): EditableFloat
-    # rankScore: Int!
+    # RNASeqAssay resultMin EditableFloat
     resultMin(
         # editDate of EditableFloat
         editDate: String
@@ -20240,8 +21875,27 @@ type RNASeqAssay implements ProteinLevelAssay {
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
     ): EditableFloat!
-    # resultType of  RNASeqAssay
-    resultType: RNASeqResultType!
+    # RNASeqAssay resultType EditableRNASeqResultType
+    resultType(
+        # editDate of EditableRNASeqResultType
+        editDate: String
+        # editDates is list variant of editDate of EditableRNASeqResultType
+        editDates: [String]
+        # field of EditableRNASeqResultType
+        field: String
+        # fields is list variant of field of EditableRNASeqResultType
+        fields: [String]
+        filter: _EditableRNASeqResultTypeFilter
+        # id of EditableRNASeqResultType
+        id: ID
+        # ids is list variant of id of EditableRNASeqResultType
+        ids: [ID]
+        orderBy: [_EditableRNASeqResultTypeOrdering]
+        # resultType of EditableRNASeqResultType
+        resultType: RNASeqResultType
+        # resultTypes is list variant of resultType of EditableRNASeqResultType
+        resultTypes: [RNASeqResultType]
+    ): EditableRNASeqResultType!
 }
 
 # Enum for RNASeqResultType
@@ -20327,10 +21981,6 @@ type RNASeqSignatureMarker implements MarkerComponent {
     ): [EditableTMBInterpretation]
     # RNASeqSignatureMarker markerProfile MarkerProfile
     markerProfile(
-        # conjunction of MarkerProfile
-        conjunction: OmniConjunction
-        # conjunctions is list variant of conjunction of MarkerProfile
-        conjunctions: [OmniConjunction]
         filter: _MarkerProfileFilter
         # id of MarkerProfile
         id: ID
@@ -21062,6 +22712,8 @@ type User {
     id: ID!
     # isAdmin of  User
     isAdmin: Boolean!
+    # isEditor of  User
+    isEditor: Boolean!
     # name of  User
     name: String!
     # password of  User
