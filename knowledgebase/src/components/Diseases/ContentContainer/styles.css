@@ -1,0 +1,16 @@
+.ContentContainer {
+    top:0px;
+    width: 640px;
+    overflow:  auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.ContentContainer__title {
+    margin-top: 15px;
+    margin-bottom: 4px;
+}
+.ContentContainer__Wrapper {
+
+}

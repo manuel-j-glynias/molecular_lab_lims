@@ -65,3 +65,8 @@
 .MarkerProfileEditor__small-btn:active {
     border: 2px solid green;
 }
+.MarkerProfileEditor__Component_Wrapper {
+    display: grid;
+    grid-template-columns: 200px 100px;
+    align-items: flex-start;
+}

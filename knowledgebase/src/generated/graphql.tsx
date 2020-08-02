@@ -19935,6 +19935,67 @@ export type XRef = {
   sourceId: Scalars['String'];
 };
 
+export type OntologicalDiseaseComponentsQueryVariables = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type OntologicalDiseaseComponentsQuery = (
+  { __typename?: 'QueryType' }
+  & { OntologicalDisease?: Maybe<Array<Maybe<(
+    { __typename?: 'OntologicalDisease' }
+    & { doDiseases: (
+      { __typename?: 'EditableDODiseaseList' }
+      & Pick<EditableDoDiseaseList, 'id'>
+    ), goDiseases: (
+      { __typename?: 'EditableGODiseaseList' }
+      & Pick<EditableGoDiseaseList, 'id'>
+    ), jaxDiseases: (
+      { __typename?: 'EditableJAXDiseaseList' }
+      & Pick<EditableJaxDiseaseList, 'id'>
+    ), oncoTreeDiseases: (
+      { __typename?: 'EditableOncoTreeDiseaseList' }
+      & Pick<EditableOncoTreeDiseaseList, 'id'>
+    ) }
+  )>>> }
+);
+
+export type OntologicalDiseaseQueryVariables = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+
+export type OntologicalDiseaseQuery = (
+  { __typename?: 'QueryType' }
+  & { OntologicalDisease?: Maybe<Array<Maybe<(
+    { __typename?: 'OntologicalDisease' }
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ), description: (
+      { __typename?: 'EditableStatement' }
+      & Es_FieldsFragment
+    ) }
+  )>>> }
+);
+
+export type OntologicalDiseaseListQueryVariables = {
+  query_string?: Maybe<Scalars['String']>;
+};
+
+
+export type OntologicalDiseaseListQuery = (
+  { __typename?: 'QueryType' }
+  & { OntologicalDisease?: Maybe<Array<Maybe<(
+    { __typename?: 'OntologicalDisease' }
+    & Pick<OntologicalDisease, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement'>
+    ) }
+  )>>> }
+);
+
 export type OmniGeneComponentsQueryVariables = {
   gene_id?: Maybe<Scalars['ID']>;
 };
@@ -20999,6 +21060,23 @@ export type VariantSnvIndelAddExonMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelExon' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelExon'>
 );
 
+export type GenomicVariantMarkerComponentsQueryVariables = {
+  query_string?: Maybe<Scalars['String']>;
+};
+
+
+export type GenomicVariantMarkerComponentsQuery = (
+  { __typename?: 'QueryType' }
+  & { GenomicVariantMarker?: Maybe<Array<Maybe<(
+    { __typename: 'GenomicVariantMarker' }
+    & Pick<GenomicVariantMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement'>
+    ) }
+  )>>> }
+);
+
 export type GeneList_For_VariantsQueryVariables = {};
 
 
@@ -21308,6 +21386,23 @@ export type Msi_MarkersQuery = (
   )>>> }
 );
 
+export type MsiComponentsQueryVariables = {
+  q_string?: Maybe<Scalars['String']>;
+};
+
+
+export type MsiComponentsQuery = (
+  { __typename?: 'QueryType' }
+  & { MSIMarker?: Maybe<Array<Maybe<(
+    { __typename?: 'MSIMarker' }
+    & Pick<MsiMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'id' | 'statement'>
+    ) }
+  )>>> }
+);
+
 export type MarkerProfileQueryVariables = {
   marker_id?: Maybe<Scalars['ID']>;
 };
@@ -21475,6 +21570,23 @@ export type MarkerProfileAddComponentsMutationVariables = {
 export type MarkerProfileAddComponentsMutation = (
   { __typename?: 'MutationType' }
   & Pick<MutationType, 'deleteMarkerProfileComponents' | 'createEditableMarkerComponentList' | 'addEditableMarkerComponentListComponents' | 'addEditableMarkerComponentListEditor' | 'addEditableMarkerComponentListReferences' | 'addMarkerProfileComponents'>
+);
+
+export type MarkerProfileComponentsQueryVariables = {
+  q_string?: Maybe<Scalars['String']>;
+};
+
+
+export type MarkerProfileComponentsQuery = (
+  { __typename?: 'QueryType' }
+  & { MarkerProfile?: Maybe<Array<Maybe<(
+    { __typename?: 'MarkerProfile' }
+    & Pick<MarkerProfile, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'id' | 'statement'>
+    ) }
+  )>>> }
 );
 
 export type MarkerProfilesQueryVariables = {
@@ -21730,6 +21842,23 @@ export type ProteinExpressionMarkerAddImmuneCycleRoleMutationVariables = {
 export type ProteinExpressionMarkerAddImmuneCycleRoleMutation = (
   { __typename?: 'MutationType' }
   & Pick<MutationType, 'deleteProteinExpressionMarkerImmuneCycleRoles' | 'createEditableImmuneCycleRole' | 'addEditableImmuneCycleRoleEditor' | 'addEditableImmuneCycleRoleReferences' | 'addProteinExpressionMarkerImmuneCycleRoles'>
+);
+
+export type ProteinExpressionMarkerComponentsQueryVariables = {
+  query_string?: Maybe<Scalars['String']>;
+};
+
+
+export type ProteinExpressionMarkerComponentsQuery = (
+  { __typename?: 'QueryType' }
+  & { ProteinExpressionMarker?: Maybe<Array<Maybe<(
+    { __typename: 'ProteinExpressionMarker' }
+    & Pick<ProteinExpressionMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement'>
+    ) }
+  )>>> }
 );
 
 export type ProteinExpression_MarkersQueryVariables = {
@@ -22026,6 +22155,23 @@ export type Tmb_MarkersQuery = (
   )>>> }
 );
 
+export type TmbComponentsQueryVariables = {
+  q_string?: Maybe<Scalars['String']>;
+};
+
+
+export type TmbComponentsQuery = (
+  { __typename?: 'QueryType' }
+  & { TMBMarker?: Maybe<Array<Maybe<(
+    { __typename?: 'TMBMarker' }
+    & Pick<TmbMarker, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'id' | 'statement'>
+    ) }
+  )>>> }
+);
+
 export type EditableAssayComparatorQueryVariables = {
   field?: Maybe<Scalars['String']>;
 };
@@ -22167,6 +22313,74 @@ export type EditableIntQuery = (
     { __typename?: 'EditableInt' }
     & Pick<EditableInt, 'field' | 'intValue' | 'editDate'>
     & { editor: (
+      { __typename?: 'User' }
+      & Pick<User, 'name'>
+    ), references: Array<Maybe<(
+      { __typename?: 'InternetReference' }
+      & Pick<InternetReference, 'shortReference'>
+    ) | (
+      { __typename?: 'LiteratureReference' }
+      & Pick<LiteratureReference, 'shortReference'>
+    ) | (
+      { __typename?: 'MeetingAbstractReference' }
+      & Pick<MeetingAbstractReference, 'shortReference'>
+    )>> }
+  )>>> }
+);
+
+export type EditableMarkerComponentListQueryVariables = {
+  field?: Maybe<Scalars['String']>;
+};
+
+
+export type EditableMarkerComponentListQuery = (
+  { __typename?: 'QueryType' }
+  & { EditableMarkerComponentList?: Maybe<Array<Maybe<(
+    { __typename?: 'EditableMarkerComponentList' }
+    & Pick<EditableMarkerComponentList, 'field' | 'editDate'>
+    & { components: Array<Maybe<(
+      { __typename?: 'DNAMarker' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    ) | (
+      { __typename?: 'GenomicVariantMarker' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    ) | (
+      { __typename?: 'MarkerProfile' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    ) | (
+      { __typename?: 'MSIMarker' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    ) | (
+      { __typename?: 'ProteinExpressionMarker' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    ) | (
+      { __typename?: 'RNASeqSignatureMarker' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    ) | (
+      { __typename?: 'TMBMarker' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    )>>, editor: (
       { __typename?: 'User' }
       & Pick<User, 'name'>
     ), references: Array<Maybe<(
@@ -22472,6 +22686,181 @@ export const EfFragmentDoc = gql`
   editDate
 }
     `;
+export const OntologicalDiseaseComponentsDocument = gql`
+    query OntologicalDiseaseComponents($id: ID) {
+  OntologicalDisease(id: $id) {
+    doDiseases {
+      id
+    }
+    goDiseases {
+      id
+    }
+    jaxDiseases {
+      id
+    }
+    oncoTreeDiseases {
+      id
+    }
+  }
+}
+    `;
+export type OntologicalDiseaseComponentsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>, 'query'>;
+
+    export const OntologicalDiseaseComponentsComponent = (props: OntologicalDiseaseComponentsComponentProps) => (
+      <ApolloReactComponents.Query<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables> query={OntologicalDiseaseComponentsDocument} {...props} />
+    );
+    
+export type OntologicalDiseaseComponentsProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>
+    } & TChildProps;
+export function withOntologicalDiseaseComponents<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  OntologicalDiseaseComponentsQuery,
+  OntologicalDiseaseComponentsQueryVariables,
+  OntologicalDiseaseComponentsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables, OntologicalDiseaseComponentsProps<TChildProps, TDataName>>(OntologicalDiseaseComponentsDocument, {
+      alias: 'ontologicalDiseaseComponents',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useOntologicalDiseaseComponentsQuery__
+ *
+ * To run a query within a React component, call `useOntologicalDiseaseComponentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOntologicalDiseaseComponentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOntologicalDiseaseComponentsQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useOntologicalDiseaseComponentsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>) {
+        return ApolloReactHooks.useQuery<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>(OntologicalDiseaseComponentsDocument, baseOptions);
+      }
+export function useOntologicalDiseaseComponentsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>(OntologicalDiseaseComponentsDocument, baseOptions);
+        }
+export type OntologicalDiseaseComponentsQueryHookResult = ReturnType<typeof useOntologicalDiseaseComponentsQuery>;
+export type OntologicalDiseaseComponentsLazyQueryHookResult = ReturnType<typeof useOntologicalDiseaseComponentsLazyQuery>;
+export type OntologicalDiseaseComponentsQueryResult = ApolloReactCommon.QueryResult<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>;
+export const OntologicalDiseaseDocument = gql`
+    query OntologicalDisease($id: ID) {
+  OntologicalDisease(id: $id) {
+    name {
+      ...es_fields
+    }
+    description {
+      ...es_fields
+    }
+  }
+}
+    ${Es_FieldsFragmentDoc}`;
+export type OntologicalDiseaseComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>, 'query'>;
+
+    export const OntologicalDiseaseComponent = (props: OntologicalDiseaseComponentProps) => (
+      <ApolloReactComponents.Query<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables> query={OntologicalDiseaseDocument} {...props} />
+    );
+    
+export type OntologicalDiseaseProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>
+    } & TChildProps;
+export function withOntologicalDisease<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  OntologicalDiseaseQuery,
+  OntologicalDiseaseQueryVariables,
+  OntologicalDiseaseProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables, OntologicalDiseaseProps<TChildProps, TDataName>>(OntologicalDiseaseDocument, {
+      alias: 'ontologicalDisease',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useOntologicalDiseaseQuery__
+ *
+ * To run a query within a React component, call `useOntologicalDiseaseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOntologicalDiseaseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOntologicalDiseaseQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useOntologicalDiseaseQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>) {
+        return ApolloReactHooks.useQuery<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>(OntologicalDiseaseDocument, baseOptions);
+      }
+export function useOntologicalDiseaseLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>(OntologicalDiseaseDocument, baseOptions);
+        }
+export type OntologicalDiseaseQueryHookResult = ReturnType<typeof useOntologicalDiseaseQuery>;
+export type OntologicalDiseaseLazyQueryHookResult = ReturnType<typeof useOntologicalDiseaseLazyQuery>;
+export type OntologicalDiseaseQueryResult = ApolloReactCommon.QueryResult<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>;
+export const OntologicalDiseaseListDocument = gql`
+    query OntologicalDiseaseList($query_string: String) {
+  OntologicalDisease(filter: {name: {statement_contains: $query_string}}) {
+    id
+    name {
+      statement
+    }
+  }
+}
+    `;
+export type OntologicalDiseaseListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>, 'query'>;
+
+    export const OntologicalDiseaseListComponent = (props: OntologicalDiseaseListComponentProps) => (
+      <ApolloReactComponents.Query<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables> query={OntologicalDiseaseListDocument} {...props} />
+    );
+    
+export type OntologicalDiseaseListProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>
+    } & TChildProps;
+export function withOntologicalDiseaseList<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  OntologicalDiseaseListQuery,
+  OntologicalDiseaseListQueryVariables,
+  OntologicalDiseaseListProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables, OntologicalDiseaseListProps<TChildProps, TDataName>>(OntologicalDiseaseListDocument, {
+      alias: 'ontologicalDiseaseList',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useOntologicalDiseaseListQuery__
+ *
+ * To run a query within a React component, call `useOntologicalDiseaseListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOntologicalDiseaseListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOntologicalDiseaseListQuery({
+ *   variables: {
+ *      query_string: // value for 'query_string'
+ *   },
+ * });
+ */
+export function useOntologicalDiseaseListQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>) {
+        return ApolloReactHooks.useQuery<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>(OntologicalDiseaseListDocument, baseOptions);
+      }
+export function useOntologicalDiseaseListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>(OntologicalDiseaseListDocument, baseOptions);
+        }
+export type OntologicalDiseaseListQueryHookResult = ReturnType<typeof useOntologicalDiseaseListQuery>;
+export type OntologicalDiseaseListLazyQueryHookResult = ReturnType<typeof useOntologicalDiseaseListLazyQuery>;
+export type OntologicalDiseaseListQueryResult = ApolloReactCommon.QueryResult<OntologicalDiseaseListQuery, OntologicalDiseaseListQueryVariables>;
 export const OmniGeneComponentsDocument = gql`
     query OmniGeneComponents($gene_id: ID) {
   OmniGene(id: $gene_id) {
@@ -24982,6 +25371,62 @@ export function useVariantSnvIndelAddExonMutation(baseOptions?: ApolloReactHooks
 export type VariantSnvIndelAddExonMutationHookResult = ReturnType<typeof useVariantSnvIndelAddExonMutation>;
 export type VariantSnvIndelAddExonMutationResult = ApolloReactCommon.MutationResult<VariantSnvIndelAddExonMutation>;
 export type VariantSnvIndelAddExonMutationOptions = ApolloReactCommon.BaseMutationOptions<VariantSnvIndelAddExonMutation, VariantSnvIndelAddExonMutationVariables>;
+export const GenomicVariantMarkerComponentsDocument = gql`
+    query GenomicVariantMarkerComponents($query_string: String) {
+  GenomicVariantMarker(orderBy: id_asc, filter: {name: {statement_contains: $query_string}}) {
+    id
+    __typename
+    name {
+      statement
+    }
+  }
+}
+    `;
+export type GenomicVariantMarkerComponentsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>, 'query'>;
+
+    export const GenomicVariantMarkerComponentsComponent = (props: GenomicVariantMarkerComponentsComponentProps) => (
+      <ApolloReactComponents.Query<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables> query={GenomicVariantMarkerComponentsDocument} {...props} />
+    );
+    
+export type GenomicVariantMarkerComponentsProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>
+    } & TChildProps;
+export function withGenomicVariantMarkerComponents<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GenomicVariantMarkerComponentsQuery,
+  GenomicVariantMarkerComponentsQueryVariables,
+  GenomicVariantMarkerComponentsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables, GenomicVariantMarkerComponentsProps<TChildProps, TDataName>>(GenomicVariantMarkerComponentsDocument, {
+      alias: 'genomicVariantMarkerComponents',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGenomicVariantMarkerComponentsQuery__
+ *
+ * To run a query within a React component, call `useGenomicVariantMarkerComponentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGenomicVariantMarkerComponentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGenomicVariantMarkerComponentsQuery({
+ *   variables: {
+ *      query_string: // value for 'query_string'
+ *   },
+ * });
+ */
+export function useGenomicVariantMarkerComponentsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>) {
+        return ApolloReactHooks.useQuery<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>(GenomicVariantMarkerComponentsDocument, baseOptions);
+      }
+export function useGenomicVariantMarkerComponentsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>(GenomicVariantMarkerComponentsDocument, baseOptions);
+        }
+export type GenomicVariantMarkerComponentsQueryHookResult = ReturnType<typeof useGenomicVariantMarkerComponentsQuery>;
+export type GenomicVariantMarkerComponentsLazyQueryHookResult = ReturnType<typeof useGenomicVariantMarkerComponentsLazyQuery>;
+export type GenomicVariantMarkerComponentsQueryResult = ApolloReactCommon.QueryResult<GenomicVariantMarkerComponentsQuery, GenomicVariantMarkerComponentsQueryVariables>;
 export const GeneList_For_VariantsDocument = gql`
     query GeneList_For_Variants {
   OmniGene(orderBy: name_asc, filter: {variantMarkers_some: {id_starts_with: "genomicvariantmarker_"}}) {
@@ -25629,6 +26074,62 @@ export function useMsi_MarkersLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type Msi_MarkersQueryHookResult = ReturnType<typeof useMsi_MarkersQuery>;
 export type Msi_MarkersLazyQueryHookResult = ReturnType<typeof useMsi_MarkersLazyQuery>;
 export type Msi_MarkersQueryResult = ApolloReactCommon.QueryResult<Msi_MarkersQuery, Msi_MarkersQueryVariables>;
+export const MsiComponentsDocument = gql`
+    query MSIComponents($q_string: String) {
+  MSIMarker(orderBy: id_asc, filter: {name: {statement_contains: $q_string}}) {
+    id
+    name {
+      id
+      statement
+    }
+  }
+}
+    `;
+export type MsiComponentsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<MsiComponentsQuery, MsiComponentsQueryVariables>, 'query'>;
+
+    export const MsiComponentsComponent = (props: MsiComponentsComponentProps) => (
+      <ApolloReactComponents.Query<MsiComponentsQuery, MsiComponentsQueryVariables> query={MsiComponentsDocument} {...props} />
+    );
+    
+export type MsiComponentsProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<MsiComponentsQuery, MsiComponentsQueryVariables>
+    } & TChildProps;
+export function withMsiComponents<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  MsiComponentsQuery,
+  MsiComponentsQueryVariables,
+  MsiComponentsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, MsiComponentsQuery, MsiComponentsQueryVariables, MsiComponentsProps<TChildProps, TDataName>>(MsiComponentsDocument, {
+      alias: 'msiComponents',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMsiComponentsQuery__
+ *
+ * To run a query within a React component, call `useMsiComponentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMsiComponentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMsiComponentsQuery({
+ *   variables: {
+ *      q_string: // value for 'q_string'
+ *   },
+ * });
+ */
+export function useMsiComponentsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MsiComponentsQuery, MsiComponentsQueryVariables>) {
+        return ApolloReactHooks.useQuery<MsiComponentsQuery, MsiComponentsQueryVariables>(MsiComponentsDocument, baseOptions);
+      }
+export function useMsiComponentsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MsiComponentsQuery, MsiComponentsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<MsiComponentsQuery, MsiComponentsQueryVariables>(MsiComponentsDocument, baseOptions);
+        }
+export type MsiComponentsQueryHookResult = ReturnType<typeof useMsiComponentsQuery>;
+export type MsiComponentsLazyQueryHookResult = ReturnType<typeof useMsiComponentsLazyQuery>;
+export type MsiComponentsQueryResult = ApolloReactCommon.QueryResult<MsiComponentsQuery, MsiComponentsQueryVariables>;
 export const MarkerProfileDocument = gql`
     query MarkerProfile($marker_id: ID) {
   MarkerProfile(id: $marker_id) {
@@ -25963,6 +26464,62 @@ export function useMarkerProfileAddComponentsMutation(baseOptions?: ApolloReactH
 export type MarkerProfileAddComponentsMutationHookResult = ReturnType<typeof useMarkerProfileAddComponentsMutation>;
 export type MarkerProfileAddComponentsMutationResult = ApolloReactCommon.MutationResult<MarkerProfileAddComponentsMutation>;
 export type MarkerProfileAddComponentsMutationOptions = ApolloReactCommon.BaseMutationOptions<MarkerProfileAddComponentsMutation, MarkerProfileAddComponentsMutationVariables>;
+export const MarkerProfileComponentsDocument = gql`
+    query MarkerProfileComponents($q_string: String) {
+  MarkerProfile(orderBy: id_asc, filter: {name: {statement_contains: $q_string}}) {
+    id
+    name {
+      id
+      statement
+    }
+  }
+}
+    `;
+export type MarkerProfileComponentsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>, 'query'>;
+
+    export const MarkerProfileComponentsComponent = (props: MarkerProfileComponentsComponentProps) => (
+      <ApolloReactComponents.Query<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables> query={MarkerProfileComponentsDocument} {...props} />
+    );
+    
+export type MarkerProfileComponentsProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>
+    } & TChildProps;
+export function withMarkerProfileComponents<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  MarkerProfileComponentsQuery,
+  MarkerProfileComponentsQueryVariables,
+  MarkerProfileComponentsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables, MarkerProfileComponentsProps<TChildProps, TDataName>>(MarkerProfileComponentsDocument, {
+      alias: 'markerProfileComponents',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useMarkerProfileComponentsQuery__
+ *
+ * To run a query within a React component, call `useMarkerProfileComponentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMarkerProfileComponentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMarkerProfileComponentsQuery({
+ *   variables: {
+ *      q_string: // value for 'q_string'
+ *   },
+ * });
+ */
+export function useMarkerProfileComponentsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>) {
+        return ApolloReactHooks.useQuery<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>(MarkerProfileComponentsDocument, baseOptions);
+      }
+export function useMarkerProfileComponentsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>(MarkerProfileComponentsDocument, baseOptions);
+        }
+export type MarkerProfileComponentsQueryHookResult = ReturnType<typeof useMarkerProfileComponentsQuery>;
+export type MarkerProfileComponentsLazyQueryHookResult = ReturnType<typeof useMarkerProfileComponentsLazyQuery>;
+export type MarkerProfileComponentsQueryResult = ApolloReactCommon.QueryResult<MarkerProfileComponentsQuery, MarkerProfileComponentsQueryVariables>;
 export const MarkerProfilesDocument = gql`
     query MarkerProfiles($query_string: String) {
   MarkerProfile(orderBy: id_asc, filter: {name: {statement_contains: $query_string}}) {
@@ -26588,6 +27145,62 @@ export function useProteinExpressionMarkerAddImmuneCycleRoleMutation(baseOptions
 export type ProteinExpressionMarkerAddImmuneCycleRoleMutationHookResult = ReturnType<typeof useProteinExpressionMarkerAddImmuneCycleRoleMutation>;
 export type ProteinExpressionMarkerAddImmuneCycleRoleMutationResult = ApolloReactCommon.MutationResult<ProteinExpressionMarkerAddImmuneCycleRoleMutation>;
 export type ProteinExpressionMarkerAddImmuneCycleRoleMutationOptions = ApolloReactCommon.BaseMutationOptions<ProteinExpressionMarkerAddImmuneCycleRoleMutation, ProteinExpressionMarkerAddImmuneCycleRoleMutationVariables>;
+export const ProteinExpressionMarkerComponentsDocument = gql`
+    query ProteinExpressionMarkerComponents($query_string: String) {
+  ProteinExpressionMarker(orderBy: id_asc, filter: {name: {statement_contains: $query_string}}) {
+    id
+    __typename
+    name {
+      statement
+    }
+  }
+}
+    `;
+export type ProteinExpressionMarkerComponentsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>, 'query'>;
+
+    export const ProteinExpressionMarkerComponentsComponent = (props: ProteinExpressionMarkerComponentsComponentProps) => (
+      <ApolloReactComponents.Query<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables> query={ProteinExpressionMarkerComponentsDocument} {...props} />
+    );
+    
+export type ProteinExpressionMarkerComponentsProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>
+    } & TChildProps;
+export function withProteinExpressionMarkerComponents<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  ProteinExpressionMarkerComponentsQuery,
+  ProteinExpressionMarkerComponentsQueryVariables,
+  ProteinExpressionMarkerComponentsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables, ProteinExpressionMarkerComponentsProps<TChildProps, TDataName>>(ProteinExpressionMarkerComponentsDocument, {
+      alias: 'proteinExpressionMarkerComponents',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useProteinExpressionMarkerComponentsQuery__
+ *
+ * To run a query within a React component, call `useProteinExpressionMarkerComponentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProteinExpressionMarkerComponentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProteinExpressionMarkerComponentsQuery({
+ *   variables: {
+ *      query_string: // value for 'query_string'
+ *   },
+ * });
+ */
+export function useProteinExpressionMarkerComponentsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>) {
+        return ApolloReactHooks.useQuery<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>(ProteinExpressionMarkerComponentsDocument, baseOptions);
+      }
+export function useProteinExpressionMarkerComponentsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>(ProteinExpressionMarkerComponentsDocument, baseOptions);
+        }
+export type ProteinExpressionMarkerComponentsQueryHookResult = ReturnType<typeof useProteinExpressionMarkerComponentsQuery>;
+export type ProteinExpressionMarkerComponentsLazyQueryHookResult = ReturnType<typeof useProteinExpressionMarkerComponentsLazyQuery>;
+export type ProteinExpressionMarkerComponentsQueryResult = ApolloReactCommon.QueryResult<ProteinExpressionMarkerComponentsQuery, ProteinExpressionMarkerComponentsQueryVariables>;
 export const ProteinExpression_MarkersDocument = gql`
     query ProteinExpression_Markers($query_string: String) {
   ProteinExpressionMarker(orderBy: id_asc, filter: {name: {statement_contains: $query_string}}) {
@@ -27322,6 +27935,62 @@ export function useTmb_MarkersLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type Tmb_MarkersQueryHookResult = ReturnType<typeof useTmb_MarkersQuery>;
 export type Tmb_MarkersLazyQueryHookResult = ReturnType<typeof useTmb_MarkersLazyQuery>;
 export type Tmb_MarkersQueryResult = ApolloReactCommon.QueryResult<Tmb_MarkersQuery, Tmb_MarkersQueryVariables>;
+export const TmbComponentsDocument = gql`
+    query TMBComponents($q_string: String) {
+  TMBMarker(orderBy: id_asc, filter: {name: {statement_contains: $q_string}}) {
+    id
+    name {
+      id
+      statement
+    }
+  }
+}
+    `;
+export type TmbComponentsComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<TmbComponentsQuery, TmbComponentsQueryVariables>, 'query'>;
+
+    export const TmbComponentsComponent = (props: TmbComponentsComponentProps) => (
+      <ApolloReactComponents.Query<TmbComponentsQuery, TmbComponentsQueryVariables> query={TmbComponentsDocument} {...props} />
+    );
+    
+export type TmbComponentsProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<TmbComponentsQuery, TmbComponentsQueryVariables>
+    } & TChildProps;
+export function withTmbComponents<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  TmbComponentsQuery,
+  TmbComponentsQueryVariables,
+  TmbComponentsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, TmbComponentsQuery, TmbComponentsQueryVariables, TmbComponentsProps<TChildProps, TDataName>>(TmbComponentsDocument, {
+      alias: 'tmbComponents',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useTmbComponentsQuery__
+ *
+ * To run a query within a React component, call `useTmbComponentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTmbComponentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTmbComponentsQuery({
+ *   variables: {
+ *      q_string: // value for 'q_string'
+ *   },
+ * });
+ */
+export function useTmbComponentsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TmbComponentsQuery, TmbComponentsQueryVariables>) {
+        return ApolloReactHooks.useQuery<TmbComponentsQuery, TmbComponentsQueryVariables>(TmbComponentsDocument, baseOptions);
+      }
+export function useTmbComponentsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TmbComponentsQuery, TmbComponentsQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<TmbComponentsQuery, TmbComponentsQueryVariables>(TmbComponentsDocument, baseOptions);
+        }
+export type TmbComponentsQueryHookResult = ReturnType<typeof useTmbComponentsQuery>;
+export type TmbComponentsLazyQueryHookResult = ReturnType<typeof useTmbComponentsLazyQuery>;
+export type TmbComponentsQueryResult = ApolloReactCommon.QueryResult<TmbComponentsQuery, TmbComponentsQueryVariables>;
 export const EditableAssayComparatorDocument = gql`
     query EditableAssayComparator($field: String) {
   EditableAssayComparator(field: $field, orderBy: editDate_desc) {
@@ -27682,6 +28351,70 @@ export function useEditableIntLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 export type EditableIntQueryHookResult = ReturnType<typeof useEditableIntQuery>;
 export type EditableIntLazyQueryHookResult = ReturnType<typeof useEditableIntLazyQuery>;
 export type EditableIntQueryResult = ApolloReactCommon.QueryResult<EditableIntQuery, EditableIntQueryVariables>;
+export const EditableMarkerComponentListDocument = gql`
+    query EditableMarkerComponentList($field: String) {
+  EditableMarkerComponentList(field: $field, orderBy: editDate_desc) {
+    field
+    components {
+      name {
+        statement
+      }
+    }
+    editDate
+    editor {
+      name
+    }
+    references {
+      shortReference
+    }
+  }
+}
+    `;
+export type EditableMarkerComponentListComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>, 'query'>;
+
+    export const EditableMarkerComponentListComponent = (props: EditableMarkerComponentListComponentProps) => (
+      <ApolloReactComponents.Query<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables> query={EditableMarkerComponentListDocument} {...props} />
+    );
+    
+export type EditableMarkerComponentListProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>
+    } & TChildProps;
+export function withEditableMarkerComponentList<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  EditableMarkerComponentListQuery,
+  EditableMarkerComponentListQueryVariables,
+  EditableMarkerComponentListProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables, EditableMarkerComponentListProps<TChildProps, TDataName>>(EditableMarkerComponentListDocument, {
+      alias: 'editableMarkerComponentList',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useEditableMarkerComponentListQuery__
+ *
+ * To run a query within a React component, call `useEditableMarkerComponentListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useEditableMarkerComponentListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useEditableMarkerComponentListQuery({
+ *   variables: {
+ *      field: // value for 'field'
+ *   },
+ * });
+ */
+export function useEditableMarkerComponentListQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>) {
+        return ApolloReactHooks.useQuery<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>(EditableMarkerComponentListDocument, baseOptions);
+      }
+export function useEditableMarkerComponentListLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>(EditableMarkerComponentListDocument, baseOptions);
+        }
+export type EditableMarkerComponentListQueryHookResult = ReturnType<typeof useEditableMarkerComponentListQuery>;
+export type EditableMarkerComponentListLazyQueryHookResult = ReturnType<typeof useEditableMarkerComponentListLazyQuery>;
+export type EditableMarkerComponentListQueryResult = ApolloReactCommon.QueryResult<EditableMarkerComponentListQuery, EditableMarkerComponentListQueryVariables>;
 export const EditableOmniGeneReferenceDocument = gql`
     query EditableOmniGeneReference($field: String) {
   EditableOmniGeneReference(field: $field, orderBy: editDate_desc) {

@@ -1,0 +1,78 @@
+.OntologicalDiseaseList__Container {
+    height: 100%;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 250px;
+}
+.OntologicalDiseaseList__Panel {
+    height: 220px;
+    width: 250px;
+    position: fixed;
+    background-color: #ececec;
+    border-bottom: 1px solid #919191;
+}
+.OntologicalDiseaseList__Panel_Wrapper {
+    height: 220px;
+}
+.OntologicalDiseaseList__Buttons {
+    height: 50px;
+    width: 250px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.OntologicalDiseaseList__Filter {
+    height: 120px;
+    width: 250px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.OntologicalDiseaseList__Label {
+    font-size: 0.8rem;
+}
+.OntologicalDiseaseList__Title {
+    padding-top: 10px;
+    font-size: 1.5rem;
+}
+.OntologicalDiseaseList {
+    height: 100%;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 250px;
+    min-width: 250px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.OntologicalDiseaseList__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.OntologicalDiseaseList__item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #919191;
+    cursor: pointer;
+}
+
+.OntologicalDiseaseList__selected_item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #919191;
+    cursor: pointer;
+    color: blue;
+}
+
+.filter_text_input {
+    text-align: left;
+    width: 220px;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-right: 0.5rem;
+}
+

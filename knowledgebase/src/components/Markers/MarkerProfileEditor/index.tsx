@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useMarkerProfileQuery} from "../../../generated/graphql";
+import {MarkerComponent, useMarkerProfileQuery} from "../../../generated/graphql";
 import MarkerProfileEditor from "./MarkerProfileEditor";
 
 interface Props {
@@ -8,9 +8,12 @@ interface Props {
     set_editing_description: (newEditionDescription: boolean) => void;
     editing_components: boolean;
     set_editing_components: (newEditionDescription: boolean) => void;
+    selected_component: MarkerComponent;
+    set_selected_component:(selected:MarkerComponent | null) => void;
 }
 
-const MarkerProfileEditorContainer: React.FC<Props> = ({marker_id, editing_description, set_editing_description,editing_components,set_editing_components}) => {
+const MarkerProfileEditorContainer: React.FC<Props> = ({marker_id, editing_description, set_editing_description,editing_components,set_editing_components,
+                                                           selected_component,set_selected_component}) => {
     const {data, error, loading, refetch} = useMarkerProfileQuery(({variables:{marker_id:marker_id}}))
     React.useEffect(() => {
         refetch();
@@ -27,7 +30,7 @@ const MarkerProfileEditorContainer: React.FC<Props> = ({marker_id, editing_descr
         return <div>No Variant</div>;
     }    return (
         <MarkerProfileEditor data={data} marker_id={marker_id} editing_description={editing_description} set_editing_description={set_editing_description}
-                             editing_components={editing_components} set_editing_components={set_editing_components} refetch={refetch}/>
+                             editing_components={editing_components} set_editing_components={set_editing_components} selected_component={selected_component} set_selected_component={set_selected_component} refetch={refetch}/>
     )
 }
 

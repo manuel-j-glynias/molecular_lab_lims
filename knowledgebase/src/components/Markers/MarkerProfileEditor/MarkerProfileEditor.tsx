@@ -1,5 +1,5 @@
 import * as React from "react";
-import {MarkerProfileQuery, useMarkerProfileQuery} from "../../../generated/graphql";
+import {MarkerComponent, MarkerProfileQuery, useMarkerProfileQuery} from "../../../generated/graphql";
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import HistoryContainer from "../../common/History";
@@ -8,6 +8,8 @@ import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
 import ConjuctionEditor from "./ConjuctionEditor"
 import ConjuctionHistoryContainer from "../../common/ConjunctionHistory";
+import ComponentEditor from "./ComponentEditor"
+import EditableMarkerComponentListHistoryContainer from "../../common/EditableMarkerComponentListHistory";
 
 interface Props{
     marker_id: string;
@@ -15,13 +17,16 @@ interface Props{
     set_editing_description: (newEditionDescription: boolean) => void;
     editing_components: boolean;
     set_editing_components: (newEditionDescription: boolean) => void;
+    selected_component: MarkerComponent;
+    set_selected_component:(selected:MarkerComponent | null) => void;
     data:MarkerProfileQuery;
     refetch: () => void;
 }
 
 const className = 'MarkerProfileEditor';
 
-const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_description,set_editing_description,editing_components,set_editing_components, refetch}) => {
+const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_description,set_editing_description,editing_components,set_editing_components,
+                                                   selected_component,set_selected_component,refetch}) => {
     const [editing_name, set_editing_name]  = React.useState(false);
     const [showing_name_references, set_showing_name_references] = React.useState(false);
     const [show_name_history, set_name_history] = React.useState(false);
@@ -43,6 +48,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
     if (!data.MarkerProfile[0]){
         return <div>No MSIMarker</div>;
     }
+
     return <React.Fragment>
         <div className={className}>
             <h1 className={`${className}__title`}>{data.MarkerProfile[0].name.statement}</h1>
@@ -135,7 +141,49 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                 </div>
 
                 <div>Components</div>
-                <div>{data.MarkerProfile[0].components.components.map(((item, index) => (<span key={index}><span>{item && item.name.statement}, </span></span>)))}</div>
+                {/*<div>{data.MarkerProfile[0].components.components.map(((item, index) => (<span key={index}><span>{item && item.name.statement}, </span></span>)))}</div>*/}
+                <div>
+                    {editing_components ? (
+                            // @ts-ignore
+                            <ComponentEditor components={data.MarkerProfile[0].components.components} set_editing={set_editing_components} marker_id={marker_id} id={data.MarkerProfile[0].components.id} field={data.MarkerProfile[0].components.field} selected_component={selected_component} set_selected_component={set_selected_component} ref_array={[]} refetch={refetch}/>
+                        )
+                        :
+                        <div>{data.MarkerProfile[0].components.components.map(((item, index) => (<span key={index}><span>{item && item.name.statement}, </span></span>)))}</div>
+                    }
+                    {!editing_components ?
+                        (<div className={`${className}__FormGroup`}>
+                                <button className="btn btn-primary my-1" onClick={() => set_editing_components(true)}>Edit Components</button>
+                                <button className="btn btn-primary my-1"
+                                        onClick={() => set_components_history(!show_components_history)}>
+                                    {show_components_history ? <span>Hide History</span> : <span>Show History</span>}
+                                </button>
+                                <button className="btn btn-primary my-1" onClick={() => set_showing_components_references(!showing_components_references)}>
+                                    {showing_components_references ? <span>Hide References</span> : <span>Show References</span>}
+                                </button>
+                            </div>
+                        )
+                        : (<span></span>)
+                    }
+                    {show_components_history ?
+                        <div>
+                            <EditableMarkerComponentListHistoryContainer field={data.MarkerProfile[0].components.field}  />
+                        </div>
+                        : <span></span>
+                    }
+                    {
+                        showing_components_references ?
+                            <div><h3>References</h3>
+                                <div>{data.MarkerProfile[0].components.references.length > 0 ?
+                                    data.MarkerProfile[0].components.references.map((item, index) => (
+                                        // @ts-ignore
+                                        <div key={index}> {item ? <LiteratureReferenceContainer id={item.id}/> : ''}</div>
+
+                                    )) : <span>None</span>}</div>
+                            </div> : (<span></span>)
+                    }
+                    <div><strong>Last Editor: </strong>{data.MarkerProfile[0].components.editor.name}</div>
+                    <div><strong>Last Edit Date: </strong>{humanify_date(data.MarkerProfile[0].components.editDate)}</div>
+                </div>
 
 
                 <div>Results</div>

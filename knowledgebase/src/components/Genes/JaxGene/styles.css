@@ -62,7 +62,7 @@
 .JaxGene__small-btn:hover {
     background: #1ab6cf;
 }
-JaxGene__small-btn:active {
+.JaxGene__small-btn:active {
     border: 2px solid green;
 }
 .JaxGene__Synonym_Wrapper {

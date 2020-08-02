@@ -1,0 +1,60 @@
+.TMBPicker__Container {
+    height: 400px;
+    width: 350px;
+    overflow: hidden auto;
+    background-color: lightgray;
+    width: 352px;
+    border: 1px solid #919191;
+}
+
+.TMBPicker__Title {
+    padding-top: 10px;
+    font-size: 1.5rem;
+}
+.TMBPicker {
+    height: 400px;
+    overflow: hidden auto;
+    background-color: white;
+    width: 350px;
+    min-width: 250px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.TMBPicker__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.TMBPicker__item {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: small;
+}
+
+.TMBPicker__Marker_Wrapper {
+    display: grid;
+    grid-template-columns: 250px 100px;
+    align-items: flex-start;
+}
+.TMBPicker__small-btn {
+    display: inline-block;
+    background-color: #005198;
+    color: white;
+    padding: 0.2rem 0.2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    outline: none;
+    transition: all 0.2s ease-in;
+}
+.TMBPicker__small-btn:hover {
+    background: #1ab6cf;
+}
+.TMBPicker__small-btn:active {
+    border: 2px solid green;
+}

@@ -23,6 +23,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
     const [editing_description, set_editing_description] = React.useState(false);
     const [editing_protein_effect, set_editing_protein_effect] = React.useState(false);
     const [editing_components, set_editing_components] = React.useState(false);
+    const [selected_component, set_selected_component] = React.useState();
 
 
     if (!logged_in) {
@@ -44,6 +45,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                                   set_editing_protein_effect={set_editing_protein_effect}
                                   editing_components={editing_components}
                                   set_editing_components={set_editing_components}
+                                selected_component={selected_component} set_selected_component={set_selected_component}
                     />
 
 
@@ -51,7 +53,9 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                                             editing_protein_effect={editing_protein_effect}
                                                             editing_description={editing_description}
                                             editing_components={editing_components}
-                                            set_editing_components={set_editing_components}/>
+                                            set_editing_components={set_editing_components}
+                                            set_selected_component={set_selected_component}
+                    />
                 </React.Fragment>
             </AppendedContentProvider>
         </div>
