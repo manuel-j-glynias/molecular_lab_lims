@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useOntologicalDiseaseQuery } from '../../../generated/graphql';
 import OntologicalDisease from './OntologicalDisease'
 
-interface OwnProps {
+interface Props {
     id: string;
     editing_description: boolean;
     set_editing_description: (newEditionDescription: boolean) => void;
@@ -11,7 +11,7 @@ interface OwnProps {
 
 }
 
-const OntologicalDiseaseContainer = ({ id, editing_description, set_editing_description,editing_synonyms,set_editing_synonyms }: OwnProps) => {
+const OntologicalDiseaseContainer = ({ id, editing_description, set_editing_description,editing_synonyms,set_editing_synonyms }: Props) => {
     const { data, error, loading, refetch } = useOntologicalDiseaseQuery(
         { variables: { id: id } });
     React.useEffect(() => {

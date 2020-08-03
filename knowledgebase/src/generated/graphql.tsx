@@ -19975,6 +19975,18 @@ export type OntologicalDiseaseQuery = (
     ), description: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
+    ), omniMaps: (
+      { __typename?: 'EditableOmniMapList' }
+      & { list: Array<Maybe<(
+        { __typename?: 'OmniMap' }
+        & { mCodes: Array<Maybe<(
+          { __typename?: 'MCode' }
+          & { diseasePath: (
+            { __typename?: 'EditableStatement' }
+            & Pick<EditableStatement, 'statement'>
+          ) }
+        )>> }
+      )>> }
     ) }
   )>>> }
 );
@@ -22757,6 +22769,15 @@ export const OntologicalDiseaseDocument = gql`
     }
     description {
       ...es_fields
+    }
+    omniMaps {
+      list {
+        mCodes {
+          diseasePath {
+            statement
+          }
+        }
+      }
     }
   }
 }

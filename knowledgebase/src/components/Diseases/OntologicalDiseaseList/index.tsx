@@ -28,10 +28,6 @@ const OntologicalDiseaseListContainer = ({query_str, set_query_string, handle_on
         set_filter_term('')
     }
 
-    type addGeneResult = {
-        result_id: string;
-        result_name: string;
-    }
 
     const get_query_string = () : string => {
         let q = query_str
@@ -48,7 +44,7 @@ const OntologicalDiseaseListContainer = ({query_str, set_query_string, handle_on
         return <div>Loading...</div>
     }
     if (error || !data) {
-        return <div>ERROR in GeneList</div>
+        return <div>ERROR in Disease List</div>
     }
     return (
         <Fragment>

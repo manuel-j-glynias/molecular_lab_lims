@@ -19,6 +19,27 @@ const className = 'OntologicalDisease';
 
 const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editing_description,editing_synonyms,set_editing_synonyms,refetch}) => {
 
+    const isMCodeAvailable = () : boolean =>{
+        let b = false
+
+        if (data){
+            if (data.OntologicalDisease){
+                if (data.OntologicalDisease[0]){
+                    if (data.OntologicalDisease[0].omniMaps){
+                        if (data.OntologicalDisease[0].omniMaps.list){
+                            if (data.OntologicalDisease[0].omniMaps.list[0]){
+                                if (data.OntologicalDisease[0].omniMaps.list[0].mCodes[0]){
+                                    b = true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return b
+    }
 
     if (!data.OntologicalDisease) {
         return <div>No Selected OntologicalDisease</div>;
@@ -39,9 +60,15 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
 
 
                 <div>Synonyms</div>
-                {/*<div>{data.OntologicalDisease[0].synonyms.stringList.join(',') }</div>*/}
+                {/*{<div>{data.OntologicalDisease[0].synonyms.stringList.join(',') }</div>}*/}
                 <div>Blank for now</div>
 
+                <div>OmniMaps--Disease Path</div>
+
+                {<div>{data.OntologicalDisease[0].omniMaps &&
+                data.OntologicalDisease[0].omniMaps.list[0] &&
+                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0] &&
+                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0].diseasePath.statement }</div>}
 
 
             </div>

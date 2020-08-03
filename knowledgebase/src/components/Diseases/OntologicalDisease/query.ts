@@ -10,7 +10,16 @@ export const QUERY_OntolgicalDisease = gql`
             description{
                 ...es_fields
             }
-        }
+            omniMaps{
+                list{
+                    mCodes{
+                        diseasePath{
+                            statement
+                        }
+                    }
+                }
+            }
+    }
     }
 `
 

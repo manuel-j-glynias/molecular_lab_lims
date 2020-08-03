@@ -2,13 +2,13 @@ import * as React from 'react';
 import ContentContainer from './ContentContainer'
 import {useOntologicalDiseaseComponentsQuery} from "../../../generated/graphql";
 
-interface OwnProps {
+interface Props {
     id: string;
     editing_description: boolean;
     editing_synonyms: boolean;
 }
 
-const ContentContainerContainer = ({ id, editing_synonyms,editing_description }: OwnProps) => {
+const ContentContainerContainer = ({ id, editing_synonyms,editing_description }: Props) => {
     const { data, error, loading, refetch } = useOntologicalDiseaseComponentsQuery(
         { variables: { id: id } });
     React.useEffect(() => {
