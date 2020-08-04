@@ -6,7 +6,7 @@ import HistoryContainer from "../../common/History";
 import EditableFloatHistoryContainer from "../../common/EditableFloatHistory";
 import ComparatorHistoryContainer from "../../common/ComparatorHistory";
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
-import {humanify_date} from "../../common/Helpers/Ref_helpers";
+import {get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
 import MethodEditableStatementEditor from "./MethodEditableStatementEditor";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
 import ResultUnitsEditableStatementEditor from  "./ResultUnitsEditableStatementEditor"
@@ -76,7 +76,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 {/*<div>{data.TMBMarker[0].name.statement}</div>*/}
                 <div>
                 {editing_name ? (
-                        <NameEditableStatementEditor statement={data.TMBMarker[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.TMBMarker[0].name.id} es_field={data.TMBMarker[0].name.field} ref_array={[]} refetch={refetch} />
+                        <NameEditableStatementEditor statement={data.TMBMarker[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.TMBMarker[0].name.id} es_field={data.TMBMarker[0].name.field} ref_array={get_ref_array(data.TMBMarker[0].name.references)} refetch={refetch} />
                     )
                     :
                     <div>{data.TMBMarker[0].name.statement}</div>
@@ -121,7 +121,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 {/*<div>{data.TMBMarker[0].method.statement}</div>*/}
                 <div>
                     {editing_method ? (
-                            <MethodEditableStatementEditor statement={data.TMBMarker[0].method.statement} set_editing={set_editing_method} marker_id={marker_id} es_ID={data.TMBMarker[0].method.id} es_field={data.TMBMarker[0].method.field} ref_array={[]} refetch={refetch} />
+                            <MethodEditableStatementEditor statement={data.TMBMarker[0].method.statement} set_editing={set_editing_method} marker_id={marker_id} es_ID={data.TMBMarker[0].method.id} es_field={data.TMBMarker[0].method.field} ref_array={get_ref_array(data.TMBMarker[0].method.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.TMBMarker[0].method.statement}</div>
@@ -165,7 +165,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 <div>Comparator</div>
                 <div>
                 {editing_comparator ?
-                    (<ComparatorEditor marker_ID={marker_id} comparator={data.TMBMarker[0].comparator.comparator} set_editing={set_editing_comparator} es_ID={data.TMBMarker[0].comparator.id} es_field={data.TMBMarker[0].comparator.field} ref_array={[]} refetch={refetch}/>
+                    (<ComparatorEditor marker_ID={marker_id} comparator={data.TMBMarker[0].comparator.comparator} set_editing={set_editing_comparator} es_ID={data.TMBMarker[0].comparator.id} es_field={data.TMBMarker[0].comparator.field} ref_array={get_ref_array(data.TMBMarker[0].comparator.references)} refetch={refetch}/>
                     )
                     : <div>{data.TMBMarker[0].comparator.comparator}</div>}
                 {!editing_comparator ?
@@ -190,7 +190,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 {/*<div>{data.TMBMarker[0].resultMin.floatValue}</div>*/}
                 <div>
                     {editing_result_min ? (
-                            <ResultMinEditor minResult={data.TMBMarker[0].resultMin.floatValue} set_editing={set_editing_result_min} marker_id={marker_id} es_ID={data.TMBMarker[0].resultMin.id} es_field={data.TMBMarker[0].resultMin.field} ref_array={[]} refetch={refetch} />
+                            <ResultMinEditor minResult={data.TMBMarker[0].resultMin.floatValue} set_editing={set_editing_result_min} marker_id={marker_id} es_ID={data.TMBMarker[0].resultMin.id} es_field={data.TMBMarker[0].resultMin.field} ref_array={get_ref_array(data.TMBMarker[0].resultMin.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.TMBMarker[0].resultMin.floatValue}</div>
@@ -235,7 +235,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                     <React.Fragment>
                     {/*data.TMBMarker[0].resultMax.floatValue*/}
                         {editing_result_max ? (
-                                <ResultMaxEditor maxResult={data.TMBMarker[0].resultMax.floatValue} set_editing={set_editing_result_max} marker_id={marker_id} es_ID={data.TMBMarker[0].resultMax.id} es_field={data.TMBMarker[0].resultMax.field} ref_array={[]} refetch={refetch} />
+                                <ResultMaxEditor maxResult={data.TMBMarker[0].resultMax.floatValue} set_editing={set_editing_result_max} marker_id={marker_id} es_ID={data.TMBMarker[0].resultMax.id} es_field={data.TMBMarker[0].resultMax.field} ref_array={get_ref_array(data.TMBMarker[0].resultMax.references)} refetch={refetch} />
                             )
                             :
                             <div>{data.TMBMarker[0].resultMax.floatValue}</div>
@@ -282,7 +282,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 {/*<div>{data.TMBMarker[0].resultUnits.statement}</div>*/}
                 <div>
                     {editing_result_units ? (
-                            <ResultUnitsEditableStatementEditor statement={data.TMBMarker[0].resultUnits.statement} set_editing={set_editing_result_units} marker_id={marker_id} es_ID={data.TMBMarker[0].resultUnits.id} es_field={data.TMBMarker[0].resultUnits.field} ref_array={[]} refetch={refetch} />
+                            <ResultUnitsEditableStatementEditor statement={data.TMBMarker[0].resultUnits.statement} set_editing={set_editing_result_units} marker_id={marker_id} es_ID={data.TMBMarker[0].resultUnits.id} es_field={data.TMBMarker[0].resultUnits.field} ref_array={get_ref_array(data.TMBMarker[0].resultUnits.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.TMBMarker[0].resultUnits.statement}</div>
@@ -326,7 +326,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 {/*<div>{data.TMBMarker[0].interpretations[0] && data.TMBMarker[0].interpretations[0].tmbInterpretation}</div>*/}
                 <div>
                     {editing_results ? (
-                            <ResultsEditableStatementEditor statement={data.TMBMarker[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.TMBMarker[0].resultString.id} es_field={data.TMBMarker[0].resultString.field} ref_array={[]} refetch={refetch} />
+                            <ResultsEditableStatementEditor statement={data.TMBMarker[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.TMBMarker[0].resultString.id} es_field={data.TMBMarker[0].resultString.field} ref_array={get_ref_array(data.TMBMarker[0].resultString.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.TMBMarker[0].resultString.statement}</div>

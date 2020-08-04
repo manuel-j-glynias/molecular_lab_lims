@@ -1,11 +1,10 @@
 import * as React from 'react';
-
 import {OntologicalDiseaseQuery} from '../../../generated/graphql';
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import HistoryContainer from "../../common/History";
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
-import {humanify_date} from "../../common/Helpers/Ref_helpers";
+import {get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
 
 
 
@@ -42,7 +41,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                 {/*<div>{data.OntologicalDisease[0].name.statement}</div>*/}
                 <div>
                     {editing_name ? (
-                            <NameEditableStatementEditor statement={data.OntologicalDisease[0].name.statement} set_editing={set_editing_name} id={data.OntologicalDisease[0].id} es_ID={data.OntologicalDisease[0].name.id} es_field={data.OntologicalDisease[0].name.field} ref_array={[]} refetch={refetch} />
+                            <NameEditableStatementEditor statement={data.OntologicalDisease[0].name.statement} set_editing={set_editing_name} id={data.OntologicalDisease[0].id} es_ID={data.OntologicalDisease[0].name.id} es_field={data.OntologicalDisease[0].name.field} ref_array={get_ref_array(data.OntologicalDisease[0].name.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.OntologicalDisease[0].name.statement}</div>

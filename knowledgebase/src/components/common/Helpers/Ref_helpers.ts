@@ -134,3 +134,16 @@ export const humanify_date =  (date_string:string) : string => {
     const d = toks[1] + '/' + toks[2]  + '/' + toks[0] + ' at ' + toks[3] + ':' + toks[4]
     return d
 }
+
+export const get_ref_array = (references: any) : string[] => {
+    let refs : string[] = []
+    for (let r of references) {
+        console.log(r)
+        if (r.__typename== "LiteratureReference"){
+            console.log(r.PMID)
+            refs.push(r.PMID)
+        }
+    }
+
+    return refs
+}

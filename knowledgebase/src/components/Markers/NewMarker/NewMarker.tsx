@@ -1,12 +1,11 @@
 import * as React from "react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Select from "react-select";
 import './styles.css'
 import { useAlert } from 'react-alert'
 import {
     useCreateMarkerProfileMutation,
-    CreateMarkerProfileMutationVariables,
-    MarkerProfileAddComponentsMutationVariables
+    CreateMarkerProfileMutationVariables, MarkerComponent
 } from '../../../generated/graphql'
 import {useUserContentState} from "../../../context/UserContentContext";
 import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/Helpers/EditableStatementHelper";
@@ -14,9 +13,14 @@ import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/H
 
 const className = 'NewMarker';
 
-const NewMarker: React.FC = () => {
+interface Props {
+    set_markerType: (newId: string) => void;
+    set_query_string: (query: string) => void;
+}
+
+const NewMarker: React.FC<Props> = ({set_markerType,set_query_string}) => {
     const [markerName, set_markerName] = useState('Protein Expression Markers')
-    const [markerType, set_markerType] = useState('ProteinExpressionMarker')
+    const [new_markerType, set_new_markerType] = useState('ProteinExpressionMarker')
     const [new_marker_name, set_new_marker_name] = useState('');
     const alert = useAlert()
 
@@ -54,6 +58,16 @@ const NewMarker: React.FC = () => {
         return variables;
     }
 
+    const post_CreateMarkerProfileMutation = () => {
+
+        if (markerProfileMutationData!=null){
+            set_query_string(new_marker_name)
+            set_markerType('MarkerProfile')
+
+        }
+    }
+    useEffect(post_CreateMarkerProfileMutation,[markerProfileMutationData])
+
     const options = [
         { value: 'ProteinExpressionMarker', label: 'Protein Expression Markers' },
         { value: 'VariantSNVIndel', label: 'GenomicVariantMarker--SNVIndel' },
@@ -66,15 +80,15 @@ const NewMarker: React.FC = () => {
 
     ];
     const state  = {
-        selectedOption: { value: markerType, label: markerName },
+        selectedOption: { value: new_markerType, label: markerName },
     };
 
     const handleChange = async (event:any) => {
         const label : string = event.label
         const value : string = event.value as string;
         set_markerName(label)
-        set_markerType(value)
-        state.selectedOption.value = markerType
+        set_new_markerType(value)
+        state.selectedOption.value = new_markerType
         state.selectedOption.label = markerName
     }
     const handleCreateMarker = async () => {
@@ -82,7 +96,7 @@ const NewMarker: React.FC = () => {
             alert.error("Please Name the Marker!")
         }
         else {
-            switch(markerType){
+            switch(new_markerType){
                 case "ProteinExpressionMarker": {
                     console.log("ProteinExpressionMarker")
                     break;
@@ -153,24 +167,3 @@ const NewMarker: React.FC = () => {
 
 export default NewMarker;
 
-
-//                        <div className={`${className}__Filter`}>
-//                             <input className={'filter_text_input'} type="text"
-//                                    placeholder="Name Starts With..."
-//                                    name="subString" value={filter_term}
-//                                    onChange={e => set_filter_term(e.target.value)}
-//                                    onKeyPress={keyPressed}
-//                             />
-//                             <div>
-//                                 <label className={`${className}__Label`}>
-//                                     <input
-//                                         name="isAllCaps"
-//                                         type="checkbox"
-//                                         checked={all_caps}
-//                                         onChange={handle_all_caps}/> Search with ALL-CAPS:
-//                                 </label>
-//                             </div>
-//                             <button className={'btn btn-primary'} onClick={handleNameFilter}>Filter</button>
-//                             <button className={'btn btn-primary'} onClick={handleReset}>Reset</button>
-//                         </div>
-//                     </div>

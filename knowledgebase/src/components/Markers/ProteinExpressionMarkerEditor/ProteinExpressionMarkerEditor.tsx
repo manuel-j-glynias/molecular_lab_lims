@@ -3,7 +3,7 @@ import {ProteinExpression_MarkerQuery} from "../../../generated/graphql";
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import HistoryContainer from "../../common/History";
-import {add_hyperlinks, humanify_date} from "../../common/Helpers/Ref_helpers"
+import {add_hyperlinks, get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers"
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import MethodEditableStatementEditor from "./MethodEditableStatementEditor";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
@@ -75,7 +75,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 <div>Name</div>
                 <div>
                 {editing_name ? (
-                    <NameEditableStatementEditor statement={data.ProteinExpressionMarker[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.ProteinExpressionMarker[0].name.id} es_field={data.ProteinExpressionMarker[0].name.field} ref_array={[]} refetch={refetch} />
+                    <NameEditableStatementEditor statement={data.ProteinExpressionMarker[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.ProteinExpressionMarker[0].name.id} es_field={data.ProteinExpressionMarker[0].name.field} ref_array={get_ref_array(data.ProteinExpressionMarker[0].name.references)} refetch={refetch} />
                 )
                 :
                     <div>{data.ProteinExpressionMarker[0].name.statement}</div>
@@ -121,7 +121,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 {/*<div>{data.MSIMarker[0].method.statement}</div>*/}
                 <div>
                     {editing_method ? (
-                            <MethodEditableStatementEditor statement={data.ProteinExpressionMarker[0].method.statement} set_editing={set_editing_method} marker_id={marker_id} es_ID={data.ProteinExpressionMarker[0].method.id} es_field={data.ProteinExpressionMarker[0].method.field} ref_array={[]} refetch={refetch} />
+                            <MethodEditableStatementEditor statement={data.ProteinExpressionMarker[0].method.statement} set_editing={set_editing_method} marker_id={marker_id} es_ID={data.ProteinExpressionMarker[0].method.id} es_field={data.ProteinExpressionMarker[0].method.field} ref_array={get_ref_array(data.ProteinExpressionMarker[0].method.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.ProteinExpressionMarker[0].method.statement}</div>
@@ -214,7 +214,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 {/*<div>{data.ProteinExpressionMarker[0].immunePhenotypes[0] && data.ProteinExpressionMarker[0].immunePhenotypes[0].immunePhenotype}</div>*/}
                 <div>
                     {editing_immune_phenotype ? (
-                            data.ProteinExpressionMarker[0].immunePhenotypes[0] && <ImmunePhenotypeEditor phenotype={data.ProteinExpressionMarker[0].immunePhenotypes[0].immunePhenotype} set_editing={set_editing_immune_phenotype} marker_id={marker_id} id={data.ProteinExpressionMarker[0].immunePhenotypes[0].id} field={data.ProteinExpressionMarker[0].immunePhenotypes[0].field} ref_array={[]} refetch={refetch} />
+                            data.ProteinExpressionMarker[0].immunePhenotypes[0] && <ImmunePhenotypeEditor phenotype={data.ProteinExpressionMarker[0].immunePhenotypes[0].immunePhenotype} set_editing={set_editing_immune_phenotype} marker_id={marker_id} id={data.ProteinExpressionMarker[0].immunePhenotypes[0].id} field={data.ProteinExpressionMarker[0].immunePhenotypes[0].field} ref_array={get_ref_array(data.ProteinExpressionMarker[0].immunePhenotypes[0].references)} refetch={refetch} />
                         )
                         :
                         <div>{data.ProteinExpressionMarker[0].immunePhenotypes[0] && data.ProteinExpressionMarker[0].immunePhenotypes[0].immunePhenotype}</div>
@@ -258,7 +258,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 {/*<div>{data.ProteinExpressionMarker[0].immuneFunctions[0] && data.ProteinExpressionMarker[0].immuneFunctions[0].immuneFunction}</div>*/}
                 <div>
                     {editing_immune_function ? (
-                            data.ProteinExpressionMarker[0].immuneFunctions[0] && <ImmuneFunctionEditor immuneFunction={data.ProteinExpressionMarker[0].immuneFunctions[0].immuneFunction} set_editing={set_editing_immune_function} marker_id={marker_id} id={data.ProteinExpressionMarker[0].immuneFunctions[0].id} field={data.ProteinExpressionMarker[0].immuneFunctions[0].field} ref_array={[]} refetch={refetch} />
+                            data.ProteinExpressionMarker[0].immuneFunctions[0] && <ImmuneFunctionEditor immuneFunction={data.ProteinExpressionMarker[0].immuneFunctions[0].immuneFunction} set_editing={set_editing_immune_function} marker_id={marker_id} id={data.ProteinExpressionMarker[0].immuneFunctions[0].id} field={data.ProteinExpressionMarker[0].immuneFunctions[0].field} ref_array={get_ref_array(data.ProteinExpressionMarker[0].immuneFunctions[0].references)} refetch={refetch} />
                         )
                         :
                         <div>{data.ProteinExpressionMarker[0].immuneFunctions[0] && data.ProteinExpressionMarker[0].immuneFunctions[0].immuneFunction}</div>
@@ -303,7 +303,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 {/*<div>{data.ProteinExpressionMarker[0].immuneCycleRoles[0] && data.ProteinExpressionMarker[0].immuneCycleRoles[0].immuneCycleRole}</div>*/}
                 <div>
                     {editing_immune_cycle_role ? (
-                            data.ProteinExpressionMarker[0].immuneCycleRoles[0] && <ImmuneCycleRoleEditor immuneCycleRole={data.ProteinExpressionMarker[0].immuneCycleRoles[0].immuneCycleRole} set_editing={set_editing_immune_cycle_role} marker_id={marker_id} id={data.ProteinExpressionMarker[0].immuneCycleRoles[0].id} field={data.ProteinExpressionMarker[0].immuneCycleRoles[0].field} ref_array={[]} refetch={refetch} />
+                            data.ProteinExpressionMarker[0].immuneCycleRoles[0] && <ImmuneCycleRoleEditor immuneCycleRole={data.ProteinExpressionMarker[0].immuneCycleRoles[0].immuneCycleRole} set_editing={set_editing_immune_cycle_role} marker_id={marker_id} id={data.ProteinExpressionMarker[0].immuneCycleRoles[0].id} field={data.ProteinExpressionMarker[0].immuneCycleRoles[0].field} ref_array={get_ref_array(data.ProteinExpressionMarker[0].immuneCycleRoles[0].references)} refetch={refetch} />
                         )
                         :
                         <div>{data.ProteinExpressionMarker[0].immuneCycleRoles[0] && data.ProteinExpressionMarker[0].immuneCycleRoles[0].immuneCycleRole}</div>
@@ -348,7 +348,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 {/*<div>{data.MSIMarker[0].resultString.statement}</div>*/}
                 <div>
                     {editing_results ? (
-                            <ResultsEditableStatementEditor statement={data.ProteinExpressionMarker[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.ProteinExpressionMarker[0].resultString.id} es_field={data.ProteinExpressionMarker[0].resultString.field} ref_array={[]} refetch={refetch} />
+                            <ResultsEditableStatementEditor statement={data.ProteinExpressionMarker[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.ProteinExpressionMarker[0].resultString.id} es_field={data.ProteinExpressionMarker[0].resultString.field} ref_array={get_ref_array(data.ProteinExpressionMarker[0].resultString.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.ProteinExpressionMarker[0].resultString.statement}</div>

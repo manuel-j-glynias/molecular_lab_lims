@@ -25,6 +25,9 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
     const [editing_components, set_editing_components] = React.useState(false);
     const [selected_component, set_selected_component] = React.useState();
 
+    const [query_string,set_query_string]= React.useState("");
+
+
     const handleAddMarker = () => {
         set_markerType("NewMarker")
     }
@@ -41,7 +44,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                           set_markerType={set_markerType} set_marker_id={set_marker_id}
                                           variant_type_name={variant_type_name}
                                           set_variant_type_name={set_variant_type_name}
-                                        handleAddMarker={handleAddMarker}/>
+                                        handleAddMarker={handleAddMarker} query_string={query_string} set_query_string={set_query_string}/>
                     <MarkerEditor markerType={markerType} marker_id={marker_id} variant_type_name={variant_type_name}
                                                   variant_id={variant_id} editing_description={editing_description}
                                                   set_editing_description={set_editing_description}
@@ -59,6 +62,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                             editing_components={editing_components}
                                             set_editing_components={set_editing_components}
                                             set_selected_component={set_selected_component}
+                                            set_markerType={set_markerType} set_query_string={set_query_string}
                     />
                 </React.Fragment>
             </AppendedContentProvider>

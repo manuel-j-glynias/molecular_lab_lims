@@ -27,14 +27,16 @@ interface Props {
     markerType:string;
     set_markerType: (newId: string) => void;
     handleAddMarker:() => void;
+    query_string:string;
+    set_query_string: (query: string) => void;
 }
 
 const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_name,set_marker_id,
                                                    variant_type_name,marker_id,markerType,set_markerType,
-                                                   logged_in,handleAddMarker}) => {
+                                                   logged_in,handleAddMarker,query_string,set_query_string}) => {
     const [markerName, set_markerName] = useState('Genomic Variant Markers')
     const [gene_id, set_gene_Id] = React.useState("");
-    const [query_string,set_query_string]= React.useState("");
+    // const [query_string,set_query_string]= React.useState("");
 
     // const handleGeneIdChange = React.useCallback(newId => {
     //      set_gene_Id(newId);

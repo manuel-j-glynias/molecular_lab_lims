@@ -1,7 +1,7 @@
 import * as React from "react";
 import {VariantCnvQuery} from "../../../generated/graphql";
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
-import {add_hyperlinks, humanify_date} from "../../common/Helpers/Ref_helpers"
+import {add_hyperlinks, humanify_date,get_ref_array} from "../../common/Helpers/Ref_helpers"
 import CopyChangeEditor from "./CopyChangeEditor";
 import DescriptionEditor from "./DescriptionEditor";
 import HistoryContainer from "../../common/History";
@@ -54,7 +54,7 @@ const {
 {/*             <div>{data.VariantCNV[0].copyChange.cnvType} </div> */}
             <div>
                 {editing_copyChange ? (
-                        <CopyChangeEditor variant_ID={data.VariantCNV[0].id } copyChange={data.VariantCNV[0].copyChange.cnvType} id={data.VariantCNV[0].copyChange.id} field={data.VariantCNV[0].copyChange.field} ref_array={[]} set_editing={set_editing_copyChange} refetch={refetch}/>
+                        <CopyChangeEditor variant_ID={data.VariantCNV[0].id } copyChange={data.VariantCNV[0].copyChange.cnvType} id={data.VariantCNV[0].copyChange.id} field={data.VariantCNV[0].copyChange.field} ref_array={get_ref_array(data.VariantCNV[0].copyChange.references)} set_editing={set_editing_copyChange} refetch={refetch}/>
                     )
                     :
                     <div>{data.VariantCNV[0].copyChange.cnvType}</div>

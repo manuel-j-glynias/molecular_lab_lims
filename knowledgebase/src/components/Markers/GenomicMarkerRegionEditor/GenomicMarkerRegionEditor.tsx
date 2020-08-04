@@ -6,7 +6,7 @@ import HistoryContainer from "../../common/History";
 import ProteinEffectHistoryContainer from "../../common/ProteinEffectHistory";
 import EditableBooleanHistoryContainer from "../../common/EditableBooleanHistory";
 import ProteinEffectEditor from "./ProteinEffectEditor";
-import {add_hyperlinks, humanify_date} from "../../common/Helpers/Ref_helpers";
+import {add_hyperlinks, get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
 import DescriptionEditor from "./DescriptionEditor";
 import FrameshiftEditor from "./FrameshiftEditor";
 import DeleteriousEditor from "./DeleteriousEditor";
@@ -99,7 +99,7 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
             <div>Protein Effect</div>
             <div>
                 {editing_protein_effect ? (
-                        <ProteinEffectEditor variant_ID={data.VariantRegion[0].id } protein_effect={data.VariantRegion[0].proteinEffect.proteinEffect} epe_ID={data.VariantRegion[0].proteinEffect.id} epe_field={data.VariantRegion[0].proteinEffect.field} ref_array={[]} set_editing={set_editing_protein_effect} refetch={refetch}/>
+                        <ProteinEffectEditor variant_ID={data.VariantRegion[0].id } protein_effect={data.VariantRegion[0].proteinEffect.proteinEffect} epe_ID={data.VariantRegion[0].proteinEffect.id} epe_field={data.VariantRegion[0].proteinEffect.field} ref_array={get_ref_array(data.VariantRegion[0].proteinEffect.references)} set_editing={set_editing_protein_effect} refetch={refetch}/>
                     )
                     :
                     <div>{data.VariantRegion[0].proteinEffect.proteinEffect}</div>
@@ -207,7 +207,7 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
             <div>
                 {!editing_isFrameshift && data.VariantRegion[0].isFrameshift.booleanValue}
                 {editing_isFrameshift && <div><FrameshiftEditor isFrameshift={data.VariantRegion[0].isFrameshift.booleanValue} id={data.VariantRegion[0].isFrameshift.id} field={data.VariantRegion[0].isFrameshift.field}
-                                                                variant_ID={data.VariantRegion[0].id} ref_array={[]} set_editing={set_editing_isFrameshift}
+                                                                variant_ID={data.VariantRegion[0].id} ref_array={get_ref_array(data.VariantRegion[0].isFrameshift.references)} set_editing={set_editing_isFrameshift}
                 refetch={refetch}/></div>}
 
             {editing_isFrameshift ? <span></span> :
@@ -251,7 +251,7 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
             <div>
                 {!editing_isTruncating && data.VariantRegion[0].isTruncating.booleanValue}
                 {editing_isTruncating && <div><TruncatingEditor isTruncating={data.VariantRegion[0].isTruncating.booleanValue} id={data.VariantRegion[0].isTruncating.id} field={data.VariantRegion[0].isTruncating.field}
-                                                                variant_ID={data.VariantRegion[0].id} ref_array={[]} set_editing={set_editing_isTruncating}
+                                                                variant_ID={data.VariantRegion[0].id} ref_array={get_ref_array(data.VariantRegion[0].isTruncating.references)} set_editing={set_editing_isTruncating}
                                                                 refetch={refetch}/></div>}
 
                 {editing_isTruncating ? <span></span> :
@@ -296,7 +296,7 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
             <div>
                 {!editing_isDeleterious && data.VariantRegion[0].isDeleterious.booleanValue}
                 {editing_isDeleterious && <div><DeleteriousEditor isDeleterious={data.VariantRegion[0].isDeleterious.booleanValue} id={data.VariantRegion[0].isDeleterious.id} field={data.VariantRegion[0].isDeleterious.field}
-                                                                variant_ID={data.VariantRegion[0].id} ref_array={[]} set_editing={set_editing_isDeleterious}
+                                                                variant_ID={data.VariantRegion[0].id} ref_array={get_ref_array(data.VariantRegion[0].isDeleterious.references)} set_editing={set_editing_isDeleterious}
                                                                 refetch={refetch}/></div>}
 
                 {editing_isDeleterious ? <span></span> :

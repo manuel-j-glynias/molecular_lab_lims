@@ -3,7 +3,7 @@ import {MarkerComponent, MarkerProfileQuery, useMarkerProfileQuery} from "../../
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import HistoryContainer from "../../common/History";
-import {add_hyperlinks, humanify_date} from "../../common/Helpers/Ref_helpers"
+import {add_hyperlinks, humanify_date,get_ref_array} from "../../common/Helpers/Ref_helpers"
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
 import ConjuctionEditor from "./ConjuctionEditor"
@@ -56,7 +56,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                 <div>Name</div>
                 <div>
                 {editing_name ? (
-                    <NameEditableStatementEditor statement={data.MarkerProfile[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.MarkerProfile[0].name.id} es_field={data.MarkerProfile[0].name.field} ref_array={[]} refetch={refetch} />
+                    <NameEditableStatementEditor statement={data.MarkerProfile[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.MarkerProfile[0].name.id} es_field={data.MarkerProfile[0].name.field} ref_array={get_ref_array(data.MarkerProfile[0].name.references)} refetch={refetch} />
                 )
                 :
                     <div>{data.MarkerProfile[0].name.statement}</div>
@@ -100,7 +100,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                 <div>Conjunction</div>
                 <div>
                     {editing_conjuction ? (
-                            <ConjuctionEditor conjunction={data.MarkerProfile[0].conjunction.conjunction} set_editing={set_editing_conjuction} marker_id={marker_id} id={data.MarkerProfile[0].conjunction.id} field={data.MarkerProfile[0].conjunction.field} ref_array={[]} refetch={refetch}/>
+                            <ConjuctionEditor conjunction={data.MarkerProfile[0].conjunction.conjunction} set_editing={set_editing_conjuction} marker_id={marker_id} id={data.MarkerProfile[0].conjunction.id} field={data.MarkerProfile[0].conjunction.field} ref_array={get_ref_array(data.MarkerProfile[0].conjunction.references)} refetch={refetch}/>
                         )
                         :
                         <div>{data.MarkerProfile[0].conjunction.conjunction}</div>
@@ -145,7 +145,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                 <div>
                     {editing_components ? (
                             // @ts-ignore
-                            <ComponentEditor components={data.MarkerProfile[0].components.components} set_editing={set_editing_components} marker_id={marker_id} id={data.MarkerProfile[0].components.id} field={data.MarkerProfile[0].components.field} selected_component={selected_component} set_selected_component={set_selected_component} ref_array={[]} refetch={refetch}/>
+                            <ComponentEditor components={data.MarkerProfile[0].components.components} set_editing={set_editing_components} marker_id={marker_id} id={data.MarkerProfile[0].components.id} field={data.MarkerProfile[0].components.field} selected_component={selected_component} set_selected_component={set_selected_component} ref_array={get_ref_array(data.MarkerProfile[0].components.references)} refetch={refetch}/>
                         )
                         :
                         <div>{data.MarkerProfile[0].components.components.map(((item, index) => (<span key={index}><span>{item && item.name.statement}, </span></span>)))}</div>
@@ -189,7 +189,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                 <div>Results</div>
                 <div>
                     {editing_results ? (
-                            <ResultsEditableStatementEditor statement={data.MarkerProfile[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.MarkerProfile[0].resultString.id} es_field={data.MarkerProfile[0].resultString.field} ref_array={[]} refetch={refetch} />
+                            <ResultsEditableStatementEditor statement={data.MarkerProfile[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.MarkerProfile[0].resultString.id} es_field={data.MarkerProfile[0].resultString.field} ref_array={get_ref_array(data.MarkerProfile[0].resultString.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.MarkerProfile[0].resultString.statement}</div>

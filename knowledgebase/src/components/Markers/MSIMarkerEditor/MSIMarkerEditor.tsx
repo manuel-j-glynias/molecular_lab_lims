@@ -3,7 +3,7 @@ import {Msi_MarkerQuery} from "../../../generated/graphql";
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import HistoryContainer from "../../common/History";
-import {add_hyperlinks, humanify_date} from "../../common/Helpers/Ref_helpers"
+import {add_hyperlinks, get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers"
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import MethodEditableStatementEditor from "./MethodEditableStatementEditor";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
@@ -45,7 +45,7 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
                 <div>Name</div>
                 <div>
                 {editing_name ? (
-                    <NameEditableStatementEditor statement={data.MSIMarker[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.MSIMarker[0].name.id} es_field={data.MSIMarker[0].name.field} ref_array={[]} refetch={refetch} />
+                    <NameEditableStatementEditor statement={data.MSIMarker[0].name.statement} set_editing={set_editing_name} marker_id={marker_id} es_ID={data.MSIMarker[0].name.id} es_field={data.MSIMarker[0].name.field} ref_array={get_ref_array(data.MSIMarker[0].name.references)} refetch={refetch} />
                 )
                 :
                     <div>{data.MSIMarker[0].name.statement}</div>
@@ -91,7 +91,7 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
                 {/*<div>{data.MSIMarker[0].method.statement}</div>*/}
                 <div>
                     {editing_method ? (
-                            <MethodEditableStatementEditor statement={data.MSIMarker[0].method.statement} set_editing={set_editing_method} marker_id={marker_id} es_ID={data.MSIMarker[0].method.id} es_field={data.MSIMarker[0].method.field} ref_array={[]} refetch={refetch} />
+                            <MethodEditableStatementEditor statement={data.MSIMarker[0].method.statement} set_editing={set_editing_method} marker_id={marker_id} es_ID={data.MSIMarker[0].method.id} es_field={data.MSIMarker[0].method.field} ref_array={get_ref_array(data.MSIMarker[0].method.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.MSIMarker[0].method.statement}</div>
@@ -137,7 +137,7 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
                 {/*<div>{data.MSIMarker[0].resultString.statement}</div>*/}
                 <div>
                     {editing_results ? (
-                            <ResultsEditableStatementEditor statement={data.MSIMarker[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.MSIMarker[0].resultString.id} es_field={data.MSIMarker[0].resultString.field} ref_array={[]} refetch={refetch} />
+                            <ResultsEditableStatementEditor statement={data.MSIMarker[0].resultString.statement} set_editing={set_editing_results} marker_id={marker_id} es_ID={data.MSIMarker[0].resultString.id} es_field={data.MSIMarker[0].resultString.field} ref_array={get_ref_array(data.MSIMarker[0].resultString.references)} refetch={refetch} />
                         )
                         :
                         <div>{data.MSIMarker[0].resultString.statement}</div>

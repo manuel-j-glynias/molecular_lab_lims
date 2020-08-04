@@ -9,7 +9,8 @@ import {
     get_unique_graph_id
 } from "../../common/Helpers/EditableStatementHelper";
 import {useEffect} from "react";
-import {preflight, parse_description,preflightResult} from "../../common/Helpers/Ref_helpers"
+import BaseNameEditor from "../../common/BaseNameEditor/BaseNameEditor";
+import {preflight, preflightResult} from "../../common/Helpers/Ref_helpers";
 
 interface Props {
     statement: string;
@@ -25,9 +26,7 @@ const className = 'OntologicalDisease';
 
 const NameEditableStatementEditor : React.FC<Props> = ({statement,set_editing,es_ID, es_field,id,ref_array,refetch}) => {
 
-    const [statement_value, set_statement_value] = React.useState(statement);
     const statement_string = React.useRef(statement);
-    const [pmid_list, set_pmid_list] = React.useState('');
 
     const [addNameMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useOntologicalDiseaseAddNameMutation({variables:{id:'', old_es_id:'',
             date: '', es_field: '', es_statement:'', es_id: '', user_id: '', ref_aray:[]}})
@@ -59,31 +58,6 @@ const NameEditableStatementEditor : React.FC<Props> = ({statement,set_editing,es
         await addNameMutation({variables: mutation_object})
     }
 
-    const save = async () => {
-        let pmids:Array<string> = []
-        if (ref_array.length>0 && ref_array[0] != "") {
-            pmids = ref_array
-        }
-
-        let pmidstringarray = pmid_list.split(',')
-        for (let pmid of pmidstringarray){
-            if (pmid.includes(':')){
-                pmid = pmid.split(':')[1].trim()
-            }
-            if (pmid!="" && !pmids.includes(pmid)){
-                pmids.push(pmid)
-            }
-        }
-        if (pmids.length>0) {
-            const preflight_input = pmids.join(',')
-            preflight(preflight_input).then((response: preflightResult) => {
-                call_mutation(response.refs)
-            })
-        }
-        else {
-            call_mutation([])
-        }
-     };
 
     const post_save = () => {
 
@@ -94,30 +68,10 @@ const NameEditableStatementEditor : React.FC<Props> = ({statement,set_editing,es
     }
     useEffect(post_save,[mutationData])
 
-    const cancelEdit = async () => {
-        set_editing(false)
-    };
-
-    const get_statement_value = (): string => {
-         return statement_string.current
-     }
-    const handle_change = async (targetValue:string) => {
-        statement_string.current = targetValue
-        set_statement_value(targetValue)
-     }
-
 
     return ( <div className="form-group">
-        <textarea className={`${className}__ShortTextarea`} name="statement" placeholder="Name" value={get_statement_value()} onChange={(e) => {handle_change(e.target.value)}}/>
-            <div className="form-group">
-                <div><input type="text" placeholder="PMIDs" value={pmid_list} onChange={e => set_pmid_list(e.target.value )} required/></div>
-                {/*<div><input type="text" placeholder="URLs" value={url_list} onChange={e => set_url_list(e.target.value )} required/></div>*/}
-            </div>
-            <button value="Save" className="btn btn-primary my-1" onClick={() => save()}>Save
-            </button>
-            <button value="Cancel" className="btn btn-primary my-1"
-                    onClick={() => cancelEdit()}>Cancel
-            </button>
+            <BaseNameEditor statement={statement} set_editing={set_editing} call_mutation={call_mutation}
+                             statement_string={statement_string} ref_array={ref_array}/>
             <div>
                 {mutationLoading && <p>Loading...</p>}
                 {mutationError && <p>Error :( Please try again</p>}

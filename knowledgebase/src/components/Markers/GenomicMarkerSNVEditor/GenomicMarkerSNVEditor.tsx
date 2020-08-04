@@ -13,7 +13,7 @@ import PDotEditableStatementEditor from "./PDotEditableStatementEditor";
 import CDotEditableStatementEditor from "./CDotEditableStatementEditor.tsx"
 import GDotEditableStatementEditor from "./GDotEditableStatementEditor";
 import ExonEditableStatementEditor from "./ExonEditableStatementEditor";
-import {DescriptionWithPmids, add_hyperlinks,humanify_date} from "../../common/Helpers/Ref_helpers";
+import {DescriptionWithPmids, add_hyperlinks, humanify_date, get_ref_array} from "../../common/Helpers/Ref_helpers";
 import './styles.css';
 
 interface Props {
@@ -98,7 +98,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                 <div>Protein Effect</div>
                 <div>
                     {editing_protein_effect ? (
-                            <ProteinEffectEditor variant_ID={data.VariantSNVIndel[0].id } protein_effect={data.VariantSNVIndel[0].proteinEffect.proteinEffect} epe_ID={data.VariantSNVIndel[0].proteinEffect.id} epe_field={data.VariantSNVIndel[0].proteinEffect.field} ref_array={[]} set_editing={set_editing_protein_effect} refetch={refetch}/>
+                            <ProteinEffectEditor variant_ID={data.VariantSNVIndel[0].id } protein_effect={data.VariantSNVIndel[0].proteinEffect.proteinEffect} epe_ID={data.VariantSNVIndel[0].proteinEffect.id} epe_field={data.VariantSNVIndel[0].proteinEffect.field} ref_array={get_ref_array(data.VariantSNVIndel[0].proteinEffect.references)} set_editing={set_editing_protein_effect} refetch={refetch}/>
                         )
                         :
                         <div>{data.VariantSNVIndel[0].proteinEffect.proteinEffect}</div>
@@ -204,7 +204,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                 <div>
                     {editing_pdot ?
                         (<PDotEditableStatementEditor statement={data.VariantSNVIndel[0].pDot.statement} set_editing={set_editing_pdot} es_ID={data.VariantSNVIndel[0].pDot.id}
-                                                      es_field={data.VariantSNVIndel[0].pDot.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={[]} refetch={refetch} />)
+                                                      es_field={data.VariantSNVIndel[0].pDot.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={get_ref_array(data.VariantSNVIndel[0].pDot.references)} refetch={refetch} />)
                         : (<div>{data.VariantSNVIndel[0].pDot.statement}</div>)}
                     {editing_pdot ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
@@ -242,7 +242,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                 <div>
                     {editing_cdot ?
                         (<CDotEditableStatementEditor statement={data.VariantSNVIndel[0].cDot.statement} set_editing={set_editing_cdot} es_ID={data.VariantSNVIndel[0].cDot.id}
-                                                      es_field={data.VariantSNVIndel[0].cDot.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={[]} refetch={refetch} />)
+                                                      es_field={data.VariantSNVIndel[0].cDot.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={get_ref_array(data.VariantSNVIndel[0].cDot.references)} refetch={refetch} />)
                         : (<div>{data.VariantSNVIndel[0].cDot.statement}</div>)}
                     {editing_cdot ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
@@ -280,7 +280,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                 <div>
                     {editing_gdot ?
                         (<GDotEditableStatementEditor statement={data.VariantSNVIndel[0].gDot.statement} set_editing={set_editing_gdot} es_ID={data.VariantSNVIndel[0].gDot.id}
-                                                      es_field={data.VariantSNVIndel[0].gDot.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={[]} refetch={refetch} />)
+                                                      es_field={data.VariantSNVIndel[0].gDot.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={get_ref_array(data.VariantSNVIndel[0].gDot.references)} refetch={refetch} />)
                         : (<div>{data.VariantSNVIndel[0].gDot.statement}</div>)}
                     {editing_gdot ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
@@ -317,7 +317,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                 <div>
                     {editing_exon ?
                         (<ExonEditableStatementEditor statement={data.VariantSNVIndel[0].exon.statement} set_editing={set_editing_exon} es_ID={data.VariantSNVIndel[0].exon.id}
-                                                      es_field={data.VariantSNVIndel[0].exon.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={[]} refetch={refetch} />)
+                                                      es_field={data.VariantSNVIndel[0].exon.field} variant_ID={data.VariantSNVIndel[0].id} ref_array={get_ref_array(data.VariantSNVIndel[0].exon.references)} refetch={refetch} />)
                         : (<div>{data.VariantSNVIndel[0].exon.statement}</div>)}
                     {editing_exon ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>

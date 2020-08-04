@@ -1,7 +1,7 @@
 import * as React from "react";
 import {VariantFusionQuery} from "../../../generated/graphql";
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
-import {add_hyperlinks, humanify_date} from "../../common/Helpers/Ref_helpers"
+import {add_hyperlinks, get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers"
 import CopyChangeEditor from "./CopyChangeEditor";
 import DescriptionEditor from "./DescriptionEditor";
 import Exon5Editor from  "./Exon5Editor"
@@ -113,7 +113,7 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
             {/*<div>{data.VariantFusion[0].copyChange.cnvType} </div>*/}
             <div>
                 {editing_copyChange ? (
-                        <CopyChangeEditor variant_ID={data.VariantFusion[0].id } copyChange={data.VariantFusion[0].copyChange.cnvType} id={data.VariantFusion[0].copyChange.id} field={data.VariantFusion[0].copyChange.field} ref_array={[]} set_editing={set_editing_copyChange} refetch={refetch}/>
+                        <CopyChangeEditor variant_ID={data.VariantFusion[0].id } copyChange={data.VariantFusion[0].copyChange.cnvType} id={data.VariantFusion[0].copyChange.id} field={data.VariantFusion[0].copyChange.field} ref_array={get_ref_array(data.VariantFusion[0].copyChange.references)} set_editing={set_editing_copyChange} refetch={refetch}/>
                     )
                     :
                     <div>{data.VariantFusion[0].copyChange.cnvType}</div>
@@ -161,7 +161,7 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
             {/*    <div>{getGeneName(data.VariantFusion[0].gene5Prime.gene.name)} </div> : <div></div> }*/}
             <div>
                 {editing_gene5 ? (
-                        <Gene5Editor variant_ID={data.VariantFusion[0].id } gene5_id={data.VariantFusion[0].gene5Prime.gene.id} es_ID={data.VariantFusion[0].gene5Prime.id} es_field={data.VariantFusion[0].gene5Prime.field} ref_array={[]} set_editing={set_editing_gene5} refetch={refetch}/>
+                        <Gene5Editor variant_ID={data.VariantFusion[0].id } gene5_id={data.VariantFusion[0].gene5Prime.gene.id} es_ID={data.VariantFusion[0].gene5Prime.id} es_field={data.VariantFusion[0].gene5Prime.field} ref_array={get_ref_array(data.VariantFusion[0].gene5Prime.references)} set_editing={set_editing_gene5} refetch={refetch}/>
                     )
                     :
                     <div>{get5GeneName()}</div>
@@ -208,7 +208,7 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
             {/*Exon5Editor*/}
             <div>
                 {editing_exon5 ? (
-                        <Exon5Editor variant_ID={data.VariantFusion[0].id } exon5={data.VariantFusion[0].exon5Prime.intValue} es_ID={data.VariantFusion[0].exon5Prime.id} es_field={data.VariantFusion[0].exon5Prime.field} ref_array={[]} set_editing={set_editing_exon5} refetch={refetch}/>
+                        <Exon5Editor variant_ID={data.VariantFusion[0].id } exon5={data.VariantFusion[0].exon5Prime.intValue} es_ID={data.VariantFusion[0].exon5Prime.id} es_field={data.VariantFusion[0].exon5Prime.field} ref_array={get_ref_array(data.VariantFusion[0].exon5Prime.references)} set_editing={set_editing_exon5} refetch={refetch}/>
                     )
                     :
                     <div>{getExonNumber(data.VariantFusion[0].exon5Prime.intValue)}</div>
@@ -258,7 +258,7 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
             {/*    <div>{getGeneName(data.VariantFusion[0].gene3Prime.gene.name)} </div> : <div></div> }*/}
             <div>
                 {editing_gene3 ? (
-                        <Gene3Editor variant_ID={data.VariantFusion[0].id } gene3_id={data.VariantFusion[0].gene3Prime.gene.id} es_ID={data.VariantFusion[0].gene3Prime.id} es_field={data.VariantFusion[0].gene3Prime.field} ref_array={[]} set_editing={set_editing_gene3} refetch={refetch}/>
+                        <Gene3Editor variant_ID={data.VariantFusion[0].id } gene3_id={data.VariantFusion[0].gene3Prime.gene.id} es_ID={data.VariantFusion[0].gene3Prime.id} es_field={data.VariantFusion[0].gene3Prime.field} ref_array={get_ref_array(data.VariantFusion[0].gene3Prime.references)} set_editing={set_editing_gene3} refetch={refetch}/>
                     )
                     :
                     <div>{get3GeneName()}</div>
@@ -304,7 +304,7 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
             {/*<div>{getExonNumber(data.VariantFusion[0].exon3Prime.intValue)}</div>*/}
             <div>
                 {editing_exon3 ? (
-                        <Exon3Editor variant_ID={data.VariantFusion[0].id } exon3={data.VariantFusion[0].exon3Prime.intValue} es_ID={data.VariantFusion[0].exon3Prime.id} es_field={data.VariantFusion[0].exon3Prime.field} ref_array={[]} set_editing={set_editing_exon3} refetch={refetch}/>
+                        <Exon3Editor variant_ID={data.VariantFusion[0].id } exon3={data.VariantFusion[0].exon3Prime.intValue} es_ID={data.VariantFusion[0].exon3Prime.id} es_field={data.VariantFusion[0].exon3Prime.field} ref_array={get_ref_array(data.VariantFusion[0].exon3Prime.references)} set_editing={set_editing_exon3} refetch={refetch}/>
                     )
                     :
                     <div>{getExonNumber(data.VariantFusion[0].exon3Prime.intValue)}</div>
