@@ -26,11 +26,12 @@ interface Props {
     marker_id:string;
     markerType:string;
     set_markerType: (newId: string) => void;
+    handleAddMarker:() => void;
 }
 
 const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_name,set_marker_id,
                                                    variant_type_name,marker_id,markerType,set_markerType,
-                                                   logged_in}) => {
+                                                   logged_in,handleAddMarker}) => {
     const [markerName, set_markerName] = useState('Genomic Variant Markers')
     const [gene_id, set_gene_Id] = React.useState("");
     const [query_string,set_query_string]= React.useState("");
@@ -69,6 +70,7 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
         state.selectedOption.value = markerType
         state.selectedOption.label = markerName
     }
+
     if (!logged_in) {
         return <Redirect to="/"/>
     }
@@ -79,6 +81,8 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                 <div className={`${className}__Panel`}>
                     <div className={`${className}__Title`}>Markers</div>
                     <div className={`${className}__Buttons`}>
+                        <button className={'btn btn-primary'} onClick={handleAddMarker}>Add Marker</button>
+                    </div>                    <div className={`${className}__Buttons`}>
                         <Select className={`${className}__Select`}  options = {options} onChange={handleChange}
                                 value={state.selectedOption}
                         />

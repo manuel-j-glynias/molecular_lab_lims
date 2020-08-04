@@ -19969,6 +19969,7 @@ export type OntologicalDiseaseQuery = (
   { __typename?: 'QueryType' }
   & { OntologicalDisease?: Maybe<Array<Maybe<(
     { __typename?: 'OntologicalDisease' }
+    & Pick<OntologicalDisease, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
@@ -19989,6 +19990,23 @@ export type OntologicalDiseaseQuery = (
       )>> }
     ) }
   )>>> }
+);
+
+export type OntologicalDiseaseAddNameMutationVariables = {
+  id: Scalars['ID'];
+  old_es_id: Scalars['ID'];
+  date: Scalars['String'];
+  es_field: Scalars['String'];
+  es_statement: Scalars['String'];
+  es_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+  ref_aray: Array<Scalars['ID']>;
+};
+
+
+export type OntologicalDiseaseAddNameMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteOntologicalDiseaseName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addOntologicalDiseaseName'>
 );
 
 export type OntologicalDiseaseListQueryVariables = {
@@ -21618,6 +21636,32 @@ export type MarkerProfilesQuery = (
   )>>> }
 );
 
+export type CreateMarkerProfileMutationVariables = {
+  marker_id: Scalars['ID'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  name_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_field: Scalars['String'];
+  conjunction_id: Scalars['ID'];
+  conjuction_field: Scalars['String'];
+  components_id: Scalars['ID'];
+  components_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+};
+
+
+export type CreateMarkerProfileMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createMarkerProfile' | 'addMarkerProfileComponents' | 'addMarkerProfileConjunction' | 'addMarkerProfileName' | 'addMarkerProfileMethod' | 'addMarkerProfileResultString'>
+  & { components: MutationType['createEditableMarkerComponentList'], components_editor: MutationType['addEditableMarkerComponentListEditor'], components_ref: MutationType['addEditableMarkerComponentListReferences'], conjuction: MutationType['createEditableOmniConjunction'], conjuction_editor: MutationType['addEditableOmniConjunctionEditor'], conjuction_ref: MutationType['addEditableOmniConjunctionReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
 export type ProteinExpression_MarkerQueryVariables = {
   marker_id?: Maybe<Scalars['ID']>;
 };
@@ -22764,6 +22808,7 @@ export type OntologicalDiseaseComponentsQueryResult = ApolloReactCommon.QueryRes
 export const OntologicalDiseaseDocument = gql`
     query OntologicalDisease($id: ID) {
   OntologicalDisease(id: $id) {
+    id
     name {
       ...es_fields
     }
@@ -22827,6 +22872,66 @@ export function useOntologicalDiseaseLazyQuery(baseOptions?: ApolloReactHooks.La
 export type OntologicalDiseaseQueryHookResult = ReturnType<typeof useOntologicalDiseaseQuery>;
 export type OntologicalDiseaseLazyQueryHookResult = ReturnType<typeof useOntologicalDiseaseLazyQuery>;
 export type OntologicalDiseaseQueryResult = ApolloReactCommon.QueryResult<OntologicalDiseaseQuery, OntologicalDiseaseQueryVariables>;
+export const OntologicalDiseaseAddNameDocument = gql`
+    mutation OntologicalDiseaseAddName($id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
+  deleteOntologicalDiseaseName(id: $id, name: [$old_es_id])
+  createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+  addEditableStatementEditor(editor: [$user_id], id: $es_id)
+  addEditableStatementReferences(id: $es_id, references: $ref_aray)
+  addOntologicalDiseaseName(id: $id, name: [$es_id])
+}
+    `;
+export type OntologicalDiseaseAddNameMutationFn = ApolloReactCommon.MutationFunction<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>;
+export type OntologicalDiseaseAddNameComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>, 'mutation'>;
+
+    export const OntologicalDiseaseAddNameComponent = (props: OntologicalDiseaseAddNameComponentProps) => (
+      <ApolloReactComponents.Mutation<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables> mutation={OntologicalDiseaseAddNameDocument} {...props} />
+    );
+    
+export type OntologicalDiseaseAddNameProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>
+    } & TChildProps;
+export function withOntologicalDiseaseAddName<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  OntologicalDiseaseAddNameMutation,
+  OntologicalDiseaseAddNameMutationVariables,
+  OntologicalDiseaseAddNameProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables, OntologicalDiseaseAddNameProps<TChildProps, TDataName>>(OntologicalDiseaseAddNameDocument, {
+      alias: 'ontologicalDiseaseAddName',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useOntologicalDiseaseAddNameMutation__
+ *
+ * To run a mutation, you first call `useOntologicalDiseaseAddNameMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useOntologicalDiseaseAddNameMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [ontologicalDiseaseAddNameMutation, { data, loading, error }] = useOntologicalDiseaseAddNameMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      old_es_id: // value for 'old_es_id'
+ *      date: // value for 'date'
+ *      es_field: // value for 'es_field'
+ *      es_statement: // value for 'es_statement'
+ *      es_id: // value for 'es_id'
+ *      user_id: // value for 'user_id'
+ *      ref_aray: // value for 'ref_aray'
+ *   },
+ * });
+ */
+export function useOntologicalDiseaseAddNameMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>) {
+        return ApolloReactHooks.useMutation<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>(OntologicalDiseaseAddNameDocument, baseOptions);
+      }
+export type OntologicalDiseaseAddNameMutationHookResult = ReturnType<typeof useOntologicalDiseaseAddNameMutation>;
+export type OntologicalDiseaseAddNameMutationResult = ApolloReactCommon.MutationResult<OntologicalDiseaseAddNameMutation>;
+export type OntologicalDiseaseAddNameMutationOptions = ApolloReactCommon.BaseMutationOptions<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>;
 export const OntologicalDiseaseListDocument = gql`
     query OntologicalDiseaseList($query_string: String) {
   OntologicalDisease(filter: {name: {statement_contains: $query_string}}) {
@@ -26596,6 +26701,90 @@ export function useMarkerProfilesLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
 export type MarkerProfilesQueryHookResult = ReturnType<typeof useMarkerProfilesQuery>;
 export type MarkerProfilesLazyQueryHookResult = ReturnType<typeof useMarkerProfilesLazyQuery>;
 export type MarkerProfilesQueryResult = ApolloReactCommon.QueryResult<MarkerProfilesQuery, MarkerProfilesQueryVariables>;
+export const CreateMarkerProfileDocument = gql`
+    mutation CreateMarkerProfile($marker_id: ID!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $name_id: ID!, $name: String!, $name_field: String!, $conjunction_id: ID!, $conjuction_field: String!, $components_id: ID!, $components_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+  createMarkerProfile(id: $marker_id)
+  components: createEditableMarkerComponentList(id: $components_id, editDate: $date, field: $components_field)
+  components_editor: addEditableMarkerComponentListEditor(id: $components_id, editor: [$user_id])
+  components_ref: addEditableMarkerComponentListReferences(id: $components_id, references: $ref_array)
+  addMarkerProfileComponents(components: [$components_id], id: $marker_id)
+  conjuction: createEditableOmniConjunction(conjunction: All, id: $conjunction_id, field: $conjuction_field, editDate: $date)
+  conjuction_editor: addEditableOmniConjunctionEditor(id: $conjunction_id, editor: [$user_id])
+  conjuction_ref: addEditableOmniConjunctionReferences(id: $conjunction_id, references: $ref_array)
+  addMarkerProfileConjunction(id: $marker_id, conjunction: [$conjunction_id])
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addMarkerProfileName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addMarkerProfileMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addMarkerProfileResultString(id: $marker_id, resultString: [$result_string_id])
+}
+    `;
+export type CreateMarkerProfileMutationFn = ApolloReactCommon.MutationFunction<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>;
+export type CreateMarkerProfileComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>, 'mutation'>;
+
+    export const CreateMarkerProfileComponent = (props: CreateMarkerProfileComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables> mutation={CreateMarkerProfileDocument} {...props} />
+    );
+    
+export type CreateMarkerProfileProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>
+    } & TChildProps;
+export function withCreateMarkerProfile<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateMarkerProfileMutation,
+  CreateMarkerProfileMutationVariables,
+  CreateMarkerProfileProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables, CreateMarkerProfileProps<TChildProps, TDataName>>(CreateMarkerProfileDocument, {
+      alias: 'createMarkerProfile',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateMarkerProfileMutation__
+ *
+ * To run a mutation, you first call `useCreateMarkerProfileMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMarkerProfileMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMarkerProfileMutation, { data, loading, error }] = useCreateMarkerProfileMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      name_id: // value for 'name_id'
+ *      name: // value for 'name'
+ *      name_field: // value for 'name_field'
+ *      conjunction_id: // value for 'conjunction_id'
+ *      conjuction_field: // value for 'conjuction_field'
+ *      components_id: // value for 'components_id'
+ *      components_field: // value for 'components_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *   },
+ * });
+ */
+export function useCreateMarkerProfileMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>(CreateMarkerProfileDocument, baseOptions);
+      }
+export type CreateMarkerProfileMutationHookResult = ReturnType<typeof useCreateMarkerProfileMutation>;
+export type CreateMarkerProfileMutationResult = ApolloReactCommon.MutationResult<CreateMarkerProfileMutation>;
+export type CreateMarkerProfileMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>;
 export const ProteinExpression_MarkerDocument = gql`
     query ProteinExpression_Marker($marker_id: ID) {
   ProteinExpressionMarker(id: $marker_id) {

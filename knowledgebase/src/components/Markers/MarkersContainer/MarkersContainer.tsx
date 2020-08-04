@@ -25,6 +25,9 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
     const [editing_components, set_editing_components] = React.useState(false);
     const [selected_component, set_selected_component] = React.useState();
 
+    const handleAddMarker = () => {
+        set_markerType("NewMarker")
+    }
 
     if (!logged_in) {
         return <Redirect to="/"/>
@@ -37,7 +40,8 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                           markerType={markerType}
                                           set_markerType={set_markerType} set_marker_id={set_marker_id}
                                           variant_type_name={variant_type_name}
-                                          set_variant_type_name={set_variant_type_name}/>
+                                          set_variant_type_name={set_variant_type_name}
+                                        handleAddMarker={handleAddMarker}/>
                     <MarkerEditor markerType={markerType} marker_id={marker_id} variant_type_name={variant_type_name}
                                                   variant_id={variant_id} editing_description={editing_description}
                                                   set_editing_description={set_editing_description}

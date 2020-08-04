@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import GenomicMarkerContentContainerContainer from "../GenomicMarkerContentContainer";
 import MarkerPicker from "../MarkerPicker/MarkerPicker";
 import {MarkerComponent} from "../../../generated/graphql";
+import NewMarker from "../NewMarker/NewMarker";
 
 
 interface Props {
@@ -21,9 +22,8 @@ const MarkerContentContainer : React.FC<Props> = ({markerType,variant_id,editing
         { (markerType==="GenomicVariantMarker") && <GenomicMarkerContentContainerContainer variant_id={variant_id}
                                                                                            editing_protein_effect={editing_protein_effect}
                                                                                            editing_description={editing_description}/>}
-        { (markerType=="MarkerProfile") && <MarkerPicker editing_components={editing_components} set_selected_component={set_selected_component}
-        />}
-
+        { (markerType=="MarkerProfile") && <MarkerPicker editing_components={editing_components} set_selected_component={set_selected_component}/>}
+        { (markerType=="NewMarker") && <NewMarker/>}
             </Fragment>)
 
 }
