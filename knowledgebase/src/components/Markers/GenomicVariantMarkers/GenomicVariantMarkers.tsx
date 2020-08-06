@@ -10,16 +10,18 @@ export interface Props {
     gene_id: string;
     handleGeneIdChange: (newId: string) => void;
     set_query_string: (queryString: string) => void;
+    selected_gene_label: string;
+    set_selected_gene_label:(label: string) => void;
 }
 
-const GenomicVariantMarkers: React.FC<Props> = ({handleGeneIdChange, gene_id,set_query_string}: Props) => {
+const GenomicVariantMarkers: React.FC<Props> = ({handleGeneIdChange, gene_id,set_query_string,selected_gene_label,set_selected_gene_label}: Props) => {
 
     const {data, error, loading} = useGeneList_For_VariantsQuery();
     const genes = [
         { value: '0', label: 'Select Gene' }
     ]
     const [selected_gene_id, set_selected_gene_id] = useState('0')
-    const [selected_gene_label, set_selected_gene_label] = useState('Select Gene')
+    // const [selected_gene_label, set_selected_gene_label] = useState('Select Gene')
 
     const [filter_term, set_filter_term] = useState('');
 
@@ -69,7 +71,6 @@ const GenomicVariantMarkers: React.FC<Props> = ({handleGeneIdChange, gene_id,set
 
     return (<Fragment>
         {append_genes()}
-        {/*<div className={`${className}__Title`}>Genomic Variant Markers</div>*/}
         <Select className={`${className}__Select`}  options = {genes} onChange={handleChange}
                 value={state.selectedOption}
         />

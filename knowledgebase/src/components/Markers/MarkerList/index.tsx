@@ -29,19 +29,16 @@ interface Props {
     handleAddMarker:() => void;
     query_string:string;
     set_query_string: (query: string) => void;
+    selected_gene_label: string;
+    set_selected_gene_label:(label: string) => void;
+
 }
 
 const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_name,set_marker_id,
                                                    variant_type_name,marker_id,markerType,set_markerType,
-                                                   logged_in,handleAddMarker,query_string,set_query_string}) => {
+                                                   logged_in,handleAddMarker,query_string,set_query_string,selected_gene_label,set_selected_gene_label}) => {
     const [markerName, set_markerName] = useState('Genomic Variant Markers')
     const [gene_id, set_gene_Id] = React.useState("");
-    // const [query_string,set_query_string]= React.useState("");
-
-    // const handleGeneIdChange = React.useCallback(newId => {
-    //      set_gene_Id(newId);
-    //      console.log('handleGeneIdChange newId=' + newId)
-    // }, []);
 
     const handleMarkerIdChange = React.useCallback(newId => {
         set_marker_id(newId);
@@ -91,7 +88,7 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                         { (markerType==="DNAMarker") && <DNAMarkers/>}
                         { (markerType==="ProteinExpressionMarker") && <ProteinExpressionMarkers set_query_string={set_query_string}/>}
                         { (markerType==="RNASeqSignatureMarker") && <RNASeqSignatureMarkers />}
-                        { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkers gene_id={gene_id} handleGeneIdChange={set_gene_Id} set_query_string={set_query_string}/>}
+                        { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkers gene_id={gene_id} handleGeneIdChange={set_gene_Id} set_query_string={set_query_string} selected_gene_label={selected_gene_label} set_selected_gene_label={set_selected_gene_label}/>}
                         { (markerType==="MSIMarker") && <MSIMarkers/>}
                         { (markerType==="TMBMarker") && <TMBMarkers/>}
                         { (markerType==="MarkerProfile") && <MarkerProfiles set_query_string={set_query_string}/>}

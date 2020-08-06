@@ -17,4 +17,3 @@ export const QUERY_CLINVAR_VARIANT = gql`
         }
     }
 `
-

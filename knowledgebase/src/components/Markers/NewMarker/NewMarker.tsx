@@ -14,11 +14,12 @@ import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/H
 const className = 'NewMarker';
 
 interface Props {
+    set_marker_id: (newId: string) => void;
     set_markerType: (newId: string) => void;
     set_query_string: (query: string) => void;
 }
 
-const NewMarker: React.FC<Props> = ({set_markerType,set_query_string}) => {
+const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker_id}) => {
     const [markerName, set_markerName] = useState('Protein Expression Markers')
     const [new_markerType, set_new_markerType] = useState('ProteinExpressionMarker')
     const [new_marker_name, set_new_marker_name] = useState('');
@@ -32,9 +33,6 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string}) => {
 
     const [createMarkerProfile, { loading: markerProfileMutationLoading, error: markerProfileMutationError, data:markerProfileMutationData }] = useCreateMarkerProfileMutation({variables:{marker_id:'', conjuction_field:'',components_id:'',
             components_field:'',conjunction_id:'', date:'', empty_string:'', method_field:'', method_id:'', name:'', name_id:'',name_field:'',result_string_id:'',result_string_field:'',user_id: '',ref_array:[]}})
-
-
-
 
     const get_CreateMarkerProfileMutationVariables_object = ():CreateMarkerProfileMutationVariables => {
         const variables : CreateMarkerProfileMutationVariables= {
@@ -59,11 +57,11 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string}) => {
     }
 
     const post_CreateMarkerProfileMutation = () => {
-
+        console.log("post_CreateMarkerProfileMutation")
         if (markerProfileMutationData!=null){
             set_query_string(new_marker_name)
             set_markerType('MarkerProfile')
-
+            // handleMarkerIdChange(new_marker_id)
         }
     }
     useEffect(post_CreateMarkerProfileMutation,[markerProfileMutationData])

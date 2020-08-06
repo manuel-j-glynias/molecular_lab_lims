@@ -1,0 +1,65 @@
+
+.HotSpotVariantSearch {
+    height: 400px;
+    overflow: hidden auto;
+    background-color: white;
+    width: 500px;
+    min-width: 250px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid black;
+}
+.HotSpotVariantSearch::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.HotSpotVariantSearch::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.HotSpotVariantSearch::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+.HotSpotVariantSearch::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.HotSpotVariantSearch__Wrapper {
+    display: grid;
+    grid-template-columns: 200px 100px 100px 140px ;
+    grid-row-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+    align-items: flex-start;
+}
+
+.HotSpotVariantSearch__Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.HotSpotVariantSearch__Wrapper_Span {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+.HotSpotVariantSearch__small-btn {
+    display: inline-block;
+    background-color: #005198;
+    color: white;
+    padding: 0.2rem 0.2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    outline: none;
+    transition: all 0.2s ease-in;
+}
+.HotSpotVariantSearch__small-btn:hover {
+    background: #1ab6cf;
+}
+.HotSpotVariantSearch__small-btn:active {
+    border: 2px solid green;
+}

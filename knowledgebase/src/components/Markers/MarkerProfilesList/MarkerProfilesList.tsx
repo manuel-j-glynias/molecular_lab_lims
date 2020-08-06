@@ -19,15 +19,13 @@ const MarkerProfilesList: React.FC<Props> = ({handleMarkerIdChange, marker_id,  
             <ol className={`${className}__list`} >
                 {data.MarkerProfile &&
                 data.MarkerProfile.map(
-                    (marker ) =>
+                    (marker ,index) =>
                         marker && (
 
                             <li
-                                key={marker.id}
+                                key={index}
                                 className={ marker.id===marker_id ?  `${className}__selected_item` :  `${className}__item`  }
-                                onClick={() => {
-                                    handleMarkerIdChange(marker.id!)
-                                } }
+                                onClick={() => {handleMarkerIdChange(marker.id)} }
                             >
                                 {marker.name.statement}
 

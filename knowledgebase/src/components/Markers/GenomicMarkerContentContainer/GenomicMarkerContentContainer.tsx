@@ -5,15 +5,19 @@ import JaxVariantContainer from "../JaxVariant";
 import GOVariantContainer from "../GOVariant";
 import ClinVarVariantContainer from "../ClinVarVariant";
 import HotSpotVariantContainer from "../HotSpotVariant";
+import ClinVarVariantSearchContainer from "../ClinVarVariantSearch";
+import HotSpotVariantSearchContainer from "../HotSpotVariantSearch";
 
 interface Props {
     variant_id: string;
     data: GenomicVariantComponentsQuery;
     editing_description: boolean;
     editing_protein_effect: boolean;
+    selected_gene_label: string;
+    refetch: () => void;
 }
 const className = 'GenomicMarkerContentContainer';
-const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editing_description,editing_protein_effect}) => {
+const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editing_description,editing_protein_effect,selected_gene_label,refetch}) => {
     const [show_jax, set_show_jax] = React.useState(false);
     const [show_go, set_show_go] = React.useState(false);
     const [show_clinvar, set_show_clinvar] = React.useState(false);
@@ -48,10 +52,16 @@ const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editin
                 {show_go ? ( data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id}/>: <span>No Go Variant</span>) : <span></span>}
             </div>
             <div>
-                {show_clinvar ? ( data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id}/>: <span>No ClinVar Variant</span>) : <span></span> }
+                {show_clinvar ? ( data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id}/>:
+                    <div>No ClinVar Variant associated with this marker.  Select one from the list below:
+                        <ClinVarVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
+                    </div>) : <span></span> }
             </div>
             <div>
-                {show_hotspot ? ( data.GenomicVariant[0].hotSpotVariant ? <HotSpotVariantContainer id={data.GenomicVariant[0].hotSpotVariant.id}/> : <span>No HotSpot Variant</span>) : <span></span>}
+                {show_hotspot ? ( data.GenomicVariant[0].hotSpotVariant ? <HotSpotVariantContainer id={data.GenomicVariant[0].hotSpotVariant.id}/> :
+                    <div>No HotSpot Variant associated with this marker.  Select one from the list below:
+                        <HotSpotVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
+                    </div>) : <span></span>}
             </div>
         </div>
     </div>)
