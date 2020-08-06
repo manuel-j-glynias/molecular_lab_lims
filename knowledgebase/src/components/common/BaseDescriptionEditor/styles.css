@@ -1,0 +1,10 @@
+.BaseDescriptionEditor__ShortTextarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 50px;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+}

@@ -14,13 +14,37 @@ export const QUERY_OntolgicalDisease = gql`
             omniMaps{
                 list{
                     mCodes{
+                        mcodeId
                         diseasePath{
+                            statement
+                        }
+                    }
+                    omniDisease{
+                        omniDiseaseId
+                        name{
                             statement
                         }
                     }
                 }
             }
+        }
     }
+    
+    fragment es_fields on EditableStatement {
+        id
+        statement
+        field
+        references {
+            id
+            ... on LiteratureReference {
+                PMID
+            }
+        }
+        editor {
+            id
+            name
+        }
+        editDate
     }
 `
 
@@ -90,5 +114,14 @@ export const mutation_add_name = gql`
         addEditableStatementEditor(editor: [$user_id], id: $es_id)
         addEditableStatementReferences(id: $es_id, references: $ref_aray)
         addOntologicalDiseaseName(id: $id, name: [$es_id])
+    }
+`
+export const mutation_add_description = gql`
+    mutation addOntologicalDiseaseDescription($id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {
+        deleteOntologicalDiseaseDescription(id: $id, description: [$old_es_id])
+        createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+        addEditableStatementEditor(editor: [$user_id], id: $es_id)
+        addEditableStatementReferences(id: $es_id, references: $ref_aray)
+        addOntologicalDiseaseDescription(id: $id, description: [$es_id])
     }
 `

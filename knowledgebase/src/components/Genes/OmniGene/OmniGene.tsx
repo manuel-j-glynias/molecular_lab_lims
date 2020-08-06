@@ -88,7 +88,7 @@ const OmniGene: React.FC<Props> = ({data,editing_description,set_editing_descrip
             <h1 className={`${className}__title`}>{data.OmniGene[0].name}</h1>
             <h4>Panel Name:  {data.OmniGene[0].panelName}</h4>
             <div className={`${className}__Wrapper`}>
-                 <div>Gene Description</div>
+                <div>Gene Description</div>
                 <div>
                     <div className="form-group">
                         {editing_description ? (
