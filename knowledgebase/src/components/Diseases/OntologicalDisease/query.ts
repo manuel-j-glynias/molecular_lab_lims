@@ -11,6 +11,9 @@ export const QUERY_OntolgicalDisease = gql`
             description{
                 ...es_fields
             }
+            synonyms{
+                stringList
+            }
             omniMaps{
                 list{
                     mCodes{
