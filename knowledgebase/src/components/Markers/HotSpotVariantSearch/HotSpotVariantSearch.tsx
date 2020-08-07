@@ -29,8 +29,8 @@ const HotSpotVariantSearch: React.FC<Props> = ({data,variant_id,refetch_parent}:
         <div className={className} >
 
             <div className={`${className}__Wrapper`} >
-                {data.HotSpotVariant &&
-                data.HotSpotVariant.map(
+                {data.hs_by_name &&
+                data.hs_by_name.map(
                     (hs ,index) =>
                         hs && (
                             <Fragment key={index}>

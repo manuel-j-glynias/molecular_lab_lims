@@ -1,6 +1,6 @@
 import * as React from "react";
 import './styles.css'
-import {Fragment, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {useGeneList_For_VariantsQuery, useGeneListQuery} from '../../../generated/graphql'
 import Select from "react-select";
 
@@ -16,7 +16,10 @@ export interface Props {
 
 const GenomicVariantMarkers: React.FC<Props> = ({handleGeneIdChange, gene_id,set_query_string,selected_gene_label,set_selected_gene_label}: Props) => {
 
-    const {data, error, loading} = useGeneList_For_VariantsQuery();
+    const {data, error, loading, refetch} = useGeneList_For_VariantsQuery();
+
+
+
     const genes = [
         { value: '0', label: 'Select Gene' }
     ]
@@ -46,6 +49,11 @@ const GenomicVariantMarkers: React.FC<Props> = ({handleGeneIdChange, gene_id,set
                     ))
         }
     }
+    const append_genesplus = () => {
+        refetch()
+        append_genes()
+    }
+    useEffect(append_genesplus,[selected_gene_label])
     const state  = {
         selectedOption: { value: selected_gene_id, label: selected_gene_label },
     };

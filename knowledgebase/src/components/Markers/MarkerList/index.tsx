@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {Redirect} from "react-router-dom";
 import './styles.css'
 import Select from "react-select";
@@ -14,6 +14,7 @@ import MSIMarkersListContainer from "../MSIMarkersList";
 import TMBMarkersListContainer from "../TMBMarkersList";
 import ProteinExpressionMarkersListContainer from "../ProteinExpressionMarkersList/index"
 import MarkerProfilesListContainer from "../MarkerProfilesList";
+import {AssayComparator} from "../../../generated/graphql";
 
 const className = 'MarkerList';
 
@@ -31,20 +32,60 @@ interface Props {
     set_query_string: (query: string) => void;
     selected_gene_label: string;
     set_selected_gene_label:(label: string) => void;
-
+    gene_id:string;
+    set_gene_id: (newId: string) => void;
 }
 
 const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_name,set_marker_id,
-                                                   variant_type_name,marker_id,markerType,set_markerType,
+                                                   variant_type_name,marker_id,markerType,set_markerType,gene_id,set_gene_id,
                                                    logged_in,handleAddMarker,query_string,set_query_string,selected_gene_label,set_selected_gene_label}) => {
     const [markerName, set_markerName] = useState('Genomic Variant Markers')
-    const [gene_id, set_gene_Id] = React.useState("");
 
     const handleMarkerIdChange = React.useCallback(newId => {
         set_marker_id(newId);
         console.log('handleMarkerIdChange newId=' + newId)
     }, []);
 
+    const handle_marker_type_change = () => {
+        console.log("handle_marker_type_change")
+        let name = ''
+        switch(markerType) {
+            case 'DNAMarker': {
+                name = 'DNA Markers'
+                break;
+            }
+            case 'ProteinExpressionMarker': {
+                name = 'Protein Expression Markers'
+                break;
+            }
+            case 'RNASeqSignatureMarker': {
+                name = 'RNASeq Signature Marker'
+                break;
+            }
+            case 'GenomicVariantMarker': {
+                name = 'Genomic Variant Markers'
+                break;
+            }
+            case 'MSIMarker': {
+                name = 'MSI Markers'
+                break;
+            }
+            case 'TMBMarker': {
+                name = 'TMB Markers'
+                break;
+            }
+
+            case 'MarkerProfile': {
+                name = 'Marker Profiles'
+                break;
+            }
+        }
+        set_markerName(name)
+        state.selectedOption.value = markerType
+        state.selectedOption.label = markerName
+
+    }
+    useEffect(handle_marker_type_change,[markerType])
 
 
     const options = [
@@ -62,12 +103,14 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
     };
 
     const handleChange = async (event:any) => {
-        const label : string = event.label
         const value : string = event.value as string;
-        set_markerName(label)
         set_markerType(value)
-        state.selectedOption.value = markerType
-        state.selectedOption.label = markerName
+        // const label : string = event.label
+        // const value : string = event.value as string;
+        // set_markerName(label)
+        // set_markerType(value)
+        // state.selectedOption.value = markerType
+        // state.selectedOption.label = markerName
     }
 
     if (!logged_in) {
@@ -88,7 +131,7 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                         { (markerType==="DNAMarker") && <DNAMarkers/>}
                         { (markerType==="ProteinExpressionMarker") && <ProteinExpressionMarkers set_query_string={set_query_string}/>}
                         { (markerType==="RNASeqSignatureMarker") && <RNASeqSignatureMarkers />}
-                        { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkers gene_id={gene_id} handleGeneIdChange={set_gene_Id} set_query_string={set_query_string} selected_gene_label={selected_gene_label} set_selected_gene_label={set_selected_gene_label}/>}
+                        { (markerType==="GenomicVariantMarker") && <GenomicVariantMarkers gene_id={gene_id} handleGeneIdChange={set_gene_id} set_query_string={set_query_string} selected_gene_label={selected_gene_label} set_selected_gene_label={set_selected_gene_label}/>}
                         { (markerType==="MSIMarker") && <MSIMarkers/>}
                         { (markerType==="TMBMarker") && <TMBMarkers/>}
                         { (markerType==="MarkerProfile") && <MarkerProfiles set_query_string={set_query_string}/>}

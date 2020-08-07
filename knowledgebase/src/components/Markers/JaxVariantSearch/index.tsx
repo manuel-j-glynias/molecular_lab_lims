@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Fragment} from 'react';
-import {useClinVarVariantByGeneQuery} from "../../../generated/graphql";
-import ClinVarVariantSearch from './ClinVarVariantSearch'
+import {useJaxVariantByGeneQuery} from "../../../generated/graphql";
+import JaxVariantSearch from './JaxVariantSearch'
 import {useState} from "react";
 
 interface Props {
@@ -9,12 +9,12 @@ interface Props {
     variant_id:string;
     refetch_parent: () => void;
 }
-const className = 'ClinVarVariantSearch';
-const ClinVarVariantSearchContainer = ({gene_name,variant_id,refetch_parent}:Props) => {
+const className = 'JaxVariantSearch';
+const JaxVariantSearchContainer = ({gene_name,variant_id,refetch_parent}:Props) => {
     const [pdot, set_pdot] = useState('');
     const [filter_term, set_filter_term] = useState('');
 
-    const { data, error, loading, refetch } = useClinVarVariantByGeneQuery(
+    const { data, error, loading, refetch } = useJaxVariantByGeneQuery(
         {variables:{gene_name:gene_name,pdot:pdot}})
     React.useEffect(() => {
         refetch();
@@ -58,8 +58,8 @@ const ClinVarVariantSearchContainer = ({gene_name,variant_id,refetch_parent}:Pro
             <button className={'btn btn-primary'} onClick={handleNameFilter}>Filter</button>
             <button className={'btn btn-primary'} onClick={handleReset}>Reset</button>
         </div>
-        <ClinVarVariantSearch data={data} variant_id={variant_id} refetch_parent={refetch_parent}/>
+        <JaxVariantSearch data={data} variant_id={variant_id} refetch_parent={refetch_parent}/>
         </Fragment>
     );
 }
-export default ClinVarVariantSearchContainer;
+export default JaxVariantSearchContainer;

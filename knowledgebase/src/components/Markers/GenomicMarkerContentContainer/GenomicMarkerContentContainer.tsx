@@ -7,6 +7,8 @@ import ClinVarVariantContainer from "../ClinVarVariant";
 import HotSpotVariantContainer from "../HotSpotVariant";
 import ClinVarVariantSearchContainer from "../ClinVarVariantSearch";
 import HotSpotVariantSearchContainer from "../HotSpotVariantSearch";
+import JaxVariantSearchContainer from "../JaxVariantSearch";
+import GOVariantSearchContainer from "../GOVariantSearch";
 
 interface Props {
     variant_id: string;
@@ -44,12 +46,17 @@ const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editin
             </button>
         </div>
         <div className = {`${className}__Wrapper`}>
-            {/*<span>{variant_id}</span>*/}
             <div>
-                {show_jax ? ( data.GenomicVariant[0].jaxVariant ? <JaxVariantContainer id={data.GenomicVariant[0].jaxVariant.id} editing_protein_effect={editing_protein_effect} editing_description={editing_description}/>: <span>No Jax Variant</span>) :<span></span> }
+                {show_jax ? ( data.GenomicVariant[0].jaxVariant ? <JaxVariantContainer id={data.GenomicVariant[0].jaxVariant.id} editing_protein_effect={editing_protein_effect} editing_description={editing_description}/>:
+                    <div>No Jax Variant associated with this marker.  Select one from the list below:
+                        <JaxVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
+                    </div>) :<span></span> }
             </div>
             <div>
-                {show_go ? ( data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id}/>: <span>No Go Variant</span>) : <span></span>}
+                {show_go ? ( data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id}/>:
+                    <div>No Go Variant associated with this marker.  Select one from the list below:
+                        <GOVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
+                    </div>) : <span></span>}
             </div>
             <div>
                 {show_clinvar ? ( data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id}/>:

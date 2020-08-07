@@ -29,3 +29,340 @@ export const mutation_create_marker_profile = gql`
        
     }
 `
+
+export const mutation_create_SNV_marker_ = gql`
+    mutation CreateGenomicVariantMarkerSNV($gene_id: ID!, $variant_id: ID!,$name_v_id: ID!,$name:String!,  $name_v_field: String!,
+        $pe_id: ID!,$pe_field: String!,$des_id: ID!,$des_field: String!,$pdot_id: ID!,$pdot_field: String!,$cdot_id: ID!,$cdot_field: String!,$gdot_id: ID!,$gdot_field: String!,
+        $trans_id: ID!,$trans_field: String!,$exon_id: ID!,$exon_field: String!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $marker_id: ID!,$name_id: ID!,  $name_field: String!,
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!, ){
+
+        createVariantSNVIndel(id: $variant_id,indelType: SNV,variantType: SNV)
+        
+        name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+        name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+        name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+        addVariantSNVIndelName(id:$variant_id,name: [$name_v_id])
+        
+        pe: createEditableProteinEffect(editDate: $date, field: $pe_field, id: $pe_id, proteinEffect: Unknown)
+        pe_editor: addEditableProteinEffectEditor(editor: [$user_id], id: $pe_id)
+        pe_ref: addEditableProteinEffectReferences(id: $pe_id, references: $ref_array)
+        addVariantSNVIndelProteinEffect(id: $variant_id, proteinEffect: [$pe_id])
+
+        des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+        des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+        des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+        addVariantSNVIndelDescription(id:$variant_id,description: [$des_id])
+
+        addVariantSNVIndelGene(id: $variant_id,gene: [$gene_id])
+        
+        pdot: createEditableStatement(editDate: $date, field: $pdot_field, id: $pdot_id, statement: $empty_string)
+        pdot_editor: addEditableStatementEditor(editor: [$user_id], id: $pdot_id)
+        pdot_ref: addEditableStatementReferences(id: $pdot_id, references: $ref_array)
+        addVariantSNVIndelPDot(id:$variant_id, pDot:[$pdot_id])
+
+        cdot: createEditableStatement(editDate: $date, field: $cdot_field, id: $cdot_id, statement: $empty_string)
+        cdot_editor: addEditableStatementEditor(editor: [$user_id], id: $cdot_id)
+        cdot_ref: addEditableStatementReferences(id: $cdot_id, references: $ref_array)
+        addVariantSNVIndelCDot(id:$variant_id, cDot:[$cdot_id])
+
+        gdot: createEditableStatement(editDate: $date, field: $gdot_field, id: $gdot_id, statement: $empty_string)
+        gdot_editor: addEditableStatementEditor(editor: [$user_id], id: $gdot_id)
+        gdot_ref: addEditableStatementReferences(id: $gdot_id, references: $ref_array)
+        addVariantSNVIndelGDot(id:$variant_id, gDot: [$gdot_id])
+
+        exon: createEditableStatement(editDate: $date, field: $exon_field, id: $exon_id, statement: $empty_string)
+        exon_editor: addEditableStatementEditor(editor: [$user_id], id: $exon_id)
+        exon_ref: addEditableStatementReferences(id: $exon_id, references: $ref_array)
+        addVariantSNVIndelExon(id:$variant_id, exon: [$exon_id])
+
+        trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+        trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+        trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+        addVariantSNVIndelNonCanonicalTranscript(id:$variant_id, nonCanonicalTranscript: [$trans_id])
+        
+        createGenomicVariantMarker(id: $marker_id)
+        addGenomicVariantMarkerVariant(id:$marker_id, variant: [$variant_id] )
+        addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addGenomicVariantMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addGenomicVariantMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+
+    }
+`
+
+export const mutation_create_region_marker_ = gql`
+    mutation CreateGenomicVariantMarkerRegion($gene_id: ID!, $variant_id: ID!,$name_v_id: ID!,$name:String!,  $name_v_field: String!,
+        $pe_id: ID!,$pe_field: String!,$des_id: ID!,$des_field: String!,
+        $trans_id: ID!,$trans_field: String!,
+        $region_type:RegionType!, $region_value_id:ID!, $region_value_field:String!,
+        $del_id: ID!,$del_field: String!,$frame_id: ID!,$frame_field: String!,$trunc_id: ID!,$trunc_field: String!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $marker_id: ID!,$name_id: ID!,  $name_field: String!,
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!, ){
+
+        createVariantRegion(id: $variant_id,indelType: SNV,variantType: Region, regionType: $region_type)
+
+        name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+        name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+        name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+        addVariantRegionName(id:$variant_id,name: [$name_v_id])
+
+        pe: createEditableProteinEffect(editDate: $date, field: $pe_field, id: $pe_id, proteinEffect: Unknown)
+        pe_editor: addEditableProteinEffectEditor(editor: [$user_id], id: $pe_id)
+        pe_ref: addEditableProteinEffectReferences(id: $pe_id, references: $ref_array)
+        addVariantRegionProteinEffect(id: $variant_id, proteinEffect: [$pe_id])
+
+        des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+        des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+        des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+        addVariantRegionDescription(id:$variant_id,description: [$des_id])
+
+        addVariantRegionGene(id: $variant_id,gene: [$gene_id])
+        
+        rv: createEditableInt(editDate: $date,field: $region_value_field, id: $region_value_id, intValue: 1)
+        rv_editor: addEditableIntEditor(editor: [$user_id], id: $region_value_id)
+        rv_ref: addEditableIntReferences(id: $region_value_id, references: $ref_array)
+        addVariantRegionRegionValue(id:$variant_id,regionValue: [$region_value_id] )
+        
+        trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+        trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+        trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+        addVariantRegionNonCanonicalTranscript(id:$variant_id, nonCanonicalTranscript: [$trans_id])
+
+        del: createEditableBoolean(id:$del_id, field: $del_field,editDate: $date, booleanValue: Unknown )
+        del_editor: addEditableBooleanEditor(editor: [$user_id], id: $del_id)
+        del_ref: addEditableBooleanReferences(id:$del_id,references: $ref_array)
+        addVariantRegionIsDeleterious(id:$variant_id,isDeleterious: [$del_id] )
+
+        frame: createEditableBoolean(id:$frame_id, field: $frame_field,editDate: $date, booleanValue: Unknown )
+        frame_editor: addEditableBooleanEditor(editor: [$user_id], id: $frame_id)
+        frame_ref: addEditableBooleanReferences(id:$frame_id,references: $ref_array)
+        addVariantRegionIsFrameshift(id:$variant_id,isFrameshift: [$frame_id])
+
+        trunc: createEditableBoolean(id:$trunc_id, field: $trunc_field,editDate: $date, booleanValue: Unknown )
+        trunc_editor: addEditableBooleanEditor(editor: [$user_id], id: $trunc_id)
+        trunc_ref: addEditableBooleanReferences(id:$trunc_id,references: $ref_array)
+        addVariantRegionIsTruncating(id:$variant_id, isTruncating: [$trunc_id])
+        
+
+        createGenomicVariantMarker(id: $marker_id)
+        addGenomicVariantMarkerVariant(id:$marker_id, variant: [$variant_id] )
+        addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addGenomicVariantMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addGenomicVariantMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+
+    }
+`
+
+export const mutation_create_cnv_marker_ = gql`
+    mutation CreateGenomicVariantMarkerCNV($gene_id: ID!, $variant_id: ID!,$name_v_id: ID!,$name:String!,  $name_v_field: String!,
+        $des_id: ID!,$des_field: String!,$cc_id: ID!,$cc_field: String!,
+        $trans_id: ID!,$trans_field: String!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $marker_id: ID!,$name_id: ID!,  $name_field: String!,
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!, ){
+
+        createVariantCNV(id: $variant_id)
+
+        name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+        name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+        name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+        addVariantCNVName(id:$variant_id,name: [$name_v_id])
+
+        des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+        des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+        des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+        addVariantCNVDescription(id:$variant_id,description: [$des_id])
+
+
+        trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+        trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+        trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+        addVariantCNVNonCanonicalTranscript(id:$variant_id, nonCanonicalTranscript: [$trans_id])
+
+        addVariantCNVGene(id: $variant_id,gene: [$gene_id])
+
+        cc: createEditableCopyChange(id:$cc_id,field: $cc_field, editDate: $date,cnvType: Unknown )
+        cc_editor: addEditableCopyChangeEditor(editor: [$user_id], id: $cc_id)
+        cc_ref: addEditableCopyChangeReferences(id: $cc_id, references: $ref_array)
+        addVariantCNVCopyChange(id:$variant_id,copyChange:[$cc_id])
+        
+        createGenomicVariantMarker(id: $marker_id)
+        addGenomicVariantMarkerVariant(id:$marker_id, variant: [$variant_id] )
+        addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addGenomicVariantMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addGenomicVariantMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+
+    }
+`
+
+export const mutation_create_fusion_marker_ = gql`
+    mutation CreateGenomicVariantMarkerFusion($gene_id: ID!, $variant_id: ID!,$name_v_id: ID!,$name:String!,  $name_v_field: String!,
+        $des_id: ID!,$des_field: String!,$cc_id: ID!,$cc_field: String!,
+        $trans_id: ID!,$trans_field: String!,
+        $g5_id: ID!,$g5_field: String!,$e5_id: ID!,$e5_field: String!,$g3_id: ID!,$g3_field: String!,$e3_id: ID!,$e3_field: String!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $marker_id: ID!,$name_id: ID!,  $name_field: String!,
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!, ){
+
+        createVariantFusion(id: $variant_id)
+
+        name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+        name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+        name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+        addVariantFusionName(id:$variant_id,name: [$name_v_id])
+
+        des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+        des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+        des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+        addVariantFusionDescription(id:$variant_id,description: [$des_id])
+
+
+        trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+        trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+        trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+        addVariantFusionNonCanonicalTranscript(id:$variant_id, nonCanonicalTranscript: [$trans_id])
+
+        addVariantFusionGene(id: $variant_id,gene: [$gene_id])
+
+        cc: createEditableCopyChange(id:$cc_id,field: $cc_field, editDate: $date,cnvType: Unknown )
+        cc_editor: addEditableCopyChangeEditor(editor: [$user_id], id: $cc_id)
+        cc_ref: addEditableCopyChangeReferences(id: $cc_id, references: $ref_array)
+        addVariantFusionCopyChange(id:$variant_id,copyChange:[$cc_id])
+        
+        g5: createEditableOmniGeneReference(id:$g5_id,field: $g5_field, editDate:$date)
+        g5_gene: addEditableOmniGeneReferenceGene(id: $g5_id,gene: [$gene_id])
+        g5_editor: addEditableOmniGeneReferenceEditor(id:$g5_id,editor: [$user_id])
+        g5_ref: addEditableOmniGeneReferenceReferences(id:$g5_id,, references: $ref_array)
+        addVariantFusionGene5Prime(id:$variant_id,gene5Prime: [$g5_id] )
+
+        g3: createEditableOmniGeneReference(id:$g3_id,field: $g3_field, editDate:$date)
+        g3_gene: addEditableOmniGeneReferenceGene(id: $g3_id,gene: [$gene_id])
+        g3_editor: addEditableOmniGeneReferenceEditor(id:$g3_id,editor: [$user_id])
+        g3_ref: addEditableOmniGeneReferenceReferences(id:$g3_id,, references: $ref_array)
+        addVariantFusionGene3Prime(id:$variant_id,gene3Prime: [$g3_id] )
+
+        e5: createEditableInt(id:$e5_id,field: $e5_field,editDate: $date,intValue: -1)
+        e5_editor: addEditableIntEditor(id:$e5_id,editor: [$user_id])
+        e5_ref: addEditableIntReferences(id:$e5_id,, references: $ref_array)
+        addVariantFusionExon5Prime(id:$variant_id,exon5Prime: [$e5_id] )
+
+        e3: createEditableInt(id:$e3_id,field: $e3_field,editDate: $date,intValue: -1)
+        e3_editor: addEditableIntEditor(id:$e3_id,editor: [$user_id])
+        e3_ref: addEditableIntReferences(id:$e3_id,, references: $ref_array)
+        addVariantFusionExon3Prime(id:$variant_id,exon3Prime: [$e3_id] )
+
+        createGenomicVariantMarker(id: $marker_id)
+        addGenomicVariantMarkerVariant(id:$marker_id, variant: [$variant_id] )
+        addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addGenomicVariantMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addGenomicVariantMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+
+    }
+`
+export const mutation_create_msi_marker = gql`
+    mutation CreateMSIMarker($marker_id: ID!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $name_id: ID!,$name:String!,  $name_field: String!, 
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!, ){
+        
+        createMSIMarker(id: $marker_id)
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addMSIMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addMSIMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addMSIMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+
+    }
+`
+export const mutation_create_tmb_marker = gql`
+    mutation CreateTMBMarker($marker_id: ID!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $name_id: ID!,$name:String!,  $name_field: String!,
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!,
+        $comparator_id:ID!, $comparator_field:String!,$resultMin_id:ID!, $resultMin_field:String!,$resultUnits_id:ID!, $resultUnits_field:String!,$interpretation_id:ID!, $interpretation_field:String!,
+    ){
+
+        createTMBMarker(id: $marker_id)
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addTMBMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addTMBMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addTMBMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+        
+        comp: createEditableAssayComparator(id:$comparator_id, field: $comparator_field,editDate: $date,comparator: Equals )
+        comp_editor: addEditableAssayComparatorEditor(editor: [$user_id], id: $comparator_id)
+        comp_ref: addEditableAssayComparatorReferences(id: $comparator_id, references: $ref_array)
+        addTMBMarkerComparator(id:$marker_id,comparator: [$comparator_id] )
+        
+        min: createEditableFloat(id:$resultMin_id,field:$resultMin_field,editDate: $date,floatValue: 0.0 )
+        min_editor: addEditableFloatEditor(id:$resultMin_id, editor: [$user_id])
+        min_ref: addEditableFloatReferences(id:$resultMin_id, references: $ref_array)
+        addTMBMarkerResultMin(id: $marker_id,resultMin: [$resultMin_id])
+        
+        units: createEditableStatement(editDate: $date, field: $resultUnits_field, id: $resultUnits_id, statement: $empty_string)
+        units_editor: addEditableStatementEditor(editor: [$user_id], id: $resultUnits_id)
+        units_ref: addEditableStatementReferences(id: $resultUnits_id, references: $ref_array)
+        addTMBMarkerResultUnits(id:$marker_id,resultUnits:[$resultUnits_id] )
+
+        interpretation: createEditableTMBInterpretation(id:$interpretation_id,field:$interpretation_field,editDate: $date,tmbInterpretation: High  )
+        interpretation_editor: addEditableTMBInterpretationEditor(editor: [$user_id], id: $interpretation_id)
+        interpretation_ref: addEditableTMBInterpretationReferences(id: $interpretation_id, references: $ref_array)
+        addTMBMarkerInterpretations(id:$marker_id, interpretations: [$interpretation_id] )
+    }
+`

@@ -1,5 +1,5 @@
 
-.ClinVarVariantSearch {
+.GOVariantSearch {
     height: 400px;
     overflow: hidden auto;
     background-color: white;
@@ -9,42 +9,42 @@
     padding-right: 20px;
     border: 1px solid black;
 }
-.ClinVarVariantSearch::-webkit-scrollbar {
+.GOVariantSearch::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.ClinVarVariantSearch::-webkit-scrollbar:vertical {
+.GOVariantSearch::-webkit-scrollbar:vertical {
     width: 11px;
 }
 
-.ClinVarVariantSearch::-webkit-scrollbar:horizontal {
+.GOVariantSearch::-webkit-scrollbar:horizontal {
     height: 11px;
 }
 
-.ClinVarVariantSearch::-webkit-scrollbar-thumb {
+.GOVariantSearch::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 2px solid white; /* should match background, can't be transparent */
     background-color: rgba(0, 0, 0, .5);
 }
 
-.ClinVarVariantSearch__Wrapper {
+.GOVariantSearch__Wrapper {
     display: grid;
-    grid-template-columns: 60px 100px 100px 140px 100px;
+    grid-template-columns: 200px 200px  100px;
     grid-row-gap: 10px;
     grid-auto-rows: minmax(30px, auto);
     align-items: flex-start;
 }
 
-.ClinVarVariantSearch__Wrapper > div{
+.GOVariantSearch__Wrapper > div{
     font-family: 'Lato', sans-serif;
     font-size: 13px;
 }
 
-.ClinVarVariantSearch__Wrapper_Span {
+.GOVariantSearch__Wrapper_Span {
     font-family: 'Lato', sans-serif;
     font-size: 10px;
 }
-.ClinVarVariantSearch__small-btn {
+.GOVariantSearch__small-btn {
     display: inline-block;
     background-color: #005198;
     color: white;
@@ -57,13 +57,13 @@
     outline: none;
     transition: all 0.2s ease-in;
 }
-.ClinVarVariantSearch__small-btn:hover {
+.GOVariantSearch__small-btn:hover {
     background: #1ab6cf;
 }
-.ClinVarVariantSearch__small-btn:active {
+.GOVariantSearch__small-btn:active {
     border: 2px solid green;
 }
-.ClinVarVariantSearch__Filter {
+.GOVariantSearch__Filter {
     height: 120px;
     width: 250px;
     padding-top: 20px;

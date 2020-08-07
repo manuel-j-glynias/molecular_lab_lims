@@ -30,22 +30,7 @@ export const QUERY_OntolgicalDisease = gql`
         }
     }
     
-    fragment es_fields on EditableStatement {
-        id
-        statement
-        field
-        references {
-            id
-            ... on LiteratureReference {
-                PMID
-            }
-        }
-        editor {
-            id
-            name
-        }
-        editDate
-    }
+    
 `
 
 

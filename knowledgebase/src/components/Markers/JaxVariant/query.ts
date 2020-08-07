@@ -13,18 +13,8 @@ export const QUERY_JAX_VARIANT = gql`
             pDot
             gDot
             proteinEffect{
-                id
                 proteinEffect
-                field
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
-            }
+             }
             transcript{
                 ...es_fields
             }

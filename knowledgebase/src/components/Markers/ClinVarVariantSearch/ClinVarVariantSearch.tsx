@@ -21,14 +21,7 @@ const ClinVarVariantSearch: React.FC<Props> = ({data,variant_id,refetch_parent}:
 
     const [addClinVarMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useGenomicVariantAddClinVarVariantMutation({variables:{variant_id:'',clinvar_id:''}})
 
-    function get_pdot(cv: { __typename?: "ClinVarVariant" } & Pick<ClinVarVariant, "gene" | "id" | "pDot" | "cDot" | "variantId"> & { significance: { __typename?: "EditableStatement" } & Pick<EditableStatement, "statement">; signficanceExplanation: { __typename?: "EditableStatement" } & Pick<EditableStatement, "statement"> }) {
-        if (cv.pDot==='(NONE)'){
-            return <> {cv.pDot}</>
-        }
-        else {
-            return <> p.{cv.pDot}</>;
-        }
-    }
+
 
     const add_clinvar = async (clinVarId: any) => {
         console.log(clinVarId)
@@ -40,13 +33,13 @@ const ClinVarVariantSearch: React.FC<Props> = ({data,variant_id,refetch_parent}:
         <div className={className} >
 
             <div className={`${className}__Wrapper`} >
-                {data.ClinVarVariant &&
-                data.ClinVarVariant.map(
+                {data.cv_by_name &&
+                data.cv_by_name.map(
                     (cv ,index) =>
                         cv && (
                             <Fragment key={index}>
                             <div >{cv.gene} </div>
-                            <div >{get_pdot(cv)} </div>
+                            <div >{cv.pDot==='(NONE)' ?  cv.pDot : 'p.' + cv.pDot } </div>
                             <div >{cv.cDot}</div>
                             <div>
                                 <a href={'https://www.ncbi.nlm.nih.gov/clinvar/variation/' + cv.variantId} target="_blank"

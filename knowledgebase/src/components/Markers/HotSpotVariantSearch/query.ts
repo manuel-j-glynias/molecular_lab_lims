@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 
 export const QUERY_HOTSPOT_VARIANT_BY_GENE_NAME = gql`
     query HotSpotVariantByGene($gene_name:String){
-        HotSpotVariant(gene:$gene_name,orderBy:position_asc){
+        hs_by_name: HotSpotVariant(gene:$gene_name,orderBy:position_asc){
             gene
             id
             name

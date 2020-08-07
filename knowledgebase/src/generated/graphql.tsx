@@ -20000,24 +20000,6 @@ export type OntologicalDiseaseQuery = (
   )>>> }
 );
 
-export type Es_FieldsFragment = (
-  { __typename?: 'EditableStatement' }
-  & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
-  & { references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'PMID' | 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
-);
-
 export type OntologicalDiseaseAddNameMutationVariables = {
   id: Scalars['ID'];
   old_es_id: Scalars['ID'];
@@ -20353,18 +20335,16 @@ export type ClinVarVariantQuery = (
 
 export type ClinVarVariantByGeneQueryVariables = {
   gene_name?: Maybe<Scalars['String']>;
+  pdot?: Maybe<Scalars['String']>;
 };
 
 
 export type ClinVarVariantByGeneQuery = (
   { __typename?: 'QueryType' }
-  & { ClinVarVariant?: Maybe<Array<Maybe<(
+  & { cv_by_name?: Maybe<Array<Maybe<(
     { __typename?: 'ClinVarVariant' }
     & Pick<ClinVarVariant, 'gene' | 'id' | 'pDot' | 'cDot' | 'variantId'>
     & { significance: (
-      { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
-    ), signficanceExplanation: (
       { __typename?: 'EditableStatement' }
       & Pick<EditableStatement, 'statement'>
     ) }
@@ -20400,6 +20380,35 @@ export type GoVariantQuery = (
       & Pick<JaxVariant, 'name' | 'id'>
     )> }
   )>>> }
+);
+
+export type GoVariantByGeneQueryVariables = {
+  gene_name?: Maybe<Scalars['String']>;
+  pdot?: Maybe<Scalars['String']>;
+};
+
+
+export type GoVariantByGeneQuery = (
+  { __typename?: 'QueryType' }
+  & { go_by_name?: Maybe<Array<Maybe<(
+    { __typename?: 'GOVariant' }
+    & Pick<GoVariant, 'gene' | 'id' | 'mutationType'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement'>
+    ) }
+  )>>> }
+);
+
+export type GenomicVariantAddGoVariantMutationVariables = {
+  variant_id: Scalars['ID'];
+  govar_id: Scalars['ID'];
+};
+
+
+export type GenomicVariantAddGoVariantMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'addGenomicVariantGoVariant'>
 );
 
 export type VariantCnvQueryVariables = {
@@ -21293,7 +21302,7 @@ export type HotSpotVariantByGeneQueryVariables = {
 
 export type HotSpotVariantByGeneQuery = (
   { __typename?: 'QueryType' }
-  & { HotSpotVariant?: Maybe<Array<Maybe<(
+  & { hs_by_name?: Maybe<Array<Maybe<(
     { __typename?: 'HotSpotVariant' }
     & Pick<HotSpotVariant, 'gene' | 'id' | 'name' | 'begin' | 'end' | 'position'>
   )>>> }
@@ -21395,20 +21404,7 @@ export type JaxVariantQuery = (
       & Pick<JaxGene, 'id' | 'name'>
     ), proteinEffect: (
       { __typename?: 'EditableProteinEffect' }
-      & Pick<EditableProteinEffect, 'id' | 'proteinEffect' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Pick<EditableProteinEffect, 'proteinEffect'>
     ), transcript: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
@@ -21417,6 +21413,38 @@ export type JaxVariantQuery = (
       & Es_FieldsFragment
     ) }
   )>>> }
+);
+
+export type JaxVariantByGeneQueryVariables = {
+  gene_name?: Maybe<Scalars['String']>;
+  pdot?: Maybe<Scalars['String']>;
+};
+
+
+export type JaxVariantByGeneQuery = (
+  { __typename?: 'QueryType' }
+  & { jv_by_name?: Maybe<Array<Maybe<(
+    { __typename?: 'JaxVariant' }
+    & Pick<JaxVariant, 'id' | 'pDot' | 'cDot' | 'jaxId' | 'name'>
+    & { gene: (
+      { __typename?: 'JaxGene' }
+      & Pick<JaxGene, 'id' | 'name'>
+    ), proteinEffect: (
+      { __typename?: 'EditableProteinEffect' }
+      & Pick<EditableProteinEffect, 'proteinEffect'>
+    ) }
+  )>>> }
+);
+
+export type GenomicVariantAddJaxVariantMutationVariables = {
+  variant_id: Scalars['ID'];
+  jaxvar_id: Scalars['ID'];
+};
+
+
+export type GenomicVariantAddJaxVariantMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'addGenomicVariantJaxVariant'>
 );
 
 export type Msi_MarkerQueryVariables = {
@@ -21758,6 +21786,211 @@ export type CreateMarkerProfileMutation = (
   { __typename?: 'MutationType' }
   & Pick<MutationType, 'createMarkerProfile' | 'addMarkerProfileComponents' | 'addMarkerProfileConjunction' | 'addMarkerProfileName' | 'addMarkerProfileMethod' | 'addMarkerProfileResultString'>
   & { components: MutationType['createEditableMarkerComponentList'], components_editor: MutationType['addEditableMarkerComponentListEditor'], components_ref: MutationType['addEditableMarkerComponentListReferences'], conjuction: MutationType['createEditableOmniConjunction'], conjuction_editor: MutationType['addEditableOmniConjunctionEditor'], conjuction_ref: MutationType['addEditableOmniConjunctionReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateGenomicVariantMarkerSnvMutationVariables = {
+  gene_id: Scalars['ID'];
+  variant_id: Scalars['ID'];
+  name_v_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_v_field: Scalars['String'];
+  pe_id: Scalars['ID'];
+  pe_field: Scalars['String'];
+  des_id: Scalars['ID'];
+  des_field: Scalars['String'];
+  pdot_id: Scalars['ID'];
+  pdot_field: Scalars['String'];
+  cdot_id: Scalars['ID'];
+  cdot_field: Scalars['String'];
+  gdot_id: Scalars['ID'];
+  gdot_field: Scalars['String'];
+  trans_id: Scalars['ID'];
+  trans_field: Scalars['String'];
+  exon_id: Scalars['ID'];
+  exon_field: Scalars['String'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  marker_id: Scalars['ID'];
+  name_id: Scalars['ID'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+};
+
+
+export type CreateGenomicVariantMarkerSnvMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createVariantSNVIndel' | 'addVariantSNVIndelName' | 'addVariantSNVIndelProteinEffect' | 'addVariantSNVIndelDescription' | 'addVariantSNVIndelGene' | 'addVariantSNVIndelPDot' | 'addVariantSNVIndelCDot' | 'addVariantSNVIndelGDot' | 'addVariantSNVIndelExon' | 'addVariantSNVIndelNonCanonicalTranscript' | 'createGenomicVariantMarker' | 'addGenomicVariantMarkerVariant' | 'addGenomicVariantMarkerGene' | 'addGenomicVariantMarkerName' | 'addGenomicVariantMarkerMethod' | 'addGenomicVariantMarkerResultString'>
+  & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], pe: MutationType['createEditableProteinEffect'], pe_editor: MutationType['addEditableProteinEffectEditor'], pe_ref: MutationType['addEditableProteinEffectReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], pdot: MutationType['createEditableStatement'], pdot_editor: MutationType['addEditableStatementEditor'], pdot_ref: MutationType['addEditableStatementReferences'], cdot: MutationType['createEditableStatement'], cdot_editor: MutationType['addEditableStatementEditor'], cdot_ref: MutationType['addEditableStatementReferences'], gdot: MutationType['createEditableStatement'], gdot_editor: MutationType['addEditableStatementEditor'], gdot_ref: MutationType['addEditableStatementReferences'], exon: MutationType['createEditableStatement'], exon_editor: MutationType['addEditableStatementEditor'], exon_ref: MutationType['addEditableStatementReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateGenomicVariantMarkerRegionMutationVariables = {
+  gene_id: Scalars['ID'];
+  variant_id: Scalars['ID'];
+  name_v_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_v_field: Scalars['String'];
+  pe_id: Scalars['ID'];
+  pe_field: Scalars['String'];
+  des_id: Scalars['ID'];
+  des_field: Scalars['String'];
+  trans_id: Scalars['ID'];
+  trans_field: Scalars['String'];
+  region_type: RegionType;
+  region_value_id: Scalars['ID'];
+  region_value_field: Scalars['String'];
+  del_id: Scalars['ID'];
+  del_field: Scalars['String'];
+  frame_id: Scalars['ID'];
+  frame_field: Scalars['String'];
+  trunc_id: Scalars['ID'];
+  trunc_field: Scalars['String'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  marker_id: Scalars['ID'];
+  name_id: Scalars['ID'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+};
+
+
+export type CreateGenomicVariantMarkerRegionMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createVariantRegion' | 'addVariantRegionName' | 'addVariantRegionProteinEffect' | 'addVariantRegionDescription' | 'addVariantRegionGene' | 'addVariantRegionRegionValue' | 'addVariantRegionNonCanonicalTranscript' | 'addVariantRegionIsDeleterious' | 'addVariantRegionIsFrameshift' | 'addVariantRegionIsTruncating' | 'createGenomicVariantMarker' | 'addGenomicVariantMarkerVariant' | 'addGenomicVariantMarkerGene' | 'addGenomicVariantMarkerName' | 'addGenomicVariantMarkerMethod' | 'addGenomicVariantMarkerResultString'>
+  & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], pe: MutationType['createEditableProteinEffect'], pe_editor: MutationType['addEditableProteinEffectEditor'], pe_ref: MutationType['addEditableProteinEffectReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], rv: MutationType['createEditableInt'], rv_editor: MutationType['addEditableIntEditor'], rv_ref: MutationType['addEditableIntReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], del: MutationType['createEditableBoolean'], del_editor: MutationType['addEditableBooleanEditor'], del_ref: MutationType['addEditableBooleanReferences'], frame: MutationType['createEditableBoolean'], frame_editor: MutationType['addEditableBooleanEditor'], frame_ref: MutationType['addEditableBooleanReferences'], trunc: MutationType['createEditableBoolean'], trunc_editor: MutationType['addEditableBooleanEditor'], trunc_ref: MutationType['addEditableBooleanReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateGenomicVariantMarkerCnvMutationVariables = {
+  gene_id: Scalars['ID'];
+  variant_id: Scalars['ID'];
+  name_v_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_v_field: Scalars['String'];
+  des_id: Scalars['ID'];
+  des_field: Scalars['String'];
+  cc_id: Scalars['ID'];
+  cc_field: Scalars['String'];
+  trans_id: Scalars['ID'];
+  trans_field: Scalars['String'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  marker_id: Scalars['ID'];
+  name_id: Scalars['ID'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+};
+
+
+export type CreateGenomicVariantMarkerCnvMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createVariantCNV' | 'addVariantCNVName' | 'addVariantCNVDescription' | 'addVariantCNVNonCanonicalTranscript' | 'addVariantCNVGene' | 'addVariantCNVCopyChange' | 'createGenomicVariantMarker' | 'addGenomicVariantMarkerVariant' | 'addGenomicVariantMarkerGene' | 'addGenomicVariantMarkerName' | 'addGenomicVariantMarkerMethod' | 'addGenomicVariantMarkerResultString'>
+  & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], cc: MutationType['createEditableCopyChange'], cc_editor: MutationType['addEditableCopyChangeEditor'], cc_ref: MutationType['addEditableCopyChangeReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateGenomicVariantMarkerFusionMutationVariables = {
+  gene_id: Scalars['ID'];
+  variant_id: Scalars['ID'];
+  name_v_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_v_field: Scalars['String'];
+  des_id: Scalars['ID'];
+  des_field: Scalars['String'];
+  cc_id: Scalars['ID'];
+  cc_field: Scalars['String'];
+  trans_id: Scalars['ID'];
+  trans_field: Scalars['String'];
+  g5_id: Scalars['ID'];
+  g5_field: Scalars['String'];
+  e5_id: Scalars['ID'];
+  e5_field: Scalars['String'];
+  g3_id: Scalars['ID'];
+  g3_field: Scalars['String'];
+  e3_id: Scalars['ID'];
+  e3_field: Scalars['String'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  marker_id: Scalars['ID'];
+  name_id: Scalars['ID'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+};
+
+
+export type CreateGenomicVariantMarkerFusionMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createVariantFusion' | 'addVariantFusionName' | 'addVariantFusionDescription' | 'addVariantFusionNonCanonicalTranscript' | 'addVariantFusionGene' | 'addVariantFusionCopyChange' | 'addVariantFusionGene5Prime' | 'addVariantFusionGene3Prime' | 'addVariantFusionExon5Prime' | 'addVariantFusionExon3Prime' | 'createGenomicVariantMarker' | 'addGenomicVariantMarkerVariant' | 'addGenomicVariantMarkerGene' | 'addGenomicVariantMarkerName' | 'addGenomicVariantMarkerMethod' | 'addGenomicVariantMarkerResultString'>
+  & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], cc: MutationType['createEditableCopyChange'], cc_editor: MutationType['addEditableCopyChangeEditor'], cc_ref: MutationType['addEditableCopyChangeReferences'], g5: MutationType['createEditableOmniGeneReference'], g5_gene: MutationType['addEditableOmniGeneReferenceGene'], g5_editor: MutationType['addEditableOmniGeneReferenceEditor'], g5_ref: MutationType['addEditableOmniGeneReferenceReferences'], g3: MutationType['createEditableOmniGeneReference'], g3_gene: MutationType['addEditableOmniGeneReferenceGene'], g3_editor: MutationType['addEditableOmniGeneReferenceEditor'], g3_ref: MutationType['addEditableOmniGeneReferenceReferences'], e5: MutationType['createEditableInt'], e5_editor: MutationType['addEditableIntEditor'], e5_ref: MutationType['addEditableIntReferences'], e3: MutationType['createEditableInt'], e3_editor: MutationType['addEditableIntEditor'], e3_ref: MutationType['addEditableIntReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateMsiMarkerMutationVariables = {
+  marker_id: Scalars['ID'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  name_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+};
+
+
+export type CreateMsiMarkerMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createMSIMarker' | 'addMSIMarkerName' | 'addMSIMarkerMethod' | 'addMSIMarkerResultString'>
+  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateTmbMarkerMutationVariables = {
+  marker_id: Scalars['ID'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  name_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+  comparator_id: Scalars['ID'];
+  comparator_field: Scalars['String'];
+  resultMin_id: Scalars['ID'];
+  resultMin_field: Scalars['String'];
+  resultUnits_id: Scalars['ID'];
+  resultUnits_field: Scalars['String'];
+  interpretation_id: Scalars['ID'];
+  interpretation_field: Scalars['String'];
+};
+
+
+export type CreateTmbMarkerMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createTMBMarker' | 'addTMBMarkerName' | 'addTMBMarkerMethod' | 'addTMBMarkerResultString' | 'addTMBMarkerComparator' | 'addTMBMarkerResultMin' | 'addTMBMarkerResultUnits' | 'addTMBMarkerInterpretations'>
+  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'], interpretation: MutationType['createEditableTMBInterpretation'], interpretation_editor: MutationType['addEditableTMBInterpretationEditor'], interpretation_ref: MutationType['addEditableTMBInterpretationReferences'] }
 );
 
 export type ProteinExpression_MarkerQueryVariables = {
@@ -23908,17 +24141,14 @@ export type ClinVarVariantQueryHookResult = ReturnType<typeof useClinVarVariantQ
 export type ClinVarVariantLazyQueryHookResult = ReturnType<typeof useClinVarVariantLazyQuery>;
 export type ClinVarVariantQueryResult = ApolloReactCommon.QueryResult<ClinVarVariantQuery, ClinVarVariantQueryVariables>;
 export const ClinVarVariantByGeneDocument = gql`
-    query ClinVarVariantByGene($gene_name: String) {
-  ClinVarVariant(gene: $gene_name) {
+    query ClinVarVariantByGene($gene_name: String, $pdot: String) {
+  cv_by_name: ClinVarVariant(gene: $gene_name, filter: {pDot_contains: $pdot}) {
     gene
     id
     pDot
     cDot
     variantId
     significance {
-      statement
-    }
-    signficanceExplanation {
       statement
     }
   }
@@ -23957,6 +24187,7 @@ export function withClinVarVariantByGene<TProps, TChildProps = {}, TDataName ext
  * const { data, loading, error } = useClinVarVariantByGeneQuery({
  *   variables: {
  *      gene_name: // value for 'gene_name'
+ *      pdot: // value for 'pdot'
  *   },
  * });
  */
@@ -24081,6 +24312,114 @@ export function useGoVariantLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHo
 export type GoVariantQueryHookResult = ReturnType<typeof useGoVariantQuery>;
 export type GoVariantLazyQueryHookResult = ReturnType<typeof useGoVariantLazyQuery>;
 export type GoVariantQueryResult = ApolloReactCommon.QueryResult<GoVariantQuery, GoVariantQueryVariables>;
+export const GoVariantByGeneDocument = gql`
+    query GOVariantByGene($gene_name: String, $pdot: String) {
+  go_by_name: GOVariant(gene: $gene_name, filter: {name: {statement_contains: $pdot}}) {
+    gene
+    id
+    name {
+      statement
+    }
+    mutationType
+  }
+}
+    `;
+export type GoVariantByGeneComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>, 'query'>;
+
+    export const GoVariantByGeneComponent = (props: GoVariantByGeneComponentProps) => (
+      <ApolloReactComponents.Query<GoVariantByGeneQuery, GoVariantByGeneQueryVariables> query={GoVariantByGeneDocument} {...props} />
+    );
+    
+export type GoVariantByGeneProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>
+    } & TChildProps;
+export function withGoVariantByGene<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GoVariantByGeneQuery,
+  GoVariantByGeneQueryVariables,
+  GoVariantByGeneProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GoVariantByGeneQuery, GoVariantByGeneQueryVariables, GoVariantByGeneProps<TChildProps, TDataName>>(GoVariantByGeneDocument, {
+      alias: 'goVariantByGene',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGoVariantByGeneQuery__
+ *
+ * To run a query within a React component, call `useGoVariantByGeneQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGoVariantByGeneQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGoVariantByGeneQuery({
+ *   variables: {
+ *      gene_name: // value for 'gene_name'
+ *      pdot: // value for 'pdot'
+ *   },
+ * });
+ */
+export function useGoVariantByGeneQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>) {
+        return ApolloReactHooks.useQuery<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>(GoVariantByGeneDocument, baseOptions);
+      }
+export function useGoVariantByGeneLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>(GoVariantByGeneDocument, baseOptions);
+        }
+export type GoVariantByGeneQueryHookResult = ReturnType<typeof useGoVariantByGeneQuery>;
+export type GoVariantByGeneLazyQueryHookResult = ReturnType<typeof useGoVariantByGeneLazyQuery>;
+export type GoVariantByGeneQueryResult = ApolloReactCommon.QueryResult<GoVariantByGeneQuery, GoVariantByGeneQueryVariables>;
+export const GenomicVariantAddGoVariantDocument = gql`
+    mutation GenomicVariantAddGoVariant($variant_id: ID!, $govar_id: ID!) {
+  addGenomicVariantGoVariant(id: $variant_id, goVariant: [$govar_id])
+}
+    `;
+export type GenomicVariantAddGoVariantMutationFn = ApolloReactCommon.MutationFunction<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables>;
+export type GenomicVariantAddGoVariantComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables>, 'mutation'>;
+
+    export const GenomicVariantAddGoVariantComponent = (props: GenomicVariantAddGoVariantComponentProps) => (
+      <ApolloReactComponents.Mutation<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables> mutation={GenomicVariantAddGoVariantDocument} {...props} />
+    );
+    
+export type GenomicVariantAddGoVariantProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables>
+    } & TChildProps;
+export function withGenomicVariantAddGoVariant<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GenomicVariantAddGoVariantMutation,
+  GenomicVariantAddGoVariantMutationVariables,
+  GenomicVariantAddGoVariantProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables, GenomicVariantAddGoVariantProps<TChildProps, TDataName>>(GenomicVariantAddGoVariantDocument, {
+      alias: 'genomicVariantAddGoVariant',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGenomicVariantAddGoVariantMutation__
+ *
+ * To run a mutation, you first call `useGenomicVariantAddGoVariantMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useGenomicVariantAddGoVariantMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [genomicVariantAddGoVariantMutation, { data, loading, error }] = useGenomicVariantAddGoVariantMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      govar_id: // value for 'govar_id'
+ *   },
+ * });
+ */
+export function useGenomicVariantAddGoVariantMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables>) {
+        return ApolloReactHooks.useMutation<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables>(GenomicVariantAddGoVariantDocument, baseOptions);
+      }
+export type GenomicVariantAddGoVariantMutationHookResult = ReturnType<typeof useGenomicVariantAddGoVariantMutation>;
+export type GenomicVariantAddGoVariantMutationResult = ApolloReactCommon.MutationResult<GenomicVariantAddGoVariantMutation>;
+export type GenomicVariantAddGoVariantMutationOptions = ApolloReactCommon.BaseMutationOptions<GenomicVariantAddGoVariantMutation, GenomicVariantAddGoVariantMutationVariables>;
 export const VariantCnvDocument = gql`
     query VariantCNV($variant_id: ID) {
   VariantCNV(id: $variant_id) {
@@ -26024,7 +26363,7 @@ export type HotSpotVariantLazyQueryHookResult = ReturnType<typeof useHotSpotVari
 export type HotSpotVariantQueryResult = ApolloReactCommon.QueryResult<HotSpotVariantQuery, HotSpotVariantQueryVariables>;
 export const HotSpotVariantByGeneDocument = gql`
     query HotSpotVariantByGene($gene_name: String) {
-  HotSpotVariant(gene: $gene_name, orderBy: position_asc) {
+  hs_by_name: HotSpotVariant(gene: $gene_name, orderBy: position_asc) {
     gene
     id
     name
@@ -26216,17 +26555,7 @@ export const JaxVariantDocument = gql`
     pDot
     gDot
     proteinEffect {
-      id
       proteinEffect
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
     }
     transcript {
       ...es_fields
@@ -26283,6 +26612,120 @@ export function useJaxVariantLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type JaxVariantQueryHookResult = ReturnType<typeof useJaxVariantQuery>;
 export type JaxVariantLazyQueryHookResult = ReturnType<typeof useJaxVariantLazyQuery>;
 export type JaxVariantQueryResult = ApolloReactCommon.QueryResult<JaxVariantQuery, JaxVariantQueryVariables>;
+export const JaxVariantByGeneDocument = gql`
+    query JaxVariantByGene($gene_name: String, $pdot: String) {
+  jv_by_name: JaxVariant(filter: {AND: [{name_contains: $pdot}, {gene: {name: $gene_name}}]}) {
+    gene {
+      id
+      name
+    }
+    id
+    pDot
+    cDot
+    jaxId
+    name
+    proteinEffect {
+      proteinEffect
+    }
+  }
+}
+    `;
+export type JaxVariantByGeneComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>, 'query'>;
+
+    export const JaxVariantByGeneComponent = (props: JaxVariantByGeneComponentProps) => (
+      <ApolloReactComponents.Query<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables> query={JaxVariantByGeneDocument} {...props} />
+    );
+    
+export type JaxVariantByGeneProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>
+    } & TChildProps;
+export function withJaxVariantByGene<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  JaxVariantByGeneQuery,
+  JaxVariantByGeneQueryVariables,
+  JaxVariantByGeneProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables, JaxVariantByGeneProps<TChildProps, TDataName>>(JaxVariantByGeneDocument, {
+      alias: 'jaxVariantByGene',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useJaxVariantByGeneQuery__
+ *
+ * To run a query within a React component, call `useJaxVariantByGeneQuery` and pass it any options that fit your needs.
+ * When your component renders, `useJaxVariantByGeneQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useJaxVariantByGeneQuery({
+ *   variables: {
+ *      gene_name: // value for 'gene_name'
+ *      pdot: // value for 'pdot'
+ *   },
+ * });
+ */
+export function useJaxVariantByGeneQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>) {
+        return ApolloReactHooks.useQuery<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>(JaxVariantByGeneDocument, baseOptions);
+      }
+export function useJaxVariantByGeneLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>(JaxVariantByGeneDocument, baseOptions);
+        }
+export type JaxVariantByGeneQueryHookResult = ReturnType<typeof useJaxVariantByGeneQuery>;
+export type JaxVariantByGeneLazyQueryHookResult = ReturnType<typeof useJaxVariantByGeneLazyQuery>;
+export type JaxVariantByGeneQueryResult = ApolloReactCommon.QueryResult<JaxVariantByGeneQuery, JaxVariantByGeneQueryVariables>;
+export const GenomicVariantAddJaxVariantDocument = gql`
+    mutation GenomicVariantAddJaxVariant($variant_id: ID!, $jaxvar_id: ID!) {
+  addGenomicVariantJaxVariant(id: $variant_id, jaxVariant: [$jaxvar_id])
+}
+    `;
+export type GenomicVariantAddJaxVariantMutationFn = ApolloReactCommon.MutationFunction<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables>;
+export type GenomicVariantAddJaxVariantComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables>, 'mutation'>;
+
+    export const GenomicVariantAddJaxVariantComponent = (props: GenomicVariantAddJaxVariantComponentProps) => (
+      <ApolloReactComponents.Mutation<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables> mutation={GenomicVariantAddJaxVariantDocument} {...props} />
+    );
+    
+export type GenomicVariantAddJaxVariantProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables>
+    } & TChildProps;
+export function withGenomicVariantAddJaxVariant<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GenomicVariantAddJaxVariantMutation,
+  GenomicVariantAddJaxVariantMutationVariables,
+  GenomicVariantAddJaxVariantProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables, GenomicVariantAddJaxVariantProps<TChildProps, TDataName>>(GenomicVariantAddJaxVariantDocument, {
+      alias: 'genomicVariantAddJaxVariant',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGenomicVariantAddJaxVariantMutation__
+ *
+ * To run a mutation, you first call `useGenomicVariantAddJaxVariantMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useGenomicVariantAddJaxVariantMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [genomicVariantAddJaxVariantMutation, { data, loading, error }] = useGenomicVariantAddJaxVariantMutation({
+ *   variables: {
+ *      variant_id: // value for 'variant_id'
+ *      jaxvar_id: // value for 'jaxvar_id'
+ *   },
+ * });
+ */
+export function useGenomicVariantAddJaxVariantMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables>) {
+        return ApolloReactHooks.useMutation<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables>(GenomicVariantAddJaxVariantDocument, baseOptions);
+      }
+export type GenomicVariantAddJaxVariantMutationHookResult = ReturnType<typeof useGenomicVariantAddJaxVariantMutation>;
+export type GenomicVariantAddJaxVariantMutationResult = ApolloReactCommon.MutationResult<GenomicVariantAddJaxVariantMutation>;
+export type GenomicVariantAddJaxVariantMutationOptions = ApolloReactCommon.BaseMutationOptions<GenomicVariantAddJaxVariantMutation, GenomicVariantAddJaxVariantMutationVariables>;
 export const Msi_MarkerDocument = gql`
     query MSI_Marker($marker_id: ID) {
   MSIMarker(id: $marker_id) {
@@ -27169,6 +27612,657 @@ export function useCreateMarkerProfileMutation(baseOptions?: ApolloReactHooks.Mu
 export type CreateMarkerProfileMutationHookResult = ReturnType<typeof useCreateMarkerProfileMutation>;
 export type CreateMarkerProfileMutationResult = ApolloReactCommon.MutationResult<CreateMarkerProfileMutation>;
 export type CreateMarkerProfileMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMarkerProfileMutation, CreateMarkerProfileMutationVariables>;
+export const CreateGenomicVariantMarkerSnvDocument = gql`
+    mutation CreateGenomicVariantMarkerSNV($gene_id: ID!, $variant_id: ID!, $name_v_id: ID!, $name: String!, $name_v_field: String!, $pe_id: ID!, $pe_field: String!, $des_id: ID!, $des_field: String!, $pdot_id: ID!, $pdot_field: String!, $cdot_id: ID!, $cdot_field: String!, $gdot_id: ID!, $gdot_field: String!, $trans_id: ID!, $trans_field: String!, $exon_id: ID!, $exon_field: String!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $marker_id: ID!, $name_id: ID!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+  createVariantSNVIndel(id: $variant_id, indelType: SNV, variantType: SNV)
+  name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+  name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+  name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+  addVariantSNVIndelName(id: $variant_id, name: [$name_v_id])
+  pe: createEditableProteinEffect(editDate: $date, field: $pe_field, id: $pe_id, proteinEffect: Unknown)
+  pe_editor: addEditableProteinEffectEditor(editor: [$user_id], id: $pe_id)
+  pe_ref: addEditableProteinEffectReferences(id: $pe_id, references: $ref_array)
+  addVariantSNVIndelProteinEffect(id: $variant_id, proteinEffect: [$pe_id])
+  des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+  des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+  des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+  addVariantSNVIndelDescription(id: $variant_id, description: [$des_id])
+  addVariantSNVIndelGene(id: $variant_id, gene: [$gene_id])
+  pdot: createEditableStatement(editDate: $date, field: $pdot_field, id: $pdot_id, statement: $empty_string)
+  pdot_editor: addEditableStatementEditor(editor: [$user_id], id: $pdot_id)
+  pdot_ref: addEditableStatementReferences(id: $pdot_id, references: $ref_array)
+  addVariantSNVIndelPDot(id: $variant_id, pDot: [$pdot_id])
+  cdot: createEditableStatement(editDate: $date, field: $cdot_field, id: $cdot_id, statement: $empty_string)
+  cdot_editor: addEditableStatementEditor(editor: [$user_id], id: $cdot_id)
+  cdot_ref: addEditableStatementReferences(id: $cdot_id, references: $ref_array)
+  addVariantSNVIndelCDot(id: $variant_id, cDot: [$cdot_id])
+  gdot: createEditableStatement(editDate: $date, field: $gdot_field, id: $gdot_id, statement: $empty_string)
+  gdot_editor: addEditableStatementEditor(editor: [$user_id], id: $gdot_id)
+  gdot_ref: addEditableStatementReferences(id: $gdot_id, references: $ref_array)
+  addVariantSNVIndelGDot(id: $variant_id, gDot: [$gdot_id])
+  exon: createEditableStatement(editDate: $date, field: $exon_field, id: $exon_id, statement: $empty_string)
+  exon_editor: addEditableStatementEditor(editor: [$user_id], id: $exon_id)
+  exon_ref: addEditableStatementReferences(id: $exon_id, references: $ref_array)
+  addVariantSNVIndelExon(id: $variant_id, exon: [$exon_id])
+  trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+  trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+  trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+  addVariantSNVIndelNonCanonicalTranscript(id: $variant_id, nonCanonicalTranscript: [$trans_id])
+  createGenomicVariantMarker(id: $marker_id)
+  addGenomicVariantMarkerVariant(id: $marker_id, variant: [$variant_id])
+  addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addGenomicVariantMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addGenomicVariantMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+}
+    `;
+export type CreateGenomicVariantMarkerSnvMutationFn = ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>;
+export type CreateGenomicVariantMarkerSnvComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>, 'mutation'>;
+
+    export const CreateGenomicVariantMarkerSnvComponent = (props: CreateGenomicVariantMarkerSnvComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables> mutation={CreateGenomicVariantMarkerSnvDocument} {...props} />
+    );
+    
+export type CreateGenomicVariantMarkerSnvProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>
+    } & TChildProps;
+export function withCreateGenomicVariantMarkerSnv<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateGenomicVariantMarkerSnvMutation,
+  CreateGenomicVariantMarkerSnvMutationVariables,
+  CreateGenomicVariantMarkerSnvProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables, CreateGenomicVariantMarkerSnvProps<TChildProps, TDataName>>(CreateGenomicVariantMarkerSnvDocument, {
+      alias: 'createGenomicVariantMarkerSnv',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateGenomicVariantMarkerSnvMutation__
+ *
+ * To run a mutation, you first call `useCreateGenomicVariantMarkerSnvMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateGenomicVariantMarkerSnvMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createGenomicVariantMarkerSnvMutation, { data, loading, error }] = useCreateGenomicVariantMarkerSnvMutation({
+ *   variables: {
+ *      gene_id: // value for 'gene_id'
+ *      variant_id: // value for 'variant_id'
+ *      name_v_id: // value for 'name_v_id'
+ *      name: // value for 'name'
+ *      name_v_field: // value for 'name_v_field'
+ *      pe_id: // value for 'pe_id'
+ *      pe_field: // value for 'pe_field'
+ *      des_id: // value for 'des_id'
+ *      des_field: // value for 'des_field'
+ *      pdot_id: // value for 'pdot_id'
+ *      pdot_field: // value for 'pdot_field'
+ *      cdot_id: // value for 'cdot_id'
+ *      cdot_field: // value for 'cdot_field'
+ *      gdot_id: // value for 'gdot_id'
+ *      gdot_field: // value for 'gdot_field'
+ *      trans_id: // value for 'trans_id'
+ *      trans_field: // value for 'trans_field'
+ *      exon_id: // value for 'exon_id'
+ *      exon_field: // value for 'exon_field'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      marker_id: // value for 'marker_id'
+ *      name_id: // value for 'name_id'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *   },
+ * });
+ */
+export function useCreateGenomicVariantMarkerSnvMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>(CreateGenomicVariantMarkerSnvDocument, baseOptions);
+      }
+export type CreateGenomicVariantMarkerSnvMutationHookResult = ReturnType<typeof useCreateGenomicVariantMarkerSnvMutation>;
+export type CreateGenomicVariantMarkerSnvMutationResult = ApolloReactCommon.MutationResult<CreateGenomicVariantMarkerSnvMutation>;
+export type CreateGenomicVariantMarkerSnvMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>;
+export const CreateGenomicVariantMarkerRegionDocument = gql`
+    mutation CreateGenomicVariantMarkerRegion($gene_id: ID!, $variant_id: ID!, $name_v_id: ID!, $name: String!, $name_v_field: String!, $pe_id: ID!, $pe_field: String!, $des_id: ID!, $des_field: String!, $trans_id: ID!, $trans_field: String!, $region_type: RegionType!, $region_value_id: ID!, $region_value_field: String!, $del_id: ID!, $del_field: String!, $frame_id: ID!, $frame_field: String!, $trunc_id: ID!, $trunc_field: String!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $marker_id: ID!, $name_id: ID!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+  createVariantRegion(id: $variant_id, indelType: SNV, variantType: Region, regionType: $region_type)
+  name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+  name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+  name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+  addVariantRegionName(id: $variant_id, name: [$name_v_id])
+  pe: createEditableProteinEffect(editDate: $date, field: $pe_field, id: $pe_id, proteinEffect: Unknown)
+  pe_editor: addEditableProteinEffectEditor(editor: [$user_id], id: $pe_id)
+  pe_ref: addEditableProteinEffectReferences(id: $pe_id, references: $ref_array)
+  addVariantRegionProteinEffect(id: $variant_id, proteinEffect: [$pe_id])
+  des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+  des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+  des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+  addVariantRegionDescription(id: $variant_id, description: [$des_id])
+  addVariantRegionGene(id: $variant_id, gene: [$gene_id])
+  rv: createEditableInt(editDate: $date, field: $region_value_field, id: $region_value_id, intValue: 1)
+  rv_editor: addEditableIntEditor(editor: [$user_id], id: $region_value_id)
+  rv_ref: addEditableIntReferences(id: $region_value_id, references: $ref_array)
+  addVariantRegionRegionValue(id: $variant_id, regionValue: [$region_value_id])
+  trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+  trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+  trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+  addVariantRegionNonCanonicalTranscript(id: $variant_id, nonCanonicalTranscript: [$trans_id])
+  del: createEditableBoolean(id: $del_id, field: $del_field, editDate: $date, booleanValue: Unknown)
+  del_editor: addEditableBooleanEditor(editor: [$user_id], id: $del_id)
+  del_ref: addEditableBooleanReferences(id: $del_id, references: $ref_array)
+  addVariantRegionIsDeleterious(id: $variant_id, isDeleterious: [$del_id])
+  frame: createEditableBoolean(id: $frame_id, field: $frame_field, editDate: $date, booleanValue: Unknown)
+  frame_editor: addEditableBooleanEditor(editor: [$user_id], id: $frame_id)
+  frame_ref: addEditableBooleanReferences(id: $frame_id, references: $ref_array)
+  addVariantRegionIsFrameshift(id: $variant_id, isFrameshift: [$frame_id])
+  trunc: createEditableBoolean(id: $trunc_id, field: $trunc_field, editDate: $date, booleanValue: Unknown)
+  trunc_editor: addEditableBooleanEditor(editor: [$user_id], id: $trunc_id)
+  trunc_ref: addEditableBooleanReferences(id: $trunc_id, references: $ref_array)
+  addVariantRegionIsTruncating(id: $variant_id, isTruncating: [$trunc_id])
+  createGenomicVariantMarker(id: $marker_id)
+  addGenomicVariantMarkerVariant(id: $marker_id, variant: [$variant_id])
+  addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addGenomicVariantMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addGenomicVariantMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+}
+    `;
+export type CreateGenomicVariantMarkerRegionMutationFn = ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables>;
+export type CreateGenomicVariantMarkerRegionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables>, 'mutation'>;
+
+    export const CreateGenomicVariantMarkerRegionComponent = (props: CreateGenomicVariantMarkerRegionComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables> mutation={CreateGenomicVariantMarkerRegionDocument} {...props} />
+    );
+    
+export type CreateGenomicVariantMarkerRegionProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables>
+    } & TChildProps;
+export function withCreateGenomicVariantMarkerRegion<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateGenomicVariantMarkerRegionMutation,
+  CreateGenomicVariantMarkerRegionMutationVariables,
+  CreateGenomicVariantMarkerRegionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables, CreateGenomicVariantMarkerRegionProps<TChildProps, TDataName>>(CreateGenomicVariantMarkerRegionDocument, {
+      alias: 'createGenomicVariantMarkerRegion',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateGenomicVariantMarkerRegionMutation__
+ *
+ * To run a mutation, you first call `useCreateGenomicVariantMarkerRegionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateGenomicVariantMarkerRegionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createGenomicVariantMarkerRegionMutation, { data, loading, error }] = useCreateGenomicVariantMarkerRegionMutation({
+ *   variables: {
+ *      gene_id: // value for 'gene_id'
+ *      variant_id: // value for 'variant_id'
+ *      name_v_id: // value for 'name_v_id'
+ *      name: // value for 'name'
+ *      name_v_field: // value for 'name_v_field'
+ *      pe_id: // value for 'pe_id'
+ *      pe_field: // value for 'pe_field'
+ *      des_id: // value for 'des_id'
+ *      des_field: // value for 'des_field'
+ *      trans_id: // value for 'trans_id'
+ *      trans_field: // value for 'trans_field'
+ *      region_type: // value for 'region_type'
+ *      region_value_id: // value for 'region_value_id'
+ *      region_value_field: // value for 'region_value_field'
+ *      del_id: // value for 'del_id'
+ *      del_field: // value for 'del_field'
+ *      frame_id: // value for 'frame_id'
+ *      frame_field: // value for 'frame_field'
+ *      trunc_id: // value for 'trunc_id'
+ *      trunc_field: // value for 'trunc_field'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      marker_id: // value for 'marker_id'
+ *      name_id: // value for 'name_id'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *   },
+ * });
+ */
+export function useCreateGenomicVariantMarkerRegionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables>(CreateGenomicVariantMarkerRegionDocument, baseOptions);
+      }
+export type CreateGenomicVariantMarkerRegionMutationHookResult = ReturnType<typeof useCreateGenomicVariantMarkerRegionMutation>;
+export type CreateGenomicVariantMarkerRegionMutationResult = ApolloReactCommon.MutationResult<CreateGenomicVariantMarkerRegionMutation>;
+export type CreateGenomicVariantMarkerRegionMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateGenomicVariantMarkerRegionMutation, CreateGenomicVariantMarkerRegionMutationVariables>;
+export const CreateGenomicVariantMarkerCnvDocument = gql`
+    mutation CreateGenomicVariantMarkerCNV($gene_id: ID!, $variant_id: ID!, $name_v_id: ID!, $name: String!, $name_v_field: String!, $des_id: ID!, $des_field: String!, $cc_id: ID!, $cc_field: String!, $trans_id: ID!, $trans_field: String!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $marker_id: ID!, $name_id: ID!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+  createVariantCNV(id: $variant_id)
+  name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+  name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+  name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+  addVariantCNVName(id: $variant_id, name: [$name_v_id])
+  des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+  des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+  des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+  addVariantCNVDescription(id: $variant_id, description: [$des_id])
+  trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+  trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+  trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+  addVariantCNVNonCanonicalTranscript(id: $variant_id, nonCanonicalTranscript: [$trans_id])
+  addVariantCNVGene(id: $variant_id, gene: [$gene_id])
+  cc: createEditableCopyChange(id: $cc_id, field: $cc_field, editDate: $date, cnvType: Unknown)
+  cc_editor: addEditableCopyChangeEditor(editor: [$user_id], id: $cc_id)
+  cc_ref: addEditableCopyChangeReferences(id: $cc_id, references: $ref_array)
+  addVariantCNVCopyChange(id: $variant_id, copyChange: [$cc_id])
+  createGenomicVariantMarker(id: $marker_id)
+  addGenomicVariantMarkerVariant(id: $marker_id, variant: [$variant_id])
+  addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addGenomicVariantMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addGenomicVariantMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+}
+    `;
+export type CreateGenomicVariantMarkerCnvMutationFn = ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables>;
+export type CreateGenomicVariantMarkerCnvComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables>, 'mutation'>;
+
+    export const CreateGenomicVariantMarkerCnvComponent = (props: CreateGenomicVariantMarkerCnvComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables> mutation={CreateGenomicVariantMarkerCnvDocument} {...props} />
+    );
+    
+export type CreateGenomicVariantMarkerCnvProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables>
+    } & TChildProps;
+export function withCreateGenomicVariantMarkerCnv<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateGenomicVariantMarkerCnvMutation,
+  CreateGenomicVariantMarkerCnvMutationVariables,
+  CreateGenomicVariantMarkerCnvProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables, CreateGenomicVariantMarkerCnvProps<TChildProps, TDataName>>(CreateGenomicVariantMarkerCnvDocument, {
+      alias: 'createGenomicVariantMarkerCnv',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateGenomicVariantMarkerCnvMutation__
+ *
+ * To run a mutation, you first call `useCreateGenomicVariantMarkerCnvMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateGenomicVariantMarkerCnvMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createGenomicVariantMarkerCnvMutation, { data, loading, error }] = useCreateGenomicVariantMarkerCnvMutation({
+ *   variables: {
+ *      gene_id: // value for 'gene_id'
+ *      variant_id: // value for 'variant_id'
+ *      name_v_id: // value for 'name_v_id'
+ *      name: // value for 'name'
+ *      name_v_field: // value for 'name_v_field'
+ *      des_id: // value for 'des_id'
+ *      des_field: // value for 'des_field'
+ *      cc_id: // value for 'cc_id'
+ *      cc_field: // value for 'cc_field'
+ *      trans_id: // value for 'trans_id'
+ *      trans_field: // value for 'trans_field'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      marker_id: // value for 'marker_id'
+ *      name_id: // value for 'name_id'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *   },
+ * });
+ */
+export function useCreateGenomicVariantMarkerCnvMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables>(CreateGenomicVariantMarkerCnvDocument, baseOptions);
+      }
+export type CreateGenomicVariantMarkerCnvMutationHookResult = ReturnType<typeof useCreateGenomicVariantMarkerCnvMutation>;
+export type CreateGenomicVariantMarkerCnvMutationResult = ApolloReactCommon.MutationResult<CreateGenomicVariantMarkerCnvMutation>;
+export type CreateGenomicVariantMarkerCnvMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateGenomicVariantMarkerCnvMutation, CreateGenomicVariantMarkerCnvMutationVariables>;
+export const CreateGenomicVariantMarkerFusionDocument = gql`
+    mutation CreateGenomicVariantMarkerFusion($gene_id: ID!, $variant_id: ID!, $name_v_id: ID!, $name: String!, $name_v_field: String!, $des_id: ID!, $des_field: String!, $cc_id: ID!, $cc_field: String!, $trans_id: ID!, $trans_field: String!, $g5_id: ID!, $g5_field: String!, $e5_id: ID!, $e5_field: String!, $g3_id: ID!, $g3_field: String!, $e3_id: ID!, $e3_field: String!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $marker_id: ID!, $name_id: ID!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+  createVariantFusion(id: $variant_id)
+  name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
+  name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
+  name_v_ref: addEditableStatementReferences(id: $name_v_id, references: $ref_array)
+  addVariantFusionName(id: $variant_id, name: [$name_v_id])
+  des: createEditableStatement(editDate: $date, field: $des_field, id: $des_id, statement: $empty_string)
+  des_editor: addEditableStatementEditor(editor: [$user_id], id: $des_id)
+  des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
+  addVariantFusionDescription(id: $variant_id, description: [$des_id])
+  trans: createEditableStatement(editDate: $date, field: $trans_field, id: $trans_id, statement: $empty_string)
+  trans_editor: addEditableStatementEditor(editor: [$user_id], id: $trans_id)
+  trans_ref: addEditableStatementReferences(id: $trans_id, references: $ref_array)
+  addVariantFusionNonCanonicalTranscript(id: $variant_id, nonCanonicalTranscript: [$trans_id])
+  addVariantFusionGene(id: $variant_id, gene: [$gene_id])
+  cc: createEditableCopyChange(id: $cc_id, field: $cc_field, editDate: $date, cnvType: Unknown)
+  cc_editor: addEditableCopyChangeEditor(editor: [$user_id], id: $cc_id)
+  cc_ref: addEditableCopyChangeReferences(id: $cc_id, references: $ref_array)
+  addVariantFusionCopyChange(id: $variant_id, copyChange: [$cc_id])
+  g5: createEditableOmniGeneReference(id: $g5_id, field: $g5_field, editDate: $date)
+  g5_gene: addEditableOmniGeneReferenceGene(id: $g5_id, gene: [$gene_id])
+  g5_editor: addEditableOmniGeneReferenceEditor(id: $g5_id, editor: [$user_id])
+  g5_ref: addEditableOmniGeneReferenceReferences(id: $g5_id, references: $ref_array)
+  addVariantFusionGene5Prime(id: $variant_id, gene5Prime: [$g5_id])
+  g3: createEditableOmniGeneReference(id: $g3_id, field: $g3_field, editDate: $date)
+  g3_gene: addEditableOmniGeneReferenceGene(id: $g3_id, gene: [$gene_id])
+  g3_editor: addEditableOmniGeneReferenceEditor(id: $g3_id, editor: [$user_id])
+  g3_ref: addEditableOmniGeneReferenceReferences(id: $g3_id, references: $ref_array)
+  addVariantFusionGene3Prime(id: $variant_id, gene3Prime: [$g3_id])
+  e5: createEditableInt(id: $e5_id, field: $e5_field, editDate: $date, intValue: -1)
+  e5_editor: addEditableIntEditor(id: $e5_id, editor: [$user_id])
+  e5_ref: addEditableIntReferences(id: $e5_id, references: $ref_array)
+  addVariantFusionExon5Prime(id: $variant_id, exon5Prime: [$e5_id])
+  e3: createEditableInt(id: $e3_id, field: $e3_field, editDate: $date, intValue: -1)
+  e3_editor: addEditableIntEditor(id: $e3_id, editor: [$user_id])
+  e3_ref: addEditableIntReferences(id: $e3_id, references: $ref_array)
+  addVariantFusionExon3Prime(id: $variant_id, exon3Prime: [$e3_id])
+  createGenomicVariantMarker(id: $marker_id)
+  addGenomicVariantMarkerVariant(id: $marker_id, variant: [$variant_id])
+  addGenomicVariantMarkerGene(id: $marker_id, gene: [$gene_id])
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addGenomicVariantMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: "NGS")
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addGenomicVariantMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addGenomicVariantMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+}
+    `;
+export type CreateGenomicVariantMarkerFusionMutationFn = ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables>;
+export type CreateGenomicVariantMarkerFusionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables>, 'mutation'>;
+
+    export const CreateGenomicVariantMarkerFusionComponent = (props: CreateGenomicVariantMarkerFusionComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables> mutation={CreateGenomicVariantMarkerFusionDocument} {...props} />
+    );
+    
+export type CreateGenomicVariantMarkerFusionProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables>
+    } & TChildProps;
+export function withCreateGenomicVariantMarkerFusion<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateGenomicVariantMarkerFusionMutation,
+  CreateGenomicVariantMarkerFusionMutationVariables,
+  CreateGenomicVariantMarkerFusionProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables, CreateGenomicVariantMarkerFusionProps<TChildProps, TDataName>>(CreateGenomicVariantMarkerFusionDocument, {
+      alias: 'createGenomicVariantMarkerFusion',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateGenomicVariantMarkerFusionMutation__
+ *
+ * To run a mutation, you first call `useCreateGenomicVariantMarkerFusionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateGenomicVariantMarkerFusionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createGenomicVariantMarkerFusionMutation, { data, loading, error }] = useCreateGenomicVariantMarkerFusionMutation({
+ *   variables: {
+ *      gene_id: // value for 'gene_id'
+ *      variant_id: // value for 'variant_id'
+ *      name_v_id: // value for 'name_v_id'
+ *      name: // value for 'name'
+ *      name_v_field: // value for 'name_v_field'
+ *      des_id: // value for 'des_id'
+ *      des_field: // value for 'des_field'
+ *      cc_id: // value for 'cc_id'
+ *      cc_field: // value for 'cc_field'
+ *      trans_id: // value for 'trans_id'
+ *      trans_field: // value for 'trans_field'
+ *      g5_id: // value for 'g5_id'
+ *      g5_field: // value for 'g5_field'
+ *      e5_id: // value for 'e5_id'
+ *      e5_field: // value for 'e5_field'
+ *      g3_id: // value for 'g3_id'
+ *      g3_field: // value for 'g3_field'
+ *      e3_id: // value for 'e3_id'
+ *      e3_field: // value for 'e3_field'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      marker_id: // value for 'marker_id'
+ *      name_id: // value for 'name_id'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *   },
+ * });
+ */
+export function useCreateGenomicVariantMarkerFusionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables>(CreateGenomicVariantMarkerFusionDocument, baseOptions);
+      }
+export type CreateGenomicVariantMarkerFusionMutationHookResult = ReturnType<typeof useCreateGenomicVariantMarkerFusionMutation>;
+export type CreateGenomicVariantMarkerFusionMutationResult = ApolloReactCommon.MutationResult<CreateGenomicVariantMarkerFusionMutation>;
+export type CreateGenomicVariantMarkerFusionMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateGenomicVariantMarkerFusionMutation, CreateGenomicVariantMarkerFusionMutationVariables>;
+export const CreateMsiMarkerDocument = gql`
+    mutation CreateMSIMarker($marker_id: ID!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $name_id: ID!, $name: String!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+  createMSIMarker(id: $marker_id)
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addMSIMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addMSIMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addMSIMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+}
+    `;
+export type CreateMsiMarkerMutationFn = ApolloReactCommon.MutationFunction<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>;
+export type CreateMsiMarkerComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>, 'mutation'>;
+
+    export const CreateMsiMarkerComponent = (props: CreateMsiMarkerComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables> mutation={CreateMsiMarkerDocument} {...props} />
+    );
+    
+export type CreateMsiMarkerProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>
+    } & TChildProps;
+export function withCreateMsiMarker<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateMsiMarkerMutation,
+  CreateMsiMarkerMutationVariables,
+  CreateMsiMarkerProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables, CreateMsiMarkerProps<TChildProps, TDataName>>(CreateMsiMarkerDocument, {
+      alias: 'createMsiMarker',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateMsiMarkerMutation__
+ *
+ * To run a mutation, you first call `useCreateMsiMarkerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMsiMarkerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createMsiMarkerMutation, { data, loading, error }] = useCreateMsiMarkerMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      name_id: // value for 'name_id'
+ *      name: // value for 'name'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *   },
+ * });
+ */
+export function useCreateMsiMarkerMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>(CreateMsiMarkerDocument, baseOptions);
+      }
+export type CreateMsiMarkerMutationHookResult = ReturnType<typeof useCreateMsiMarkerMutation>;
+export type CreateMsiMarkerMutationResult = ApolloReactCommon.MutationResult<CreateMsiMarkerMutation>;
+export type CreateMsiMarkerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>;
+export const CreateTmbMarkerDocument = gql`
+    mutation CreateTMBMarker($marker_id: ID!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $name_id: ID!, $name: String!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!, $comparator_id: ID!, $comparator_field: String!, $resultMin_id: ID!, $resultMin_field: String!, $resultUnits_id: ID!, $resultUnits_field: String!, $interpretation_id: ID!, $interpretation_field: String!) {
+  createTMBMarker(id: $marker_id)
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addTMBMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addTMBMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addTMBMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+  comp: createEditableAssayComparator(id: $comparator_id, field: $comparator_field, editDate: $date, comparator: Equals)
+  comp_editor: addEditableAssayComparatorEditor(editor: [$user_id], id: $comparator_id)
+  comp_ref: addEditableAssayComparatorReferences(id: $comparator_id, references: $ref_array)
+  addTMBMarkerComparator(id: $marker_id, comparator: [$comparator_id])
+  min: createEditableFloat(id: $resultMin_id, field: $resultMin_field, editDate: $date, floatValue: 0.0)
+  min_editor: addEditableFloatEditor(id: $resultMin_id, editor: [$user_id])
+  min_ref: addEditableFloatReferences(id: $resultMin_id, references: $ref_array)
+  addTMBMarkerResultMin(id: $marker_id, resultMin: [$resultMin_id])
+  units: createEditableStatement(editDate: $date, field: $resultUnits_field, id: $resultUnits_id, statement: $empty_string)
+  units_editor: addEditableStatementEditor(editor: [$user_id], id: $resultUnits_id)
+  units_ref: addEditableStatementReferences(id: $resultUnits_id, references: $ref_array)
+  addTMBMarkerResultUnits(id: $marker_id, resultUnits: [$resultUnits_id])
+  interpretation: createEditableTMBInterpretation(id: $interpretation_id, field: $interpretation_field, editDate: $date, tmbInterpretation: High)
+  interpretation_editor: addEditableTMBInterpretationEditor(editor: [$user_id], id: $interpretation_id)
+  interpretation_ref: addEditableTMBInterpretationReferences(id: $interpretation_id, references: $ref_array)
+  addTMBMarkerInterpretations(id: $marker_id, interpretations: [$interpretation_id])
+}
+    `;
+export type CreateTmbMarkerMutationFn = ApolloReactCommon.MutationFunction<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>;
+export type CreateTmbMarkerComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>, 'mutation'>;
+
+    export const CreateTmbMarkerComponent = (props: CreateTmbMarkerComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables> mutation={CreateTmbMarkerDocument} {...props} />
+    );
+    
+export type CreateTmbMarkerProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>
+    } & TChildProps;
+export function withCreateTmbMarker<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateTmbMarkerMutation,
+  CreateTmbMarkerMutationVariables,
+  CreateTmbMarkerProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables, CreateTmbMarkerProps<TChildProps, TDataName>>(CreateTmbMarkerDocument, {
+      alias: 'createTmbMarker',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateTmbMarkerMutation__
+ *
+ * To run a mutation, you first call `useCreateTmbMarkerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateTmbMarkerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createTmbMarkerMutation, { data, loading, error }] = useCreateTmbMarkerMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      name_id: // value for 'name_id'
+ *      name: // value for 'name'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *      comparator_id: // value for 'comparator_id'
+ *      comparator_field: // value for 'comparator_field'
+ *      resultMin_id: // value for 'resultMin_id'
+ *      resultMin_field: // value for 'resultMin_field'
+ *      resultUnits_id: // value for 'resultUnits_id'
+ *      resultUnits_field: // value for 'resultUnits_field'
+ *      interpretation_id: // value for 'interpretation_id'
+ *      interpretation_field: // value for 'interpretation_field'
+ *   },
+ * });
+ */
+export function useCreateTmbMarkerMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>(CreateTmbMarkerDocument, baseOptions);
+      }
+export type CreateTmbMarkerMutationHookResult = ReturnType<typeof useCreateTmbMarkerMutation>;
+export type CreateTmbMarkerMutationResult = ApolloReactCommon.MutationResult<CreateTmbMarkerMutation>;
+export type CreateTmbMarkerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>;
 export const ProteinExpression_MarkerDocument = gql`
     query ProteinExpression_Marker($marker_id: ID) {
   ProteinExpressionMarker(id: $marker_id) {

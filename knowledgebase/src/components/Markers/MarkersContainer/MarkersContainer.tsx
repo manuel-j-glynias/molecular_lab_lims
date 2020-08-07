@@ -17,6 +17,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
     const [markerType, set_markerType] = useState('GenomicVariantMarker')
     const [variant_id, set_variant_id] = React.useState("");
     const [variant_type_name, set_variant_type_name] = React.useState("");
+    const [gene_id, set_gene_Id] = React.useState("");
 
     const [editing_description, set_editing_description] = React.useState(false);
     const [editing_protein_effect, set_editing_protein_effect] = React.useState(false);
@@ -39,7 +40,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
             <AppendedContentProvider>
                 <React.Fragment>
                     <MarkerListContainter logged_in={logged_in} set_variant_id={set_variant_id} marker_id={marker_id}
-                                          markerType={markerType}
+                                          markerType={markerType} set_gene_id={set_gene_Id} gene_id={gene_id}
                                           set_markerType={set_markerType} set_marker_id={set_marker_id}
                                           variant_type_name={variant_type_name}
                                           set_variant_type_name={set_variant_type_name}
@@ -63,7 +64,8 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                                             set_editing_components={set_editing_components}
                                             set_selected_component={set_selected_component}
                                             set_markerType={set_markerType} set_query_string={set_query_string} set_marker_id={set_marker_id}
-                                            selected_gene_label={selected_gene_label}
+                                            selected_gene_label={selected_gene_label} set_selected_gene_label={set_selected_gene_label}
+                                            set_gene_id={set_gene_Id}
                     />
                 </React.Fragment>
             </AppendedContentProvider>
