@@ -9,17 +9,21 @@ import {
     CreateGenomicVariantMarkerCnvMutationVariables,
     CreateGenomicVariantMarkerFusionMutationVariables,
     CreateMarkerProfileMutationVariables,CreateMsiMarkerMutationVariables,CreateTmbMarkerMutationVariables,
+    CreateProteinExpressionMarkerMutationVariables,
     RegionType,
     useCreateGenomicVariantMarkerRegionMutation,
     useCreateGenomicVariantMarkerSnvMutation,
     useCreateGenomicVariantMarkerCnvMutation,
     useCreateGenomicVariantMarkerFusionMutation,useCreateMsiMarkerMutation,useCreateTmbMarkerMutation,
     useCreateMarkerProfileMutation,
+    useCreateProteinExpressionMarkerMutation,
     useGeneListQuery
 } from '../../../generated/graphql'
 import {useUserContentState} from "../../../context/UserContentContext";
 import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/Helpers/EditableStatementHelper";
 import GeneList from "./GeneList";
+import ProteinLevelAssayList from "../ProteinLevelAssayList/ProteinLevelAssayList";
+import ProteinLevelAssayListContainer from "../ProteinLevelAssayList";
 
 
 const className = 'NewMarker';
@@ -43,6 +47,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     const [region_type, set_region_type] = React.useState(RegionType.Gene);
     const [region_type_label, set_region_type_label] = React.useState('Gene');
     const [filter_term, set_filter_term] = useState('');
+    const [protein_level_assay_id, set_protein_level_assay_id]= useState('');
     const alert = useAlert()
 
     const {
@@ -361,6 +366,48 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     }
     useEffect(post_CreateTmbMarkerMutation,[tmbMutationData])
 
+    const [createProteinExpressionMarker, { loading: peMutationLoading, error: peMutationError, data:peMutationData }] =
+        useCreateProteinExpressionMarkerMutation({variables:{marker_id:'',  date:'', empty_string:'', method_field:'', method_id:'', name:'', name_id:'',name_field:'',result_string_id:'',result_string_field:'',user_id: '',ref_array:[],
+            synonyms_id:'',synonyms_field:'',genes_id:'',genes_field:'',assay_id:'',pheno_id:'',pheno_field:'',function_id:'',function_field:'',role_id:'',role_field:'',}})
+
+    const get_CreateProteinExpressionMarkerMutationVariables_object = ():CreateProteinExpressionMarkerMutationVariables => {
+        const variables : CreateProteinExpressionMarkerMutationVariables= {
+            marker_id: get_unique_graph_id('pe_'),
+            date: get_date_as_hyphenated_string(),
+            user_id: user_ID,
+            ref_array: [],
+            empty_string:'',
+            name_id: get_unique_graph_id('es_'),
+            name: new_marker_name,
+            name_field: get_unique_graph_id("pe_name_field_"),
+            method_id: get_unique_graph_id('es_'),
+            method_field: get_unique_graph_id('pe_method_field_'),
+            synonyms_id:get_unique_graph_id('esl_'),
+            synonyms_field:get_unique_graph_id('synonyms_protein_expression_marker_'),
+            genes_id:get_unique_graph_id('eogl_'),
+            genes_field:get_unique_graph_id('eogl_field_'),
+            assay_id:protein_level_assay_id,
+            pheno_id:get_unique_graph_id('eip_'),
+            pheno_field:get_unique_graph_id('immune_phenotype_field_'),
+            function_id:get_unique_graph_id('eif_'),
+            function_field:get_unique_graph_id('immune_function_field_'),
+            role_id:get_unique_graph_id('eicr_'),
+            role_field:get_unique_graph_id('immune_cycle_role_field_'),
+            result_string_id: get_unique_graph_id('es_'),
+            result_string_field: get_unique_graph_id('pe_result_string_field_'),
+        }
+        return variables;
+    }
+
+    const post_CreateProteinExpressionMarkerMutation = () => {
+        console.log("post_CreateProteinExpressionMarkerMutation")
+        if (peMutationData!=null){
+            set_query_string(new_marker_name)
+            set_markerType('ProteinExpressionMarker')
+            set_marker_id(new_marker_id)
+        }
+    }
+    useEffect(post_CreateProteinExpressionMarkerMutation,[peMutationData])
 
 
 
@@ -412,9 +459,9 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
             data_ok = false
             alert.error("Please name the Marker!")
         }
-        if (new_markerType==='VariantSNVIndel' && new_gene_id===""){
+        if (new_markerType==='ProteinExpressionMarker' && protein_level_assay_id===""){
             data_ok = false
-            alert.error("Please select a Gene!")
+            alert.error("Please select an Assay!")
         }
 
         if (data_ok)
@@ -422,6 +469,9 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
             switch(new_markerType){
                 case "ProteinExpressionMarker": {
                     console.log("ProteinExpressionMarker")
+                    const mutation_object = get_CreateProteinExpressionMarkerMutationVariables_object();
+                    set_new_marker_id(mutation_object.marker_id)
+                    await createProteinExpressionMarker({variables:mutation_object})
                     break;
                 }
                 case "VariantSNVIndel": {
@@ -547,6 +597,15 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                                 </div>
                         }
                     </div>}
+                </div>
+
+                <div>
+                    {new_markerType == 'ProteinExpressionMarker' && <span>Select Assay</span>}
+                </div>
+                <div>
+                    {new_markerType == 'ProteinExpressionMarker' &&
+                    <ProteinLevelAssayListContainer protein_level_assay_id={protein_level_assay_id} set_protein_level_assay_id={set_protein_level_assay_id} />
+                    }
                 </div>
 
                 <div></div>

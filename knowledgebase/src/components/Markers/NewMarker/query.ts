@@ -366,3 +366,55 @@ export const mutation_create_tmb_marker = gql`
         addTMBMarkerInterpretations(id:$marker_id, interpretations: [$interpretation_id] )
     }
 `
+export const mutation_create_protein_expression_marker = gql`
+    mutation CreateProteinExpressionMarker($marker_id: ID!,
+        $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
+        $name_id: ID!,$name:String!,  $name_field: String!,
+        $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!, 
+        $synonyms_id:ID!, $synonyms_field:String!,$genes_id:ID!, $genes_field:String!,$assay_id:ID!,
+        $pheno_id:ID!, $pheno_field:String!,$function_id:ID!, $function_field:String!,$role_id:ID!, $role_field:String!,
+    ){
+
+        createProteinExpressionMarker(id: $marker_id)
+        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+        addProteinExpressionMarkerName(id: $marker_id, name: [$name_id])
+        method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+        method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+        method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+        addProteinExpressionMarkerMethod(id: $marker_id,method: [$method_id])
+        result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+        result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+        result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+        addProteinExpressionMarkerResultString(id: $marker_id,resultString: [$result_string_id])
+
+        synonyms: createEditableStringList(id:$synonyms_id, field:$synonyms_field,editDate: $date, stringList: [$name])
+        synonyms_editor: addEditableStringListEditor(editor: [$user_id], id: $synonyms_id)
+        synonyms_ref: addEditableStringListReferences(id: $synonyms_id, references: $ref_array)
+        addProteinExpressionMarkerSynonyms(id: $marker_id, synonyms: [$synonyms_id])
+        genes: createEditableOmniGeneList(id:$genes_id,field:$genes_field, editDate: $date )
+        genes_editor: addEditableOmniGeneListEditor(editor: [$user_id], id: $genes_id)
+        genes_ref: addEditableOmniGeneListReferences(id: $genes_id, references: $ref_array)
+        addProteinExpressionMarkerGenes(id: $marker_id,genes:[$genes_id] )
+
+        addProteinExpressionMarkerAssay(id:$marker_id,assay: [$assay_id])
+
+        pheno: createEditableImmunePhenotype(id:$pheno_id, field: $pheno_field, editDate: $date, immunePhenotype: Unknown)
+        pheno_editor: addEditableImmunePhenotypeEditor(editor: [$user_id], id: $pheno_id)
+        pheno_ref: addEditableImmunePhenotypeReferences(id: $pheno_id, references: $ref_array)
+        addProteinExpressionMarkerImmunePhenotypes(id:$marker_id, immunePhenotypes: [$pheno_id])
+
+        function: createEditableImmuneFunction(id:$function_id, field: $function_field, editDate: $date, immuneFunction: Unknown)
+        function_editor: addEditableImmuneFunctionEditor(editor: [$user_id], id: $function_id)
+        function_ref: addEditableImmuneFunctionReferences(id: $function_id, references: $ref_array)
+        addProteinExpressionMarkerImmuneFunctions(id:$marker_id, immuneFunctions: [$function_id])
+
+        role: createEditableImmuneCycleRole(id:$role_id, field: $role_field, editDate: $date, immuneCycleRole: Unknown)
+        role_editor: addEditableImmuneCycleRoleEditor(editor: [$user_id], id: $role_id)
+        role_ref: addEditableImmuneCycleRoleReferences(id: $role_id, references: $ref_array)
+        addProteinExpressionMarkerImmuneCycleRoles(id:$marker_id, immuneCycleRoles: [$role_id])
+
+
+    }
+`

@@ -7,6 +7,7 @@ export const QUERY_GO_VARIANT_BY_GENE_NAME = gql`
             gene
             id
             name{
+                id
                 statement
             }
             mutationType

@@ -1,0 +1,93 @@
+
+.ProteinLevelAssayList {
+    height: 400px;
+    overflow: hidden auto;
+    background-color: white;
+    width: 500px;
+    min-width: 250px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid black;
+}
+.ProteinLevelAssayList::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.ProteinLevelAssayList::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.ProteinLevelAssayList::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+.ProteinLevelAssayList::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.ProteinLevelAssayList__Wrapper {
+    display: grid;
+    grid-template-columns: 360px   140px ;
+    grid-row-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+    align-items: flex-start;
+}
+
+.ProteinLevelAssayList__Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.ProteinLevelAssayList__Wrapper_Span {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+.ProteinLevelAssayList__small-btn {
+    display: inline-block;
+    background-color: #005198;
+    color: white;
+    padding: 0.2rem 0.2rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-top: 0.2rem;
+    margin-left: 0.2rem;
+    outline: none;
+    transition: all 0.2s ease-in;
+}
+.ProteinLevelAssayList__small-btn:hover {
+    background: #1ab6cf;
+}
+.ProteinLevelAssayList__small-btn:active {
+    border: 2px solid green;
+}
+.ProteinLevelAssayList__Filter {
+    height: 120px;
+    width: 250px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.filter_text_input {
+    text-align: left;
+    width: 220px;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-right: 0.5rem;
+}
+
+.ProteinLevelAssayList__item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.ProteinLevelAssayList__selected_item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    color: blue;
+}

@@ -19976,6 +19976,9 @@ export type OntologicalDiseaseQuery = (
     ), description: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
+    ), synonyms: (
+      { __typename?: 'EditableStringList' }
+      & Pick<EditableStringList, 'stringList'>
     ), omniMaps: (
       { __typename?: 'EditableOmniMapList' }
       & { list: Array<Maybe<(
@@ -20395,7 +20398,7 @@ export type GoVariantByGeneQuery = (
     & Pick<GoVariant, 'gene' | 'id' | 'mutationType'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   )>>> }
 );
@@ -21993,6 +21996,39 @@ export type CreateTmbMarkerMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'], interpretation: MutationType['createEditableTMBInterpretation'], interpretation_editor: MutationType['addEditableTMBInterpretationEditor'], interpretation_ref: MutationType['addEditableTMBInterpretationReferences'] }
 );
 
+export type CreateProteinExpressionMarkerMutationVariables = {
+  marker_id: Scalars['ID'];
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  empty_string: Scalars['String'];
+  name_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_field: Scalars['String'];
+  method_id: Scalars['ID'];
+  method_field: Scalars['String'];
+  result_string_id: Scalars['ID'];
+  result_string_field: Scalars['String'];
+  synonyms_id: Scalars['ID'];
+  synonyms_field: Scalars['String'];
+  genes_id: Scalars['ID'];
+  genes_field: Scalars['String'];
+  assay_id: Scalars['ID'];
+  pheno_id: Scalars['ID'];
+  pheno_field: Scalars['String'];
+  function_id: Scalars['ID'];
+  function_field: Scalars['String'];
+  role_id: Scalars['ID'];
+  role_field: Scalars['String'];
+};
+
+
+export type CreateProteinExpressionMarkerMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createProteinExpressionMarker' | 'addProteinExpressionMarkerName' | 'addProteinExpressionMarkerMethod' | 'addProteinExpressionMarkerResultString' | 'addProteinExpressionMarkerSynonyms' | 'addProteinExpressionMarkerGenes' | 'addProteinExpressionMarkerAssay' | 'addProteinExpressionMarkerImmunePhenotypes' | 'addProteinExpressionMarkerImmuneFunctions' | 'addProteinExpressionMarkerImmuneCycleRoles'>
+  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], synonyms: MutationType['createEditableStringList'], synonyms_editor: MutationType['addEditableStringListEditor'], synonyms_ref: MutationType['addEditableStringListReferences'], genes: MutationType['createEditableOmniGeneList'], genes_editor: MutationType['addEditableOmniGeneListEditor'], genes_ref: MutationType['addEditableOmniGeneListReferences'], pheno: MutationType['createEditableImmunePhenotype'], pheno_editor: MutationType['addEditableImmunePhenotypeEditor'], pheno_ref: MutationType['addEditableImmunePhenotypeReferences'], function: MutationType['createEditableImmuneFunction'], function_editor: MutationType['addEditableImmuneFunctionEditor'], function_ref: MutationType['addEditableImmuneFunctionReferences'], role: MutationType['createEditableImmuneCycleRole'], role_editor: MutationType['addEditableImmuneCycleRoleEditor'], role_ref: MutationType['addEditableImmuneCycleRoleReferences'] }
+);
+
 export type ProteinExpression_MarkerQueryVariables = {
   marker_id?: Maybe<Scalars['ID']>;
 };
@@ -22267,6 +22303,30 @@ export type ProteinExpression_MarkersQuery = (
     ), resultString: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
+    ) }
+  )>>> }
+);
+
+export type ProteinLevelAssayQueryVariables = {
+  query_string?: Maybe<Scalars['String']>;
+};
+
+
+export type ProteinLevelAssayQuery = (
+  { __typename?: 'QueryType' }
+  & { ProteinLevelAssay?: Maybe<Array<Maybe<(
+    { __typename: 'IHCAssay' }
+    & Pick<IhcAssay, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement'>
+    ) }
+  ) | (
+    { __typename: 'RNASeqAssay' }
+    & Pick<RnaSeqAssay, 'id'>
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement'>
     ) }
   )>>> }
 );
@@ -23145,6 +23205,9 @@ export const OntologicalDiseaseDocument = gql`
     }
     description {
       ...es_fields
+    }
+    synonyms {
+      stringList
     }
     omniMaps {
       list {
@@ -24318,6 +24381,7 @@ export const GoVariantByGeneDocument = gql`
     gene
     id
     name {
+      id
       statement
     }
     mutationType
@@ -28263,6 +28327,110 @@ export function useCreateTmbMarkerMutation(baseOptions?: ApolloReactHooks.Mutati
 export type CreateTmbMarkerMutationHookResult = ReturnType<typeof useCreateTmbMarkerMutation>;
 export type CreateTmbMarkerMutationResult = ApolloReactCommon.MutationResult<CreateTmbMarkerMutation>;
 export type CreateTmbMarkerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateTmbMarkerMutation, CreateTmbMarkerMutationVariables>;
+export const CreateProteinExpressionMarkerDocument = gql`
+    mutation CreateProteinExpressionMarker($marker_id: ID!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $name_id: ID!, $name: String!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!, $synonyms_id: ID!, $synonyms_field: String!, $genes_id: ID!, $genes_field: String!, $assay_id: ID!, $pheno_id: ID!, $pheno_field: String!, $function_id: ID!, $function_field: String!, $role_id: ID!, $role_field: String!) {
+  createProteinExpressionMarker(id: $marker_id)
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addProteinExpressionMarkerName(id: $marker_id, name: [$name_id])
+  method: createEditableStatement(editDate: $date, field: $method_field, id: $method_id, statement: $empty_string)
+  method_editor: addEditableStatementEditor(editor: [$user_id], id: $method_id)
+  method_ref: addEditableStatementReferences(id: $method_id, references: $ref_array)
+  addProteinExpressionMarkerMethod(id: $marker_id, method: [$method_id])
+  result: createEditableStatement(editDate: $date, field: $result_string_field, id: $result_string_id, statement: $empty_string)
+  result_editor: addEditableStatementEditor(editor: [$user_id], id: $result_string_id)
+  result_ref: addEditableStatementReferences(id: $result_string_id, references: $ref_array)
+  addProteinExpressionMarkerResultString(id: $marker_id, resultString: [$result_string_id])
+  synonyms: createEditableStringList(id: $synonyms_id, field: $synonyms_field, editDate: $date, stringList: [$name])
+  synonyms_editor: addEditableStringListEditor(editor: [$user_id], id: $synonyms_id)
+  synonyms_ref: addEditableStringListReferences(id: $synonyms_id, references: $ref_array)
+  addProteinExpressionMarkerSynonyms(id: $marker_id, synonyms: [$synonyms_id])
+  genes: createEditableOmniGeneList(id: $genes_id, field: $genes_field, editDate: $date)
+  genes_editor: addEditableOmniGeneListEditor(editor: [$user_id], id: $genes_id)
+  genes_ref: addEditableOmniGeneListReferences(id: $genes_id, references: $ref_array)
+  addProteinExpressionMarkerGenes(id: $marker_id, genes: [$genes_id])
+  addProteinExpressionMarkerAssay(id: $marker_id, assay: [$assay_id])
+  pheno: createEditableImmunePhenotype(id: $pheno_id, field: $pheno_field, editDate: $date, immunePhenotype: Unknown)
+  pheno_editor: addEditableImmunePhenotypeEditor(editor: [$user_id], id: $pheno_id)
+  pheno_ref: addEditableImmunePhenotypeReferences(id: $pheno_id, references: $ref_array)
+  addProteinExpressionMarkerImmunePhenotypes(id: $marker_id, immunePhenotypes: [$pheno_id])
+  function: createEditableImmuneFunction(id: $function_id, field: $function_field, editDate: $date, immuneFunction: Unknown)
+  function_editor: addEditableImmuneFunctionEditor(editor: [$user_id], id: $function_id)
+  function_ref: addEditableImmuneFunctionReferences(id: $function_id, references: $ref_array)
+  addProteinExpressionMarkerImmuneFunctions(id: $marker_id, immuneFunctions: [$function_id])
+  role: createEditableImmuneCycleRole(id: $role_id, field: $role_field, editDate: $date, immuneCycleRole: Unknown)
+  role_editor: addEditableImmuneCycleRoleEditor(editor: [$user_id], id: $role_id)
+  role_ref: addEditableImmuneCycleRoleReferences(id: $role_id, references: $ref_array)
+  addProteinExpressionMarkerImmuneCycleRoles(id: $marker_id, immuneCycleRoles: [$role_id])
+}
+    `;
+export type CreateProteinExpressionMarkerMutationFn = ApolloReactCommon.MutationFunction<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>;
+export type CreateProteinExpressionMarkerComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>, 'mutation'>;
+
+    export const CreateProteinExpressionMarkerComponent = (props: CreateProteinExpressionMarkerComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables> mutation={CreateProteinExpressionMarkerDocument} {...props} />
+    );
+    
+export type CreateProteinExpressionMarkerProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>
+    } & TChildProps;
+export function withCreateProteinExpressionMarker<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateProteinExpressionMarkerMutation,
+  CreateProteinExpressionMarkerMutationVariables,
+  CreateProteinExpressionMarkerProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables, CreateProteinExpressionMarkerProps<TChildProps, TDataName>>(CreateProteinExpressionMarkerDocument, {
+      alias: 'createProteinExpressionMarker',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateProteinExpressionMarkerMutation__
+ *
+ * To run a mutation, you first call `useCreateProteinExpressionMarkerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateProteinExpressionMarkerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createProteinExpressionMarkerMutation, { data, loading, error }] = useCreateProteinExpressionMarkerMutation({
+ *   variables: {
+ *      marker_id: // value for 'marker_id'
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      empty_string: // value for 'empty_string'
+ *      name_id: // value for 'name_id'
+ *      name: // value for 'name'
+ *      name_field: // value for 'name_field'
+ *      method_id: // value for 'method_id'
+ *      method_field: // value for 'method_field'
+ *      result_string_id: // value for 'result_string_id'
+ *      result_string_field: // value for 'result_string_field'
+ *      synonyms_id: // value for 'synonyms_id'
+ *      synonyms_field: // value for 'synonyms_field'
+ *      genes_id: // value for 'genes_id'
+ *      genes_field: // value for 'genes_field'
+ *      assay_id: // value for 'assay_id'
+ *      pheno_id: // value for 'pheno_id'
+ *      pheno_field: // value for 'pheno_field'
+ *      function_id: // value for 'function_id'
+ *      function_field: // value for 'function_field'
+ *      role_id: // value for 'role_id'
+ *      role_field: // value for 'role_field'
+ *   },
+ * });
+ */
+export function useCreateProteinExpressionMarkerMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>(CreateProteinExpressionMarkerDocument, baseOptions);
+      }
+export type CreateProteinExpressionMarkerMutationHookResult = ReturnType<typeof useCreateProteinExpressionMarkerMutation>;
+export type CreateProteinExpressionMarkerMutationResult = ApolloReactCommon.MutationResult<CreateProteinExpressionMarkerMutation>;
+export type CreateProteinExpressionMarkerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>;
 export const ProteinExpression_MarkerDocument = gql`
     query ProteinExpression_Marker($marker_id: ID) {
   ProteinExpressionMarker(id: $marker_id) {
@@ -28950,6 +29118,62 @@ export function useProteinExpression_MarkersLazyQuery(baseOptions?: ApolloReactH
 export type ProteinExpression_MarkersQueryHookResult = ReturnType<typeof useProteinExpression_MarkersQuery>;
 export type ProteinExpression_MarkersLazyQueryHookResult = ReturnType<typeof useProteinExpression_MarkersLazyQuery>;
 export type ProteinExpression_MarkersQueryResult = ApolloReactCommon.QueryResult<ProteinExpression_MarkersQuery, ProteinExpression_MarkersQueryVariables>;
+export const ProteinLevelAssayDocument = gql`
+    query proteinLevelAssay($query_string: String) {
+  ProteinLevelAssay(filter: {name: {statement_contains: $query_string}}) {
+    id
+    __typename
+    name {
+      statement
+    }
+  }
+}
+    `;
+export type ProteinLevelAssayComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>, 'query'>;
+
+    export const ProteinLevelAssayComponent = (props: ProteinLevelAssayComponentProps) => (
+      <ApolloReactComponents.Query<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables> query={ProteinLevelAssayDocument} {...props} />
+    );
+    
+export type ProteinLevelAssayProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>
+    } & TChildProps;
+export function withProteinLevelAssay<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  ProteinLevelAssayQuery,
+  ProteinLevelAssayQueryVariables,
+  ProteinLevelAssayProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables, ProteinLevelAssayProps<TChildProps, TDataName>>(ProteinLevelAssayDocument, {
+      alias: 'proteinLevelAssay',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useProteinLevelAssayQuery__
+ *
+ * To run a query within a React component, call `useProteinLevelAssayQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProteinLevelAssayQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProteinLevelAssayQuery({
+ *   variables: {
+ *      query_string: // value for 'query_string'
+ *   },
+ * });
+ */
+export function useProteinLevelAssayQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>) {
+        return ApolloReactHooks.useQuery<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>(ProteinLevelAssayDocument, baseOptions);
+      }
+export function useProteinLevelAssayLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>(ProteinLevelAssayDocument, baseOptions);
+        }
+export type ProteinLevelAssayQueryHookResult = ReturnType<typeof useProteinLevelAssayQuery>;
+export type ProteinLevelAssayLazyQueryHookResult = ReturnType<typeof useProteinLevelAssayLazyQuery>;
+export type ProteinLevelAssayQueryResult = ApolloReactCommon.QueryResult<ProteinLevelAssayQuery, ProteinLevelAssayQueryVariables>;
 export const RnaSeqAssayDocument = gql`
     query RNASeqAssay($id: ID) {
   RNASeqAssay(id: $id) {

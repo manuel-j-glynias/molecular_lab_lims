@@ -47,7 +47,7 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
     }, []);
 
     const handle_marker_type_change = () => {
-        console.log("handle_marker_type_change")
+        console.log("handle_marker_type_change",markerType)
         let name = ''
         switch(markerType) {
             case 'DNAMarker': {
