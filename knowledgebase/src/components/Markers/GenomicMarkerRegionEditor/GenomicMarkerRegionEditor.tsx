@@ -11,6 +11,7 @@ import DescriptionEditor from "./DescriptionEditor";
 import FrameshiftEditor from "./FrameshiftEditor";
 import DeleteriousEditor from "./DeleteriousEditor";
 import TruncatingEditor from "./TruncatingEditor";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 
 interface Props {
@@ -48,6 +49,13 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
         AppendedContentState: {},
         setAppendedContentState
     } = useAppendedContentState();
+
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
+
 
     const getProteinEffect = (q:VariantRegionQuery): VariantProteinEffect => {
         let pe :VariantProteinEffect = VariantProteinEffect.Unknown
@@ -106,9 +114,7 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
                 }
                 {!editing_protein_effect ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => edit_protein_effect()}>Edit
-                                Prot Effect
-                            </button>
+                        { canEdit && <button className="btn btn-primary my-1" onClick={() => edit_protein_effect()}>Edit Prot Effect</button>}
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_protein_effect_history(!show_protein_effect_history)}>
                                 {show_protein_effect_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -171,7 +177,7 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
                     ) :
 
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>
+                        { canEdit && <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>}
                             <button className="btn btn-primary my-1" onClick={() => set_description_history(!show_description_history)}>
                                 {show_description_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>
@@ -212,9 +218,9 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
 
             {editing_isFrameshift ? <span></span> :
                 (<div className={`${className}__FormGroup`}>
-                    <button className="btn btn-primary my-1"
+                    { canEdit && <button className="btn btn-primary my-1"
                             onClick={() => set_editing_isFrameshift(true)}>Edit isFrameshift
-                    </button>
+                    </button>}
                     <button className="btn btn-primary my-1"
                             onClick={() => set_isFrameshift_history(!show_isFrameshift_history)}>
                         {show_isFrameshift_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -256,9 +262,9 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
 
                 {editing_isTruncating ? <span></span> :
                     (<div className={`${className}__FormGroup`}>
-                        <button className="btn btn-primary my-1"
+                        { canEdit && <button className="btn btn-primary my-1"
                                 onClick={() => set_editing_isTruncating(true)}>Edit isTruncating
-                        </button>
+                        </button> }
                         <button className="btn btn-primary my-1"
                                 onClick={() => set_isTruncating_history(!show_isTruncating_history)}>
                             {show_isTruncating_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -301,9 +307,9 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
 
                 {editing_isDeleterious ? <span></span> :
                     (<div className={`${className}__FormGroup`}>
-                        <button className="btn btn-primary my-1"
+                        { canEdit && <button className="btn btn-primary my-1"
                                 onClick={() => set_editing_isDeleterious(true)}>Edit isDeleterious
-                        </button>
+                        </button>}
                         <button className="btn btn-primary my-1"
                                 onClick={() => set_isDeleterious_history(!show_isDeleterious_history)}>
                             {show_isDeleterious_history ? <span>Hide History</span> : <span>Show History</span>}

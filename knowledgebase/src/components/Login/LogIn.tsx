@@ -33,6 +33,7 @@ const LogIn: React.FC<Props> = ({data, logged_in, set_logged_in}) => {
                     if (user && user['name']) {
                         if (user['name'] === name && user['password'] === password) {
                             setUserContentState({type: UserContentActionTypes.userID, userID: user['id']});
+                            setUserContentState({type: UserContentActionTypes.isEditor, isEditor: user['isEditor']});
                             set_logged_in(true);
                             break;
                         }

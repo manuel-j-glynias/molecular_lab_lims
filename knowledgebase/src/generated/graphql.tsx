@@ -20312,7 +20312,7 @@ export type GetUserQuery = (
   { __typename?: 'QueryType' }
   & { User?: Maybe<Array<Maybe<(
     { __typename?: 'User' }
-    & Pick<User, 'id' | 'name' | 'isAdmin' | 'password'>
+    & Pick<User, 'id' | 'name' | 'isAdmin' | 'isEditor' | 'password'>
   )>>> }
 );
 
@@ -24093,6 +24093,7 @@ export const GetUserDocument = gql`
     id
     name
     isAdmin
+    isEditor
     password
   }
 }

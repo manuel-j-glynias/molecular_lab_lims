@@ -17,6 +17,7 @@ import ImmuneCycleRoleEditor from "./ImmuneCycleRoleEditor";
 import ImmuneCycleRoleHistoryContainer from "../../common/ImmuneCycleRoleHistory";
 import ImmuneFunctionHistoryContainer from "../../common/ImmuneFunctionHistory";
 import ImmunePhenotypeHistoryContainer from "../../common/ImmunePhenotypeHistory";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 
 interface Props{
@@ -60,7 +61,11 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
 
     const [show_assay, set_show_assay] = React.useState(false);
 
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
 
+    const canEdit : boolean = isEditor;
 
     if (!data.ProteinExpressionMarker){
         return <div>No Protein Expression Marker</div>;
@@ -82,7 +87,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                 }
                 {!editing_name ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>}
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_name_history(!show_name_history)}>
                                 {show_name_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -128,7 +133,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                     }
                     {!editing_method ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_method(true)}>Edit Method</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_method(true)}>Edit Method</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_method_history(!show_method_history)}>
                                     {show_method_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -179,7 +184,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                         ) :
 
                         (<div className="form-group">
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_synonyms(true)}>Edit Synonyms</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_synonyms(true)}>Edit Synonyms</button>}
                                 <button className="btn btn-primary my-1" onClick={() => set_synonyms_history(!show_synonyms_history)}>
                                     {show_synonyms_history ? <span>Hide History</span> : <span>Show History</span>}
                                 </button>
@@ -221,7 +226,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                     }
                     {!editing_immune_phenotype ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_immune_phenotype(true)}>Edit Phenotype</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_immune_phenotype(true)}>Edit Phenotype</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_immune_phenotype_history(!show_immune_phenotype_history)}>
                                     {show_immune_phenotype_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -265,7 +270,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                     }
                     {!editing_immune_function ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_immune_function(true)}>Edit Function</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_immune_function(true)}>Edit Function</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_immune_function_history(!show_immune_function_history)}>
                                     {show_immune_function_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -310,7 +315,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                     }
                     {!editing_immune_cycle_role ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_immune_cycle_role(true)}>Edit Function</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_immune_cycle_role(true)}>Edit Function</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_immune_cycle_role_history(!show_immune_cycle_role_history)}>
                                     {show_immune_cycle_role_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -355,7 +360,7 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
                     }
                     {!editing_results ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_results_history(!show_results_history)}>
                                     {show_results_history ? <span>Hide History</span> : <span>Show History</span>}

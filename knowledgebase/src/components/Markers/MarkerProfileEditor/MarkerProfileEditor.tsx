@@ -10,6 +10,7 @@ import ConjuctionEditor from "./ConjuctionEditor"
 import ConjuctionHistoryContainer from "../../common/ConjunctionHistory";
 import ComponentEditor from "./ComponentEditor"
 import EditableMarkerComponentListHistoryContainer from "../../common/EditableMarkerComponentListHistory";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 interface Props{
     marker_id: string;
@@ -42,6 +43,12 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
     const [showing_components_references, set_showing_components_references] = React.useState(false);
     const [show_components_history, set_components_history] = React.useState(false);
 
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
+
     if (!data.MarkerProfile){
         return <div>No MSIMarker</div>;
     }
@@ -63,7 +70,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                 }
                 {!editing_name ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>}
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_name_history(!show_name_history)}>
                                 {show_name_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -107,7 +114,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                     }
                     {!editing_conjuction ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_conjuction(true)}>Edit Conjuction</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_conjuction(true)}>Edit Conjuction</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_conjuction_history(!show_conjuction_history)}>
                                     {show_conjuction_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -152,7 +159,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                     }
                     {!editing_components ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_components(true)}>Edit Components</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_components(true)}>Edit Components</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_components_history(!show_components_history)}>
                                     {show_components_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -196,7 +203,7 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
                     }
                     {!editing_results ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_results_history(!show_results_history)}>
                                     {show_results_history ? <span>Hide History</span> : <span>Show History</span>}

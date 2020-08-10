@@ -6,6 +6,7 @@ export const QUERY_Users = gql`
             id
             name
             isAdmin
+            isEditor
             password
         }
     }

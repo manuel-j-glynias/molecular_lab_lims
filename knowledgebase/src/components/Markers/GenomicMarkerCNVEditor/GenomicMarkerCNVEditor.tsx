@@ -7,6 +7,8 @@ import DescriptionEditor from "./DescriptionEditor";
 import HistoryContainer from "../../common/History";
 import CopyChangeHistoryContainer from "../../common/CopyChangeHistory"
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
+import {useUserContentState} from "../../../context/UserContentContext"
+
 import './styles.css';
 
 
@@ -35,6 +37,13 @@ const {
         setAppendedContentState
     } = useAppendedContentState();
 
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
+
+
     const edit_description = async () => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})
         set_editing_description(true)
@@ -61,9 +70,8 @@ const {
                 }
                 {!editing_copyChange ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_copyChange(true)}>Edit
-                                Copy Number
-                            </button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_copyChange(true)}>Edit Copy Number
+                            </button> }
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_copyChange_history(!show_copyChange_history)}>
                                 {show_copyChange_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -124,7 +132,7 @@ const {
                     ) :
 
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button> }
                             <button className="btn btn-primary my-1" onClick={() => set_description_history(!show_description_history)}>
                                 {show_description_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>

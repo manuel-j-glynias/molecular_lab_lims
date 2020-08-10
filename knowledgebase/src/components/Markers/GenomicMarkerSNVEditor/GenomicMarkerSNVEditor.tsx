@@ -15,6 +15,7 @@ import GDotEditableStatementEditor from "./GDotEditableStatementEditor";
 import ExonEditableStatementEditor from "./ExonEditableStatementEditor";
 import {DescriptionWithPmids, add_hyperlinks, humanify_date, get_ref_array} from "../../common/Helpers/Ref_helpers";
 import './styles.css';
+import {useUserContentState} from "../../../context/UserContentContext";
 
 interface Props {
     data: VariantSnvIndelQuery;
@@ -55,6 +56,11 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
         setAppendedContentState
     } = useAppendedContentState();
 
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
 
 
     const edit_description = async () => {
@@ -105,9 +111,9 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                     }
                     {!editing_protein_effect ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => edit_protein_effect()}>Edit
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_protein_effect()}>Edit
                                     Prot Effect
-                                </button>
+                                </button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_protein_effect_history(!show_protein_effect_history)}>
                                     {show_protein_effect_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -169,7 +175,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                         ) :
 
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>}
                                 <button className="btn btn-primary my-1" onClick={() => set_description_history(!show_description_history)}>
                                     {show_description_history ? <span>Hide History</span> : <span>Show History</span>}
                                 </button>
@@ -208,7 +214,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                         : (<div>{data.VariantSNVIndel[0].pDot.statement}</div>)}
                     {editing_pdot ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_pdot(true)}>Edit PDot</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_pdot(true)}>Edit PDot</button>}
                             <button className="btn btn-primary my-1" onClick={() => set_pdot_history(!show_pdot_history)}>
                                 {show_pdot_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>
@@ -246,7 +252,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                         : (<div>{data.VariantSNVIndel[0].cDot.statement}</div>)}
                     {editing_cdot ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_cdot(true)}>Edit CDot</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_cdot(true)}>Edit CDot</button>}
                             <button className="btn btn-primary my-1" onClick={() => set_cdot_history(!show_cdot_history)}>
                                 {show_cdot_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>
@@ -284,7 +290,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                         : (<div>{data.VariantSNVIndel[0].gDot.statement}</div>)}
                     {editing_gdot ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_gdot(true)}>Edit GDot</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_gdot(true)}>Edit GDot</button>}
                             <button className="btn btn-primary my-1" onClick={() => set_gdot_history(!show_gdot_history)}>
                                 {show_gdot_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>
@@ -321,7 +327,7 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
                         : (<div>{data.VariantSNVIndel[0].exon.statement}</div>)}
                     {editing_exon ?   <span></span> :
                         (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_exon(true)}>Edit Exon</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_exon(true)}>Edit Exon</button>}
                             <button className="btn btn-primary my-1" onClick={() => set_exon_history(!show_exon_history)}>
                                 {show_exon_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>

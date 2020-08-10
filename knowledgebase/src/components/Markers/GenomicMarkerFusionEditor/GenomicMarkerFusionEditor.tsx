@@ -14,6 +14,7 @@ import Exon3Editor from "./Exon3Editor";
 import Gene5Editor from "./Gene5Editor";
 import Gene3Editor from "./Gene3Editor";
 import './styles.css';
+import {useUserContentState} from "../../../context/UserContentContext";
 
 interface Props {
     data: VariantFusionQuery;
@@ -58,6 +59,12 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})
         set_editing_description(true)
     };
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
+
     function getExonNumber(n: number): string {
         let exonNumber = ''
         if (n == -1) {
@@ -120,9 +127,9 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
                 }
                 {!editing_copyChange ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_copyChange(true)}>Edit
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_copyChange(true)}>Edit
                                 Copy Number
-                            </button>
+                            </button> }
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_copyChange_history(!show_copyChange_history)}>
                                 {show_copyChange_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -168,9 +175,9 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
                 }
                 {!editing_gene5 ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_gene5(true)}>Edit
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_gene5(true)}>Edit
                                 5' Gene
-                            </button>
+                            </button> }
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_gene5_history(!show_gene5_history)}>
                                 {show_gene5_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -215,9 +222,9 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
                 }
                 {!editing_exon5 ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_exon5(true)}>Edit
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_exon5(true)}>Edit
                                 5' Exon
-                            </button>
+                            </button> }
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_exon5_history(!show_exon5_history)}>
                                 {show_exon5_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -265,9 +272,9 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
                 }
                 {!editing_gene3 ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_gene3(true)}>Edit
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_gene3(true)}>Edit
                                 3' Gene
-                            </button>
+                            </button> }
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_gene3_history(!show_gene3_history)}>
                                 {show_gene3_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -311,9 +318,9 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
                 }
                 {!editing_exon3 ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_exon3(true)}>Edit
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_exon3(true)}>Edit
                                 3' Exon
-                            </button>
+                            </button> }
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_exon3_history(!show_exon3_history)}>
                                 {show_copyChange_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -375,7 +382,7 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
                     ) :
 
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>}
                             <button className="btn btn-primary my-1" onClick={() => set_description_history(!show_description_history)}>
                                 {show_description_history ? <span>Hide History</span> : <span>Show History</span>}
                             </button>

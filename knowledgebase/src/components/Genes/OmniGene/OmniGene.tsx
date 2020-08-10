@@ -9,6 +9,7 @@ import SynonymEditor from "./SynonymEditor";
 import OncogenicCategoryEditor from "./OncogenicCategoryEditor"
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext"
 import SynonymHistoryContainer from "../../common/SynonymHistory";
+import {useUserContentState} from "../../../context/UserContentContext"
 
 
 interface Props {
@@ -39,6 +40,12 @@ const OmniGene: React.FC<Props> = ({data,editing_description,set_editing_descrip
         AppendedContentState: {},
         setAppendedContentState
     } = useAppendedContentState();
+
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
 
     const edit_description = async () => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})
@@ -110,7 +117,7 @@ const OmniGene: React.FC<Props> = ({data,editing_description,set_editing_descrip
                         ) :
 
                         (<div className="form-group">
-                                <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_description()}>Edit Description</button>}
                                 <button className="btn btn-primary my-1" onClick={() => set_description_history(!show_description_history)}>
                                     {show_description_history ? <span>Hide History</span> : <span>Show History</span>}
                                 </button>
@@ -153,9 +160,9 @@ const OmniGene: React.FC<Props> = ({data,editing_description,set_editing_descrip
 
                     {!editing_category ?
                         (<div className="form-group">
-                                <button className="btn btn-primary my-1" onClick={() => edit_categories()}>Edit
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_categories()}>Edit
                                     Category
-                                </button>
+                                </button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_category_history(!show_category_history)}>
                                     {show_category_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -204,7 +211,7 @@ const OmniGene: React.FC<Props> = ({data,editing_description,set_editing_descrip
                         ) :
 
                         (<div className="form-group">
-                                <button className="btn btn-primary my-1" onClick={() => edit_synonyms()}>Edit Synonyms</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => edit_synonyms()}>Edit Synonyms</button>}
                                 <button className="btn btn-primary my-1" onClick={() => set_synonyms_history(!show_synonyms_history)}>
                                     {show_synonyms_history ? <span>Hide History</span> : <span>Show History</span>}
                                 </button>

@@ -7,6 +7,7 @@ import {add_hyperlinks, get_ref_array, humanify_date} from "../../common/Helpers
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import MethodEditableStatementEditor from "./MethodEditableStatementEditor";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 
 interface Props{
@@ -32,6 +33,12 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
     const [showing_results_references, set_showing_results_references] = React.useState(false);
     const [show_results_history, set_results_history] = React.useState(false);
 
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
+
     if (!data.MSIMarker){
         return <div>No MSIMarker</div>;
     }
@@ -52,7 +59,7 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
                 }
                 {!editing_name ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>}
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_name_history(!show_name_history)}>
                                 {show_name_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -98,7 +105,7 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
                     }
                     {!editing_method ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_method(true)}>Edit Method</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_method(true)}>Edit Method</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_method_history(!show_method_history)}>
                                     {show_method_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -144,7 +151,7 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
                     }
                     {!editing_results ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_results_history(!show_results_history)}>
                                     {show_results_history ? <span>Hide History</span> : <span>Show History</span>}

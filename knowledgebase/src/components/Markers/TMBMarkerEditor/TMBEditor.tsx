@@ -13,6 +13,7 @@ import ResultUnitsEditableStatementEditor from  "./ResultUnitsEditableStatementE
 import ResultMinEditor from "./ResultMinEditor"
 import ResultMaxEditor from "./ResultMaxEditor"
 import ComparatorEditor from "./ComparatorEditor";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 
 interface Props{
@@ -54,6 +55,12 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
     const [showing_result_units_references, set_showing_result_units_references] = React.useState(false);
     const [show_result_units_history, set_result_units_history] = React.useState(false);
 
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
+
     function showResultMax() {
         let show = true
         if (data && data.TMBMarker && data.TMBMarker[0] && data.TMBMarker[0].comparator){
@@ -83,7 +90,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                 }
                 {!editing_name ?
                     (<div className={`${className}__FormGroup`}>
-                            <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_name(true)}>Edit Name</button>}
                             <button className="btn btn-primary my-1"
                                     onClick={() => set_name_history(!show_name_history)}>
                                 {show_name_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -128,7 +135,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                     }
                     {!editing_method ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_method(true)}>Edit Method</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_method(true)}>Edit Method</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_method_history(!show_method_history)}>
                                     {show_method_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -170,7 +177,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                     : <div>{data.TMBMarker[0].comparator.comparator}</div>}
                 {!editing_comparator ?
                     (<div className={`${className}__FormGroup`}>
-                    <button className="btn btn-primary my-1" onClick={() => set_editing_comparator(true)}>Edit Comparator</button>
+                        {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_comparator(true)}>Edit Comparator</button>}
                     <button className="btn btn-primary my-1"
                             onClick={() => set_comparator_history(!show_comparator_history)}>
                         {show_comparator_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -197,7 +204,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                     }
                     {!editing_result_min ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_result_min(true)}>Edit Result Min</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_result_min(true)}>Edit Result Min</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_result_min_history(!show_result_min_history)}>
                                     {show_result_min_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -242,7 +249,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                         }
                         {!editing_result_max ?
                             (<div className={`${className}__FormGroup`}>
-                                    <button className="btn btn-primary my-1" onClick={() => set_editing_result_max(true)}>Edit Result Max</button>
+                                {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_result_max(true)}>Edit Result Max</button>}
                                     <button className="btn btn-primary my-1"
                                             onClick={() => set_result_max_history(!show_result_max_history)}>
                                         {show_result_max_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -289,7 +296,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                     }
                     {!editing_result_units ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_result_units(true)}>Edit Result Units</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_result_units(true)}>Edit Result Units</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_result_units_history(!show_result_units_history)}>
                                     {show_result_units_history ? <span>Hide History</span> : <span>Show History</span>}
@@ -333,7 +340,7 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
                     }
                     {!editing_results ?
                         (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>
+                            {canEdit && <button className="btn btn-primary my-1" onClick={() => set_editing_results(true)}>Edit Results</button>}
                                 <button className="btn btn-primary my-1"
                                         onClick={() => set_results_history(!show_results_history)}>
                                     {show_results_history ? <span>Hide History</span> : <span>Show History</span>}

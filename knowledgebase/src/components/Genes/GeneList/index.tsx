@@ -3,6 +3,7 @@ import {useGeneListQuery} from '../../../generated/graphql'
 import GeneList, {OwnProps} from './GeneList'
 import { useAlert } from 'react-alert'
 import apiClient from "../../../axios/Axios";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 const className = 'GeneList';
 
@@ -12,6 +13,12 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
     const [all_caps, set_all_caps] = useState(true)
     const [add_gene, set_add_gene] = useState('');
     const alert = useAlert()
+
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
 
     const handleNameFilter = () => {
         set_gene_query_string(filter_term)
@@ -86,6 +93,7 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
                 <div className={`${className}__Panel_Wrapper`}>
                     <div className={`${className}__Panel`}>
                         <div className={`${className}__Title`}>Genes</div>
+                        {canEdit &&
                         <div className={`${className}__Buttons`}>
                             <input className={'add_gene_input'} type="text"
                                    placeholder="HGNC..."
@@ -93,7 +101,7 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
                                    onChange={e => set_add_gene(e.target.value.toUpperCase())}
                             />
                             <button className={'btn btn-primary'} onClick={handleAddGene}>Add Gene</button>
-                        </div>
+                        </div> }
                         <div className={`${className}__Filter`}>
                             <input className={'filter_text_input'} type="text"
                                    placeholder="Name Starts With..."

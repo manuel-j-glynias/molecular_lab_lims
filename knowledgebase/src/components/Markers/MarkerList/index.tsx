@@ -15,6 +15,7 @@ import TMBMarkersListContainer from "../TMBMarkersList";
 import ProteinExpressionMarkersListContainer from "../ProteinExpressionMarkersList/index"
 import MarkerProfilesListContainer from "../MarkerProfilesList";
 import {AssayComparator} from "../../../generated/graphql";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 const className = 'MarkerList';
 
@@ -101,6 +102,11 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
     const state  = {
         selectedOption: { value: markerType, label: markerName },
     };
+    const {
+        UserContentState: {isEditor}
+    } = useUserContentState();
+
+    const canEdit : boolean = isEditor;
 
     const handleChange = async (event:any) => {
         const value : string = event.value as string;
@@ -123,7 +129,7 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
                 <div className={`${className}__Panel`}>
                     <div className={`${className}__Title`}>Markers</div>
                     <div className={`${className}__Buttons`}>
-                        <button className={'btn btn-primary'} onClick={handleAddMarker}>Add Marker</button>
+                        {canEdit && <button className={'btn btn-primary'} onClick={handleAddMarker}>Add Marker</button> }
                     </div>                    <div className={`${className}__Buttons`}>
                         <Select className={`${className}__Select`}  options = {options} onChange={handleChange}
                                 value={state.selectedOption}

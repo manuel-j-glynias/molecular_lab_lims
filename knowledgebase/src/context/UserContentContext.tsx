@@ -2,18 +2,22 @@ import React, {createContext, useReducer, useContext, ReducerState} from 'react'
 
 export type UserContentState = {
     userID: string;
+    isEditor:boolean;
 };
-export enum UserContentActionTypes  {userID='userID'}
+export enum UserContentActionTypes  {userID='userID', isEditor='isEditor'}
 
 export type UserContentActions =
     | {
     type: UserContentActionTypes.userID;
     userID: string;
+}  | {
+    type: UserContentActionTypes.isEditor;
+    isEditor: boolean;
 }
 
 
 const initialState: UserContentState = {
-    userID:'user_20200419151555871926'
+    userID:'user_20200419151555871926', isEditor:false
 }
 
 // By setting the typings here, we ensure we get intellisense in VS Code
@@ -33,6 +37,10 @@ const reducer = (state: UserContentState, action: UserContentActions) => {
             return {
                 userID: action.userID
             };
+        case 'isEditor':
+            return {
+                isEditor: action.isEditor
+            }
         default:
             return state;
     }
