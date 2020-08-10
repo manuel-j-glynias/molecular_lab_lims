@@ -9,7 +9,7 @@ import SynonymEditor from "./SynonymEditor";
 import OncogenicCategoryEditor from "./OncogenicCategoryEditor"
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext"
 import SynonymHistoryContainer from "../../common/SynonymHistory";
-import {useUserContentState} from "../../../context/UserContentContext"
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 
 interface Props {
@@ -42,8 +42,8 @@ const OmniGene: React.FC<Props> = ({data,editing_description,set_editing_descrip
     } = useAppendedContentState();
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

@@ -15,7 +15,7 @@ import GDotEditableStatementEditor from "./GDotEditableStatementEditor";
 import ExonEditableStatementEditor from "./ExonEditableStatementEditor";
 import {DescriptionWithPmids, add_hyperlinks, humanify_date, get_ref_array} from "../../common/Helpers/Ref_helpers";
 import './styles.css';
-import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 interface Props {
     data: VariantSnvIndelQuery;
@@ -57,8 +57,8 @@ const GenomicMarkerSNVEditor : React.FC<Props> = ({data,editing_description,set_
     } = useAppendedContentState();
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

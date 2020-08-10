@@ -3,7 +3,7 @@ import {useGeneListQuery} from '../../../generated/graphql'
 import GeneList, {OwnProps} from './GeneList'
 import { useAlert } from 'react-alert'
 import apiClient from "../../../axios/Axios";
-import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 const className = 'GeneList';
 
@@ -15,8 +15,8 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
     const alert = useAlert()
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

@@ -14,6 +14,7 @@ import ResultMinEditor from "./ResultMinEditor"
 import ResultMaxEditor from "./ResultMaxEditor"
 import ComparatorEditor from "./ComparatorEditor";
 import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 
 interface Props{
@@ -56,8 +57,8 @@ const TMBMarkerEditor : React.FC<Props> = ({data, marker_id,editing_description,
     const [show_result_units_history, set_result_units_history] = React.useState(false);
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

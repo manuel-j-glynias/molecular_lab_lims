@@ -8802,6 +8802,22 @@ input _OncoTreeDiseaseFilter {
     name_not: _EditableStatementFilter
     # name_not_in
     name_not_in: _EditableStatementFilter
+    # occurrences
+    occurrences: _OncoTreeOccurrenceFilter
+    # occurrences_every
+    occurrences_every: _OncoTreeOccurrenceFilter
+    # occurrences_in
+    occurrences_in: _OncoTreeOccurrenceFilter
+    # occurrences_none
+    occurrences_none: _OncoTreeOccurrenceFilter
+    # occurrences_not
+    occurrences_not: _OncoTreeOccurrenceFilter
+    # occurrences_not_in
+    occurrences_not_in: _OncoTreeOccurrenceFilter
+    # occurrences_single
+    occurrences_single: _OncoTreeOccurrenceFilter
+    # occurrences_some
+    occurrences_some: _OncoTreeOccurrenceFilter
     # parent
     parent: _OncoTreeDiseaseFilter
     # parent_every
@@ -8855,33 +8871,13 @@ input _OncoTreeOccurrenceFilter {
     # OR
     OR: [_OncoTreeOccurrenceFilter!]
     # disease
-    disease: String
-    # disease_contains
-    disease_contains: String
-    # disease_ends_with
-    disease_ends_with: String
-    # disease_gt
-    disease_gt: String
-    # disease_gte
-    disease_gte: String
+    disease: _OncoTreeDiseaseFilter
     # disease_in
-    disease_in: [String!]
-    # disease_lt
-    disease_lt: String
-    # disease_lte
-    disease_lte: String
+    disease_in: _OncoTreeDiseaseFilter
     # disease_not
-    disease_not: String
-    # disease_not_contains
-    disease_not_contains: String
-    # disease_not_ends_with
-    disease_not_ends_with: String
+    disease_not: _OncoTreeDiseaseFilter
     # disease_not_in
-    disease_not_in: [String!]
-    # disease_not_starts_with
-    disease_not_starts_with: String
-    # disease_starts_with
-    disease_starts_with: String
+    disease_not_in: _OncoTreeDiseaseFilter
     # id
     id: ID
     # id_contains
@@ -8982,10 +8978,6 @@ input _OncoTreeOccurrenceFilter {
 
 # Ordering Enum for OncoTreeOccurrence
 enum _OncoTreeOccurrenceOrdering {
-    # Ascending sort for disease
-    disease_asc
-    # Descending sort for disease
-    disease_desc
     # Ascending sort for id
     id_asc
     # Descending sort for id
@@ -14665,10 +14657,6 @@ type HotSpotVariant {
     occurrences(
         _id: Long
         _ids: [Long]
-        # disease of OncoTreeOccurrence
-        disease: String
-        # diseases is list variant of disease of OncoTreeOccurrence
-        diseases: [String]
         filter: _OncoTreeOccurrenceFilter
         first: Int
         # id of OncoTreeOccurrence
@@ -16354,12 +16342,16 @@ type MutationType {
     addOncoTreeDiseaseMainType(id: ID!, mainType: [ID!]!): String
     # Adds Name to OncoTreeDisease entity
     addOncoTreeDiseaseName(id: ID!, name: [ID!]!): String
+    # Adds Occurrences to OncoTreeDisease entity
+    addOncoTreeDiseaseOccurrences(id: ID!, occurrences: [ID!]!): String
     # Adds Parent to OncoTreeDisease entity
     addOncoTreeDiseaseParent(id: ID!, parent: [ID!]!): String
     # Adds Tissue to OncoTreeDisease entity
     addOncoTreeDiseaseTissue(id: ID!, tissue: [ID!]!): String
     # Adds Xrefs to OncoTreeDisease entity
     addOncoTreeDiseaseXrefs(id: ID!, xrefs: [ID!]!): String
+    # Adds Disease to OncoTreeOccurrence entity
+    addOncoTreeOccurrenceDisease(disease: [ID!]!, id: ID!): String
     # Adds Occurrences to OncoTreeOccurrence entity
     addOncoTreeOccurrenceOccurrences(id: ID!, occurrences: [ID!]!): String
     # Adds PercentOccurrence to OncoTreeOccurrence entity
@@ -16937,7 +16929,6 @@ type MutationType {
     createOncoTreeDisease(code: String!, id: ID!): String
     # Creates a OncoTreeOccurrence entity
     createOncoTreeOccurrence(
-        disease: String!
         id: ID!
         oncoTreeCode: String!
         perThousandOccurrence: Int!
@@ -17559,6 +17550,8 @@ type MutationType {
     deleteOncoTreeDiseaseMainType(id: ID!, mainType: [ID!]!): String
     # Deletes Name from OncoTreeDisease entity
     deleteOncoTreeDiseaseName(id: ID!, name: [ID!]!): String
+    # Deletes Occurrences from OncoTreeDisease entity
+    deleteOncoTreeDiseaseOccurrences(id: ID!, occurrences: [ID!]!): String
     # Deletes Parent from OncoTreeDisease entity
     deleteOncoTreeDiseaseParent(id: ID!, parent: [ID!]!): String
     # Deletes Tissue from OncoTreeDisease entity
@@ -17567,6 +17560,8 @@ type MutationType {
     deleteOncoTreeDiseaseXrefs(id: ID!, xrefs: [ID!]!): String
     # Deletes a OncoTreeOccurrence entity
     deleteOncoTreeOccurrence(id: ID!): String
+    # Deletes Disease from OncoTreeOccurrence entity
+    deleteOncoTreeOccurrenceDisease(disease: [ID!]!, id: ID!): String
     # Deletes Occurrences from OncoTreeOccurrence entity
     deleteOncoTreeOccurrenceOccurrences(id: ID!, occurrences: [ID!]!): String
     # Deletes PercentOccurrence from OncoTreeOccurrence entity
@@ -18182,7 +18177,6 @@ type MutationType {
     mergeOncoTreeDisease(code: String!, id: ID!): String
     # Merge a OncoTreeOccurrence entity
     mergeOncoTreeOccurrence(
-        disease: String!
         id: ID!
         oncoTreeCode: String!
         perThousandOccurrence: Int!
@@ -18568,7 +18562,6 @@ type MutationType {
     updateOncoTreeDisease(code: String!, id: ID!): String
     # Updates a OncoTreeOccurrence entity
     updateOncoTreeOccurrence(
-        disease: String!
         id: ID!
         oncoTreeCode: String!
         perThousandOccurrence: Int!
@@ -19406,6 +19399,27 @@ type OncoTreeDisease {
         # statements is list variant of statement of EditableStatement
         statements: [String]
     ): EditableStatement!
+    # OncoTreeDisease occurrences OncoTreeOccurrence
+    occurrences(
+        _id: Long
+        _ids: [Long]
+        filter: _OncoTreeOccurrenceFilter
+        first: Int
+        # id of OncoTreeOccurrence
+        id: ID
+        # ids is list variant of id of OncoTreeOccurrence
+        ids: [ID]
+        offset: Int
+        # oncoTreeCode of OncoTreeOccurrence
+        oncoTreeCode: String
+        # oncoTreeCodes is list variant of oncoTreeCode of OncoTreeOccurrence
+        oncoTreeCodes: [String]
+        orderBy: [_OncoTreeOccurrenceOrdering]
+        # perThousandOccurrence of OncoTreeOccurrence
+        perThousandOccurrence: Int
+        # perThousandOccurrences is list variant of perThousandOccurrence of OncoTreeOccurrence
+        perThousandOccurrences: [Int]
+    ): [OncoTreeOccurrence]!
     # OncoTreeDisease parent OncoTreeDisease
     parent(
         _id: Long
@@ -19467,8 +19481,19 @@ type OncoTreeDisease {
 type OncoTreeOccurrence {
     # internal node id
     _id: Long
-    # disease: EditableStatement!  @relation(name: "DISEASE", direction: "OUT")
-    disease: String!
+    # OncoTreeOccurrence disease OncoTreeDisease
+    disease(
+        # code of OncoTreeDisease
+        code: String
+        # codes is list variant of code of OncoTreeDisease
+        codes: [String]
+        filter: _OncoTreeDiseaseFilter
+        # id of OncoTreeDisease
+        id: ID
+        # ids is list variant of id of OncoTreeDisease
+        ids: [ID]
+        orderBy: [_OncoTreeDiseaseOrdering]
+    ): OncoTreeDisease!
     # id of  OncoTreeOccurrence
     id: ID!
     # OncoTreeOccurrence occurrences EditableInt
@@ -21314,10 +21339,6 @@ type QueryType {
     OncoTreeOccurrence(
         _id: Long
         _ids: [Long]
-        # disease of OncoTreeOccurrence
-        disease: String
-        # diseases is list variant of disease of OncoTreeOccurrence
-        diseases: [String]
         filter: _OncoTreeOccurrenceFilter
         first: Int
         # id of OncoTreeOccurrence

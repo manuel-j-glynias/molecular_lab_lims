@@ -10,12 +10,14 @@ import DrugsContainer from "./components/Drugs/DrugsContainer/DrugsContainer";
 import Landing from "./components/layout/Landing"
 import './App.css';
 import DiseasesContainer from "./components/Diseases/DiseasesContainer/DiseasesContainer";
+import {EditorContentProvider} from "./context/EditorContentContext";
 
 const App = () => {
     const [logged_in, set_logged_in] = React.useState(false);
 
     return (
         <UserContentProvider>
+            <EditorContentProvider>
             <Router>
                 <Fragment>
                     <Navbar logged_in={logged_in} set_logged_in={set_logged_in}/>
@@ -31,6 +33,7 @@ const App = () => {
                     </section>
                 </Fragment>
             </Router>
+        </EditorContentProvider>
         </UserContentProvider>
     )
 

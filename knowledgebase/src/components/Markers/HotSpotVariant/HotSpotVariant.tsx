@@ -42,7 +42,7 @@ const HotSpotVariant: React.FC<Props> = ({data}) => {
                         (item,i:string | number) =>
                             !!item && (
                             <React.Fragment>
-                            <div key={i}>{item.disease}</div>
+                            <div key={i}>{item.disease.name.statement}</div>
                             <div>{item.oncoTreeCode}</div>
                             <div >{item.occurrences.intValue} / {item.totalSamples.intValue}</div>
                             <div >{item.percentOccurrence.statement}</div>

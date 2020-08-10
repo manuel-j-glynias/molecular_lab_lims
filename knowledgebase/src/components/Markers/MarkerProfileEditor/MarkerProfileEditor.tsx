@@ -11,6 +11,7 @@ import ConjuctionHistoryContainer from "../../common/ConjunctionHistory";
 import ComponentEditor from "./ComponentEditor"
 import EditableMarkerComponentListHistoryContainer from "../../common/EditableMarkerComponentListHistory";
 import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 interface Props{
     marker_id: string;
@@ -44,8 +45,8 @@ const MarkerProfileEditor : React.FC<Props> = ({data,marker_id,editing_descripti
     const [show_components_history, set_components_history] = React.useState(false);
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

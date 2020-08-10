@@ -8,6 +8,7 @@ import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import MethodEditableStatementEditor from "./MethodEditableStatementEditor";
 import ResultsEditableStatementEditor from "./ResultsEditableStatementEditor";
 import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 
 interface Props{
@@ -34,8 +35,8 @@ const MSIMarkerEditor : React.FC<Props> = ({data,marker_id,editing_description,s
     const [show_results_history, set_results_history] = React.useState(false);
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

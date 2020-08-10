@@ -57,7 +57,7 @@ const MarkersContainer: React.FC<Props> = ({logged_in}) => {
                     />
 
 
-                    <MarkerContentContainer markerType={markerType} variant_id={variant_id}
+                    <MarkerContentContainer markerType={markerType} variant_id={variant_id} set_variant_id={set_variant_id}
                                                             editing_protein_effect={editing_protein_effect}
                                                             editing_description={editing_description}
                                             editing_components={editing_components}

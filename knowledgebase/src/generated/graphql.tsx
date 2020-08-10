@@ -4530,6 +4530,14 @@ export type _OncoTreeDiseaseFilter = {
   name_in?: Maybe<_EditableStatementFilter>;
   name_not?: Maybe<_EditableStatementFilter>;
   name_not_in?: Maybe<_EditableStatementFilter>;
+  occurrences?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_every?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_in?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_none?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_not?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_not_in?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_single?: Maybe<_OncoTreeOccurrenceFilter>;
+  occurrences_some?: Maybe<_OncoTreeOccurrenceFilter>;
   parent?: Maybe<_OncoTreeDiseaseFilter>;
   parent_every?: Maybe<_OncoTreeDiseaseFilter>;
   parent_in?: Maybe<_OncoTreeDiseaseFilter>;
@@ -4558,20 +4566,10 @@ export enum _OncoTreeDiseaseOrdering {
 export type _OncoTreeOccurrenceFilter = {
   AND?: Maybe<Array<_OncoTreeOccurrenceFilter>>;
   OR?: Maybe<Array<_OncoTreeOccurrenceFilter>>;
-  disease?: Maybe<Scalars['String']>;
-  disease_contains?: Maybe<Scalars['String']>;
-  disease_ends_with?: Maybe<Scalars['String']>;
-  disease_gt?: Maybe<Scalars['String']>;
-  disease_gte?: Maybe<Scalars['String']>;
-  disease_in?: Maybe<Array<Scalars['String']>>;
-  disease_lt?: Maybe<Scalars['String']>;
-  disease_lte?: Maybe<Scalars['String']>;
-  disease_not?: Maybe<Scalars['String']>;
-  disease_not_contains?: Maybe<Scalars['String']>;
-  disease_not_ends_with?: Maybe<Scalars['String']>;
-  disease_not_in?: Maybe<Array<Scalars['String']>>;
-  disease_not_starts_with?: Maybe<Scalars['String']>;
-  disease_starts_with?: Maybe<Scalars['String']>;
+  disease?: Maybe<_OncoTreeDiseaseFilter>;
+  disease_in?: Maybe<_OncoTreeDiseaseFilter>;
+  disease_not?: Maybe<_OncoTreeDiseaseFilter>;
+  disease_not_in?: Maybe<_OncoTreeDiseaseFilter>;
   id?: Maybe<Scalars['ID']>;
   id_contains?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
@@ -4623,8 +4621,6 @@ export type _OncoTreeOccurrenceFilter = {
 };
 
 export enum _OncoTreeOccurrenceOrdering {
-  DiseaseAsc = 'disease_asc',
-  DiseaseDesc = 'disease_desc',
   IdAsc = 'id_asc',
   IdDesc = 'id_desc',
   OncoTreeCodeAsc = 'oncoTreeCode_asc',
@@ -8182,8 +8178,6 @@ export type HotSpotVariantGenomicVariantArgs = {
 export type HotSpotVariantOccurrencesArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  disease?: Maybe<Scalars['String']>;
-  diseases?: Maybe<Array<Maybe<Scalars['String']>>>;
   filter?: Maybe<_OncoTreeOccurrenceFilter>;
   first?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['ID']>;
@@ -9292,9 +9286,11 @@ export type MutationType = {
   addOncoTreeDiseaseChildren?: Maybe<Scalars['String']>;
   addOncoTreeDiseaseMainType?: Maybe<Scalars['String']>;
   addOncoTreeDiseaseName?: Maybe<Scalars['String']>;
+  addOncoTreeDiseaseOccurrences?: Maybe<Scalars['String']>;
   addOncoTreeDiseaseParent?: Maybe<Scalars['String']>;
   addOncoTreeDiseaseTissue?: Maybe<Scalars['String']>;
   addOncoTreeDiseaseXrefs?: Maybe<Scalars['String']>;
+  addOncoTreeOccurrenceDisease?: Maybe<Scalars['String']>;
   addOncoTreeOccurrenceOccurrences?: Maybe<Scalars['String']>;
   addOncoTreeOccurrencePercentOccurrence?: Maybe<Scalars['String']>;
   addOncoTreeOccurrenceTotalSamples?: Maybe<Scalars['String']>;
@@ -9744,10 +9740,12 @@ export type MutationType = {
   deleteOncoTreeDiseaseChildren?: Maybe<Scalars['String']>;
   deleteOncoTreeDiseaseMainType?: Maybe<Scalars['String']>;
   deleteOncoTreeDiseaseName?: Maybe<Scalars['String']>;
+  deleteOncoTreeDiseaseOccurrences?: Maybe<Scalars['String']>;
   deleteOncoTreeDiseaseParent?: Maybe<Scalars['String']>;
   deleteOncoTreeDiseaseTissue?: Maybe<Scalars['String']>;
   deleteOncoTreeDiseaseXrefs?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrence?: Maybe<Scalars['String']>;
+  deleteOncoTreeOccurrenceDisease?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrenceOccurrences?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrencePercentOccurrence?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrenceTotalSamples?: Maybe<Scalars['String']>;
@@ -11211,6 +11209,12 @@ export type MutationTypeAddOncoTreeDiseaseNameArgs = {
 };
 
 
+export type MutationTypeAddOncoTreeDiseaseOccurrencesArgs = {
+  id: Scalars['ID'];
+  occurrences: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeAddOncoTreeDiseaseParentArgs = {
   id: Scalars['ID'];
   parent: Array<Scalars['ID']>;
@@ -11226,6 +11230,12 @@ export type MutationTypeAddOncoTreeDiseaseTissueArgs = {
 export type MutationTypeAddOncoTreeDiseaseXrefsArgs = {
   id: Scalars['ID'];
   xrefs: Array<Scalars['ID']>;
+};
+
+
+export type MutationTypeAddOncoTreeOccurrenceDiseaseArgs = {
+  disease: Array<Scalars['ID']>;
+  id: Scalars['ID'];
 };
 
 
@@ -12363,7 +12373,6 @@ export type MutationTypeCreateOncoTreeDiseaseArgs = {
 
 
 export type MutationTypeCreateOncoTreeOccurrenceArgs = {
-  disease: Scalars['String'];
   id: Scalars['ID'];
   oncoTreeCode: Scalars['String'];
   perThousandOccurrence: Scalars['Int'];
@@ -13963,6 +13972,12 @@ export type MutationTypeDeleteOncoTreeDiseaseNameArgs = {
 };
 
 
+export type MutationTypeDeleteOncoTreeDiseaseOccurrencesArgs = {
+  id: Scalars['ID'];
+  occurrences: Array<Scalars['ID']>;
+};
+
+
 export type MutationTypeDeleteOncoTreeDiseaseParentArgs = {
   id: Scalars['ID'];
   parent: Array<Scalars['ID']>;
@@ -13982,6 +13997,12 @@ export type MutationTypeDeleteOncoTreeDiseaseXrefsArgs = {
 
 
 export type MutationTypeDeleteOncoTreeOccurrenceArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeDeleteOncoTreeOccurrenceDiseaseArgs = {
+  disease: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -15220,7 +15241,6 @@ export type MutationTypeMergeOncoTreeDiseaseArgs = {
 
 
 export type MutationTypeMergeOncoTreeOccurrenceArgs = {
-  disease: Scalars['String'];
   id: Scalars['ID'];
   oncoTreeCode: Scalars['String'];
   perThousandOccurrence: Scalars['Int'];
@@ -15799,7 +15819,6 @@ export type MutationTypeUpdateOncoTreeDiseaseArgs = {
 
 
 export type MutationTypeUpdateOncoTreeOccurrenceArgs = {
-  disease: Scalars['String'];
   id: Scalars['ID'];
   oncoTreeCode: Scalars['String'];
   perThousandOccurrence: Scalars['Int'];
@@ -16451,6 +16470,7 @@ export type OncoTreeDisease = {
   id: Scalars['ID'];
   mainType: EditableStatement;
   name: EditableStatement;
+  occurrences: Array<Maybe<OncoTreeOccurrence>>;
   parent?: Maybe<Array<Maybe<OncoTreeDisease>>>;
   tissue: EditableStatement;
   xrefs: EditableXRefList;
@@ -16499,6 +16519,22 @@ export type OncoTreeDiseaseNameArgs = {
 };
 
 
+export type OncoTreeDiseaseOccurrencesArgs = {
+  _id?: Maybe<Scalars['Long']>;
+  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
+  filter?: Maybe<_OncoTreeOccurrenceFilter>;
+  first?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  offset?: Maybe<Scalars['Int']>;
+  oncoTreeCode?: Maybe<Scalars['String']>;
+  oncoTreeCodes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  orderBy?: Maybe<Array<Maybe<_OncoTreeOccurrenceOrdering>>>;
+  perThousandOccurrence?: Maybe<Scalars['Int']>;
+  perThousandOccurrences?: Maybe<Array<Maybe<Scalars['Int']>>>;
+};
+
+
 export type OncoTreeDiseaseParentArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
@@ -16541,13 +16577,23 @@ export type OncoTreeDiseaseXrefsArgs = {
 export type OncoTreeOccurrence = {
    __typename?: 'OncoTreeOccurrence';
   _id?: Maybe<Scalars['Long']>;
-  disease: Scalars['String'];
+  disease: OncoTreeDisease;
   id: Scalars['ID'];
   occurrences: EditableInt;
   oncoTreeCode: Scalars['String'];
   perThousandOccurrence: Scalars['Int'];
   percentOccurrence: EditableStatement;
   totalSamples: EditableInt;
+};
+
+
+export type OncoTreeOccurrenceDiseaseArgs = {
+  code?: Maybe<Scalars['String']>;
+  codes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_OncoTreeDiseaseFilter>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  orderBy?: Maybe<Array<Maybe<_OncoTreeDiseaseOrdering>>>;
 };
 
 
@@ -18037,8 +18083,6 @@ export type QueryTypeOncoTreeDiseaseArgs = {
 export type QueryTypeOncoTreeOccurrenceArgs = {
   _id?: Maybe<Scalars['Long']>;
   _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
-  disease?: Maybe<Scalars['String']>;
-  diseases?: Maybe<Array<Maybe<Scalars['String']>>>;
   filter?: Maybe<_OncoTreeOccurrenceFilter>;
   first?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['ID']>;
@@ -21265,8 +21309,14 @@ export type HotSpotVariantQuery = (
     & Pick<HotSpotVariant, 'id' | 'gene' | 'name' | 'referenceAminoAcid' | 'variantAminoAcid' | 'begin' | 'end' | 'position'>
     & { occurrences: Array<Maybe<(
       { __typename?: 'OncoTreeOccurrence' }
-      & Pick<OncoTreeOccurrence, 'disease' | 'oncoTreeCode' | 'perThousandOccurrence'>
-      & { occurrences: (
+      & Pick<OncoTreeOccurrence, 'oncoTreeCode' | 'perThousandOccurrence'>
+      & { disease: (
+        { __typename?: 'OncoTreeDisease' }
+        & { name: (
+          { __typename?: 'EditableStatement' }
+          & Pick<EditableStatement, 'statement'>
+        ) }
+      ), occurrences: (
         { __typename?: 'EditableInt' }
         & Ei_FieldsFragment
       ), totalSamples: (
@@ -26364,7 +26414,11 @@ export const HotSpotVariantDocument = gql`
     end
     position
     occurrences(orderBy: perThousandOccurrence_desc) {
-      disease
+      disease {
+        name {
+          statement
+        }
+      }
       oncoTreeCode
       occurrences {
         ...ei_fields

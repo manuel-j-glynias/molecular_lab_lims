@@ -2,6 +2,7 @@ import * as React from 'react';
 import {GetUserQuery} from '../../generated/graphql';
 import {useState} from "react";
 import {useUserContentState, UserContentActionTypes} from "../../context/UserContentContext"
+import {useEditorContentState,EditorContentActionTypes} from "../../context/EditorContentContext";
 import { Redirect } from 'react-router-dom';
 
 interface Props {
@@ -24,6 +25,10 @@ const LogIn: React.FC<Props> = ({data, logged_in, set_logged_in}) => {
         UserContentState: {}, setUserContentState
     } = useUserContentState();
 
+    const {
+        EditorContentState: {}, setEditorContentState
+    } = useEditorContentState();
+
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (data.User && data.User.length > 0) {
@@ -33,7 +38,7 @@ const LogIn: React.FC<Props> = ({data, logged_in, set_logged_in}) => {
                     if (user && user['name']) {
                         if (user['name'] === name && user['password'] === password) {
                             setUserContentState({type: UserContentActionTypes.userID, userID: user['id']});
-                            setUserContentState({type: UserContentActionTypes.isEditor, isEditor: user['isEditor']});
+                            setEditorContentState({type: EditorContentActionTypes.isEditor, isEditor: user['isEditor']});
                             set_logged_in(true);
                             break;
                         }

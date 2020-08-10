@@ -12,7 +12,11 @@ export const QUERY_HOTSPOT_VARIANT = gql`
             end
             position
             occurrences(orderBy:perThousandOccurrence_desc){
-                disease
+                disease{
+                    name{
+                        statement
+                    }
+                }
                 oncoTreeCode
                 occurrences{
                     ...ei_fields

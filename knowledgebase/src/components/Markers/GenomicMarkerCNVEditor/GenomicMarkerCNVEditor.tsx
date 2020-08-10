@@ -7,7 +7,7 @@ import DescriptionEditor from "./DescriptionEditor";
 import HistoryContainer from "../../common/History";
 import CopyChangeHistoryContainer from "../../common/CopyChangeHistory"
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
-import {useUserContentState} from "../../../context/UserContentContext"
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 import './styles.css';
 
@@ -38,11 +38,10 @@ const {
     } = useAppendedContentState();
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
-
 
     const edit_description = async () => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})

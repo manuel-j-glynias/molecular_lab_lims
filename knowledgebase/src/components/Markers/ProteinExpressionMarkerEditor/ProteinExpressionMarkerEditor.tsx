@@ -18,6 +18,7 @@ import ImmuneCycleRoleHistoryContainer from "../../common/ImmuneCycleRoleHistory
 import ImmuneFunctionHistoryContainer from "../../common/ImmuneFunctionHistory";
 import ImmunePhenotypeHistoryContainer from "../../common/ImmunePhenotypeHistory";
 import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 
 interface Props{
@@ -62,8 +63,8 @@ const ProteinExpressionMarkerEditor : React.FC<Props> = ({data,marker_id,editing
     const [show_assay, set_show_assay] = React.useState(false);
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

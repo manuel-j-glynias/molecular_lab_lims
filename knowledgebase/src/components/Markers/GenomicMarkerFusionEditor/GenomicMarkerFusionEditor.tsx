@@ -15,6 +15,7 @@ import Gene5Editor from "./Gene5Editor";
 import Gene3Editor from "./Gene3Editor";
 import './styles.css';
 import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 interface Props {
     data: VariantFusionQuery;
@@ -60,8 +61,8 @@ const GenomicMarkerFusionEditor : React.FC<Props> = ({data,editing_description,s
         set_editing_description(true)
     };
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

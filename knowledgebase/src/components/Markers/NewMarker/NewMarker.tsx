@@ -34,9 +34,10 @@ interface Props {
     set_query_string: (query: string) => void;
     set_gene_id: (newId: string) => void;
     set_selected_gene_label:(label: string) => void;
+    set_variant_id: (newId: string) => void;
 }
 
-const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker_id,set_gene_id,set_selected_gene_label}) => {
+const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker_id,set_gene_id,set_selected_gene_label,set_variant_id}) => {
     const [markerName, set_markerName] = useState('Protein Expression Markers')
     const [new_markerType, set_new_markerType] = useState('ProteinExpressionMarker')
     const [new_marker_name, set_new_marker_name] = useState('');
@@ -48,6 +49,8 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     const [region_type_label, set_region_type_label] = React.useState('Gene');
     const [filter_term, set_filter_term] = useState('');
     const [protein_level_assay_id, set_protein_level_assay_id]= useState('');
+    const [new_variant_id, set_new_variant_id]= useState('');
+
     const alert = useAlert()
 
     const {
@@ -140,6 +143,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
             set_selected_gene_label(new_gene_name)
             set_gene_id(new_gene_id)
             set_marker_id(new_marker_id)
+            set_variant_id(new_variant_id)
         }
     }
     useEffect(post_CreateGenomicVariantMarkerSnvMutation,[snvMutationData])
@@ -478,6 +482,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                     console.log("VariantSNVIndel")
                     const mutation_object = get_CreateGenomicVariantMarkerSnvMutationVariables();
                     set_new_marker_id(mutation_object.marker_id)
+                    set_new_variant_id(mutation_object.variant_id)
                     await createGenomicVariantSNV({variables:mutation_object})
                     break;
                 }
@@ -485,6 +490,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                     console.log("VariantRegion")
                     const mutation_object = get_CreateGenomicVariantMarkerRegionMutationVariables();
                     set_new_marker_id(mutation_object.marker_id)
+                    set_new_variant_id(mutation_object.variant_id)
                     await createGenomicVariantRegion({variables:mutation_object})
                     break;
                 }
@@ -492,6 +498,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                     console.log("VariantCNV")
                     const mutation_object = get_CreateGenomicVariantMarkerCnvMutationVariables();
                     set_new_marker_id(mutation_object.marker_id)
+                    set_new_variant_id(mutation_object.variant_id)
                     await createGenomicVariantCNV({variables:mutation_object})
                     break;
                 }
@@ -499,6 +506,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                     console.log("VariantFusion")
                     const mutation_object = get_CreateGenomicVariantMarkerFusionMutationVariables();
                     set_new_marker_id(mutation_object.marker_id)
+                    set_new_variant_id(mutation_object.variant_id)
                     await createGenomicVariantFusion({variables:mutation_object})
                     break;
                 }

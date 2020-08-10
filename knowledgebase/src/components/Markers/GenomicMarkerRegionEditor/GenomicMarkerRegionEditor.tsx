@@ -11,7 +11,7 @@ import DescriptionEditor from "./DescriptionEditor";
 import FrameshiftEditor from "./FrameshiftEditor";
 import DeleteriousEditor from "./DeleteriousEditor";
 import TruncatingEditor from "./TruncatingEditor";
-import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 
 interface Props {
@@ -51,8 +51,8 @@ const GenomicMarkerRegionEditor : React.FC<Props> = ({data,editing_description,s
     } = useAppendedContentState();
 
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 

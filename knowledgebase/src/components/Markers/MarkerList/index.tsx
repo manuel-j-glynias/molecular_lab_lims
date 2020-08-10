@@ -16,6 +16,7 @@ import ProteinExpressionMarkersListContainer from "../ProteinExpressionMarkersLi
 import MarkerProfilesListContainer from "../MarkerProfilesList";
 import {AssayComparator} from "../../../generated/graphql";
 import {useUserContentState} from "../../../context/UserContentContext";
+import {useEditorContentState} from "../../../context/EditorContentContext";
 
 const className = 'MarkerList';
 
@@ -103,8 +104,8 @@ const MarkerListContainter: React.FC<Props> = ({set_variant_id,set_variant_type_
         selectedOption: { value: markerType, label: markerName },
     };
     const {
-        UserContentState: {isEditor}
-    } = useUserContentState();
+        EditorContentState: {isEditor}
+    } = useEditorContentState();
 
     const canEdit : boolean = isEditor;
 
