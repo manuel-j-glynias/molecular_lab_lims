@@ -35,18 +35,21 @@ const DescriptionEditor : React.FC<Props> = ({description,set_editing,es_ID, es_
     const user_ID : string = userID;
 
 
-    async function extracted(pmids: Array<string>) {
+    async function call_mutation(pmids: Array<string>) {
         const mutation_object = get_description_mutation_object(variant_ID, es_ID, es_field, description_string.current, user_ID, pmids)
         await addDescriptionMutation({variables: mutation_object})
     }
 
     const save = async () => {
          let pmids:Array<string> = parse_description(description_string.current)
-
-        const preflight_input = pmids.join(',')
-        preflight(preflight_input).then( (response:preflightResult) => {
-            extracted(response.refs)
-        })
+        if (pmids.length > 0) {
+            const preflight_input = pmids.join(',')
+            preflight(preflight_input).then( (response:preflightResult) => {
+                call_mutation(response.refs)
+            })
+        } else {
+            call_mutation([])
+        }
      };
 
     const post_save = () => {

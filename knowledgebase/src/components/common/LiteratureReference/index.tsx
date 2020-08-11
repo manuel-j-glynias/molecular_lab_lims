@@ -23,7 +23,10 @@ const LiteratureReferenceContainer = ({ id }: OwnProps) => {
     }
 
     if (!data) {
-        return <div>No data for Protein</div>;
+        return <div>No data for References</div>;
+    }
+    if (data.LiteratureReference && data.LiteratureReference.length==0) {
+        return <div>No References</div>;
     }
 
     return <LiteratureReference data={data} />;

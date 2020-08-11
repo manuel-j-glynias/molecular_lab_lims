@@ -1,18 +1,24 @@
 import * as React from 'react';
-import {Fragment, useEffect} from "react";
+import {Fragment, useEffect} from 'react';
 import Select, {OptionTypeBase} from "react-select";
-import {AssayComparator,RnaSeqResultType} from "../../../generated/graphql";
-
+import {
+    AssayComparator,
+    CreateRnaSeqAssayMutationVariables,
+    RnaSeqResultType,
+    useCreateRnaSeqAssayMutation
+} from "../../../generated/graphql";
+import {useUserContentState} from "../../../context/UserContentContext";
+import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/Helpers/EditableStatementHelper";
 
 interface Props {
     set_protein_level_assay_id: (newId: string) => void;
     set_creating_new_rnaseq_assay: (b:boolean)=> void;
-
+    set_query_string: (q:string) => void;
 }
 const className = 'RnaSeqAssayEditor';
 
 
-const RnaSeqAssayEditor: React.FC<Props> = ({set_protein_level_assay_id,set_creating_new_rnaseq_assay}) => {
+const RnaSeqAssayEditor: React.FC<Props> = ({set_protein_level_assay_id,set_creating_new_rnaseq_assay,set_query_string}) => {
 
     const [name, set_name] = React.useState('');
     const [resultType, set_resultType] = React.useState(RnaSeqResultType.RankScore);
@@ -22,13 +28,58 @@ const RnaSeqAssayEditor: React.FC<Props> = ({set_protein_level_assay_id,set_crea
     const [showMax, set_showMax] = React.useState(true);
     const [should_showMax, set_should_showMax] = React.useState(false);
 
-    const save = async ()  => {
-        console.log(name)
-        console.log(getResultMin())
-        console.log(getResultMax())
-        console.log(resultType)
-       set_creating_new_rnaseq_assay(false)
+    const {
+        UserContentState: {userID}
+    } = useUserContentState();
+
+    const user_ID : string = userID;
+
+
+    const [createRnaSeqAssay, {loading,error,data}] = useCreateRnaSeqAssayMutation({variables:{date:'',user_id: '',ref_array:[], assay_id:'',name:'', name_id:'',name_field:'', comparator_id:'',comparator_field:'',comparator:AssayComparator.Equals,
+        resultMin_id:'',resultMin_field:'',resultMin:-1,resultMax_id:'',resultMax_field:'',resultMax:-1,resultType_id:'',resultType_field:'',resultType:RnaSeqResultType.NRpm}})
+
+    const get_CreateRnaSeqAssayMutationVariables = () : CreateRnaSeqAssayMutationVariables => {
+        const variables : CreateRnaSeqAssayMutationVariables = {
+                date: get_date_as_hyphenated_string(),
+                user_id: user_ID,
+                ref_array: [],
+                assay_id: get_unique_graph_id('rna_seq_'),
+                name_id: get_unique_graph_id('es_'),
+                name: name,
+                name_field: get_unique_graph_id('rna_seq_name_field_'),
+                comparator_id: get_unique_graph_id('eac_'),
+                comparator_field: get_unique_graph_id('rna_seq_comparator_field_'),
+                comparator: comparator,
+                resultMin_id: get_unique_graph_id('ef_'),
+                resultMin_field: get_unique_graph_id('rna_seq_resultMin_field_'),
+                resultMin: parseFloat(resultMin),
+                resultMax_id: get_unique_graph_id('ef_'),
+                resultMax_field: get_unique_graph_id('rna_seq_resultMax_field_'),
+                resultMax: parseFloat(resultMax),
+                resultType_id: get_unique_graph_id('ernaseq_'),
+                resultType_field: get_unique_graph_id('rna_seq_resultType_field_'),
+                resultType: resultType
+            }
+            return variables;
     }
+
+
+    const save = async ()  => {
+        const mutation_object = get_CreateRnaSeqAssayMutationVariables();
+        set_protein_level_assay_id(mutation_object.assay_id);
+        await createRnaSeqAssay({variables:mutation_object})
+
+    }
+
+    const post_save = () => {
+        if (data!=null){
+            set_query_string(name)
+             set_creating_new_rnaseq_assay(false)
+        }
+    }
+
+    useEffect(post_save,[data])
+
     const cancel = async ()  => {
         set_creating_new_rnaseq_assay(false)
     }

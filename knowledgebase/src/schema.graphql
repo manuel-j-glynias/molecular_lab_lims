@@ -8878,6 +8878,22 @@ input _OncoTreeOccurrenceFilter {
     disease_not: _OncoTreeDiseaseFilter
     # disease_not_in
     disease_not_in: _OncoTreeDiseaseFilter
+    # hotSpotVariant
+    hotSpotVariant: _HotSpotVariantFilter
+    # hotSpotVariant_every
+    hotSpotVariant_every: _HotSpotVariantFilter
+    # hotSpotVariant_in
+    hotSpotVariant_in: _HotSpotVariantFilter
+    # hotSpotVariant_none
+    hotSpotVariant_none: _HotSpotVariantFilter
+    # hotSpotVariant_not
+    hotSpotVariant_not: _HotSpotVariantFilter
+    # hotSpotVariant_not_in
+    hotSpotVariant_not_in: _HotSpotVariantFilter
+    # hotSpotVariant_single
+    hotSpotVariant_single: _HotSpotVariantFilter
+    # hotSpotVariant_some
+    hotSpotVariant_some: _HotSpotVariantFilter
     # id
     id: ID
     # id_contains
@@ -14784,7 +14800,7 @@ type IHCAssay implements ProteinLevelAssay {
         # ids is list variant of id of EditableFloat
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
-    ): EditableFloat
+    ): EditableFloat!
     # IHCAssay resultMin EditableFloat
     resultMin(
         # editDate of EditableFloat
@@ -14826,7 +14842,7 @@ type IHCAssay implements ProteinLevelAssay {
         statement: String
         # statements is list variant of statement of EditableStatement
         statements: [String]
-    ): EditableStatement
+    ): EditableStatement!
     # IHCAssay resultUnits EditableStatement
     resultUnits(
         # editDate of EditableStatement
@@ -16352,6 +16368,8 @@ type MutationType {
     addOncoTreeDiseaseXrefs(id: ID!, xrefs: [ID!]!): String
     # Adds Disease to OncoTreeOccurrence entity
     addOncoTreeOccurrenceDisease(disease: [ID!]!, id: ID!): String
+    # Adds HotSpotVariant to OncoTreeOccurrence entity
+    addOncoTreeOccurrenceHotSpotVariant(hotSpotVariant: [ID!]!, id: ID!): String
     # Adds Occurrences to OncoTreeOccurrence entity
     addOncoTreeOccurrenceOccurrences(id: ID!, occurrences: [ID!]!): String
     # Adds PercentOccurrence to OncoTreeOccurrence entity
@@ -17562,6 +17580,11 @@ type MutationType {
     deleteOncoTreeOccurrence(id: ID!): String
     # Deletes Disease from OncoTreeOccurrence entity
     deleteOncoTreeOccurrenceDisease(disease: [ID!]!, id: ID!): String
+    # Deletes HotSpotVariant from OncoTreeOccurrence entity
+    deleteOncoTreeOccurrenceHotSpotVariant(
+        hotSpotVariant: [ID!]!
+        id: ID!
+    ): String
     # Deletes Occurrences from OncoTreeOccurrence entity
     deleteOncoTreeOccurrenceOccurrences(id: ID!, occurrences: [ID!]!): String
     # Deletes PercentOccurrence from OncoTreeOccurrence entity
@@ -19494,6 +19517,47 @@ type OncoTreeOccurrence {
         ids: [ID]
         orderBy: [_OncoTreeDiseaseOrdering]
     ): OncoTreeDisease!
+    # OncoTreeOccurrence hotSpotVariant HotSpotVariant
+    hotSpotVariant(
+        _id: Long
+        _ids: [Long]
+        # begin of HotSpotVariant
+        begin: String
+        # begins is list variant of begin of HotSpotVariant
+        begins: [String]
+        # end of HotSpotVariant
+        end: String
+        # ends is list variant of end of HotSpotVariant
+        ends: [String]
+        filter: _HotSpotVariantFilter
+        first: Int
+        # gene of HotSpotVariant
+        gene: String
+        # genes is list variant of gene of HotSpotVariant
+        genes: [String]
+        # id of HotSpotVariant
+        id: ID
+        # ids is list variant of id of HotSpotVariant
+        ids: [ID]
+        # name of HotSpotVariant
+        name: String
+        # names is list variant of name of HotSpotVariant
+        names: [String]
+        offset: Int
+        orderBy: [_HotSpotVariantOrdering]
+        # position of HotSpotVariant
+        position: Int
+        # positions is list variant of position of HotSpotVariant
+        positions: [Int]
+        # referenceAminoAcid of HotSpotVariant
+        referenceAminoAcid: String
+        # referenceAminoAcids is list variant of referenceAminoAcid of HotSpotVariant
+        referenceAminoAcids: [String]
+        # variantAminoAcid of HotSpotVariant
+        variantAminoAcid: String
+        # variantAminoAcids is list variant of variantAminoAcid of HotSpotVariant
+        variantAminoAcids: [String]
+    ): [HotSpotVariant]!
     # id of  OncoTreeOccurrence
     id: ID!
     # OncoTreeOccurrence occurrences EditableInt
@@ -21874,7 +21938,7 @@ type RNASeqAssay implements ProteinLevelAssay {
         # ids is list variant of id of EditableFloat
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
-    ): EditableFloat
+    ): EditableFloat!
     # RNASeqAssay resultMin EditableFloat
     resultMin(
         # editDate of EditableFloat
@@ -22071,7 +22135,7 @@ type RNASeqSignatureMarker implements MarkerComponent {
         # ids is list variant of id of EditableFloat
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
-    ): EditableFloat
+    ): EditableFloat!
     # RNASeqSignatureMarker resultMin EditableFloat
     resultMin(
         # editDate of EditableFloat
@@ -22092,7 +22156,7 @@ type RNASeqSignatureMarker implements MarkerComponent {
         # ids is list variant of id of EditableFloat
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
-    ): EditableFloat
+    ): EditableFloat!
     # RNASeqSignatureMarker resultString EditableStatement
     resultString(
         # editDate of EditableStatement
@@ -22570,7 +22634,7 @@ type TMBMarker implements MarkerComponent {
         # ids is list variant of id of EditableFloat
         ids: [ID]
         orderBy: [_EditableFloatOrdering]
-    ): EditableFloat
+    ): EditableFloat!
     # TMBMarker resultMin EditableFloat
     resultMin(
         # editDate of EditableFloat

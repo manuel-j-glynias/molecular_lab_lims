@@ -7,11 +7,13 @@ import {useState} from "react";
 interface Props {
     protein_level_assay_id: string;
     set_protein_level_assay_id: (id:string) => void;
+    query_string: string;
+    set_query_string: (q:string) => void;
 }
 const className = 'ProteinLevelAssayList';
 
-const ProteinLevelAssayListContainer = ({protein_level_assay_id, set_protein_level_assay_id}:Props) => {
-    const [query_string, set_query_string] = useState('');
+const ProteinLevelAssayListContainer = ({protein_level_assay_id, set_protein_level_assay_id,query_string,set_query_string}:Props) => {
+    // const [query_string, set_query_string] = useState('');
     const [filter_term, set_filter_term] = useState('');
 
     const { data, error, loading, refetch } = useProteinLevelAssayQuery(

@@ -328,7 +328,8 @@ export const mutation_create_tmb_marker = gql`
         $date: String!,$user_id: ID!, $ref_array:[ID!]!,$empty_string:String!,
         $name_id: ID!,$name:String!,  $name_field: String!,
         $method_id:ID!, $method_field:String!,$result_string_id:ID!, $result_string_field:String!,
-        $comparator_id:ID!, $comparator_field:String!,$resultMin_id:ID!, $resultMin_field:String!,$resultUnits_id:ID!, $resultUnits_field:String!,$interpretation_id:ID!, $interpretation_field:String!,
+        $comparator_id:ID!, $comparator_field:String!,$resultMin_id:ID!, $resultMin_field:String!,$resultMax_id:ID!, $resultMax_field:String!,
+        $resultUnits_id:ID!, $resultUnits_field:String!,$interpretation_id:ID!, $interpretation_field:String!,
     ){
 
         createTMBMarker(id: $marker_id)
@@ -354,7 +355,12 @@ export const mutation_create_tmb_marker = gql`
         min_editor: addEditableFloatEditor(id:$resultMin_id, editor: [$user_id])
         min_ref: addEditableFloatReferences(id:$resultMin_id, references: $ref_array)
         addTMBMarkerResultMin(id: $marker_id,resultMin: [$resultMin_id])
-        
+
+        max: createEditableFloat(id:$resultMax_id,field:$resultMax_field,editDate: $date,floatValue: -1.0 )
+        max_editor: addEditableFloatEditor(id:$resultMax_id, editor: [$user_id])
+        max_ref: addEditableFloatReferences(id:$resultMax_id, references: $ref_array)
+        addTMBMarkerResultMax(id: $marker_id,resultMax: [$resultMax_id])
+
         units: createEditableStatement(editDate: $date, field: $resultUnits_field, id: $resultUnits_id, statement: $empty_string)
         units_editor: addEditableStatementEditor(editor: [$user_id], id: $resultUnits_id)
         units_ref: addEditableStatementReferences(id: $resultUnits_id, references: $ref_array)
@@ -419,51 +425,9 @@ export const mutation_create_protein_expression_marker = gql`
     }
 `
 
+
 export const mutation_create_ihc_assay = gql`
     mutation CreateIHCAssay($date: String!,$user_id: ID!, $ref_array:[ID!]!,
-        $assay_id: ID!,$name_id: ID!,$name_field: String!,$name:String!,
-        $clone_id: ID!,$clone_field: String!,$clone:String!,
-        $comparator_id:ID!, $comparator_field:String!,$comparator: AssayComparator!,
-        $resultMin_id:ID!, $resultMin_field:String!,$resultMin:Float!,
-        $rs_id: ID!,$rs_field: String!,$rs:String!,
-        $units_id: ID!,$units_field: String!,$units:String!,
-    ){
-        createIHCAssay(id: $assay_id)
-
-        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
-        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
-        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
-        addIHCAssayName(id:$assay_id,name: [$name_id] )
-
-        clone: createEditableStatement(editDate: $date, field: $clone_field, id: $clone_id, statement: $clone)
-        clone_editor: addEditableStatementEditor(editor: [$user_id], id: $clone_id)
-        clone_ref: addEditableStatementReferences(id: $clone_id, references: $ref_array)
-        addIHCAssayAntibodyClone(id:$assay_id,antibodyClone: [$clone_id] )
-
-        comp: createEditableAssayComparator(id:$comparator_id,field:$comparator_field,editDate: $date, comparator: $comparator  )
-        comp_editor: addEditableAssayComparatorEditor(editor: [$user_id], id: $comparator_id)
-        comp_ref: addEditableAssayComparatorReferences(id: $comparator_id, references: $ref_array)
-        addIHCAssayComparator(id:$assay_id, comparator:[$comparator_id])
-
-        min: createEditableFloat(id: $resultMin_id,field:$resultMin_field,editDate: $date,floatValue: $resultMin )
-        min_editor: addEditableFloatEditor(editor: [$user_id], id: $resultMin_id)
-        min_ref: addEditableFloatReferences(id: $resultMin_id, references: $ref_array)
-        addIHCAssayResultMin(id:$assay_id,resultMin: [$resultMin_id])
-
-        rs: createEditableStatement(editDate: $date, field: $rs_field, id: $rs_id, statement: $rs)
-        rs_editor: addEditableStatementEditor(editor: [$user_id], id: $rs_id)
-        rs_ref: addEditableStatementReferences(id: $rs_id, references: $ref_array)
-        addIHCAssayResultString(id:$assay_id,resultString: [$rs_id] )
-
-        units: createEditableStatement(editDate: $date, field: $units_field, id: $units_id, statement: $units)
-        units_editor: addEditableStatementEditor(editor: [$user_id], id: $units_id)
-        units_ref: addEditableStatementReferences(id: $units_id, references: $ref_array)
-        addIHCAssayResultUnits(id:$assay_id,resultUnits: [$units_id] )
-
-    }
-`
-export const mutation_create_ihc_assay_with_max = gql`
-    mutation CreateIHCAssayWithMax($date: String!,$user_id: ID!, $ref_array:[ID!]!,
         $assay_id: ID!,$name_id: ID!,$name_field: String!,$name:String!,
         $clone_id: ID!,$clone_field: String!,$clone:String!,
         $comparator_id:ID!, $comparator_field:String!,$comparator: AssayComparator!,
@@ -511,37 +475,9 @@ export const mutation_create_ihc_assay_with_max = gql`
 
     }
 `
+
 export const mutation_create_rna_seq_assay = gql`
     mutation CreateRnaSeqAssay($date: String!,$user_id: ID!, $ref_array:[ID!]!,
-        $assay_id: ID!,$name_id: ID!,$name_field: String!,$name:String!,
-        $comparator_id:ID!, $comparator_field:String!,$comparator: AssayComparator!,
-        $resultMin_id:ID!, $resultMin_field:String!,$resultMin:Float!,
-        $resultType_id:ID!, $resultType_field:String!,$resultType:RNASeqResultType!,
-    ){
-        createRNASeqAssay(id: $assay_id)
-        name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
-        name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
-        name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
-        addRNASeqAssayName(id:$assay_id,name: [$name_id])
-        
-        comp: createEditableAssayComparator(id:$comparator_id,field:$comparator_field,editDate: $date, comparator: $comparator  )
-        comp_editor: addEditableAssayComparatorEditor(editor: [$user_id], id: $comparator_id)
-        comp_ref: addEditableAssayComparatorReferences(id: $comparator_id, references: $ref_array)
-        addRNASeqAssayComparator(id:$assay_id, comparator:[$comparator_id])
-        
-        min: createEditableFloat(id: $resultMin_id,field:$resultMin_field,editDate: $date,floatValue: $resultMin )
-        min_editor: addEditableFloatEditor(editor: [$user_id], id: $resultMin_id)
-        min_ref: addEditableFloatReferences(id: $resultMin_id, references: $ref_array)
-        addRNASeqAssayResultMin(id:$assay_id,resultMin: [$resultMin_id])
-        
-        rt: createEditableRNASeqResultType(id:$resultType_id,editDate: $date,field:$resultType_field,resultType: $resultType)
-        rt_editor: addEditableRNASeqResultTypeEditor(editor: [$user_id], id: $resultType_id)
-        rt_ref: addEditableRNASeqResultTypeReferences(id: $resultType_id, references: $ref_array)
-        addRNASeqAssayResultType(id:$assay_id, resultType: [$resultType_id])
-    }
-`
-export const mutation_create_rna_seq_assay_with_max = gql`
-    mutation CreateRnaSeqAssayWithMax($date: String!,$user_id: ID!, $ref_array:[ID!]!,
         $assay_id: ID!,$name_id: ID!,$name:String!,  $name_field: String!,
         $comparator_id:ID!, $comparator_field:String!,$comparator: AssayComparator!,
         $resultMin_id:ID!, $resultMin_field:String!,$resultMin:Float!,

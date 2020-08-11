@@ -57,6 +57,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     const [region_value, set_region_value]= useState('0');
     const [add_gene, set_add_gene] = useState('');
 
+    const [ProteinLevelAssay_query_string, set_ProteinLevelAssay_query_string] = useState('');
     const [creating_new_ihc_assay, set_creating_new_ihc_assay]= useState(false);
     const [creating_new_rnaseq_assay, set_creating_new_rnaseq_assay]= useState(false);
 
@@ -340,7 +341,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     useEffect(post_CreateMsiMarkerMutation,[msiMutationData])
 
     const [createTmbMarker, { loading: tmbMutationLoading, error: tmbMutationError, data:tmbMutationData }] = useCreateTmbMarkerMutation({variables:{marker_id:'',  date:'', empty_string:'', method_field:'', method_id:'',
-            name:'', name_id:'',name_field:'',result_string_id:'',result_string_field:'',comparator_id:'',comparator_field:'',resultMin_id:'',resultMin_field:'',resultUnits_id:'', resultUnits_field:'',interpretation_id:'',interpretation_field:'',
+            name:'', name_id:'',name_field:'',result_string_id:'',result_string_field:'',comparator_id:'',comparator_field:'',resultMin_id:'',resultMin_field:'',resultMax_id:'',resultMax_field:'',resultUnits_id:'', resultUnits_field:'',interpretation_id:'',interpretation_field:'',
             user_id: '',ref_array:[]}})
 
     const get_CreateTmbMarkerMutationVariables_object = ():CreateTmbMarkerMutationVariables => {
@@ -354,9 +355,11 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
             name: new_marker_name,
             name_field: get_unique_graph_id("tmb_name_field_"),
             comparator_id:get_unique_graph_id('eac_'),
-            comparator_field:get_unique_graph_id('comparator_field_'),
+            comparator_field:get_unique_graph_id('tmb_comparator_field_'),
             resultMin_id:get_unique_graph_id('ef_'),
-            resultMin_field:get_unique_graph_id('resultMin_field_'),
+            resultMin_field:get_unique_graph_id('tmb_resultMin_field_'),
+            resultMax_id:get_unique_graph_id('ef_'),
+            resultMax_field:get_unique_graph_id('tmb_resultMax_field_'),
             resultUnits_id:get_unique_graph_id('es_'),
             resultUnits_field:get_unique_graph_id('tmb_resultUnits_field_'),
             interpretation_id:get_unique_graph_id('etmbi_'),
@@ -669,13 +672,13 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                 <div>
                     {new_markerType == 'ProteinExpressionMarker' && !creating_new_ihc_assay && !creating_new_rnaseq_assay &&
                         <Fragment>
-                            <ProteinLevelAssayListContainer protein_level_assay_id={protein_level_assay_id} set_protein_level_assay_id={set_protein_level_assay_id} />
+                            <ProteinLevelAssayListContainer protein_level_assay_id={protein_level_assay_id} set_protein_level_assay_id={set_protein_level_assay_id} query_string={ProteinLevelAssay_query_string} set_query_string={set_ProteinLevelAssay_query_string}/>
                             <button className={'btn btn-primary'} onClick={()=>set_creating_new_ihc_assay(true)}>New IHC Assay</button>
                             <button className={'btn btn-primary'} onClick={()=>set_creating_new_rnaseq_assay(true)}>New RNAseq Assay</button>
                         </Fragment>
                     }
-                    {new_markerType == 'ProteinExpressionMarker' && creating_new_ihc_assay && <IHCAssayEditor set_protein_level_assay_id={set_protein_level_assay_id} set_creating_new_ihc_assay={set_creating_new_ihc_assay}/>}
-                    {new_markerType == 'ProteinExpressionMarker' && creating_new_rnaseq_assay && <RnaSeqAssayEditor set_protein_level_assay_id={set_protein_level_assay_id} set_creating_new_rnaseq_assay={set_creating_new_rnaseq_assay}/>}
+                    {new_markerType == 'ProteinExpressionMarker' && creating_new_ihc_assay && <IHCAssayEditor set_protein_level_assay_id={set_protein_level_assay_id} set_creating_new_ihc_assay={set_creating_new_ihc_assay} set_query_string={set_ProteinLevelAssay_query_string}/>}
+                    {new_markerType == 'ProteinExpressionMarker' && creating_new_rnaseq_assay && <RnaSeqAssayEditor set_protein_level_assay_id={set_protein_level_assay_id} set_creating_new_rnaseq_assay={set_creating_new_rnaseq_assay} set_query_string={set_ProteinLevelAssay_query_string}/>}
 
                 </div>
 

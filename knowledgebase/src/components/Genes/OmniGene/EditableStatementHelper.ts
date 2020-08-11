@@ -58,12 +58,7 @@ export const get_category_mutation_object = (geneID:string, oldESID:string, esFi
 }
 
 export const get_description_mutation_object = (geneID:string, oldESID:string, esField:string, description:string, userID:string, refs_array:Array<string>): AddOmniGeneGeneDescriptionMutationVariables=> {
-    // let refs_array :Array<string> = []
-    // for (let i=0;i<refs.length;i++){
-    //     const ref = 'ref_' + refs[i]
-    //     refs_array.push(ref)
-    // }
-    console.log('refs_array='+refs_array.join(','))
+
     const  variables :AddOmniGeneGeneDescriptionMutationVariables = {
         gene_id:geneID,
         old_es_id:oldESID,

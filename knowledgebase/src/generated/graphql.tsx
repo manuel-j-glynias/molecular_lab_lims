@@ -4570,6 +4570,14 @@ export type _OncoTreeOccurrenceFilter = {
   disease_in?: Maybe<_OncoTreeDiseaseFilter>;
   disease_not?: Maybe<_OncoTreeDiseaseFilter>;
   disease_not_in?: Maybe<_OncoTreeDiseaseFilter>;
+  hotSpotVariant?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_every?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_in?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_none?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_not?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_not_in?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_single?: Maybe<_HotSpotVariantFilter>;
+  hotSpotVariant_some?: Maybe<_HotSpotVariantFilter>;
   id?: Maybe<Scalars['ID']>;
   id_contains?: Maybe<Scalars['ID']>;
   id_ends_with?: Maybe<Scalars['ID']>;
@@ -8198,9 +8206,9 @@ export type IhcAssay = ProteinLevelAssay & {
   id: Scalars['ID'];
   name: EditableStatement;
   proteinExpressionMarkers: Array<Maybe<ProteinExpressionMarker>>;
-  resultMax?: Maybe<EditableFloat>;
+  resultMax: EditableFloat;
   resultMin: EditableFloat;
-  resultString?: Maybe<EditableStatement>;
+  resultString: EditableStatement;
   resultUnits: EditableStatement;
 };
 
@@ -9291,6 +9299,7 @@ export type MutationType = {
   addOncoTreeDiseaseTissue?: Maybe<Scalars['String']>;
   addOncoTreeDiseaseXrefs?: Maybe<Scalars['String']>;
   addOncoTreeOccurrenceDisease?: Maybe<Scalars['String']>;
+  addOncoTreeOccurrenceHotSpotVariant?: Maybe<Scalars['String']>;
   addOncoTreeOccurrenceOccurrences?: Maybe<Scalars['String']>;
   addOncoTreeOccurrencePercentOccurrence?: Maybe<Scalars['String']>;
   addOncoTreeOccurrenceTotalSamples?: Maybe<Scalars['String']>;
@@ -9746,6 +9755,7 @@ export type MutationType = {
   deleteOncoTreeDiseaseXrefs?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrence?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrenceDisease?: Maybe<Scalars['String']>;
+  deleteOncoTreeOccurrenceHotSpotVariant?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrenceOccurrences?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrencePercentOccurrence?: Maybe<Scalars['String']>;
   deleteOncoTreeOccurrenceTotalSamples?: Maybe<Scalars['String']>;
@@ -11235,6 +11245,12 @@ export type MutationTypeAddOncoTreeDiseaseXrefsArgs = {
 
 export type MutationTypeAddOncoTreeOccurrenceDiseaseArgs = {
   disease: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
+export type MutationTypeAddOncoTreeOccurrenceHotSpotVariantArgs = {
+  hotSpotVariant: Array<Scalars['ID']>;
   id: Scalars['ID'];
 };
 
@@ -14007,6 +14023,12 @@ export type MutationTypeDeleteOncoTreeOccurrenceDiseaseArgs = {
 };
 
 
+export type MutationTypeDeleteOncoTreeOccurrenceHotSpotVariantArgs = {
+  hotSpotVariant: Array<Scalars['ID']>;
+  id: Scalars['ID'];
+};
+
+
 export type MutationTypeDeleteOncoTreeOccurrenceOccurrencesArgs = {
   id: Scalars['ID'];
   occurrences: Array<Scalars['ID']>;
@@ -16578,6 +16600,7 @@ export type OncoTreeOccurrence = {
    __typename?: 'OncoTreeOccurrence';
   _id?: Maybe<Scalars['Long']>;
   disease: OncoTreeDisease;
+  hotSpotVariant: Array<Maybe<HotSpotVariant>>;
   id: Scalars['ID'];
   occurrences: EditableInt;
   oncoTreeCode: Scalars['String'];
@@ -16594,6 +16617,32 @@ export type OncoTreeOccurrenceDiseaseArgs = {
   id?: Maybe<Scalars['ID']>;
   ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
   orderBy?: Maybe<Array<Maybe<_OncoTreeDiseaseOrdering>>>;
+};
+
+
+export type OncoTreeOccurrenceHotSpotVariantArgs = {
+  _id?: Maybe<Scalars['Long']>;
+  _ids?: Maybe<Array<Maybe<Scalars['Long']>>>;
+  begin?: Maybe<Scalars['String']>;
+  begins?: Maybe<Array<Maybe<Scalars['String']>>>;
+  end?: Maybe<Scalars['String']>;
+  ends?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filter?: Maybe<_HotSpotVariantFilter>;
+  first?: Maybe<Scalars['Int']>;
+  gene?: Maybe<Scalars['String']>;
+  genes?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id?: Maybe<Scalars['ID']>;
+  ids?: Maybe<Array<Maybe<Scalars['ID']>>>;
+  name?: Maybe<Scalars['String']>;
+  names?: Maybe<Array<Maybe<Scalars['String']>>>;
+  offset?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<Array<Maybe<_HotSpotVariantOrdering>>>;
+  position?: Maybe<Scalars['Int']>;
+  positions?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  referenceAminoAcid?: Maybe<Scalars['String']>;
+  referenceAminoAcids?: Maybe<Array<Maybe<Scalars['String']>>>;
+  variantAminoAcid?: Maybe<Scalars['String']>;
+  variantAminoAcids?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
@@ -18449,7 +18498,7 @@ export type RnaSeqAssay = ProteinLevelAssay & {
   id: Scalars['ID'];
   name: EditableStatement;
   proteinExpressionMarkers: Array<Maybe<ProteinExpressionMarker>>;
-  resultMax?: Maybe<EditableFloat>;
+  resultMax: EditableFloat;
   resultMin: EditableFloat;
   resultType: EditableRnaSeqResultType;
 };
@@ -18551,8 +18600,8 @@ export type RnaSeqSignatureMarker = MarkerComponent & {
   markerProfile: MarkerProfile;
   method: EditableStatement;
   name: EditableStatement;
-  resultMax?: Maybe<EditableFloat>;
-  resultMin?: Maybe<EditableFloat>;
+  resultMax: EditableFloat;
+  resultMin: EditableFloat;
   resultString: EditableStatement;
 };
 
@@ -18958,7 +19007,7 @@ export type TmbMarker = MarkerComponent & {
   interpretations: Array<Maybe<EditableTmbInterpretation>>;
   method: EditableStatement;
   name: EditableStatement;
-  resultMax?: Maybe<EditableFloat>;
+  resultMax: EditableFloat;
   resultMin: EditableFloat;
   resultString: EditableStatement;
   resultUnits: EditableStatement;
@@ -20022,24 +20071,39 @@ export type OntologicalDiseaseQuery = (
       & Es_FieldsFragment
     ), synonyms: (
       { __typename?: 'EditableStringList' }
-      & Pick<EditableStringList, 'stringList'>
+      & Pick<EditableStringList, 'id' | 'stringList' | 'field' | 'editDate'>
+      & { references: Array<Maybe<(
+        { __typename?: 'InternetReference' }
+        & Pick<InternetReference, 'id'>
+      ) | (
+        { __typename?: 'LiteratureReference' }
+        & Pick<LiteratureReference, 'id'>
+      ) | (
+        { __typename?: 'MeetingAbstractReference' }
+        & Pick<MeetingAbstractReference, 'id'>
+      )>>, editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'id' | 'name'>
+      ) }
     ), omniMaps: (
       { __typename?: 'EditableOmniMapList' }
+      & Pick<EditableOmniMapList, 'id'>
       & { list: Array<Maybe<(
         { __typename?: 'OmniMap' }
+        & Pick<OmniMap, 'id'>
         & { mCodes: Array<Maybe<(
           { __typename?: 'MCode' }
-          & Pick<MCode, 'mcodeId'>
+          & Pick<MCode, 'id' | 'mcodeId'>
           & { diseasePath: (
             { __typename?: 'EditableStatement' }
-            & Pick<EditableStatement, 'statement'>
+            & Pick<EditableStatement, 'id' | 'statement'>
           ) }
         )>>, omniDisease: (
           { __typename?: 'OmniDisease' }
-          & Pick<OmniDisease, 'omniDiseaseId'>
+          & Pick<OmniDisease, 'id' | 'omniDiseaseId'>
           & { name: (
             { __typename?: 'EditableStatement' }
-            & Pick<EditableStatement, 'statement'>
+            & Pick<EditableStatement, 'id' | 'statement'>
           ) }
         ) }
       )>> }
@@ -20062,6 +20126,22 @@ export type OntologicalDiseaseAddNameMutationVariables = {
 export type OntologicalDiseaseAddNameMutation = (
   { __typename?: 'MutationType' }
   & Pick<MutationType, 'deleteOntologicalDiseaseName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addOntologicalDiseaseName'>
+);
+
+export type OntologicalDiseaseAddSynonymsMutationVariables = {
+  id: Scalars['ID'];
+  old_esyn_id: Scalars['ID'];
+  date: Scalars['String'];
+  esyn_field: Scalars['String'];
+  esyn_list: Array<Maybe<Scalars['String']>>;
+  esyn_id: Scalars['ID'];
+  user_id: Scalars['ID'];
+};
+
+
+export type OntologicalDiseaseAddSynonymsMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'deleteOntologicalDiseaseSynonyms' | 'createEditableStringList' | 'addEditableStringListEditor' | 'addEditableStringListReferences' | 'addOntologicalDiseaseSynonyms'>
 );
 
 export type AddOntologicalDiseaseDescriptionMutationVariables = {
@@ -20093,7 +20173,7 @@ export type OntologicalDiseaseListQuery = (
     & Pick<OntologicalDisease, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   )>>> }
 );
@@ -20107,6 +20187,7 @@ export type OmniGeneComponentsQuery = (
   { __typename?: 'QueryType' }
   & { OmniGene?: Maybe<Array<Maybe<(
     { __typename?: 'OmniGene' }
+    & Pick<OmniGene, 'id'>
     & { myGeneInfoGene: (
       { __typename?: 'MyGeneInfoGene' }
       & Pick<MyGeneInfoGene, 'id'>
@@ -20145,16 +20226,16 @@ export type JaxGeneQuery = (
     & Pick<JaxGene, 'name' | 'chromosome' | 'entrezId' | 'jaxId'>
     & { canonicalTranscript: Array<Maybe<(
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     )>>, synonyms: (
       { __typename?: 'EditableStringList' }
-      & Pick<EditableStringList, 'stringList'>
+      & Pick<EditableStringList, 'id' | 'stringList'>
     ), description: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement' | 'field' | 'editDate'>
+      & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
       & { editor: (
         { __typename?: 'User' }
-        & Pick<User, 'name'>
+        & Pick<User, 'id' | 'name'>
       ), references: Array<Maybe<{ __typename?: 'InternetReference' } | (
         { __typename?: 'LiteratureReference' }
         & Pick<LiteratureReference, 'id' | 'PMID'>
@@ -20172,19 +20253,19 @@ export type MyGeneInfo_GeneQuery = (
   { __typename?: 'QueryType' }
   & { MyGeneInfoGene?: Maybe<Array<Maybe<(
     { __typename?: 'MyGeneInfoGene' }
-    & Pick<MyGeneInfoGene, 'name' | 'entrezId' | 'chromosome' | 'start' | 'end' | 'strand'>
+    & Pick<MyGeneInfoGene, 'id' | 'name' | 'entrezId' | 'chromosome' | 'start' | 'end' | 'strand'>
     & { description: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement' | 'field'>
+      & Pick<EditableStatement, 'id' | 'statement' | 'field'>
       & { references: Array<Maybe<(
         { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'accessedDate' | 'webAddress' | 'shortReference'>
+        & Pick<InternetReference, 'accessedDate' | 'webAddress' | 'id' | 'shortReference'>
       ) | (
         { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'shortReference'>
+        & Pick<LiteratureReference, 'id' | 'shortReference'>
       ) | (
         { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'shortReference'>
+        & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
       )>> }
     ) }
   )>>> }
@@ -20208,20 +20289,7 @@ export type OmniGeneQuery = (
       & Es_FieldsFragment
     ), synonyms: (
       { __typename?: 'EditableStringList' }
-      & Pick<EditableStringList, 'id' | 'stringList' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Esl_FieldsFragment
     ), transcript: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
@@ -20236,24 +20304,6 @@ export type OmniGeneQuery = (
       & Pick<JaxGene, 'id'>
     )> }
   )>>> }
-);
-
-export type Es_FieldsFragment = (
-  { __typename?: 'EditableStatement' }
-  & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
-  & { references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'PMID' | 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
 );
 
 export type GetPubMedIdQueryVariables = {
@@ -20334,7 +20384,7 @@ export type UniprotQuery = (
       & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
       & { editor: (
         { __typename?: 'User' }
-        & Pick<User, 'name'>
+        & Pick<User, 'id' | 'name'>
       ), references: Array<Maybe<(
         { __typename?: 'InternetReference' }
         & Pick<InternetReference, 'id'>
@@ -20390,10 +20440,10 @@ export type ClinVarVariantByGeneQuery = (
   { __typename?: 'QueryType' }
   & { cv_by_name?: Maybe<Array<Maybe<(
     { __typename?: 'ClinVarVariant' }
-    & Pick<ClinVarVariant, 'gene' | 'id' | 'pDot' | 'cDot' | 'variantId'>
+    & Pick<ClinVarVariant, 'id' | 'gene' | 'pDot' | 'cDot' | 'variantId'>
     & { significance: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   )>>> }
 );
@@ -20439,7 +20489,7 @@ export type GoVariantByGeneQuery = (
   { __typename?: 'QueryType' }
   & { go_by_name?: Maybe<Array<Maybe<(
     { __typename?: 'GOVariant' }
-    & Pick<GoVariant, 'gene' | 'id' | 'mutationType'>
+    & Pick<GoVariant, 'id' | 'gene' | 'mutationType'>
     & { name: (
       { __typename?: 'EditableStatement' }
       & Pick<EditableStatement, 'id' | 'statement'>
@@ -20473,20 +20523,7 @@ export type VariantCnvQuery = (
       & Es_FieldsFragment
     ), copyChange: (
       { __typename?: 'EditableCopyChange' }
-      & Pick<EditableCopyChange, 'id' | 'field' | 'cnvType' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & CopyChange_FieldsFragment
     ), gene: (
       { __typename?: 'OmniGene' }
       & Pick<OmniGene, 'id' | 'name'>
@@ -20628,7 +20665,7 @@ export type Variant_Markers_For_IdQuery = (
       & Es_FieldsFragment
     ), method: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ), variant: (
       { __typename: 'VariantCNV' }
       & Pick<VariantCnv, 'id'>
@@ -20679,52 +20716,13 @@ export type VariantFusionQuery = (
       & Pick<OmniGene, 'name'>
     ), copyChange: (
       { __typename?: 'EditableCopyChange' }
-      & Pick<EditableCopyChange, 'id' | 'field' | 'cnvType' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & CopyChange_FieldsFragment
     ), exon3Prime: (
       { __typename?: 'EditableInt' }
-      & Pick<EditableInt, 'id' | 'intValue' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Ei_FieldsFragment
     ), exon5Prime: (
       { __typename?: 'EditableInt' }
-      & Pick<EditableInt, 'id' | 'intValue' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Ei_FieldsFragment
     ), gene3Prime: (
       { __typename?: 'EditableOmniGeneReference' }
       & Eog_FieldsFragment
@@ -20748,27 +20746,6 @@ export type VariantFusionQuery = (
       & Pick<HotSpotVariant, 'id'>
     )> }
   )>>> }
-);
-
-export type Eog_FieldsFragment = (
-  { __typename?: 'EditableOmniGeneReference' }
-  & Pick<EditableOmniGeneReference, 'id' | 'field' | 'editDate'>
-  & { gene: (
-    { __typename?: 'OmniGene' }
-    & Pick<OmniGene, 'id' | 'name'>
-  ), references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
 );
 
 export type VariantFusionAddCopyChangeMutationVariables = {
@@ -20897,45 +20874,19 @@ export type VariantRegionQuery = (
       & Es_FieldsFragment
     )>, proteinEffect: (
       { __typename?: 'EditableProteinEffect' }
-      & Pick<EditableProteinEffect, 'id' | 'proteinEffect' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Epe_FieldsFragment
     ), regionValue: (
       { __typename?: 'EditableInt' }
-      & Pick<EditableInt, 'id' | 'intValue' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Ei_FieldsFragment
     ), isFrameshift: (
       { __typename?: 'EditableBoolean' }
-      & EbFragment
+      & Eb_FieldsFragment
     ), isTruncating: (
       { __typename?: 'EditableBoolean' }
-      & EbFragment
+      & Eb_FieldsFragment
     ), isDeleterious: (
       { __typename?: 'EditableBoolean' }
-      & EbFragment
+      & Eb_FieldsFragment
     ), jaxVariant?: Maybe<(
       { __typename?: 'JaxVariant' }
       & Pick<JaxVariant, 'id'>
@@ -20950,24 +20901,6 @@ export type VariantRegionQuery = (
       & Pick<HotSpotVariant, 'id'>
     )> }
   )>>> }
-);
-
-export type EbFragment = (
-  { __typename?: 'EditableBoolean' }
-  & Pick<EditableBoolean, 'id' | 'booleanValue' | 'field' | 'editDate'>
-  & { references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
 );
 
 export type VariantRegionAddDescriptionMutationVariables = {
@@ -21085,20 +21018,7 @@ export type VariantSnvIndelQuery = (
       & Es_FieldsFragment
     ), proteinEffect: (
       { __typename?: 'EditableProteinEffect' }
-      & Pick<EditableProteinEffect, 'id' | 'proteinEffect' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Epe_FieldsFragment
     ), exon: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
@@ -21232,7 +21152,7 @@ export type GenomicVariantMarkerComponentsQuery = (
     & Pick<GenomicVariantMarker, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   )>>> }
 );
@@ -21261,37 +21181,37 @@ export type Variant_Markers_For_GeneQuery = (
     & Pick<GenomicVariantMarker, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ), method: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ), variant: (
       { __typename: 'VariantCNV' }
       & Pick<VariantCnv, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename: 'VariantFusion' }
       & Pick<VariantFusion, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename: 'VariantRegion' }
       & Pick<VariantRegion, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename: 'VariantSNVIndel' }
       & Pick<VariantSnvIndel, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) }
   )>>> }
@@ -21312,9 +21232,10 @@ export type HotSpotVariantQuery = (
       & Pick<OncoTreeOccurrence, 'oncoTreeCode' | 'perThousandOccurrence'>
       & { disease: (
         { __typename?: 'OncoTreeDisease' }
+        & Pick<OncoTreeDisease, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ), occurrences: (
         { __typename?: 'EditableInt' }
@@ -21330,24 +21251,6 @@ export type HotSpotVariantQuery = (
   )>>> }
 );
 
-export type Ei_FieldsFragment = (
-  { __typename?: 'EditableInt' }
-  & Pick<EditableInt, 'id' | 'intValue' | 'editDate'>
-  & { references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
-);
-
 export type HotSpotVariantByGeneQueryVariables = {
   gene_name?: Maybe<Scalars['String']>;
 };
@@ -21357,7 +21260,7 @@ export type HotSpotVariantByGeneQuery = (
   { __typename?: 'QueryType' }
   & { hs_by_name?: Maybe<Array<Maybe<(
     { __typename?: 'HotSpotVariant' }
-    & Pick<HotSpotVariant, 'gene' | 'id' | 'name' | 'begin' | 'end' | 'position'>
+    & Pick<HotSpotVariant, 'id' | 'gene' | 'name' | 'begin' | 'end' | 'position'>
   )>>> }
 );
 
@@ -21381,6 +21284,7 @@ export type IhcAssayQuery = (
   { __typename?: 'QueryType' }
   & { IHCAssay?: Maybe<Array<Maybe<(
     { __typename?: 'IHCAssay' }
+    & Pick<IhcAssay, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
@@ -21392,54 +21296,18 @@ export type IhcAssayQuery = (
       & EcompFragment
     ), resultMin: (
       { __typename?: 'EditableFloat' }
-      & EfFragment
-    ), resultMax?: Maybe<(
+      & Ef_FieldsFragment
+    ), resultMax: (
       { __typename?: 'EditableFloat' }
-      & EfFragment
-    )>, resultUnits: (
+      & Ef_FieldsFragment
+    ), resultUnits: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
-    ), resultString?: Maybe<(
+    ), resultString: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
-    )> }
+    ) }
   )>>> }
-);
-
-export type EcompFragment = (
-  { __typename?: 'EditableAssayComparator' }
-  & Pick<EditableAssayComparator, 'id' | 'comparator' | 'field' | 'editDate'>
-  & { editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'name'>
-  ), references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>> }
-);
-
-export type EfFragment = (
-  { __typename?: 'EditableFloat' }
-  & Pick<EditableFloat, 'id' | 'floatValue' | 'field' | 'editDate'>
-  & { references: Array<Maybe<(
-    { __typename?: 'InternetReference' }
-    & Pick<InternetReference, 'id'>
-  ) | (
-    { __typename?: 'LiteratureReference' }
-    & Pick<LiteratureReference, 'id'>
-  ) | (
-    { __typename?: 'MeetingAbstractReference' }
-    & Pick<MeetingAbstractReference, 'id'>
-  )>>, editor: (
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
-  ) }
 );
 
 export type JaxVariantQueryVariables = {
@@ -21457,12 +21325,13 @@ export type JaxVariantQuery = (
       & Pick<JaxGene, 'id' | 'name'>
     ), proteinEffect: (
       { __typename?: 'EditableProteinEffect' }
-      & Pick<EditableProteinEffect, 'proteinEffect'>
+      & Pick<EditableProteinEffect, 'id' | 'proteinEffect'>
     ), transcript: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
     ), description: (
       { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'id'>
       & Es_FieldsFragment
     ) }
   )>>> }
@@ -21484,7 +21353,7 @@ export type JaxVariantByGeneQuery = (
       & Pick<JaxGene, 'id' | 'name'>
     ), proteinEffect: (
       { __typename?: 'EditableProteinEffect' }
-      & Pick<EditableProteinEffect, 'proteinEffect'>
+      & Pick<EditableProteinEffect, 'id' | 'proteinEffect'>
     ) }
   )>>> }
 );
@@ -21630,7 +21499,7 @@ export type MarkerProfileQuery = (
       & Pick<EditableOmniConjunction, 'id' | 'field' | 'conjunction' | 'editDate'>
       & { editor: (
         { __typename?: 'User' }
-        & Pick<User, 'name'>
+        & Pick<User, 'id' | 'name'>
       ), references: Array<Maybe<(
         { __typename?: 'InternetReference' }
         & Pick<InternetReference, 'id'>
@@ -21649,53 +21518,53 @@ export type MarkerProfileQuery = (
         & Pick<DnaMarker, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ) | (
         { __typename?: 'GenomicVariantMarker' }
         & Pick<GenomicVariantMarker, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ) | (
         { __typename?: 'MarkerProfile' }
         & Pick<MarkerProfile, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ) | (
         { __typename?: 'MSIMarker' }
         & Pick<MsiMarker, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ) | (
         { __typename?: 'ProteinExpressionMarker' }
         & Pick<ProteinExpressionMarker, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ) | (
         { __typename?: 'RNASeqSignatureMarker' }
         & Pick<RnaSeqSignatureMarker, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       ) | (
         { __typename?: 'TMBMarker' }
         & Pick<TmbMarker, 'id'>
         & { name: (
           { __typename?: 'EditableStatement' }
-          & Pick<EditableStatement, 'statement'>
+          & Pick<EditableStatement, 'id' | 'statement'>
         ) }
       )>>, editor: (
         { __typename?: 'User' }
-        & Pick<User, 'name'>
+        & Pick<User, 'id' | 'name'>
       ), references: Array<Maybe<(
         { __typename?: 'InternetReference' }
         & Pick<InternetReference, 'id'>
@@ -21896,6 +21765,7 @@ export type CreateGenomicVariantMarkerRegionMutationVariables = {
   region_type: RegionType;
   region_value_id: Scalars['ID'];
   region_value_field: Scalars['String'];
+  region_value: Scalars['Int'];
   del_id: Scalars['ID'];
   del_field: Scalars['String'];
   frame_id: Scalars['ID'];
@@ -22033,6 +21903,8 @@ export type CreateTmbMarkerMutationVariables = {
   comparator_field: Scalars['String'];
   resultMin_id: Scalars['ID'];
   resultMin_field: Scalars['String'];
+  resultMax_id: Scalars['ID'];
+  resultMax_field: Scalars['String'];
   resultUnits_id: Scalars['ID'];
   resultUnits_field: Scalars['String'];
   interpretation_id: Scalars['ID'];
@@ -22042,8 +21914,8 @@ export type CreateTmbMarkerMutationVariables = {
 
 export type CreateTmbMarkerMutation = (
   { __typename?: 'MutationType' }
-  & Pick<MutationType, 'createTMBMarker' | 'addTMBMarkerName' | 'addTMBMarkerMethod' | 'addTMBMarkerResultString' | 'addTMBMarkerComparator' | 'addTMBMarkerResultMin' | 'addTMBMarkerResultUnits' | 'addTMBMarkerInterpretations'>
-  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'], interpretation: MutationType['createEditableTMBInterpretation'], interpretation_editor: MutationType['addEditableTMBInterpretationEditor'], interpretation_ref: MutationType['addEditableTMBInterpretationReferences'] }
+  & Pick<MutationType, 'createTMBMarker' | 'addTMBMarkerName' | 'addTMBMarkerMethod' | 'addTMBMarkerResultString' | 'addTMBMarkerComparator' | 'addTMBMarkerResultMin' | 'addTMBMarkerResultMax' | 'addTMBMarkerResultUnits' | 'addTMBMarkerInterpretations'>
+  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], max: MutationType['createEditableFloat'], max_editor: MutationType['addEditableFloatEditor'], max_ref: MutationType['addEditableFloatReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'], interpretation: MutationType['createEditableTMBInterpretation'], interpretation_editor: MutationType['addEditableTMBInterpretationEditor'], interpretation_ref: MutationType['addEditableTMBInterpretationReferences'] }
 );
 
 export type CreateProteinExpressionMarkerMutationVariables = {
@@ -22079,6 +21951,70 @@ export type CreateProteinExpressionMarkerMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], synonyms: MutationType['createEditableStringList'], synonyms_editor: MutationType['addEditableStringListEditor'], synonyms_ref: MutationType['addEditableStringListReferences'], genes: MutationType['createEditableOmniGeneList'], genes_editor: MutationType['addEditableOmniGeneListEditor'], genes_ref: MutationType['addEditableOmniGeneListReferences'], pheno: MutationType['createEditableImmunePhenotype'], pheno_editor: MutationType['addEditableImmunePhenotypeEditor'], pheno_ref: MutationType['addEditableImmunePhenotypeReferences'], function: MutationType['createEditableImmuneFunction'], function_editor: MutationType['addEditableImmuneFunctionEditor'], function_ref: MutationType['addEditableImmuneFunctionReferences'], role: MutationType['createEditableImmuneCycleRole'], role_editor: MutationType['addEditableImmuneCycleRoleEditor'], role_ref: MutationType['addEditableImmuneCycleRoleReferences'] }
 );
 
+export type CreateIhcAssayMutationVariables = {
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  assay_id: Scalars['ID'];
+  name_id: Scalars['ID'];
+  name_field: Scalars['String'];
+  name: Scalars['String'];
+  clone_id: Scalars['ID'];
+  clone_field: Scalars['String'];
+  clone: Scalars['String'];
+  comparator_id: Scalars['ID'];
+  comparator_field: Scalars['String'];
+  comparator: AssayComparator;
+  resultMin_id: Scalars['ID'];
+  resultMin_field: Scalars['String'];
+  resultMin: Scalars['Float'];
+  resultMax_id: Scalars['ID'];
+  resultMax_field: Scalars['String'];
+  resultMax: Scalars['Float'];
+  rs_id: Scalars['ID'];
+  rs_field: Scalars['String'];
+  rs: Scalars['String'];
+  units_id: Scalars['ID'];
+  units_field: Scalars['String'];
+  units: Scalars['String'];
+};
+
+
+export type CreateIhcAssayMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createIHCAssay' | 'addIHCAssayName' | 'addIHCAssayAntibodyClone' | 'addIHCAssayComparator' | 'addIHCAssayResultMin' | 'addIHCAssayResultMax' | 'addIHCAssayResultString' | 'addIHCAssayResultUnits'>
+  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], clone: MutationType['createEditableStatement'], clone_editor: MutationType['addEditableStatementEditor'], clone_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], max: MutationType['createEditableFloat'], max_editor: MutationType['addEditableFloatEditor'], max_ref: MutationType['addEditableFloatReferences'], rs: MutationType['createEditableStatement'], rs_editor: MutationType['addEditableStatementEditor'], rs_ref: MutationType['addEditableStatementReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'] }
+);
+
+export type CreateRnaSeqAssayMutationVariables = {
+  date: Scalars['String'];
+  user_id: Scalars['ID'];
+  ref_array: Array<Scalars['ID']>;
+  assay_id: Scalars['ID'];
+  name_id: Scalars['ID'];
+  name: Scalars['String'];
+  name_field: Scalars['String'];
+  comparator_id: Scalars['ID'];
+  comparator_field: Scalars['String'];
+  comparator: AssayComparator;
+  resultMin_id: Scalars['ID'];
+  resultMin_field: Scalars['String'];
+  resultMin: Scalars['Float'];
+  resultMax_id: Scalars['ID'];
+  resultMax_field: Scalars['String'];
+  resultMax: Scalars['Float'];
+  resultType_id: Scalars['ID'];
+  resultType_field: Scalars['String'];
+  resultType: RnaSeqResultType;
+};
+
+
+export type CreateRnaSeqAssayMutation = (
+  { __typename?: 'MutationType' }
+  & Pick<MutationType, 'createRNASeqAssay' | 'addRNASeqAssayName' | 'addRNASeqAssayComparator' | 'addRNASeqAssayResultMin' | 'addRNASeqAssayResultMax' | 'addRNASeqAssayResultType'>
+  & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], max: MutationType['createEditableFloat'], max_editor: MutationType['addEditableFloatEditor'], max_ref: MutationType['addEditableFloatReferences'], rt: MutationType['createEditableRNASeqResultType'], rt_editor: MutationType['addEditableRNASeqResultTypeEditor'], rt_ref: MutationType['addEditableRNASeqResultTypeReferences'] }
+);
+
 export type ProteinExpression_MarkerQueryVariables = {
   marker_id?: Maybe<Scalars['ID']>;
 };
@@ -22097,20 +22033,7 @@ export type ProteinExpression_MarkerQuery = (
       & Es_FieldsFragment
     ), synonyms: (
       { __typename?: 'EditableStringList' }
-      & Pick<EditableStringList, 'id' | 'stringList' | 'field' | 'editDate'>
-      & { references: Array<Maybe<(
-        { __typename?: 'InternetReference' }
-        & Pick<InternetReference, 'id'>
-      ) | (
-        { __typename?: 'LiteratureReference' }
-        & Pick<LiteratureReference, 'PMID' | 'id'>
-      ) | (
-        { __typename?: 'MeetingAbstractReference' }
-        & Pick<MeetingAbstractReference, 'id'>
-      )>>, editor: (
-        { __typename?: 'User' }
-        & Pick<User, 'id' | 'name'>
-      ) }
+      & Esl_FieldsFragment
     ), genes: (
       { __typename?: 'EditableOmniGeneList' }
       & Pick<EditableOmniGeneList, 'id' | 'field' | 'editDate'>
@@ -22329,7 +22252,7 @@ export type ProteinExpressionMarkerComponentsQuery = (
     & Pick<ProteinExpressionMarker, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   )>>> }
 );
@@ -22369,14 +22292,14 @@ export type ProteinLevelAssayQuery = (
     & Pick<IhcAssay, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   ) | (
     { __typename: 'RNASeqAssay' }
     & Pick<RnaSeqAssay, 'id'>
     & { name: (
       { __typename?: 'EditableStatement' }
-      & Pick<EditableStatement, 'statement'>
+      & Pick<EditableStatement, 'id' | 'statement'>
     ) }
   )>>> }
 );
@@ -22398,16 +22321,16 @@ export type RnaSeqAssayQuery = (
       & EcompFragment
     ), resultMin: (
       { __typename?: 'EditableFloat' }
-      & EfFragment
-    ), resultMax?: Maybe<(
+      & Ef_FieldsFragment
+    ), resultMax: (
       { __typename?: 'EditableFloat' }
-      & EfFragment
-    )>, resultType: (
+      & Ef_FieldsFragment
+    ), resultType: (
       { __typename?: 'EditableRNASeqResultType' }
       & Pick<EditableRnaSeqResultType, 'id' | 'field' | 'resultType' | 'editDate'>
       & { editor: (
         { __typename?: 'User' }
-        & Pick<User, 'name'>
+        & Pick<User, 'id' | 'name'>
       ), references: Array<Maybe<(
         { __typename?: 'InternetReference' }
         & Pick<InternetReference, 'id'>
@@ -22470,7 +22393,7 @@ export type Tmb_MarkerQuery = (
         { __typename?: 'User' }
         & Pick<User, 'id' | 'name'>
       ) }
-    ), resultMax?: Maybe<(
+    ), resultMax: (
       { __typename?: 'EditableFloat' }
       & Pick<EditableFloat, 'id' | 'field' | 'floatValue' | 'editDate'>
       & { references: Array<Maybe<(
@@ -22486,7 +22409,7 @@ export type Tmb_MarkerQuery = (
         { __typename?: 'User' }
         & Pick<User, 'id' | 'name'>
       ) }
-    )>, resultUnits: (
+    ), resultUnits: (
       { __typename?: 'EditableStatement' }
       & Es_FieldsFragment
     ), interpretations: Array<Maybe<(
@@ -22678,19 +22601,19 @@ export type EditableAssayComparatorQuery = (
   { __typename?: 'QueryType' }
   & { EditableAssayComparator?: Maybe<Array<Maybe<(
     { __typename?: 'EditableAssayComparator' }
-    & Pick<EditableAssayComparator, 'field' | 'comparator' | 'editDate'>
+    & Pick<EditableAssayComparator, 'id' | 'field' | 'comparator' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22704,19 +22627,19 @@ export type EditableOmniConjunctionQuery = (
   { __typename?: 'QueryType' }
   & { EditableOmniConjunction?: Maybe<Array<Maybe<(
     { __typename?: 'EditableOmniConjunction' }
-    & Pick<EditableOmniConjunction, 'field' | 'conjunction' | 'editDate'>
+    & Pick<EditableOmniConjunction, 'id' | 'field' | 'conjunction' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22730,19 +22653,19 @@ export type EditableCopyChangeQuery = (
   { __typename?: 'QueryType' }
   & { EditableCopyChange?: Maybe<Array<Maybe<(
     { __typename?: 'EditableCopyChange' }
-    & Pick<EditableCopyChange, 'field' | 'cnvType' | 'editDate'>
+    & Pick<EditableCopyChange, 'id' | 'field' | 'cnvType' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22756,19 +22679,19 @@ export type EditableBooleanQuery = (
   { __typename?: 'QueryType' }
   & { EditableBoolean?: Maybe<Array<Maybe<(
     { __typename?: 'EditableBoolean' }
-    & Pick<EditableBoolean, 'field' | 'booleanValue' | 'editDate'>
+    & Pick<EditableBoolean, 'id' | 'field' | 'booleanValue' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22782,19 +22705,19 @@ export type EditableFloatQuery = (
   { __typename?: 'QueryType' }
   & { EditableFloat?: Maybe<Array<Maybe<(
     { __typename?: 'EditableFloat' }
-    & Pick<EditableFloat, 'field' | 'floatValue' | 'editDate'>
+    & Pick<EditableFloat, 'id' | 'field' | 'floatValue' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22808,19 +22731,19 @@ export type EditableIntQuery = (
   { __typename?: 'QueryType' }
   & { EditableInt?: Maybe<Array<Maybe<(
     { __typename?: 'EditableInt' }
-    & Pick<EditableInt, 'field' | 'intValue' | 'editDate'>
+    & Pick<EditableInt, 'id' | 'field' | 'intValue' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22834,61 +22757,68 @@ export type EditableMarkerComponentListQuery = (
   { __typename?: 'QueryType' }
   & { EditableMarkerComponentList?: Maybe<Array<Maybe<(
     { __typename?: 'EditableMarkerComponentList' }
-    & Pick<EditableMarkerComponentList, 'field' | 'editDate'>
+    & Pick<EditableMarkerComponentList, 'id' | 'field' | 'editDate'>
     & { components: Array<Maybe<(
       { __typename?: 'DNAMarker' }
+      & Pick<DnaMarker, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename?: 'GenomicVariantMarker' }
+      & Pick<GenomicVariantMarker, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename?: 'MarkerProfile' }
+      & Pick<MarkerProfile, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename?: 'MSIMarker' }
+      & Pick<MsiMarker, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename?: 'ProteinExpressionMarker' }
+      & Pick<ProteinExpressionMarker, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename?: 'RNASeqSignatureMarker' }
+      & Pick<RnaSeqSignatureMarker, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     ) | (
       { __typename?: 'TMBMarker' }
+      & Pick<TmbMarker, 'id'>
       & { name: (
         { __typename?: 'EditableStatement' }
-        & Pick<EditableStatement, 'statement'>
+        & Pick<EditableStatement, 'id' | 'statement'>
       ) }
     )>>, editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22902,24 +22832,189 @@ export type EditableOmniGeneReferenceQuery = (
   { __typename?: 'QueryType' }
   & { EditableOmniGeneReference?: Maybe<Array<Maybe<(
     { __typename?: 'EditableOmniGeneReference' }
-    & Pick<EditableOmniGeneReference, 'field' | 'editDate'>
+    & Pick<EditableOmniGeneReference, 'id' | 'field' | 'editDate'>
     & { gene: (
       { __typename?: 'OmniGene' }
-      & Pick<OmniGene, 'name'>
+      & Pick<OmniGene, 'id' | 'name'>
     ), editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
+);
+
+export type Es_FieldsFragment = (
+  { __typename?: 'EditableStatement' }
+  & Pick<EditableStatement, 'id' | 'statement' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'PMID' | 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type Esl_FieldsFragment = (
+  { __typename?: 'EditableStringList' }
+  & Pick<EditableStringList, 'id' | 'stringList' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type CopyChange_FieldsFragment = (
+  { __typename?: 'EditableCopyChange' }
+  & Pick<EditableCopyChange, 'id' | 'field' | 'cnvType' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type Ei_FieldsFragment = (
+  { __typename?: 'EditableInt' }
+  & Pick<EditableInt, 'id' | 'intValue' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type Eog_FieldsFragment = (
+  { __typename?: 'EditableOmniGeneReference' }
+  & Pick<EditableOmniGeneReference, 'id' | 'field' | 'editDate'>
+  & { gene: (
+    { __typename?: 'OmniGene' }
+    & Pick<OmniGene, 'id' | 'name'>
+  ), references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type Epe_FieldsFragment = (
+  { __typename?: 'EditableProteinEffect' }
+  & Pick<EditableProteinEffect, 'id' | 'proteinEffect' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type Eb_FieldsFragment = (
+  { __typename?: 'EditableBoolean' }
+  & Pick<EditableBoolean, 'id' | 'booleanValue' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type Ef_FieldsFragment = (
+  { __typename?: 'EditableFloat' }
+  & Pick<EditableFloat, 'id' | 'floatValue' | 'field' | 'editDate'>
+  & { references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>>, editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'id' | 'name'>
+  ) }
+);
+
+export type EcompFragment = (
+  { __typename?: 'EditableAssayComparator' }
+  & Pick<EditableAssayComparator, 'id' | 'comparator' | 'field' | 'editDate'>
+  & { editor: (
+    { __typename?: 'User' }
+    & Pick<User, 'name'>
+  ), references: Array<Maybe<(
+    { __typename?: 'InternetReference' }
+    & Pick<InternetReference, 'id'>
+  ) | (
+    { __typename?: 'LiteratureReference' }
+    & Pick<LiteratureReference, 'id'>
+  ) | (
+    { __typename?: 'MeetingAbstractReference' }
+    & Pick<MeetingAbstractReference, 'id'>
+  )>> }
 );
 
 export type EditableStatementQueryVariables = {
@@ -22931,19 +23026,19 @@ export type EditableStatementQuery = (
   { __typename?: 'QueryType' }
   & { EditableStatement?: Maybe<Array<Maybe<(
     { __typename?: 'EditableStatement' }
-    & Pick<EditableStatement, 'field' | 'statement' | 'editDate'>
+    & Pick<EditableStatement, 'id' | 'field' | 'statement' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22957,19 +23052,19 @@ export type EditableImmuneCycleRoleQuery = (
   { __typename?: 'QueryType' }
   & { EditableImmuneCycleRole?: Maybe<Array<Maybe<(
     { __typename?: 'EditableImmuneCycleRole' }
-    & Pick<EditableImmuneCycleRole, 'field' | 'immuneCycleRole' | 'editDate'>
+    & Pick<EditableImmuneCycleRole, 'id' | 'field' | 'immuneCycleRole' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -22983,19 +23078,19 @@ export type EditableImmuneFunctionQuery = (
   { __typename?: 'QueryType' }
   & { EditableImmuneFunction?: Maybe<Array<Maybe<(
     { __typename?: 'EditableImmuneFunction' }
-    & Pick<EditableImmuneFunction, 'field' | 'immuneFunction' | 'editDate'>
+    & Pick<EditableImmuneFunction, 'id' | 'field' | 'immuneFunction' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -23009,19 +23104,19 @@ export type EditableImmunePhenotypeQuery = (
   { __typename?: 'QueryType' }
   & { EditableImmunePhenotype?: Maybe<Array<Maybe<(
     { __typename?: 'EditableImmunePhenotype' }
-    & Pick<EditableImmunePhenotype, 'field' | 'immunePhenotype' | 'editDate'>
+    & Pick<EditableImmunePhenotype, 'id' | 'field' | 'immunePhenotype' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -23055,19 +23150,19 @@ export type EditableProteinEffectQuery = (
   { __typename?: 'QueryType' }
   & { EditableProteinEffect?: Maybe<Array<Maybe<(
     { __typename?: 'EditableProteinEffect' }
-    & Pick<EditableProteinEffect, 'field' | 'proteinEffect' | 'editDate'>
+    & Pick<EditableProteinEffect, 'id' | 'field' | 'proteinEffect' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ), references: Array<Maybe<(
       { __typename?: 'InternetReference' }
-      & Pick<InternetReference, 'shortReference'>
+      & Pick<InternetReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'LiteratureReference' }
-      & Pick<LiteratureReference, 'shortReference'>
+      & Pick<LiteratureReference, 'id' | 'shortReference'>
     ) | (
       { __typename?: 'MeetingAbstractReference' }
-      & Pick<MeetingAbstractReference, 'shortReference'>
+      & Pick<MeetingAbstractReference, 'id' | 'shortReference'>
     )>> }
   )>>> }
 );
@@ -23081,10 +23176,10 @@ export type EditableStringListQuery = (
   { __typename?: 'QueryType' }
   & { EditableStringList?: Maybe<Array<Maybe<(
     { __typename?: 'EditableStringList' }
-    & Pick<EditableStringList, 'field' | 'stringList' | 'editDate'>
+    & Pick<EditableStringList, 'id' | 'field' | 'stringList' | 'editDate'>
     & { editor: (
       { __typename?: 'User' }
-      & Pick<User, 'name'>
+      & Pick<User, 'id' | 'name'>
     ) }
   )>>> }
 );
@@ -23099,6 +23194,51 @@ export const Es_FieldsFragmentDoc = gql`
     ... on LiteratureReference {
       PMID
     }
+  }
+  editor {
+    id
+    name
+  }
+  editDate
+}
+    `;
+export const Esl_FieldsFragmentDoc = gql`
+    fragment esl_fields on EditableStringList {
+  id
+  stringList
+  field
+  references {
+    id
+  }
+  editor {
+    id
+    name
+  }
+  editDate
+}
+    `;
+export const CopyChange_FieldsFragmentDoc = gql`
+    fragment copyChange_fields on EditableCopyChange {
+  id
+  field
+  cnvType
+  references {
+    id
+  }
+  editor {
+    id
+    name
+  }
+  editDate
+}
+    `;
+export const Ei_FieldsFragmentDoc = gql`
+    fragment ei_fields on EditableInt {
+  id
+  intValue
+  field
+  references {
+    id
   }
   editor {
     id
@@ -23125,8 +23265,23 @@ export const Eog_FieldsFragmentDoc = gql`
   editDate
 }
     `;
-export const EbFragmentDoc = gql`
-    fragment eb on EditableBoolean {
+export const Epe_FieldsFragmentDoc = gql`
+    fragment epe_fields on EditableProteinEffect {
+  id
+  proteinEffect
+  field
+  references {
+    id
+  }
+  editor {
+    id
+    name
+  }
+  editDate
+}
+    `;
+export const Eb_FieldsFragmentDoc = gql`
+    fragment eb_fields on EditableBoolean {
   id
   booleanValue
   field
@@ -23140,10 +23295,11 @@ export const EbFragmentDoc = gql`
   editDate
 }
     `;
-export const Ei_FieldsFragmentDoc = gql`
-    fragment ei_fields on EditableInt {
+export const Ef_FieldsFragmentDoc = gql`
+    fragment ef_fields on EditableFloat {
   id
-  intValue
+  floatValue
+  field
   references {
     id
   }
@@ -23166,21 +23322,6 @@ export const EcompFragmentDoc = gql`
   references {
     id
   }
-}
-    `;
-export const EfFragmentDoc = gql`
-    fragment ef on EditableFloat {
-  id
-  floatValue
-  field
-  references {
-    id
-  }
-  editor {
-    id
-    name
-  }
-  editDate
 }
     `;
 export const OntologicalDiseaseComponentsDocument = gql`
@@ -23257,19 +23398,35 @@ export const OntologicalDiseaseDocument = gql`
       ...es_fields
     }
     synonyms {
+      id
       stringList
+      field
+      references {
+        id
+      }
+      editor {
+        id
+        name
+      }
+      editDate
     }
     omniMaps {
+      id
       list {
+        id
         mCodes {
+          id
           mcodeId
           diseasePath {
+            id
             statement
           }
         }
         omniDisease {
+          id
           omniDiseaseId
           name {
+            id
             statement
           }
         }
@@ -23383,6 +23540,65 @@ export function useOntologicalDiseaseAddNameMutation(baseOptions?: ApolloReactHo
 export type OntologicalDiseaseAddNameMutationHookResult = ReturnType<typeof useOntologicalDiseaseAddNameMutation>;
 export type OntologicalDiseaseAddNameMutationResult = ApolloReactCommon.MutationResult<OntologicalDiseaseAddNameMutation>;
 export type OntologicalDiseaseAddNameMutationOptions = ApolloReactCommon.BaseMutationOptions<OntologicalDiseaseAddNameMutation, OntologicalDiseaseAddNameMutationVariables>;
+export const OntologicalDiseaseAddSynonymsDocument = gql`
+    mutation OntologicalDiseaseAddSynonyms($id: ID!, $old_esyn_id: ID!, $date: String!, $esyn_field: String!, $esyn_list: [String]!, $esyn_id: ID!, $user_id: ID!) {
+  deleteOntologicalDiseaseSynonyms(id: $id, synonyms: [$old_esyn_id])
+  createEditableStringList(id: $esyn_id, field: $esyn_field, stringList: $esyn_list, editDate: $date)
+  addEditableStringListEditor(editor: [$user_id], id: $esyn_id)
+  addEditableStringListReferences(id: $esyn_id, references: [])
+  addOntologicalDiseaseSynonyms(id: $id, synonyms: [$esyn_id])
+}
+    `;
+export type OntologicalDiseaseAddSynonymsMutationFn = ApolloReactCommon.MutationFunction<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables>;
+export type OntologicalDiseaseAddSynonymsComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables>, 'mutation'>;
+
+    export const OntologicalDiseaseAddSynonymsComponent = (props: OntologicalDiseaseAddSynonymsComponentProps) => (
+      <ApolloReactComponents.Mutation<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables> mutation={OntologicalDiseaseAddSynonymsDocument} {...props} />
+    );
+    
+export type OntologicalDiseaseAddSynonymsProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables>
+    } & TChildProps;
+export function withOntologicalDiseaseAddSynonyms<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  OntologicalDiseaseAddSynonymsMutation,
+  OntologicalDiseaseAddSynonymsMutationVariables,
+  OntologicalDiseaseAddSynonymsProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables, OntologicalDiseaseAddSynonymsProps<TChildProps, TDataName>>(OntologicalDiseaseAddSynonymsDocument, {
+      alias: 'ontologicalDiseaseAddSynonyms',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useOntologicalDiseaseAddSynonymsMutation__
+ *
+ * To run a mutation, you first call `useOntologicalDiseaseAddSynonymsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useOntologicalDiseaseAddSynonymsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [ontologicalDiseaseAddSynonymsMutation, { data, loading, error }] = useOntologicalDiseaseAddSynonymsMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      old_esyn_id: // value for 'old_esyn_id'
+ *      date: // value for 'date'
+ *      esyn_field: // value for 'esyn_field'
+ *      esyn_list: // value for 'esyn_list'
+ *      esyn_id: // value for 'esyn_id'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useOntologicalDiseaseAddSynonymsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables>) {
+        return ApolloReactHooks.useMutation<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables>(OntologicalDiseaseAddSynonymsDocument, baseOptions);
+      }
+export type OntologicalDiseaseAddSynonymsMutationHookResult = ReturnType<typeof useOntologicalDiseaseAddSynonymsMutation>;
+export type OntologicalDiseaseAddSynonymsMutationResult = ApolloReactCommon.MutationResult<OntologicalDiseaseAddSynonymsMutation>;
+export type OntologicalDiseaseAddSynonymsMutationOptions = ApolloReactCommon.BaseMutationOptions<OntologicalDiseaseAddSynonymsMutation, OntologicalDiseaseAddSynonymsMutationVariables>;
 export const AddOntologicalDiseaseDescriptionDocument = gql`
     mutation addOntologicalDiseaseDescription($id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray: [ID!]!) {
   deleteOntologicalDiseaseDescription(id: $id, description: [$old_es_id])
@@ -23448,6 +23664,7 @@ export const OntologicalDiseaseListDocument = gql`
   OntologicalDisease(filter: {name: {statement_contains: $query_string}}) {
     id
     name {
+      id
       statement
     }
   }
@@ -23501,6 +23718,7 @@ export type OntologicalDiseaseListQueryResult = ApolloReactCommon.QueryResult<On
 export const OmniGeneComponentsDocument = gql`
     query OmniGeneComponents($gene_id: ID) {
   OmniGene(id: $gene_id) {
+    id
     myGeneInfoGene {
       id
     }
@@ -23616,19 +23834,23 @@ export const JaxGeneDocument = gql`
   JaxGene(id: $id) {
     name
     canonicalTranscript {
+      id
       statement
     }
     chromosome
     entrezId
     jaxId
     synonyms {
+      id
       stringList
     }
     description {
+      id
       statement
       field
       editDate
       editor {
+        id
         name
       }
       references {
@@ -23689,6 +23911,7 @@ export type JaxGeneQueryResult = ApolloReactCommon.QueryResult<JaxGeneQuery, Jax
 export const MyGeneInfo_GeneDocument = gql`
     query MyGeneInfo_Gene($id: ID) {
   MyGeneInfoGene(id: $id) {
+    id
     name
     entrezId
     chromosome
@@ -23696,9 +23919,11 @@ export const MyGeneInfo_GeneDocument = gql`
     end
     strand
     description {
+      id
       statement
       field
       references {
+        id
         shortReference
         ... on InternetReference {
           accessedDate
@@ -23767,17 +23992,7 @@ export const OmniGeneDocument = gql`
       ...es_fields
     }
     synonyms {
-      id
-      stringList
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...esl_fields
     }
     transcript {
       ...es_fields
@@ -23793,7 +24008,8 @@ export const OmniGeneDocument = gql`
     }
   }
 }
-    ${Es_FieldsFragmentDoc}`;
+    ${Es_FieldsFragmentDoc}
+${Esl_FieldsFragmentDoc}`;
 export type OmniGeneComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<OmniGeneQuery, OmniGeneQueryVariables>, 'query'>;
 
     export const OmniGeneComponent = (props: OmniGeneComponentProps) => (
@@ -24082,6 +24298,7 @@ export const UniprotDocument = gql`
       statement
       field
       editor {
+        id
         name
       }
       editDate
@@ -24257,12 +24474,14 @@ export type ClinVarVariantQueryResult = ApolloReactCommon.QueryResult<ClinVarVar
 export const ClinVarVariantByGeneDocument = gql`
     query ClinVarVariantByGene($gene_name: String, $pdot: String) {
   cv_by_name: ClinVarVariant(gene: $gene_name, filter: {pDot_contains: $pdot}) {
+    id
     gene
     id
     pDot
     cDot
     variantId
     significance {
+      id
       statement
     }
   }
@@ -24429,6 +24648,7 @@ export type GoVariantQueryResult = ApolloReactCommon.QueryResult<GoVariantQuery,
 export const GoVariantByGeneDocument = gql`
     query GOVariantByGene($gene_name: String, $pdot: String) {
   go_by_name: GOVariant(gene: $gene_name, filter: {name: {statement_contains: $pdot}}) {
+    id
     gene
     id
     name {
@@ -24543,17 +24763,7 @@ export const VariantCnvDocument = gql`
       ...es_fields
     }
     copyChange {
-      id
-      field
-      cnvType
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...copyChange_fields
     }
     gene {
       id
@@ -24576,7 +24786,8 @@ export const VariantCnvDocument = gql`
     }
   }
 }
-    ${Es_FieldsFragmentDoc}`;
+    ${Es_FieldsFragmentDoc}
+${CopyChange_FieldsFragmentDoc}`;
 export type VariantCnvComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<VariantCnvQuery, VariantCnvQueryVariables>, 'query'>;
 
     export const VariantCnvComponent = (props: VariantCnvComponentProps) => (
@@ -24813,6 +25024,7 @@ export const Variant_Markers_For_IdDocument = gql`
       ...es_fields
     }
     method {
+      id
       statement
     }
     variant {
@@ -24881,43 +25093,13 @@ export const VariantFusionDocument = gql`
       name
     }
     copyChange {
-      id
-      field
-      cnvType
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...copyChange_fields
     }
     exon3Prime {
-      id
-      intValue
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...ei_fields
     }
     exon5Prime {
-      id
-      intValue
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...ei_fields
     }
     gene3Prime {
       ...eog_fields
@@ -24943,6 +25125,8 @@ export const VariantFusionDocument = gql`
   }
 }
     ${Es_FieldsFragmentDoc}
+${CopyChange_FieldsFragmentDoc}
+${Ei_FieldsFragmentDoc}
 ${Eog_FieldsFragmentDoc}`;
 export type VariantFusionComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<VariantFusionQuery, VariantFusionQueryVariables>, 'query'>;
 
@@ -25371,40 +25555,20 @@ export const VariantRegionDocument = gql`
     variantType
     indelType
     proteinEffect {
-      id
-      proteinEffect
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...epe_fields
     }
     regionType
     regionValue {
-      id
-      intValue
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...ei_fields
     }
     isFrameshift {
-      ...eb
+      ...eb_fields
     }
     isTruncating {
-      ...eb
+      ...eb_fields
     }
     isDeleterious {
-      ...eb
+      ...eb_fields
     }
     jaxVariant {
       id
@@ -25421,7 +25585,9 @@ export const VariantRegionDocument = gql`
   }
 }
     ${Es_FieldsFragmentDoc}
-${EbFragmentDoc}`;
+${Epe_FieldsFragmentDoc}
+${Ei_FieldsFragmentDoc}
+${Eb_FieldsFragmentDoc}`;
 export type VariantRegionComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<VariantRegionQuery, VariantRegionQueryVariables>, 'query'>;
 
     export const VariantRegionComponent = (props: VariantRegionComponentProps) => (
@@ -25793,17 +25959,7 @@ export const VariantSnvIndelDocument = gql`
     variantType
     indelType
     proteinEffect {
-      id
-      proteinEffect
-      field
-      references {
-        id
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...epe_fields
     }
     exon {
       ...es_fields
@@ -25822,7 +25978,8 @@ export const VariantSnvIndelDocument = gql`
     }
   }
 }
-    ${Es_FieldsFragmentDoc}`;
+    ${Es_FieldsFragmentDoc}
+${Epe_FieldsFragmentDoc}`;
 export type VariantSnvIndelComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<VariantSnvIndelQuery, VariantSnvIndelQueryVariables>, 'query'>;
 
     export const VariantSnvIndelComponent = (props: VariantSnvIndelComponentProps) => (
@@ -26234,6 +26391,7 @@ export const GenomicVariantMarkerComponentsDocument = gql`
     id
     __typename
     name {
+      id
       statement
     }
   }
@@ -26341,15 +26499,18 @@ export const Variant_Markers_For_GeneDocument = gql`
   GenomicVariantMarker(orderBy: id_asc, filter: {AND: [{name: {statement_contains: $query_string}}, {gene: {id: $omnigene_id}}]}) {
     id
     name {
+      id
       statement
     }
     method {
+      id
       statement
     }
     variant {
       id
       __typename
       name {
+        id
         statement
       }
     }
@@ -26415,7 +26576,9 @@ export const HotSpotVariantDocument = gql`
     position
     occurrences(orderBy: perThousandOccurrence_desc) {
       disease {
+        id
         name {
+          id
           statement
         }
       }
@@ -26483,8 +26646,8 @@ export type HotSpotVariantQueryResult = ApolloReactCommon.QueryResult<HotSpotVar
 export const HotSpotVariantByGeneDocument = gql`
     query HotSpotVariantByGene($gene_name: String) {
   hs_by_name: HotSpotVariant(gene: $gene_name, orderBy: position_asc) {
-    gene
     id
+    gene
     name
     begin
     end
@@ -26590,6 +26753,7 @@ export type GenomicVariantAddHotSpotVariantMutationOptions = ApolloReactCommon.B
 export const IhcAssayDocument = gql`
     query IHCAssay($id: ID) {
   IHCAssay(id: $id) {
+    id
     name {
       ...es_fields
     }
@@ -26600,10 +26764,10 @@ export const IhcAssayDocument = gql`
       ...ecomp
     }
     resultMin {
-      ...ef
+      ...ef_fields
     }
     resultMax {
-      ...ef
+      ...ef_fields
     }
     resultUnits {
       ...es_fields
@@ -26615,7 +26779,7 @@ export const IhcAssayDocument = gql`
 }
     ${Es_FieldsFragmentDoc}
 ${EcompFragmentDoc}
-${EfFragmentDoc}`;
+${Ef_FieldsFragmentDoc}`;
 export type IhcAssayComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IhcAssayQuery, IhcAssayQueryVariables>, 'query'>;
 
     export const IhcAssayComponent = (props: IhcAssayComponentProps) => (
@@ -26674,6 +26838,7 @@ export const JaxVariantDocument = gql`
     pDot
     gDot
     proteinEffect {
+      id
       proteinEffect
     }
     transcript {
@@ -26681,6 +26846,7 @@ export const JaxVariantDocument = gql`
     }
     variantType
     description {
+      id
       ...es_fields
     }
   }
@@ -26744,6 +26910,7 @@ export const JaxVariantByGeneDocument = gql`
     jaxId
     name
     proteinEffect {
+      id
       proteinEffect
     }
   }
@@ -27215,6 +27382,7 @@ export const MarkerProfileDocument = gql`
       conjunction
       editDate
       editor {
+        id
         name
       }
       references {
@@ -27230,11 +27398,13 @@ export const MarkerProfileDocument = gql`
       components {
         id
         name {
+          id
           statement
         }
       }
       editDate
       editor {
+        id
         name
       }
       references {
@@ -27858,7 +28028,7 @@ export type CreateGenomicVariantMarkerSnvMutationHookResult = ReturnType<typeof 
 export type CreateGenomicVariantMarkerSnvMutationResult = ApolloReactCommon.MutationResult<CreateGenomicVariantMarkerSnvMutation>;
 export type CreateGenomicVariantMarkerSnvMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateGenomicVariantMarkerSnvMutation, CreateGenomicVariantMarkerSnvMutationVariables>;
 export const CreateGenomicVariantMarkerRegionDocument = gql`
-    mutation CreateGenomicVariantMarkerRegion($gene_id: ID!, $variant_id: ID!, $name_v_id: ID!, $name: String!, $name_v_field: String!, $pe_id: ID!, $pe_field: String!, $des_id: ID!, $des_field: String!, $trans_id: ID!, $trans_field: String!, $region_type: RegionType!, $region_value_id: ID!, $region_value_field: String!, $del_id: ID!, $del_field: String!, $frame_id: ID!, $frame_field: String!, $trunc_id: ID!, $trunc_field: String!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $marker_id: ID!, $name_id: ID!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
+    mutation CreateGenomicVariantMarkerRegion($gene_id: ID!, $variant_id: ID!, $name_v_id: ID!, $name: String!, $name_v_field: String!, $pe_id: ID!, $pe_field: String!, $des_id: ID!, $des_field: String!, $trans_id: ID!, $trans_field: String!, $region_type: RegionType!, $region_value_id: ID!, $region_value_field: String!, $region_value: Int!, $del_id: ID!, $del_field: String!, $frame_id: ID!, $frame_field: String!, $trunc_id: ID!, $trunc_field: String!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $marker_id: ID!, $name_id: ID!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!) {
   createVariantRegion(id: $variant_id, indelType: SNV, variantType: Region, regionType: $region_type)
   name_v: createEditableStatement(editDate: $date, field: $name_v_field, id: $name_v_id, statement: $name)
   name_v_editor: addEditableStatementEditor(editor: [$user_id], id: $name_v_id)
@@ -27873,7 +28043,7 @@ export const CreateGenomicVariantMarkerRegionDocument = gql`
   des_ref: addEditableStatementReferences(id: $des_id, references: $ref_array)
   addVariantRegionDescription(id: $variant_id, description: [$des_id])
   addVariantRegionGene(id: $variant_id, gene: [$gene_id])
-  rv: createEditableInt(editDate: $date, field: $region_value_field, id: $region_value_id, intValue: 1)
+  rv: createEditableInt(editDate: $date, field: $region_value_field, id: $region_value_id, intValue: $region_value)
   rv_editor: addEditableIntEditor(editor: [$user_id], id: $region_value_id)
   rv_ref: addEditableIntReferences(id: $region_value_id, references: $ref_array)
   addVariantRegionRegionValue(id: $variant_id, regionValue: [$region_value_id])
@@ -27958,6 +28128,7 @@ export function withCreateGenomicVariantMarkerRegion<TProps, TChildProps = {}, T
  *      region_type: // value for 'region_type'
  *      region_value_id: // value for 'region_value_id'
  *      region_value_field: // value for 'region_value_field'
+ *      region_value: // value for 'region_value'
  *      del_id: // value for 'del_id'
  *      del_field: // value for 'del_field'
  *      frame_id: // value for 'frame_id'
@@ -28287,7 +28458,7 @@ export type CreateMsiMarkerMutationHookResult = ReturnType<typeof useCreateMsiMa
 export type CreateMsiMarkerMutationResult = ApolloReactCommon.MutationResult<CreateMsiMarkerMutation>;
 export type CreateMsiMarkerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateMsiMarkerMutation, CreateMsiMarkerMutationVariables>;
 export const CreateTmbMarkerDocument = gql`
-    mutation CreateTMBMarker($marker_id: ID!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $name_id: ID!, $name: String!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!, $comparator_id: ID!, $comparator_field: String!, $resultMin_id: ID!, $resultMin_field: String!, $resultUnits_id: ID!, $resultUnits_field: String!, $interpretation_id: ID!, $interpretation_field: String!) {
+    mutation CreateTMBMarker($marker_id: ID!, $date: String!, $user_id: ID!, $ref_array: [ID!]!, $empty_string: String!, $name_id: ID!, $name: String!, $name_field: String!, $method_id: ID!, $method_field: String!, $result_string_id: ID!, $result_string_field: String!, $comparator_id: ID!, $comparator_field: String!, $resultMin_id: ID!, $resultMin_field: String!, $resultMax_id: ID!, $resultMax_field: String!, $resultUnits_id: ID!, $resultUnits_field: String!, $interpretation_id: ID!, $interpretation_field: String!) {
   createTMBMarker(id: $marker_id)
   name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
   name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
@@ -28309,6 +28480,10 @@ export const CreateTmbMarkerDocument = gql`
   min_editor: addEditableFloatEditor(id: $resultMin_id, editor: [$user_id])
   min_ref: addEditableFloatReferences(id: $resultMin_id, references: $ref_array)
   addTMBMarkerResultMin(id: $marker_id, resultMin: [$resultMin_id])
+  max: createEditableFloat(id: $resultMax_id, field: $resultMax_field, editDate: $date, floatValue: -1.0)
+  max_editor: addEditableFloatEditor(id: $resultMax_id, editor: [$user_id])
+  max_ref: addEditableFloatReferences(id: $resultMax_id, references: $ref_array)
+  addTMBMarkerResultMax(id: $marker_id, resultMax: [$resultMax_id])
   units: createEditableStatement(editDate: $date, field: $resultUnits_field, id: $resultUnits_id, statement: $empty_string)
   units_editor: addEditableStatementEditor(editor: [$user_id], id: $resultUnits_id)
   units_ref: addEditableStatementReferences(id: $resultUnits_id, references: $ref_array)
@@ -28369,6 +28544,8 @@ export function withCreateTmbMarker<TProps, TChildProps = {}, TDataName extends 
  *      comparator_field: // value for 'comparator_field'
  *      resultMin_id: // value for 'resultMin_id'
  *      resultMin_field: // value for 'resultMin_field'
+ *      resultMax_id: // value for 'resultMax_id'
+ *      resultMax_field: // value for 'resultMax_field'
  *      resultUnits_id: // value for 'resultUnits_id'
  *      resultUnits_field: // value for 'resultUnits_field'
  *      interpretation_id: // value for 'interpretation_id'
@@ -28486,6 +28663,194 @@ export function useCreateProteinExpressionMarkerMutation(baseOptions?: ApolloRea
 export type CreateProteinExpressionMarkerMutationHookResult = ReturnType<typeof useCreateProteinExpressionMarkerMutation>;
 export type CreateProteinExpressionMarkerMutationResult = ApolloReactCommon.MutationResult<CreateProteinExpressionMarkerMutation>;
 export type CreateProteinExpressionMarkerMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateProteinExpressionMarkerMutation, CreateProteinExpressionMarkerMutationVariables>;
+export const CreateIhcAssayDocument = gql`
+    mutation CreateIHCAssay($date: String!, $user_id: ID!, $ref_array: [ID!]!, $assay_id: ID!, $name_id: ID!, $name_field: String!, $name: String!, $clone_id: ID!, $clone_field: String!, $clone: String!, $comparator_id: ID!, $comparator_field: String!, $comparator: AssayComparator!, $resultMin_id: ID!, $resultMin_field: String!, $resultMin: Float!, $resultMax_id: ID!, $resultMax_field: String!, $resultMax: Float!, $rs_id: ID!, $rs_field: String!, $rs: String!, $units_id: ID!, $units_field: String!, $units: String!) {
+  createIHCAssay(id: $assay_id)
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addIHCAssayName(id: $assay_id, name: [$name_id])
+  clone: createEditableStatement(editDate: $date, field: $clone_field, id: $clone_id, statement: $clone)
+  clone_editor: addEditableStatementEditor(editor: [$user_id], id: $clone_id)
+  clone_ref: addEditableStatementReferences(id: $clone_id, references: $ref_array)
+  addIHCAssayAntibodyClone(id: $assay_id, antibodyClone: [$clone_id])
+  comp: createEditableAssayComparator(id: $comparator_id, field: $comparator_field, editDate: $date, comparator: $comparator)
+  comp_editor: addEditableAssayComparatorEditor(editor: [$user_id], id: $comparator_id)
+  comp_ref: addEditableAssayComparatorReferences(id: $comparator_id, references: $ref_array)
+  addIHCAssayComparator(id: $assay_id, comparator: [$comparator_id])
+  min: createEditableFloat(id: $resultMin_id, field: $resultMin_field, editDate: $date, floatValue: $resultMin)
+  min_editor: addEditableFloatEditor(editor: [$user_id], id: $resultMin_id)
+  min_ref: addEditableFloatReferences(id: $resultMin_id, references: $ref_array)
+  addIHCAssayResultMin(id: $assay_id, resultMin: [$resultMin_id])
+  max: createEditableFloat(id: $resultMax_id, field: $resultMax_field, editDate: $date, floatValue: $resultMax)
+  max_editor: addEditableFloatEditor(editor: [$user_id], id: $resultMax_id)
+  max_ref: addEditableFloatReferences(id: $resultMax_id, references: $ref_array)
+  addIHCAssayResultMax(id: $assay_id, resultMax: [$resultMax_id])
+  rs: createEditableStatement(editDate: $date, field: $rs_field, id: $rs_id, statement: $rs)
+  rs_editor: addEditableStatementEditor(editor: [$user_id], id: $rs_id)
+  rs_ref: addEditableStatementReferences(id: $rs_id, references: $ref_array)
+  addIHCAssayResultString(id: $assay_id, resultString: [$rs_id])
+  units: createEditableStatement(editDate: $date, field: $units_field, id: $units_id, statement: $units)
+  units_editor: addEditableStatementEditor(editor: [$user_id], id: $units_id)
+  units_ref: addEditableStatementReferences(id: $units_id, references: $ref_array)
+  addIHCAssayResultUnits(id: $assay_id, resultUnits: [$units_id])
+}
+    `;
+export type CreateIhcAssayMutationFn = ApolloReactCommon.MutationFunction<CreateIhcAssayMutation, CreateIhcAssayMutationVariables>;
+export type CreateIhcAssayComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateIhcAssayMutation, CreateIhcAssayMutationVariables>, 'mutation'>;
+
+    export const CreateIhcAssayComponent = (props: CreateIhcAssayComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateIhcAssayMutation, CreateIhcAssayMutationVariables> mutation={CreateIhcAssayDocument} {...props} />
+    );
+    
+export type CreateIhcAssayProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateIhcAssayMutation, CreateIhcAssayMutationVariables>
+    } & TChildProps;
+export function withCreateIhcAssay<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateIhcAssayMutation,
+  CreateIhcAssayMutationVariables,
+  CreateIhcAssayProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateIhcAssayMutation, CreateIhcAssayMutationVariables, CreateIhcAssayProps<TChildProps, TDataName>>(CreateIhcAssayDocument, {
+      alias: 'createIhcAssay',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateIhcAssayMutation__
+ *
+ * To run a mutation, you first call `useCreateIhcAssayMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateIhcAssayMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createIhcAssayMutation, { data, loading, error }] = useCreateIhcAssayMutation({
+ *   variables: {
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      assay_id: // value for 'assay_id'
+ *      name_id: // value for 'name_id'
+ *      name_field: // value for 'name_field'
+ *      name: // value for 'name'
+ *      clone_id: // value for 'clone_id'
+ *      clone_field: // value for 'clone_field'
+ *      clone: // value for 'clone'
+ *      comparator_id: // value for 'comparator_id'
+ *      comparator_field: // value for 'comparator_field'
+ *      comparator: // value for 'comparator'
+ *      resultMin_id: // value for 'resultMin_id'
+ *      resultMin_field: // value for 'resultMin_field'
+ *      resultMin: // value for 'resultMin'
+ *      resultMax_id: // value for 'resultMax_id'
+ *      resultMax_field: // value for 'resultMax_field'
+ *      resultMax: // value for 'resultMax'
+ *      rs_id: // value for 'rs_id'
+ *      rs_field: // value for 'rs_field'
+ *      rs: // value for 'rs'
+ *      units_id: // value for 'units_id'
+ *      units_field: // value for 'units_field'
+ *      units: // value for 'units'
+ *   },
+ * });
+ */
+export function useCreateIhcAssayMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateIhcAssayMutation, CreateIhcAssayMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateIhcAssayMutation, CreateIhcAssayMutationVariables>(CreateIhcAssayDocument, baseOptions);
+      }
+export type CreateIhcAssayMutationHookResult = ReturnType<typeof useCreateIhcAssayMutation>;
+export type CreateIhcAssayMutationResult = ApolloReactCommon.MutationResult<CreateIhcAssayMutation>;
+export type CreateIhcAssayMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateIhcAssayMutation, CreateIhcAssayMutationVariables>;
+export const CreateRnaSeqAssayDocument = gql`
+    mutation CreateRnaSeqAssay($date: String!, $user_id: ID!, $ref_array: [ID!]!, $assay_id: ID!, $name_id: ID!, $name: String!, $name_field: String!, $comparator_id: ID!, $comparator_field: String!, $comparator: AssayComparator!, $resultMin_id: ID!, $resultMin_field: String!, $resultMin: Float!, $resultMax_id: ID!, $resultMax_field: String!, $resultMax: Float!, $resultType_id: ID!, $resultType_field: String!, $resultType: RNASeqResultType!) {
+  createRNASeqAssay(id: $assay_id)
+  name: createEditableStatement(editDate: $date, field: $name_field, id: $name_id, statement: $name)
+  name_editor: addEditableStatementEditor(editor: [$user_id], id: $name_id)
+  name_ref: addEditableStatementReferences(id: $name_id, references: $ref_array)
+  addRNASeqAssayName(id: $assay_id, name: [$name_id])
+  comp: createEditableAssayComparator(id: $comparator_id, field: $comparator_field, editDate: $date, comparator: $comparator)
+  comp_editor: addEditableAssayComparatorEditor(editor: [$user_id], id: $comparator_id)
+  comp_ref: addEditableAssayComparatorReferences(id: $comparator_id, references: $ref_array)
+  addRNASeqAssayComparator(id: $assay_id, comparator: [$comparator_id])
+  min: createEditableFloat(id: $resultMin_id, field: $resultMin_field, editDate: $date, floatValue: $resultMin)
+  min_editor: addEditableFloatEditor(editor: [$user_id], id: $resultMin_id)
+  min_ref: addEditableFloatReferences(id: $resultMin_id, references: $ref_array)
+  addRNASeqAssayResultMin(id: $assay_id, resultMin: [$resultMin_id])
+  max: createEditableFloat(id: $resultMax_id, field: $resultMax_field, editDate: $date, floatValue: $resultMax)
+  max_editor: addEditableFloatEditor(editor: [$user_id], id: $resultMax_id)
+  max_ref: addEditableFloatReferences(id: $resultMax_id, references: $ref_array)
+  addRNASeqAssayResultMax(id: $assay_id, resultMax: [$resultMax_id])
+  rt: createEditableRNASeqResultType(id: $resultType_id, editDate: $date, field: $resultType_field, resultType: $resultType)
+  rt_editor: addEditableRNASeqResultTypeEditor(editor: [$user_id], id: $resultType_id)
+  rt_ref: addEditableRNASeqResultTypeReferences(id: $resultType_id, references: $ref_array)
+  addRNASeqAssayResultType(id: $assay_id, resultType: [$resultType_id])
+}
+    `;
+export type CreateRnaSeqAssayMutationFn = ApolloReactCommon.MutationFunction<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables>;
+export type CreateRnaSeqAssayComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables>, 'mutation'>;
+
+    export const CreateRnaSeqAssayComponent = (props: CreateRnaSeqAssayComponentProps) => (
+      <ApolloReactComponents.Mutation<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables> mutation={CreateRnaSeqAssayDocument} {...props} />
+    );
+    
+export type CreateRnaSeqAssayProps<TChildProps = {}, TDataName extends string = 'mutate'> = {
+      [key in TDataName]: ApolloReactCommon.MutationFunction<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables>
+    } & TChildProps;
+export function withCreateRnaSeqAssay<TProps, TChildProps = {}, TDataName extends string = 'mutate'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  CreateRnaSeqAssayMutation,
+  CreateRnaSeqAssayMutationVariables,
+  CreateRnaSeqAssayProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withMutation<TProps, CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables, CreateRnaSeqAssayProps<TChildProps, TDataName>>(CreateRnaSeqAssayDocument, {
+      alias: 'createRnaSeqAssay',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useCreateRnaSeqAssayMutation__
+ *
+ * To run a mutation, you first call `useCreateRnaSeqAssayMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRnaSeqAssayMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRnaSeqAssayMutation, { data, loading, error }] = useCreateRnaSeqAssayMutation({
+ *   variables: {
+ *      date: // value for 'date'
+ *      user_id: // value for 'user_id'
+ *      ref_array: // value for 'ref_array'
+ *      assay_id: // value for 'assay_id'
+ *      name_id: // value for 'name_id'
+ *      name: // value for 'name'
+ *      name_field: // value for 'name_field'
+ *      comparator_id: // value for 'comparator_id'
+ *      comparator_field: // value for 'comparator_field'
+ *      comparator: // value for 'comparator'
+ *      resultMin_id: // value for 'resultMin_id'
+ *      resultMin_field: // value for 'resultMin_field'
+ *      resultMin: // value for 'resultMin'
+ *      resultMax_id: // value for 'resultMax_id'
+ *      resultMax_field: // value for 'resultMax_field'
+ *      resultMax: // value for 'resultMax'
+ *      resultType_id: // value for 'resultType_id'
+ *      resultType_field: // value for 'resultType_field'
+ *      resultType: // value for 'resultType'
+ *   },
+ * });
+ */
+export function useCreateRnaSeqAssayMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables>) {
+        return ApolloReactHooks.useMutation<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables>(CreateRnaSeqAssayDocument, baseOptions);
+      }
+export type CreateRnaSeqAssayMutationHookResult = ReturnType<typeof useCreateRnaSeqAssayMutation>;
+export type CreateRnaSeqAssayMutationResult = ApolloReactCommon.MutationResult<CreateRnaSeqAssayMutation>;
+export type CreateRnaSeqAssayMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateRnaSeqAssayMutation, CreateRnaSeqAssayMutationVariables>;
 export const ProteinExpression_MarkerDocument = gql`
     query ProteinExpression_Marker($marker_id: ID) {
   ProteinExpressionMarker(id: $marker_id) {
@@ -28497,20 +28862,7 @@ export const ProteinExpression_MarkerDocument = gql`
       ...es_fields
     }
     synonyms {
-      id
-      stringList
-      field
-      references {
-        id
-        ... on LiteratureReference {
-          PMID
-        }
-      }
-      editor {
-        id
-        name
-      }
-      editDate
+      ...esl_fields
     }
     genes {
       id
@@ -28591,7 +28943,8 @@ export const ProteinExpression_MarkerDocument = gql`
     }
   }
 }
-    ${Es_FieldsFragmentDoc}`;
+    ${Es_FieldsFragmentDoc}
+${Esl_FieldsFragmentDoc}`;
 export type ProteinExpression_MarkerComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<ProteinExpression_MarkerQuery, ProteinExpression_MarkerQueryVariables>, 'query'>;
 
     export const ProteinExpression_MarkerComponent = (props: ProteinExpression_MarkerComponentProps) => (
@@ -29062,6 +29415,7 @@ export const ProteinExpressionMarkerComponentsDocument = gql`
     id
     __typename
     name {
+      id
       statement
     }
   }
@@ -29179,6 +29533,7 @@ export const ProteinLevelAssayDocument = gql`
     id
     __typename
     name {
+      id
       statement
     }
   }
@@ -29239,16 +29594,17 @@ export const RnaSeqAssayDocument = gql`
       ...ecomp
     }
     resultMin {
-      ...ef
+      ...ef_fields
     }
     resultMax {
-      ...ef
+      ...ef_fields
     }
     resultType {
       id
       field
       resultType
       editor {
+        id
         name
       }
       editDate
@@ -29260,7 +29616,7 @@ export const RnaSeqAssayDocument = gql`
 }
     ${Es_FieldsFragmentDoc}
 ${EcompFragmentDoc}
-${EfFragmentDoc}`;
+${Ef_FieldsFragmentDoc}`;
 export type RnaSeqAssayComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<RnaSeqAssayQuery, RnaSeqAssayQueryVariables>, 'query'>;
 
     export const RnaSeqAssayComponent = (props: RnaSeqAssayComponentProps) => (
@@ -29961,13 +30317,16 @@ export type TmbComponentsQueryResult = ApolloReactCommon.QueryResult<TmbComponen
 export const EditableAssayComparatorDocument = gql`
     query EditableAssayComparator($field: String) {
   EditableAssayComparator(field: $field, orderBy: editDate_desc) {
+    id
     field
     comparator
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30021,13 +30380,16 @@ export type EditableAssayComparatorQueryResult = ApolloReactCommon.QueryResult<E
 export const EditableOmniConjunctionDocument = gql`
     query EditableOmniConjunction($field: String) {
   EditableOmniConjunction(field: $field, orderBy: editDate_desc) {
+    id
     field
     conjunction
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30081,13 +30443,16 @@ export type EditableOmniConjunctionQueryResult = ApolloReactCommon.QueryResult<E
 export const EditableCopyChangeDocument = gql`
     query EditableCopyChange($field: String) {
   EditableCopyChange(field: $field, orderBy: editDate_desc) {
+    id
     field
     cnvType
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30141,13 +30506,16 @@ export type EditableCopyChangeQueryResult = ApolloReactCommon.QueryResult<Editab
 export const EditableBooleanDocument = gql`
     query EditableBoolean($field: String) {
   EditableBoolean(field: $field, orderBy: editDate_desc) {
+    id
     field
     booleanValue
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30201,13 +30569,16 @@ export type EditableBooleanQueryResult = ApolloReactCommon.QueryResult<EditableB
 export const EditableFloatDocument = gql`
     query EditableFloat($field: String) {
   EditableFloat(field: $field, orderBy: editDate_desc) {
+    id
     field
     floatValue
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30261,13 +30632,16 @@ export type EditableFloatQueryResult = ApolloReactCommon.QueryResult<EditableFlo
 export const EditableIntDocument = gql`
     query EditableInt($field: String) {
   EditableInt(field: $field, orderBy: editDate_desc) {
+    id
     field
     intValue
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30321,17 +30695,22 @@ export type EditableIntQueryResult = ApolloReactCommon.QueryResult<EditableIntQu
 export const EditableMarkerComponentListDocument = gql`
     query EditableMarkerComponentList($field: String) {
   EditableMarkerComponentList(field: $field, orderBy: editDate_desc) {
+    id
     field
     components {
+      id
       name {
+        id
         statement
       }
     }
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30385,15 +30764,19 @@ export type EditableMarkerComponentListQueryResult = ApolloReactCommon.QueryResu
 export const EditableOmniGeneReferenceDocument = gql`
     query EditableOmniGeneReference($field: String) {
   EditableOmniGeneReference(field: $field, orderBy: editDate_desc) {
+    id
     field
     gene {
+      id
       name
     }
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30447,13 +30830,16 @@ export type EditableOmniGeneReferenceQueryResult = ApolloReactCommon.QueryResult
 export const EditableStatementDocument = gql`
     query EditableStatement($field: String) {
   EditableStatement(field: $field, orderBy: editDate_desc) {
+    id
     field
     statement
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30507,13 +30893,16 @@ export type EditableStatementQueryResult = ApolloReactCommon.QueryResult<Editabl
 export const EditableImmuneCycleRoleDocument = gql`
     query EditableImmuneCycleRole($field: String) {
   EditableImmuneCycleRole(field: $field, orderBy: editDate_desc) {
+    id
     field
     immuneCycleRole
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30567,13 +30956,16 @@ export type EditableImmuneCycleRoleQueryResult = ApolloReactCommon.QueryResult<E
 export const EditableImmuneFunctionDocument = gql`
     query EditableImmuneFunction($field: String) {
   EditableImmuneFunction(field: $field, orderBy: editDate_desc) {
+    id
     field
     immuneFunction
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30627,13 +31019,16 @@ export type EditableImmuneFunctionQueryResult = ApolloReactCommon.QueryResult<Ed
 export const EditableImmunePhenotypeDocument = gql`
     query EditableImmunePhenotype($field: String) {
   EditableImmunePhenotype(field: $field, orderBy: editDate_desc) {
+    id
     field
     immunePhenotype
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30757,13 +31152,16 @@ export type LiteratureReferenceQueryResult = ApolloReactCommon.QueryResult<Liter
 export const EditableProteinEffectDocument = gql`
     query EditableProteinEffect($field: String) {
   EditableProteinEffect(field: $field, orderBy: editDate_desc) {
+    id
     field
     proteinEffect
     editDate
     editor {
+      id
       name
     }
     references {
+      id
       shortReference
     }
   }
@@ -30817,10 +31215,12 @@ export type EditableProteinEffectQueryResult = ApolloReactCommon.QueryResult<Edi
 export const EditableStringListDocument = gql`
     query EditableStringList($field: String) {
   EditableStringList(field: $field, orderBy: editDate_desc) {
+    id
     field
     stringList
     editDate
     editor {
+      id
       name
     }
   }

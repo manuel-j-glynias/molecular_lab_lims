@@ -15,7 +15,9 @@ const RNASeqAssay : React.FC<Props> = ({data,rnaSeqAssay_id, refetch}) => {
     function showResultMax() {
         let resultMax = "NA"
         if (data && data.RNASeqAssay && data.RNASeqAssay[0] && data.RNASeqAssay[0].resultMax){
-            resultMax = data.RNASeqAssay[0].resultMax.floatValue.toString()
+            if (data.RNASeqAssay[0].resultMax.floatValue != -1) {
+                resultMax = data.RNASeqAssay[0].resultMax.floatValue.toString()
+            }
         }
         return resultMax
     }

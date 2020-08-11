@@ -15,7 +15,9 @@ const IHCAssay : React.FC<Props> = ({data,ihc_id, refetch}) => {
     function showResultMax() {
         let resultMax = "NA"
         if (data && data.IHCAssay && data.IHCAssay[0] && data.IHCAssay[0].resultMax){
-            resultMax = data.IHCAssay[0].resultMax.floatValue.toString()
+            if (data.IHCAssay[0].resultMax.floatValue != -1){
+                resultMax = data.IHCAssay[0].resultMax.floatValue.toString()
+            }
         }
         return resultMax
     }

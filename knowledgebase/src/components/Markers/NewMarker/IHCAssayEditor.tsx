@@ -1,16 +1,19 @@
 import * as React from 'react';
-import {Fragment} from "react";
-import {AssayComparator} from "../../../generated/graphql";
+import {Fragment, useEffect} from "react";
+import {AssayComparator, RnaSeqResultType} from "../../../generated/graphql";
 import Select, {OptionTypeBase} from "react-select";
-
+import {useCreateIhcAssayMutation,CreateIhcAssayMutationVariables} from "../../../generated/graphql";
+import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/Helpers/EditableStatementHelper";
+import {useUserContentState} from "../../../context/UserContentContext";
 
 interface Props {
     set_protein_level_assay_id: (newId: string) => void;
     set_creating_new_ihc_assay: (b:boolean)=> void;
+    set_query_string: (q:string) => void;
 }
 const className = 'IHCAssayEditor';
 
-const IHCAssayEditor: React.FC<Props> = ({set_protein_level_assay_id,set_creating_new_ihc_assay}) => {
+const IHCAssayEditor: React.FC<Props> = ({set_protein_level_assay_id,set_creating_new_ihc_assay,set_query_string}) => {
     const [name, set_name] = React.useState('');
     const [clone, set_clone] = React.useState('');
     const [units, set_units] = React.useState('');
@@ -26,9 +29,60 @@ const IHCAssayEditor: React.FC<Props> = ({set_protein_level_assay_id,set_creatin
     //     resultMax: EditableFloat @relation(name: "MAX", direction: "OUT")
     //     resultString: EditableStatement @relation(name: "RESULT", direction: "OUT")
     //     resultUnits: EditableStatement! @relation(name: "UNITS", direction: "OUT")
-    const save = async ()  => {
-        set_creating_new_ihc_assay(false)
+    const {
+        UserContentState: {userID}
+    } = useUserContentState();
+
+    const user_ID : string = userID;
+    const [createIhcAssay,{loading,error,data}] = useCreateIhcAssayMutation({variables:{date:'',user_id: '',ref_array:[], assay_id:'',name:'', name_id:'',name_field:'', comparator_id:'',comparator_field:'',comparator:AssayComparator.Equals,
+            resultMin_id:'',resultMin_field:'',resultMin:-1,resultMax_id:'',resultMax_field:'',resultMax:-1,clone_id:'',clone_field:'',clone:'',
+            units_id:'',units_field:'',units:'',rs_id:'',rs_field:'',rs:'',}})
+
+    const get_CreateIhcAssayMutationVariables = () : CreateIhcAssayMutationVariables => {
+        const variables : CreateIhcAssayMutationVariables = {
+            date: get_date_as_hyphenated_string(),
+            user_id: user_ID,
+            ref_array: [],
+            assay_id: get_unique_graph_id('ihc_'),
+            name_id: get_unique_graph_id('es_'),
+            name: name,
+            name_field: get_unique_graph_id('ihc_name_field_'),
+            comparator_id: get_unique_graph_id('eac_'),
+            comparator_field: get_unique_graph_id('ihc_comparator_field_'),
+            comparator: comparator,
+            resultMin_id: get_unique_graph_id('ef_'),
+            resultMin_field: get_unique_graph_id('ihc_resultMin_field_'),
+            resultMin: parseFloat(resultMin),
+            resultMax_id: get_unique_graph_id('ef_'),
+            resultMax_field: get_unique_graph_id('ihc_resultMax_field_'),
+            resultMax: parseFloat(resultMax),
+            clone_id:get_unique_graph_id('es_'),
+            clone_field:get_unique_graph_id('antibodyClone_field_'),
+            clone:clone,
+            units_id:get_unique_graph_id('es_'),
+            units_field:get_unique_graph_id('ihc_resultUnits_field_'),
+            units:units,
+            rs_id:get_unique_graph_id('es_'),
+            rs_field:get_unique_graph_id('ihc_resultString_field_'),
+            rs:result_string
+        }
+        return variables
     }
+
+    const save = async ()  => {
+        const mutation_object = get_CreateIhcAssayMutationVariables();
+        set_protein_level_assay_id(mutation_object.assay_id);
+        await createIhcAssay({variables:mutation_object})
+    }
+
+    const post_save = () => {
+        if (data!=null){
+            set_query_string(name)
+            set_creating_new_ihc_assay(false)
+        }
+    }
+
+    useEffect(post_save,[data])
     const cancel = async ()  => {
         set_creating_new_ihc_assay(false)
     }
