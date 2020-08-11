@@ -79,7 +79,7 @@
 
 .OntologicalDisease__Synonym_Wrapper {
     display: grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 250px 100px;
     align-items: flex-start;
 }
 .OntologicalDisease__select {
