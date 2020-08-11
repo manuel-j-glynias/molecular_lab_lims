@@ -49,3 +49,68 @@
 .NewMarker__Filter{
     padding-bottom: 20px;
 }
+
+.RnaSeqAssayEditor__Wrapper {
+    display: grid;
+    grid-template-columns: 100px 250px;
+    grid-row-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+    align-items: flex-start;
+}
+
+.RnaSeqAssayEditor__Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.RnaSeqAssayEditor__Wrapper_Span {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+.RnaSeqAssayEditor__Wrapper > div:nth-child(odd){
+    padding-left: 5px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.RnaSeqAssayEditor__Wrapper > div:nth-child(even){
+    padding-left: 5px;
+    padding-top: 5px;
+}
+.RnaSeqAssayEditor__ShortTextarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 50px;
+    padding: 0.4rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+.IHCAssayEditor__Wrapper {
+    display: grid;
+    grid-template-columns: 100px 250px;
+    grid-row-gap: 10px;
+    grid-auto-rows: minmax(30px, auto);
+    align-items: flex-start;
+}
+
+.IHCAssayEditor__Wrapper > div{
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+}
+
+.IHCAssayEditor__Wrapper_Span {
+    font-family: 'Lato', sans-serif;
+    font-size: 10px;
+}
+.IHCAssayEditor__Wrapper > div:nth-child(odd){
+    padding-left: 5px;
+    padding-top: 5px;
+    font-weight: bold;
+}
+
+.IHCAssayEditor__Wrapper > div:nth-child(even){
+    padding-left: 5px;
+    padding-top: 5px;
+}

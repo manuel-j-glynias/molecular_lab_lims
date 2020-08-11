@@ -15,16 +15,22 @@ export const QUERY_OntolgicalDisease = gql`
                 stringList
             }
             omniMaps{
+                id
                 list{
+                    id
                     mCodes{
+                        id
                         mcodeId
                         diseasePath{
+                            id
                             statement
                         }
                     }
                     omniDisease{
+                        id
                         omniDiseaseId
                         name{
+                            id
                             statement
                         }
                     }

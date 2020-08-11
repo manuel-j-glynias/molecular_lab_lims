@@ -5,19 +5,23 @@ export const QUERY_MyGeneInfo = gql`
         JaxGene(id: $id) {
             name
             canonicalTranscript{
+                id
                 statement
             }
             chromosome
             entrezId
             jaxId
             synonyms{
+                id
                 stringList
             }
             description {
+                id
                 statement
                 field
                 editDate
                 editor {
+                    id
                     name
                 }
                 references{

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useState,Fragment} from "react";
 import Select from "react-select";
 import './styles.css'
 import {useAlert} from 'react-alert'
@@ -24,6 +24,9 @@ import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/H
 import GeneList from "./GeneList";
 import ProteinLevelAssayList from "../ProteinLevelAssayList/ProteinLevelAssayList";
 import ProteinLevelAssayListContainer from "../ProteinLevelAssayList";
+import RnaSeqAssayEditor from "./RnaSeqAssayEditor";
+import IHCAssayEditor from "./IHCAssayEditor";
+import apiClient from "../../../axios/Axios";
 
 
 const className = 'NewMarker';
@@ -50,6 +53,12 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     const [filter_term, set_filter_term] = useState('');
     const [protein_level_assay_id, set_protein_level_assay_id]= useState('');
     const [new_variant_id, set_new_variant_id]= useState('');
+
+    const [region_value, set_region_value]= useState('0');
+    const [add_gene, set_add_gene] = useState('');
+
+    const [creating_new_ihc_assay, set_creating_new_ihc_assay]= useState(false);
+    const [creating_new_rnaseq_assay, set_creating_new_rnaseq_assay]= useState(false);
 
     const alert = useAlert()
 
@@ -150,7 +159,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
 
     const [createGenomicVariantRegion, { loading: regionMutationLoading, error: regionMutationError, data:regionMutationData }] = useCreateGenomicVariantMarkerRegionMutation({variables:{marker_id:'',
             date:'', empty_string:'', method_field:'', method_id:'', name:'', name_id:'',name_field:'',result_string_id:'',result_string_field:'',user_id: '',ref_array:[],del_id:'',del_field:'',frame_id:'',frame_field:'',trunc_id:'',trunc_field:'',
-            region_type:RegionType.Gene,region_value_field:'',region_value_id:'',
+            region_type:RegionType.Gene,region_value_field:'',region_value_id:'',region_value:1,
             gene_id:'',variant_id:'',name_v_id:'',name_v_field:'',des_id:'',des_field:'',pe_id:'',pe_field:'',trans_id:'',trans_field:''}})
 
     const get_CreateGenomicVariantMarkerRegionMutationVariables = ():CreateGenomicVariantMarkerRegionMutationVariables => {
@@ -168,6 +177,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
             region_type:region_type,
             region_value_field:get_unique_graph_id('region_VariantValue_'),
             region_value_id: get_unique_graph_id('ei_'),
+            region_value : parseInt(region_value),
             del_id:get_unique_graph_id('ei_'),
             del_field:get_unique_graph_id('region_VariantDeleterious_'),
             frame_id:get_unique_graph_id('ei_'),
@@ -192,7 +202,7 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     }
     const post_CreateGenomicVariantMarkerRegionMutation = () => {
         console.log("post_CreateGenomicVariantMarkerRegionMutation")
-        if (snvMutationData!=null){
+        if (regionMutationData!=null){
             set_query_string(new_marker_name)
             set_markerType('GenomicVariantMarker')
             set_selected_gene_label(new_gene_name)
@@ -557,6 +567,39 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
     function isGenomicMarker() {
         return new_markerType == 'VariantSNVIndel' || new_markerType == 'VariantRegion'|| new_markerType == 'VariantCNV' || new_markerType == 'VariantFusion';
     }
+    const handle_region_value_change = async (targetValue:string) => {
+        let value = targetValue.replace(/\D/g,'');
+        set_region_value(value)
+    }
+
+    type addGeneResult = {
+        result_id: string;
+        result_name: string;
+    }
+    const addGeneService = async (gene_name:string) => {
+        try{
+            const response = await apiClient.get<addGeneResult>("/new_gene/" + gene_name)
+            const addGeneResult = response.data;
+            return addGeneResult
+        } catch (err) {
+            if (err && err.response) {
+                // const axiosError = err as AxiosError<ServerError>
+                return err.response;
+            }
+
+            throw err;
+
+        }
+    }
+
+    const handleAddGene = () => {
+        addGeneService(add_gene).then( (response:addGeneResult) => {
+            set_filter_term(response.result_name)
+            set_gene_query_string(response.result_name)
+            set_add_gene('')
+        }).catch(err => alert.show(err))
+
+    }
 
     return (
         <div className={`${className}__Container`}>
@@ -577,12 +620,17 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                     value={state.selectedOption}/> </div>
 
 
-                <div>{new_markerType == 'VariantRegion' && <span>Select Region Type</span> }</div>
-                <div>{new_markerType == 'VariantRegion' &&
+                {new_markerType == 'VariantRegion' && <div><span>Select Region Type</span> </div>}
+                {new_markerType == 'VariantRegion' &&
                     <div>
                         <Select className={`${className}__Select`}  options = {regiontype_options} onChange={handleRegionTypeChange} value={regiontype_state.selectedOption}/>
                     </div>  }
-                </div>
+
+                {new_markerType == 'VariantRegion' && <div><span>Region Value</span></div> }
+                {new_markerType == 'VariantRegion' &&
+                <div>
+                    <textarea className={`${className}__ShortTextarea`} name="region_value" placeholder="Region Value (int)" value={region_value} onChange={(e) => {handle_region_value_change(e.target.value)}}/>
+                </div>  }
 
                 <div>{isGenomicMarker() && <span>Select Gene</span>}</div>
                 <div>{isGenomicMarker() &&
@@ -602,6 +650,14 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                                 <div className={`${className}__GeneListWrapper`}>
                                     <GeneList data={data} query_str={gene_query_string} gene_id={new_gene_id} handleGeneIdChange={handleGeneIdChange} set_gene_query_string={set_gene_query_string}/>
                                 </div>
+                                <div className={`${className}__Buttons`}>
+                                    <input className={'add_gene_input'} type="text"
+                                           placeholder="HGNC..."
+                                           name="addGeneButton" value={add_gene}
+                                           onChange={e => set_add_gene(e.target.value.toUpperCase())}
+                                    />
+                                    <button className={'btn btn-primary'} onClick={handleAddGene}>Add Gene</button>
+                                </div>
                                 </div>
                         }
                     </div>}
@@ -611,9 +667,16 @@ const NewMarker: React.FC<Props> = ({set_markerType,set_query_string, set_marker
                     {new_markerType == 'ProteinExpressionMarker' && <span>Select Assay</span>}
                 </div>
                 <div>
-                    {new_markerType == 'ProteinExpressionMarker' &&
-                    <ProteinLevelAssayListContainer protein_level_assay_id={protein_level_assay_id} set_protein_level_assay_id={set_protein_level_assay_id} />
+                    {new_markerType == 'ProteinExpressionMarker' && !creating_new_ihc_assay && !creating_new_rnaseq_assay &&
+                        <Fragment>
+                            <ProteinLevelAssayListContainer protein_level_assay_id={protein_level_assay_id} set_protein_level_assay_id={set_protein_level_assay_id} />
+                            <button className={'btn btn-primary'} onClick={()=>set_creating_new_ihc_assay(true)}>New IHC Assay</button>
+                            <button className={'btn btn-primary'} onClick={()=>set_creating_new_rnaseq_assay(true)}>New RNAseq Assay</button>
+                        </Fragment>
                     }
+                    {new_markerType == 'ProteinExpressionMarker' && creating_new_ihc_assay && <IHCAssayEditor set_protein_level_assay_id={set_protein_level_assay_id} set_creating_new_ihc_assay={set_creating_new_ihc_assay}/>}
+                    {new_markerType == 'ProteinExpressionMarker' && creating_new_rnaseq_assay && <RnaSeqAssayEditor set_protein_level_assay_id={set_protein_level_assay_id} set_creating_new_rnaseq_assay={set_creating_new_rnaseq_assay}/>}
+
                 </div>
 
                 <div></div>

@@ -10,16 +10,17 @@ export const RNASeqAssayQuery = gql`
                 ...ecomp
             }
             resultMin{
-                ...ef
+                ...ef_fields
             }
             resultMax{
-                ...ef
+                ...ef_fields
             }
             resultType{
                 id
                 field
                 resultType
                 editor{
+                    id
                     name
                 }
                 editDate

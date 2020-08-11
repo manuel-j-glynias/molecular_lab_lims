@@ -26,17 +26,7 @@ export const SNV_VARIANT_FOR_ID = gql`
             variantType
             indelType
             proteinEffect{
-                id
-                proteinEffect
-                field
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+                ...epe_fields
             }
             exon{
                 ...es_fields

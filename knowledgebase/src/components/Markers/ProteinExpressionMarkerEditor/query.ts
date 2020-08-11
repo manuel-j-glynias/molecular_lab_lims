@@ -12,20 +12,7 @@ export const ProteinExpressionMarkerQuery = gql`
                 ...es_fields
             }
             synonyms{
-                id
-                stringList
-                field
-                references {
-                    id
-                    ... on LiteratureReference {
-                        PMID
-                    }
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+                ...esl_fields
             }
             genes{
                 id

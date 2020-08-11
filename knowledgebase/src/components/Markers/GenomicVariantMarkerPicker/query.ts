@@ -6,6 +6,7 @@ export const GenomicVariantMarkerComponentsQuery = gql`
             id
             __typename
             name{
+                id
                 statement
             }
         }

@@ -20,40 +20,20 @@ query VariantRegion($variant_id: ID) {
         variantType
         indelType
         proteinEffect{
-            id
-            proteinEffect
-            field
-            references {
-                id
-            }
-            editor {
-                id
-                name
-            }
-            editDate
+           ...epe_fields
         }
         regionType
         regionValue{
-            id
-            intValue
-            field
-            references {
-                id
-            }
-            editor {
-                id
-                name
-            }
-            editDate
+           ...ei_fields
         }
         isFrameshift{
-            ...eb
+            ...eb_fields
         }
         isTruncating{
-            ...eb
+            ...eb_fields
         }
         isDeleterious{
-            ...eb
+            ...eb_fields
         }
         jaxVariant {
             id
@@ -70,19 +50,7 @@ query VariantRegion($variant_id: ID) {
     }
 }
 
-fragment eb on EditableBoolean{
-    id
-    booleanValue
-    field
-    references {
-        id
-    }
-    editor {
-        id
-        name
-    }
-    editDate
-}
+
 `
 export const mutation_add_description = gql`
     mutation VariantRegionAddDescription($variant_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {

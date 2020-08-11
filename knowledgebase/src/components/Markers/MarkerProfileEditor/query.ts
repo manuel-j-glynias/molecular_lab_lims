@@ -14,6 +14,7 @@ export const MarkerProfileQuery = gql`
                 conjunction
                 editDate
                 editor{
+                    id
                     name
                 }
                 references{
@@ -28,11 +29,13 @@ export const MarkerProfileQuery = gql`
                 components{
                     id
                     name{
+                        id
                         statement
                     }
                 }
                 editDate
                 editor{
+                    id
                     name
                 }
                 references{

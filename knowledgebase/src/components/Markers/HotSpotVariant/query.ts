@@ -13,7 +13,9 @@ export const QUERY_HOTSPOT_VARIANT = gql`
             position
             occurrences(orderBy:perThousandOccurrence_desc){
                 disease{
+                    id
                     name{
+                        id
                         statement
                     }
                 }
@@ -32,16 +34,5 @@ export const QUERY_HOTSPOT_VARIANT = gql`
         }
     }
 
-    fragment ei_fields on EditableInt{
-        id
-        intValue
-        references {
-            id
-        }
-        editor {
-            id
-            name
-        }
-        editDate
-    }
+    
 `

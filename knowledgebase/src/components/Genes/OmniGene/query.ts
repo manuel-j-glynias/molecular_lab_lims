@@ -13,17 +13,7 @@ export const QUERY_OmniGene = gql`
                 ...es_fields
             }
             synonyms {
-                id
-                stringList
-                field
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+                ...esl_fields
             }
             transcript{
                 ...es_fields
@@ -40,22 +30,7 @@ export const QUERY_OmniGene = gql`
         }
     }
 
-    fragment es_fields on EditableStatement {
-        id
-        statement
-        field
-        references {
-            id
-            ... on LiteratureReference {
-                PMID
-            }
-        }
-        editor {
-            id
-            name
-        }
-        editDate
-    }
+    
 `
 export const GET_PUBMED_ID = gql`
     query GetPubMedID($ref_id:ID){

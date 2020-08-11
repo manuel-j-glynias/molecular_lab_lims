@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 export const QUERY_GO_VARIANT_BY_GENE_NAME = gql`
     query GOVariantByGene($gene_name:String, $pdot:String){
         go_by_name: GOVariant(gene:$gene_name, filter:{name:{statement_contains:$pdot}}){
+            id
             gene
             id
             name{

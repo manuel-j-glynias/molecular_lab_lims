@@ -6,15 +6,18 @@ export const VARIANT_MARKERS_FOR_GENE = gql`
         GenomicVariantMarker(orderBy: id_asc, filter: {AND:[{name:{statement_contains:$query_string}},{gene: {id:$omnigene_id}}]}) {
             id
             name{
+                id
                 statement
             }
             method{
+                id
                 statement
             }
             variant {
                 id
                 __typename
                 name{
+                    id
                     statement
                 }
             }

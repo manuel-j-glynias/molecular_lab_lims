@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const IHCAssayQuery = gql`
     query IHCAssay($id:ID){
         IHCAssay(id:$id){
+            id
             name{
                 ...es_fields
             }
@@ -13,10 +14,10 @@ export const IHCAssayQuery = gql`
                  ...ecomp
              }
             resultMin{
-                ...ef
+                ...ef_fields
             }
             resultMax{
-                ...ef
+                ...ef_fields
             }
             resultUnits{
                 ...es_fields
@@ -26,30 +27,6 @@ export const IHCAssayQuery = gql`
             }
         }
     }
-    fragment ecomp on EditableAssayComparator{
-        id
-        comparator
-        field
-        editor{
-            name
-        }
-        editDate
-        references {
-            id
-        }
-        
-    }
-    fragment ef on EditableFloat{
-        id
-        floatValue
-        field
-        references {
-            id
-        }
-        editor {
-            id
-            name
-        }
-        editDate
-    }
+   
+    
 `

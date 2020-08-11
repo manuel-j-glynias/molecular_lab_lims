@@ -5,6 +5,7 @@ export const QUERY_OntologicalDiseaseList = gql`
         OntologicalDisease(filter:{name:{statement_contains:$query_string}}) {
             id
             name{
+                id
                 statement
             }
           }

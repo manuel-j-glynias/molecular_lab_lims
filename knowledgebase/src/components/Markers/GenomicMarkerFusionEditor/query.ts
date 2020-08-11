@@ -11,43 +11,13 @@ export const FUSION_VARIANT_FOR_ID = gql`
                 name
             }
             copyChange{
-                id
-                field
-                cnvType
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+               ... copyChange_fields
             }
             exon3Prime{
-                id
-                intValue
-                field
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+               ...ei_fields
             }
             exon5Prime{
-                id
-                intValue
-                field
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+                ...ei_fields
             }
             gene3Prime {
                 ...eog_fields
@@ -74,22 +44,7 @@ export const FUSION_VARIANT_FOR_ID = gql`
             }
         }
     }
-    fragment eog_fields on EditableOmniGeneReference{
-        id
-        gene{
-            id
-            name
-        }
-        field
-        references {
-            id
-        }
-        editor {
-            id
-            name
-        }
-        editDate
-    }
+    
 `
 export const mutation_add_copy_change = gql`
     mutation VariantFusionAddCopyChange($variant_id: ID!, $old_id: ID!, $date: String!, $field: String!, $copy_change: CNVType!, $id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {

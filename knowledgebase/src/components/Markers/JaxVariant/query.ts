@@ -13,6 +13,7 @@ export const QUERY_JAX_VARIANT = gql`
             pDot
             gDot
             proteinEffect{
+                id
                 proteinEffect
              }
             transcript{
@@ -20,6 +21,7 @@ export const QUERY_JAX_VARIANT = gql`
             }
             variantType
             description {
+                id
                 ...es_fields
             }
         }

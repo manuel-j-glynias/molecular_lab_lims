@@ -8,17 +8,7 @@ export const CNV_VARIANT_FOR_ID = gql`
                 ...es_fields
             }
             copyChange{
-                id
-                field
-                cnvType
-                references {
-                    id
-                }
-                editor {
-                    id
-                    name
-                }
-                editDate
+                ...copyChange_fields
             }
             gene{
                 id

@@ -9,6 +9,7 @@ export const VARIANT_MARKERS_FOR_ID = gql`
                 ...es_fields
             }
             method{
+                id
                 statement
             }
             variant {

@@ -14,6 +14,7 @@ export const QUERY_JAX_VARIANT_BY_GENE_NAME = gql`
             jaxId
             name
             proteinEffect{
+                id
                 proteinEffect
             }
         }

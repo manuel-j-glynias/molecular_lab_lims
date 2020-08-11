@@ -7,6 +7,7 @@ export const PROTEIN_LEVEL_ASSAY_QUERY = gql`
             id
             __typename
             name{
+                id
                 statement
             }
         }

@@ -12,6 +12,7 @@ export const QUERY_MyGeneInfo = gql`
                 statement
                 field
                 editor{
+                    id
                     name
                 }
                 editDate
