@@ -11,8 +11,18 @@ export const QUERY_OntolgicalDisease = gql`
             description{
                 ...es_fields
             }
-            synonyms{
+            synonyms {
+                id
                 stringList
+                field
+                references {
+                    id
+                }
+                editor {
+                    id
+                    name
+                }
+                editDate
             }
             omniMaps{
                 id
@@ -108,6 +118,20 @@ export const mutation_add_name = gql`
         addEditableStatementEditor(editor: [$user_id], id: $es_id)
         addEditableStatementReferences(id: $es_id, references: $ref_aray)
         addOntologicalDiseaseName(id: $id, name: [$es_id])
+    }
+
+`
+export const mutation_add_synonym_string = gql`
+    mutation OntologicalDiseaseAddSynonyms($id: ID!, $old_esyn_id: ID!, $date: String!, $esyn_field: String!, $esyn_list: [String]!, $esyn_id: ID!, $user_id: ID!) {
+        deleteOntologicalDiseaseSynonyms(id: $id, synonyms: [$old_esyn_id])
+        createEditableStringList(id: $esyn_id,field: $esyn_field,stringList: $esyn_list,editDate: $date)
+        addEditableStringListEditor(editor: [$user_id], id: $esyn_id)
+        addEditableStringListReferences(id: $esyn_id, references: [])
+        addOntologicalDiseaseSynonyms(id:$id, synonyms: [$esyn_id])
+        #        createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+        #        addEditableStatementEditor(editor: [$user_id], id: $es_id)
+        #        addEditableStatementReferences(id: $es_id, references: [])
+        #        addOmniGeneSynonyms(id: $gene_id, synonymsString: [$es_id])
     }
 `
 export const mutation_add_description = gql`

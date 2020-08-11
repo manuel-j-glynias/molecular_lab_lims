@@ -1,12 +1,13 @@
 import * as React from 'react';
-
 import {OntologicalDiseaseQuery} from '../../../generated/graphql';
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import DescriptionEditor from "./DescriptionEditor";
 import HistoryContainer from "../../common/History";
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
-import {humanify_date} from "../../common/Helpers/Ref_helpers";
+import {get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
+import SynonymEditor from "./SynonymEditor";
+import SynonymHistoryContainer from "../../common/SynonymHistory";
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
 
 
@@ -23,7 +24,7 @@ interface Props {
 
 const className = 'OntologicalDisease';
 
-const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editing_description, editing_synonyms,set_editing_synonyms,refetch}) => {
+const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editing_description,editing_synonyms,set_editing_synonyms,refetch}) => {
     const [editing_name, set_editing_name]  = React.useState(false);
     const [showing_name_references, set_showing_name_references] = React.useState(false);
     const [show_name_history, set_name_history] = React.useState(false);
@@ -32,12 +33,6 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
     // const [editing_description, set_editing_description]  = React.useState(false);
     const [showing_description_references, set_showing_description_references] = React.useState(false);
     const [show_description_history, set_description_history] = React.useState(false);
-
-    const {
-        AppendedContentState: {},
-        setAppendedContentState
-    } = useAppendedContentState();
-
     const edit_description = async () => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})
         set_editing_description(true)
@@ -60,6 +55,16 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
 
         return refs
     }
+    const [show_synonyms_history, set_synonyms_history] = React.useState(false);
+    const {
+        AppendedContentState: {},
+        setAppendedContentState
+    } = useAppendedContentState();
+    const edit_synonyms = async () => {
+        setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: ''})
+        set_editing_synonyms(true)
+    }
+
 
     if (!data.OntologicalDisease) {
         return <div>No Selected OntologicalDisease</div>;
@@ -167,7 +172,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     <div><strong>Last Editor: </strong>{data.OntologicalDisease[0].description.editor.name}</div>
                     <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].description.editDate)}</div>
                 </div>
-{/*
+                {/*
                  <div>Description</div>
                 <div>{data.OntologicalDisease[0].description.statement}</div>
                 <div>
@@ -204,24 +209,56 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                                     data.OntologicalDisease[0].name.references.map((item, index) => (
                                         // @ts-ignore
                                         <div key={index}> {item ? <LiteratureReferenceContainer id={item.id}/> : ''}</div>
-
                                     )) : <span>None</span>}</div>
                             </div> : (<span></span>)
                     }
                     <div><strong>Last Editor: </strong>{data.OntologicalDisease[0].description.editor.name}</div>
                     <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].description.editDate)}</div>
-
                 </div>
 */}
 
                 <div>Synonyms</div>
-                {/*{<div>{data.OntologicalDisease[0].synonyms.stringList.join(',') }</div>}*/}
-                <div>Blank for now</div>
 
-                <div>OmniMaps</div>
+                <div><div>
+                    {data.OntologicalDisease[0].synonyms.stringList.join(',') }</div>
+                    <div>Synonyms</div>
+                    <div>
+                        {editing_synonyms ?
+                            (
+                                <SynonymEditor synonym_string={data.OntologicalDisease[0].synonyms.stringList.join(',')} set_editing={set_editing_synonyms} es_ID={data.OntologicalDisease[0].synonyms.id}
+                                               es_field={data.OntologicalDisease[0].synonyms.field} ontologicaldisease_ID={data.OntologicalDisease[0].id}  refetch={refetch}/>
+
+                            ) :
+
+                            <div>{data.OntologicalDisease[0].synonyms.stringList.join(',')}</div> }
+                        {editing_synonyms ?
+                            (
+                                <span></span>
+
+                            ) :
+
+                            (<div className="form-group">
+                                    <button className="btn btn-primary my-1" onClick={() => edit_synonyms()}>Edit Synonyms</button>
+                                    <button className="btn btn-primary my-1" onClick={() => set_synonyms_history(!show_synonyms_history)}>
+                                        {show_synonyms_history ? <span>Hide History</span> : <span>Show History</span>}
+                                    </button>
+                                </div>
+                            )
+                        }
+                        {show_synonyms_history ?
+                            <div>
+                                <SynonymHistoryContainer field={data.OntologicalDisease[0].synonyms.field}  />
+                            </div>
+                            : <span></span>
+                        }
+                        <div><strong>Last Editor: </strong>{data.OntologicalDisease[0].synonyms.editor.name}</div>
+                        <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].synonyms.editDate)}</div>
+                    </div></div>
+
+                    <div>OmniMaps</div>
                 <div></div>
 
-{/*                const omArray = data.OntologicalDisease[0].omniMaps.list
+                {/*                const omArray = data.OntologicalDisease[0].omniMaps.list
                 <div></div>
                 <div>
                     <tr>
@@ -236,7 +273,6 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                         <td>{om.mcodeId}</td>
                     </tr>
                     ))
-
                 </div>*/}
 
                 <div>OmniDisease ID</div>
