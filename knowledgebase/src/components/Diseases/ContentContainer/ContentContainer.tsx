@@ -1,6 +1,8 @@
 import * as React from 'react'
 import './styles.css'
 import {OntologicalDiseaseComponentsQuery} from "../../../generated/graphql";
+import GoDiseaseContainer from "../GODisease";
+
 
 
 const className = 'ContentContainer';
@@ -21,6 +23,12 @@ const ContentContainer: React.FC<Props> = ({
     const [show_jaxDisease, set_show_jaxDisease] = React.useState(false);
     const [show_oncoTreeDiseases, set_show_oncoTreeDiseases] = React.useState(false);
 
+    if (!data.OntologicalDisease){
+        return <div>Please select a disease from the panel</div>
+    }
+    if (!data.OntologicalDisease[0]){
+        return <div>Please select a disease from the panel</div>
+    }
 
     return (
 
@@ -42,6 +50,7 @@ const ContentContainer: React.FC<Props> = ({
                 </button>
             </div>
             <div className = {`${className}__Wrapper`}>
+
             <div>
                 {show_DODisease ?
                 <div>
@@ -49,13 +58,16 @@ const ContentContainer: React.FC<Props> = ({
                 </div>
                  : <span></span>}
             </div>
+
             <div> {show_GODisease ?
                 <div>
-                     GO Disease
+                    { <GoDiseaseContainer id={data.OntologicalDisease[0].goDiseases.id} editing_description={editing_description} />}
+
 
                 </div>
                  : (<span></span>) }
             </div>
+
             <div> {show_jaxDisease ?
                 <div>
                     Jax Disease

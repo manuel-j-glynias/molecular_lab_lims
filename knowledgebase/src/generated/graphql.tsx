@@ -5,6 +5,7 @@ import * as ApolloReactComponents from '@apollo/react-components';
 import * as ApolloReactHoc from '@apollo/react-hoc';
 import * as ApolloReactHooks from '@apollo/react-hooks';
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -6058,7 +6059,7 @@ export enum _XRefOrdering {
 }
 
 export type AdverseEvent = {
-   __typename?: 'AdverseEvent';
+  __typename?: 'AdverseEvent';
   _id?: Maybe<Scalars['Long']>;
   grade?: Maybe<Scalars['Int']>;
   id: Scalars['ID'];
@@ -6076,7 +6077,7 @@ export enum AssayComparator {
 }
 
 export type Author = {
-   __typename?: 'Author';
+  __typename?: 'Author';
   _id?: Maybe<Scalars['Long']>;
   firstInitial: Scalars['String'];
   id: Scalars['ID'];
@@ -6115,7 +6116,7 @@ export type AuthorReferencesArgs = {
 };
 
 export type ClinicalTrial = {
-   __typename?: 'ClinicalTrial';
+  __typename?: 'ClinicalTrial';
   _id?: Maybe<Scalars['Long']>;
   acronym?: Maybe<Scalars['String']>;
   briefTitle?: Maybe<Scalars['String']>;
@@ -6142,7 +6143,7 @@ export type ClinicalTrialReferencesArgs = {
 };
 
 export type ClinVarVariant = {
-   __typename?: 'ClinVarVariant';
+  __typename?: 'ClinVarVariant';
   _id?: Maybe<Scalars['Long']>;
   cDot: Scalars['String'];
   gene: Scalars['String'];
@@ -6198,7 +6199,7 @@ export enum CnvType {
 }
 
 export type DnaMarker = MarkerComponent & {
-   __typename?: 'DNAMarker';
+  __typename?: 'DNAMarker';
   _id?: Maybe<Scalars['Long']>;
   definition: EditableStatement;
   id: Scalars['ID'];
@@ -6270,7 +6271,7 @@ export enum DnaMarkerType {
 }
 
 export type DoDisease = {
-   __typename?: 'DODisease';
+  __typename?: 'DODisease';
   _id?: Maybe<Scalars['Long']>;
   children: Array<Maybe<DoDisease>>;
   definition: EditableStatement;
@@ -6410,7 +6411,7 @@ export type DoDiseaseXrefsArgs = {
 };
 
 export type DrugCategory = {
-   __typename?: 'DrugCategory';
+  __typename?: 'DrugCategory';
   _id?: Maybe<Scalars['Long']>;
   definition: EditableStatement;
   drugs: Array<Maybe<OmniDrug>>;
@@ -6474,7 +6475,7 @@ export type DrugCategoryNameArgs = {
 };
 
 export type EditableAssayComparator = EditableObject & {
-   __typename?: 'EditableAssayComparator';
+  __typename?: 'EditableAssayComparator';
   _id?: Maybe<Scalars['Long']>;
   comparator: AssayComparator;
   editDate: Scalars['String'];
@@ -6515,7 +6516,7 @@ export type EditableAssayComparatorReferencesArgs = {
 };
 
 export type EditableBoolean = EditableObject & {
-   __typename?: 'EditableBoolean';
+  __typename?: 'EditableBoolean';
   _id?: Maybe<Scalars['Long']>;
   booleanValue: ExtendedBoolean;
   editDate: Scalars['String'];
@@ -6556,7 +6557,7 @@ export type EditableBooleanReferencesArgs = {
 };
 
 export type EditableCopyChange = EditableObject & {
-   __typename?: 'EditableCopyChange';
+  __typename?: 'EditableCopyChange';
   _id?: Maybe<Scalars['Long']>;
   cnvType: CnvType;
   editDate: Scalars['String'];
@@ -6597,7 +6598,7 @@ export type EditableCopyChangeReferencesArgs = {
 };
 
 export type EditableDoDiseaseList = EditableObject & {
-   __typename?: 'EditableDODiseaseList';
+  __typename?: 'EditableDODiseaseList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6652,7 +6653,7 @@ export type EditableDoDiseaseListReferencesArgs = {
 };
 
 export type EditableFloat = EditableObject & {
-   __typename?: 'EditableFloat';
+  __typename?: 'EditableFloat';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6693,7 +6694,7 @@ export type EditableFloatReferencesArgs = {
 };
 
 export type EditableGoDiseaseList = EditableObject & {
-   __typename?: 'EditableGODiseaseList';
+  __typename?: 'EditableGODiseaseList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6748,7 +6749,7 @@ export type EditableGoDiseaseListReferencesArgs = {
 };
 
 export type EditableImmuneCycleRole = EditableObject & {
-   __typename?: 'EditableImmuneCycleRole';
+  __typename?: 'EditableImmuneCycleRole';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6789,7 +6790,7 @@ export type EditableImmuneCycleRoleReferencesArgs = {
 };
 
 export type EditableImmuneFunction = EditableObject & {
-   __typename?: 'EditableImmuneFunction';
+  __typename?: 'EditableImmuneFunction';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6830,7 +6831,7 @@ export type EditableImmuneFunctionReferencesArgs = {
 };
 
 export type EditableImmunePhenotype = EditableObject & {
-   __typename?: 'EditableImmunePhenotype';
+  __typename?: 'EditableImmunePhenotype';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6871,7 +6872,7 @@ export type EditableImmunePhenotypeReferencesArgs = {
 };
 
 export type EditableInt = EditableObject & {
-   __typename?: 'EditableInt';
+  __typename?: 'EditableInt';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6912,7 +6913,7 @@ export type EditableIntReferencesArgs = {
 };
 
 export type EditableJaxDiseaseList = EditableObject & {
-   __typename?: 'EditableJAXDiseaseList';
+  __typename?: 'EditableJAXDiseaseList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -6971,7 +6972,7 @@ export type EditableJaxDiseaseListReferencesArgs = {
 };
 
 export type EditableMarkerComponentList = EditableObject & {
-   __typename?: 'EditableMarkerComponentList';
+  __typename?: 'EditableMarkerComponentList';
   _id?: Maybe<Scalars['Long']>;
   components: Array<Maybe<MarkerComponent>>;
   editDate: Scalars['String'];
@@ -7063,7 +7064,7 @@ export type EditableObjectReferencesArgs = {
 };
 
 export type EditableOmniConjunction = EditableObject & {
-   __typename?: 'EditableOmniConjunction';
+  __typename?: 'EditableOmniConjunction';
   _id?: Maybe<Scalars['Long']>;
   conjunction: OmniConjunction;
   editDate: Scalars['String'];
@@ -7104,7 +7105,7 @@ export type EditableOmniConjunctionReferencesArgs = {
 };
 
 export type EditableOmniGeneList = EditableObject & {
-   __typename?: 'EditableOmniGeneList';
+  __typename?: 'EditableOmniGeneList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7161,7 +7162,7 @@ export type EditableOmniGeneListReferencesArgs = {
 };
 
 export type EditableOmniGeneReference = EditableObject & {
-   __typename?: 'EditableOmniGeneReference';
+  __typename?: 'EditableOmniGeneReference';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7214,7 +7215,7 @@ export type EditableOmniGeneReferenceReferencesArgs = {
 };
 
 export type EditableOmniMapList = {
-   __typename?: 'EditableOmniMapList';
+  __typename?: 'EditableOmniMapList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7267,7 +7268,7 @@ export type EditableOmniMapListReferencesArgs = {
 };
 
 export type EditableOncoTreeDiseaseList = EditableObject & {
-   __typename?: 'EditableOncoTreeDiseaseList';
+  __typename?: 'EditableOncoTreeDiseaseList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7322,7 +7323,7 @@ export type EditableOncoTreeDiseaseListReferencesArgs = {
 };
 
 export type EditableProteinEffect = EditableObject & {
-   __typename?: 'EditableProteinEffect';
+  __typename?: 'EditableProteinEffect';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7363,7 +7364,7 @@ export type EditableProteinEffectReferencesArgs = {
 };
 
 export type EditableRnaSeqResultType = EditableObject & {
-   __typename?: 'EditableRNASeqResultType';
+  __typename?: 'EditableRNASeqResultType';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7404,7 +7405,7 @@ export type EditableRnaSeqResultTypeReferencesArgs = {
 };
 
 export type EditableStatement = EditableObject & {
-   __typename?: 'EditableStatement';
+  __typename?: 'EditableStatement';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7445,7 +7446,7 @@ export type EditableStatementReferencesArgs = {
 };
 
 export type EditableStringList = EditableObject & {
-   __typename?: 'EditableStringList';
+  __typename?: 'EditableStringList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7486,7 +7487,7 @@ export type EditableStringListReferencesArgs = {
 };
 
 export type EditableTmbInterpretation = EditableObject & {
-   __typename?: 'EditableTMBInterpretation';
+  __typename?: 'EditableTMBInterpretation';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7527,7 +7528,7 @@ export type EditableTmbInterpretationReferencesArgs = {
 };
 
 export type EditableXRefList = EditableObject & {
-   __typename?: 'EditableXRefList';
+  __typename?: 'EditableXRefList';
   _id?: Maybe<Scalars['Long']>;
   editDate: Scalars['String'];
   editor: User;
@@ -7584,7 +7585,7 @@ export type EditableXRefListReferencesArgs = {
 };
 
 export type Evidence = {
-   __typename?: 'Evidence';
+  __typename?: 'Evidence';
   _id?: Maybe<Scalars['Long']>;
   adverseEvents?: Maybe<Array<Maybe<AdverseEvent>>>;
   ampCapAscoTier: Scalars['String'];
@@ -7699,7 +7700,7 @@ export type EvidenceReferenceArgs = {
 };
 
 export type EvidenceAssociation = {
-   __typename?: 'EvidenceAssociation';
+  __typename?: 'EvidenceAssociation';
   _id?: Maybe<Scalars['Long']>;
   disease?: Maybe<OntologicalDisease>;
   evidences: Array<Maybe<Evidence>>;
@@ -7919,7 +7920,7 @@ export type GenomicVariantNonCanonicalTranscriptArgs = {
 };
 
 export type GenomicVariantMarker = MarkerComponent & {
-   __typename?: 'GenomicVariantMarker';
+  __typename?: 'GenomicVariantMarker';
   _id?: Maybe<Scalars['Long']>;
   gene: OmniGene;
   id: Scalars['ID'];
@@ -7992,7 +7993,7 @@ export type GenomicVariantMarkerVariantArgs = {
 };
 
 export type GoDisease = {
-   __typename?: 'GODisease';
+  __typename?: 'GODisease';
   _id?: Maybe<Scalars['Long']>;
   children: Array<Maybe<GoDisease>>;
   definition: EditableStatement;
@@ -8106,7 +8107,7 @@ export type GoDiseaseXrefsArgs = {
 };
 
 export type GoVariant = {
-   __typename?: 'GOVariant';
+  __typename?: 'GOVariant';
   _id?: Maybe<Scalars['Long']>;
   gene: Scalars['String'];
   genomicVariant?: Maybe<GenomicVariant>;
@@ -8160,7 +8161,7 @@ export type GoVariantNameArgs = {
 };
 
 export type HotSpotVariant = {
-   __typename?: 'HotSpotVariant';
+  __typename?: 'HotSpotVariant';
   _id?: Maybe<Scalars['Long']>;
   begin: Scalars['String'];
   end: Scalars['String'];
@@ -8199,7 +8200,7 @@ export type HotSpotVariantOccurrencesArgs = {
 };
 
 export type IhcAssay = ProteinLevelAssay & {
-   __typename?: 'IHCAssay';
+  __typename?: 'IHCAssay';
   _id?: Maybe<Scalars['Long']>;
   antibodyClone: EditableStatement;
   comparator: EditableAssayComparator;
@@ -8370,7 +8371,7 @@ export enum IndelType {
 }
 
 export type InternetReference = Reference & {
-   __typename?: 'InternetReference';
+  __typename?: 'InternetReference';
   _id?: Maybe<Scalars['Long']>;
   accessedDate: Scalars['String'];
   id: Scalars['ID'];
@@ -8396,7 +8397,7 @@ export type InternetReferenceStatementsReferencedArgs = {
 };
 
 export type JaxDisease = {
-   __typename?: 'JaxDisease';
+  __typename?: 'JaxDisease';
   _id?: Maybe<Scalars['Long']>;
   definition: EditableStatement;
   id: Scalars['ID'];
@@ -8435,7 +8436,7 @@ export type JaxDiseaseNameArgs = {
 };
 
 export type JaxDrug = {
-   __typename?: 'JaxDrug';
+  __typename?: 'JaxDrug';
   _id?: Maybe<Scalars['Long']>;
   description: EditableStatement;
   drugClasses: Array<Maybe<JaxDrugClass>>;
@@ -8517,7 +8518,7 @@ export type JaxDrugTradeNameArgs = {
 };
 
 export type JaxDrugClass = {
-   __typename?: 'JaxDrugClass';
+  __typename?: 'JaxDrugClass';
   _id?: Maybe<Scalars['Long']>;
   drugs: Array<Maybe<JaxDrug>>;
   id: Scalars['ID'];
@@ -8554,7 +8555,7 @@ export type JaxDrugClassNameArgs = {
 };
 
 export type JaxGene = {
-   __typename?: 'JaxGene';
+  __typename?: 'JaxGene';
   _id?: Maybe<Scalars['Long']>;
   canonicalTranscript: Array<Maybe<EditableStatement>>;
   chromosome: Scalars['String'];
@@ -8613,7 +8614,7 @@ export type JaxGeneSynonymsArgs = {
 };
 
 export type JaxVariant = {
-   __typename?: 'JaxVariant';
+  __typename?: 'JaxVariant';
   _id?: Maybe<Scalars['Long']>;
   cDot: Scalars['String'];
   description: EditableStatement;
@@ -8711,14 +8712,14 @@ export type JaxVariantTranscriptArgs = {
 };
 
 export type Journal = {
-   __typename?: 'Journal';
+  __typename?: 'Journal';
   _id?: Maybe<Scalars['Long']>;
   id: Scalars['ID'];
   name: Scalars['String'];
 };
 
 export type LiteratureReference = Reference & {
-   __typename?: 'LiteratureReference';
+  __typename?: 'LiteratureReference';
   DOI?: Maybe<Scalars['String']>;
   PMID?: Maybe<Scalars['String']>;
   _id?: Maybe<Scalars['Long']>;
@@ -8829,7 +8830,7 @@ export type MarkerComponentResultStringArgs = {
 };
 
 export type MarkerProfile = MarkerComponent & {
-   __typename?: 'MarkerProfile';
+  __typename?: 'MarkerProfile';
   _id?: Maybe<Scalars['Long']>;
   components: EditableMarkerComponentList;
   conjunction: EditableOmniConjunction;
@@ -8923,7 +8924,7 @@ export type MarkerProfileResultStringArgs = {
 };
 
 export type MCode = {
-   __typename?: 'MCode';
+  __typename?: 'MCode';
   _id?: Maybe<Scalars['Long']>;
   active: EditableBoolean;
   children?: Maybe<Array<Maybe<MCode>>>;
@@ -9003,7 +9004,7 @@ export type MCodeParentsArgs = {
 };
 
 export type MeetingAbstractReference = Reference & {
-   __typename?: 'MeetingAbstractReference';
+  __typename?: 'MeetingAbstractReference';
   _id?: Maybe<Scalars['Long']>;
   abstract?: Maybe<Scalars['String']>;
   authors: Array<Author>;
@@ -9048,7 +9049,7 @@ export type MeetingAbstractReferenceStatementsReferencedArgs = {
 };
 
 export type MsiMarker = MarkerComponent & {
-   __typename?: 'MSIMarker';
+  __typename?: 'MSIMarker';
   _id?: Maybe<Scalars['Long']>;
   id: Scalars['ID'];
   method: EditableStatement;
@@ -9099,7 +9100,7 @@ export type MsiMarkerResultStringArgs = {
 };
 
 export type MutationType = {
-   __typename?: 'MutationType';
+  __typename?: 'MutationType';
   addAuthorReferences?: Maybe<Scalars['String']>;
   addClinVarVariantGenomicVariant?: Maybe<Scalars['String']>;
   addClinVarVariantSignficanceExplanation?: Maybe<Scalars['String']>;
@@ -15981,7 +15982,7 @@ export type MutationTypeUpdateXRefArgs = {
 };
 
 export type MyGeneInfoGene = {
-   __typename?: 'MyGeneInfoGene';
+  __typename?: 'MyGeneInfoGene';
   _id?: Maybe<Scalars['Long']>;
   chromosome: Scalars['String'];
   description: EditableStatement;
@@ -16023,7 +16024,7 @@ export type MyGeneInfoGeneUniprotEntryArgs = {
 };
 
 export type NciDrug = {
-   __typename?: 'NCIDrug';
+  __typename?: 'NCIDrug';
   _id?: Maybe<Scalars['Long']>;
   annotationDate: EditableStatement;
   conceptCode: EditableStatement;
@@ -16142,7 +16143,7 @@ export enum OmniConjunction {
 }
 
 export type OmniDisease = {
-   __typename?: 'OmniDisease';
+  __typename?: 'OmniDisease';
   _id?: Maybe<Scalars['Long']>;
   id: Scalars['ID'];
   name: EditableStatement;
@@ -16171,7 +16172,7 @@ export enum OmniDiseaseType {
 }
 
 export type OmniDrug = TherapyComponent & {
-   __typename?: 'OmniDrug';
+  __typename?: 'OmniDrug';
   _id?: Maybe<Scalars['Long']>;
   componentOf: Array<Maybe<Therapy>>;
   definition: EditableStatement;
@@ -16304,7 +16305,7 @@ export type OmniDrugTradeNameArgs = {
 };
 
 export type OmniGene = Target & {
-   __typename?: 'OmniGene';
+  __typename?: 'OmniGene';
   _id?: Maybe<Scalars['Long']>;
   geneDescription: EditableStatement;
   id: Scalars['ID'];
@@ -16451,7 +16452,7 @@ export type OmniGeneVariantsArgs = {
 };
 
 export type OmniMap = {
-   __typename?: 'OmniMap';
+  __typename?: 'OmniMap';
   _id?: Maybe<Scalars['Long']>;
   id: Scalars['ID'];
   mCodes: Array<Maybe<MCode>>;
@@ -16485,7 +16486,7 @@ export type OmniMapOmniDiseaseArgs = {
 };
 
 export type OncoTreeDisease = {
-   __typename?: 'OncoTreeDisease';
+  __typename?: 'OncoTreeDisease';
   _id?: Maybe<Scalars['Long']>;
   children: Array<Maybe<OncoTreeDisease>>;
   code: Scalars['String'];
@@ -16597,7 +16598,7 @@ export type OncoTreeDiseaseXrefsArgs = {
 };
 
 export type OncoTreeOccurrence = {
-   __typename?: 'OncoTreeOccurrence';
+  __typename?: 'OncoTreeOccurrence';
   _id?: Maybe<Scalars['Long']>;
   disease: OncoTreeDisease;
   hotSpotVariant: Array<Maybe<HotSpotVariant>>;
@@ -16688,7 +16689,7 @@ export type OncoTreeOccurrenceTotalSamplesArgs = {
 };
 
 export type OntologicalDisease = {
-   __typename?: 'OntologicalDisease';
+  __typename?: 'OntologicalDisease';
   _id?: Maybe<Scalars['Long']>;
   children: Array<Maybe<OntologicalDisease>>;
   description: EditableStatement;
@@ -16843,7 +16844,7 @@ export type OntologicalDiseaseXrefsArgs = {
 };
 
 export type Outcome = {
-   __typename?: 'Outcome';
+  __typename?: 'Outcome';
   ConfidenceIntervalHi?: Maybe<Scalars['Float']>;
   ConfidenceIntervalLo?: Maybe<Scalars['Float']>;
   ConfidenceIntervalType?: Maybe<Scalars['String']>;
@@ -16888,7 +16889,7 @@ export type OutcomeEvidencesArgs = {
 };
 
 export type ProteinExpressionMarker = MarkerComponent & {
-   __typename?: 'ProteinExpressionMarker';
+  __typename?: 'ProteinExpressionMarker';
   _id?: Maybe<Scalars['Long']>;
   assay: ProteinLevelAssay;
   genes: EditableOmniGeneList;
@@ -17053,7 +17054,7 @@ export type ProteinLevelAssayNameArgs = {
 };
 
 export type QueryType = {
-   __typename?: 'QueryType';
+  __typename?: 'QueryType';
   AdverseEvent?: Maybe<Array<Maybe<AdverseEvent>>>;
   Author?: Maybe<Array<Maybe<Author>>>;
   ClinVarVariant?: Maybe<Array<Maybe<ClinVarVariant>>>;
@@ -18492,7 +18493,7 @@ export enum ResponseType {
 }
 
 export type RnaSeqAssay = ProteinLevelAssay & {
-   __typename?: 'RNASeqAssay';
+  __typename?: 'RNASeqAssay';
   _id?: Maybe<Scalars['Long']>;
   comparator: EditableAssayComparator;
   id: Scalars['ID'];
@@ -18591,7 +18592,7 @@ export enum RnaSeqResultType {
 }
 
 export type RnaSeqSignatureMarker = MarkerComponent & {
-   __typename?: 'RNASeqSignatureMarker';
+  __typename?: 'RNASeqSignatureMarker';
   _id?: Maybe<Scalars['Long']>;
   comparator: EditableAssayComparator;
   definition: EditableStatement;
@@ -18741,7 +18742,7 @@ export type Target = {
 };
 
 export type TCode = {
-   __typename?: 'TCode';
+  __typename?: 'TCode';
   _id?: Maybe<Scalars['Long']>;
   children?: Maybe<Array<Maybe<TCode>>>;
   id: Scalars['ID'];
@@ -18793,7 +18794,7 @@ export type TCodeTissuePathArgs = {
 };
 
 export type TherapeuticIntervention = {
-   __typename?: 'TherapeuticIntervention';
+  __typename?: 'TherapeuticIntervention';
   _id?: Maybe<Scalars['Long']>;
   concurrentWith: Array<Maybe<TherapeuticIntervention>>;
   definition: EditableStatement;
@@ -18894,7 +18895,7 @@ export type TherapeuticInterventionTherapyArgs = {
 };
 
 export type Therapy = TherapyComponent & {
-   __typename?: 'Therapy';
+  __typename?: 'Therapy';
   _id?: Maybe<Scalars['Long']>;
   componentOf: Array<Maybe<Therapy>>;
   components: Array<Maybe<TherapyComponent>>;
@@ -19000,7 +19001,7 @@ export enum TmbInterpretationType {
 }
 
 export type TmbMarker = MarkerComponent & {
-   __typename?: 'TMBMarker';
+  __typename?: 'TMBMarker';
   _id?: Maybe<Scalars['Long']>;
   comparator: EditableAssayComparator;
   id: Scalars['ID'];
@@ -19130,7 +19131,7 @@ export type TmbMarkerResultUnitsArgs = {
 };
 
 export type UniprotEntry = {
-   __typename?: 'UniprotEntry';
+  __typename?: 'UniprotEntry';
   _id?: Maybe<Scalars['Long']>;
   accessionNumber: Scalars['String'];
   function: EditableStatement;
@@ -19175,7 +19176,7 @@ export type UniprotEntryGeneArgs = {
 };
 
 export type User = {
-   __typename?: 'User';
+  __typename?: 'User';
   _id?: Maybe<Scalars['Long']>;
   editedStatements: Array<Maybe<EditableObject>>;
   id: Scalars['ID'];
@@ -19202,7 +19203,7 @@ export type UserEditedStatementsArgs = {
 };
 
 export type VariantCnv = GenomicVariant & {
-   __typename?: 'VariantCNV';
+  __typename?: 'VariantCNV';
   _id?: Maybe<Scalars['Long']>;
   clinVarVariant?: Maybe<ClinVarVariant>;
   copyChange: EditableCopyChange;
@@ -19357,7 +19358,7 @@ export type VariantCnvNonCanonicalTranscriptArgs = {
 };
 
 export type VariantFusion = GenomicVariant & {
-   __typename?: 'VariantFusion';
+  __typename?: 'VariantFusion';
   _id?: Maybe<Scalars['Long']>;
   clinVarVariant?: Maybe<ClinVarVariant>;
   copyChange: EditableCopyChange;
@@ -19577,7 +19578,7 @@ export enum VariantProteinEffect {
 }
 
 export type VariantRegion = GenomicVariant & {
-   __typename?: 'VariantRegion';
+  __typename?: 'VariantRegion';
   _id?: Maybe<Scalars['Long']>;
   clinVarVariant?: Maybe<ClinVarVariant>;
   description: EditableStatement;
@@ -19795,7 +19796,7 @@ export type VariantRegionRegionValueArgs = {
 };
 
 export type VariantSnvIndel = GenomicVariant & {
-   __typename?: 'VariantSNVIndel';
+  __typename?: 'VariantSNVIndel';
   _id?: Maybe<Scalars['Long']>;
   cDot: EditableStatement;
   clinVarVariant?: Maybe<ClinVarVariant>;
@@ -20021,16 +20022,16 @@ export enum VariantType {
 }
 
 export type XRef = {
-   __typename?: 'XRef';
+  __typename?: 'XRef';
   _id?: Maybe<Scalars['Long']>;
   id: Scalars['ID'];
   source: Scalars['String'];
   sourceId: Scalars['String'];
 };
 
-export type OntologicalDiseaseComponentsQueryVariables = {
+export type OntologicalDiseaseComponentsQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type OntologicalDiseaseComponentsQuery = (
@@ -20053,9 +20054,39 @@ export type OntologicalDiseaseComponentsQuery = (
   )>>> }
 );
 
-export type OntologicalDiseaseQueryVariables = {
+export type GoDiseaseQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
+
+
+export type GoDiseaseQuery = (
+  { __typename?: 'QueryType' }
+  & { GODisease?: Maybe<Array<Maybe<(
+    { __typename?: 'GODisease' }
+    & { name: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement' | 'field' | 'editDate'>
+      & { editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'name'>
+      ) }
+    ), definition: (
+      { __typename?: 'EditableStatement' }
+      & Pick<EditableStatement, 'statement' | 'field' | 'editDate'>
+      & { editor: (
+        { __typename?: 'User' }
+        & Pick<User, 'name'>
+      ) }
+    ), synonyms: (
+      { __typename?: 'EditableStringList' }
+      & Pick<EditableStringList, 'stringList'>
+    ) }
+  )>>> }
+);
+
+export type OntologicalDiseaseQueryVariables = Exact<{
+  id?: Maybe<Scalars['ID']>;
+}>;
 
 
 export type OntologicalDiseaseQuery = (
@@ -20111,7 +20142,7 @@ export type OntologicalDiseaseQuery = (
   )>>> }
 );
 
-export type OntologicalDiseaseAddNameMutationVariables = {
+export type OntologicalDiseaseAddNameMutationVariables = Exact<{
   id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20120,7 +20151,7 @@ export type OntologicalDiseaseAddNameMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type OntologicalDiseaseAddNameMutation = (
@@ -20128,7 +20159,7 @@ export type OntologicalDiseaseAddNameMutation = (
   & Pick<MutationType, 'deleteOntologicalDiseaseName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addOntologicalDiseaseName'>
 );
 
-export type OntologicalDiseaseAddSynonymsMutationVariables = {
+export type OntologicalDiseaseAddSynonymsMutationVariables = Exact<{
   id: Scalars['ID'];
   old_esyn_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20136,7 +20167,7 @@ export type OntologicalDiseaseAddSynonymsMutationVariables = {
   esyn_list: Array<Maybe<Scalars['String']>>;
   esyn_id: Scalars['ID'];
   user_id: Scalars['ID'];
-};
+}>;
 
 
 export type OntologicalDiseaseAddSynonymsMutation = (
@@ -20144,7 +20175,7 @@ export type OntologicalDiseaseAddSynonymsMutation = (
   & Pick<MutationType, 'deleteOntologicalDiseaseSynonyms' | 'createEditableStringList' | 'addEditableStringListEditor' | 'addEditableStringListReferences' | 'addOntologicalDiseaseSynonyms'>
 );
 
-export type AddOntologicalDiseaseDescriptionMutationVariables = {
+export type AddOntologicalDiseaseDescriptionMutationVariables = Exact<{
   id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20153,7 +20184,7 @@ export type AddOntologicalDiseaseDescriptionMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type AddOntologicalDiseaseDescriptionMutation = (
@@ -20161,9 +20192,9 @@ export type AddOntologicalDiseaseDescriptionMutation = (
   & Pick<MutationType, 'deleteOntologicalDiseaseDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addOntologicalDiseaseDescription'>
 );
 
-export type OntologicalDiseaseListQueryVariables = {
+export type OntologicalDiseaseListQueryVariables = Exact<{
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type OntologicalDiseaseListQuery = (
@@ -20178,9 +20209,9 @@ export type OntologicalDiseaseListQuery = (
   )>>> }
 );
 
-export type OmniGeneComponentsQueryVariables = {
+export type OmniGeneComponentsQueryVariables = Exact<{
   gene_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type OmniGeneComponentsQuery = (
@@ -20201,9 +20232,9 @@ export type OmniGeneComponentsQuery = (
   )>>> }
 );
 
-export type GeneListQueryVariables = {
+export type GeneListQueryVariables = Exact<{
   str?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type GeneListQuery = (
@@ -20214,9 +20245,9 @@ export type GeneListQuery = (
   )>>> }
 );
 
-export type JaxGeneQueryVariables = {
+export type JaxGeneQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type JaxGeneQuery = (
@@ -20244,9 +20275,9 @@ export type JaxGeneQuery = (
   )>>> }
 );
 
-export type MyGeneInfo_GeneQueryVariables = {
+export type MyGeneInfo_GeneQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type MyGeneInfo_GeneQuery = (
@@ -20271,9 +20302,9 @@ export type MyGeneInfo_GeneQuery = (
   )>>> }
 );
 
-export type OmniGeneQueryVariables = {
+export type OmniGeneQueryVariables = Exact<{
   gene_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type OmniGeneQuery = (
@@ -20306,9 +20337,9 @@ export type OmniGeneQuery = (
   )>>> }
 );
 
-export type GetPubMedIdQueryVariables = {
+export type GetPubMedIdQueryVariables = Exact<{
   ref_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type GetPubMedIdQuery = (
@@ -20319,7 +20350,7 @@ export type GetPubMedIdQuery = (
   )>>> }
 );
 
-export type AddSynonymsMutationVariables = {
+export type AddSynonymsMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   old_esyn_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20327,7 +20358,7 @@ export type AddSynonymsMutationVariables = {
   esyn_list: Array<Maybe<Scalars['String']>>;
   esyn_id: Scalars['ID'];
   user_id: Scalars['ID'];
-};
+}>;
 
 
 export type AddSynonymsMutation = (
@@ -20335,7 +20366,7 @@ export type AddSynonymsMutation = (
   & Pick<MutationType, 'deleteOmniGeneSynonyms' | 'createEditableStringList' | 'addEditableStringListEditor' | 'addEditableStringListReferences' | 'addOmniGeneSynonyms'>
 );
 
-export type AddOmniGeneOncogenicCategoryMutationVariables = {
+export type AddOmniGeneOncogenicCategoryMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20344,7 +20375,7 @@ export type AddOmniGeneOncogenicCategoryMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type AddOmniGeneOncogenicCategoryMutation = (
@@ -20352,7 +20383,7 @@ export type AddOmniGeneOncogenicCategoryMutation = (
   & Pick<MutationType, 'deleteOmniGeneOncogenicCategory' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addOmniGeneOncogenicCategory'>
 );
 
-export type AddOmniGeneGeneDescriptionMutationVariables = {
+export type AddOmniGeneGeneDescriptionMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20361,7 +20392,7 @@ export type AddOmniGeneGeneDescriptionMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type AddOmniGeneGeneDescriptionMutation = (
@@ -20369,9 +20400,9 @@ export type AddOmniGeneGeneDescriptionMutation = (
   & Pick<MutationType, 'deleteOmniGeneGeneDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addOmniGeneGeneDescription'>
 );
 
-export type UniprotQueryVariables = {
+export type UniprotQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type UniprotQuery = (
@@ -20399,7 +20430,7 @@ export type UniprotQuery = (
   )>>> }
 );
 
-export type GetUserQueryVariables = {};
+export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserQuery = (
@@ -20410,9 +20441,9 @@ export type GetUserQuery = (
   )>>> }
 );
 
-export type ClinVarVariantQueryVariables = {
+export type ClinVarVariantQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type ClinVarVariantQuery = (
@@ -20430,10 +20461,10 @@ export type ClinVarVariantQuery = (
   )>>> }
 );
 
-export type ClinVarVariantByGeneQueryVariables = {
+export type ClinVarVariantByGeneQueryVariables = Exact<{
   gene_name?: Maybe<Scalars['String']>;
   pdot?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type ClinVarVariantByGeneQuery = (
@@ -20448,10 +20479,10 @@ export type ClinVarVariantByGeneQuery = (
   )>>> }
 );
 
-export type GenomicVariantAddClinVarVariantMutationVariables = {
+export type GenomicVariantAddClinVarVariantMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   clinvar_id: Scalars['ID'];
-};
+}>;
 
 
 export type GenomicVariantAddClinVarVariantMutation = (
@@ -20459,9 +20490,9 @@ export type GenomicVariantAddClinVarVariantMutation = (
   & Pick<MutationType, 'addGenomicVariantClinVarVariant'>
 );
 
-export type GoVariantQueryVariables = {
+export type GoVariantQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type GoVariantQuery = (
@@ -20479,10 +20510,10 @@ export type GoVariantQuery = (
   )>>> }
 );
 
-export type GoVariantByGeneQueryVariables = {
+export type GoVariantByGeneQueryVariables = Exact<{
   gene_name?: Maybe<Scalars['String']>;
   pdot?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type GoVariantByGeneQuery = (
@@ -20497,10 +20528,10 @@ export type GoVariantByGeneQuery = (
   )>>> }
 );
 
-export type GenomicVariantAddGoVariantMutationVariables = {
+export type GenomicVariantAddGoVariantMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   govar_id: Scalars['ID'];
-};
+}>;
 
 
 export type GenomicVariantAddGoVariantMutation = (
@@ -20508,9 +20539,9 @@ export type GenomicVariantAddGoVariantMutation = (
   & Pick<MutationType, 'addGenomicVariantGoVariant'>
 );
 
-export type VariantCnvQueryVariables = {
+export type VariantCnvQueryVariables = Exact<{
   variant_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantCnvQuery = (
@@ -20546,7 +20577,7 @@ export type VariantCnvQuery = (
   )>>> }
 );
 
-export type VariantCnvAddCopyChangeMutationVariables = {
+export type VariantCnvAddCopyChangeMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20555,7 +20586,7 @@ export type VariantCnvAddCopyChangeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantCnvAddCopyChangeMutation = (
@@ -20563,7 +20594,7 @@ export type VariantCnvAddCopyChangeMutation = (
   & Pick<MutationType, 'deleteVariantCNVCopyChange' | 'createEditableCopyChange' | 'addEditableCopyChangeEditor' | 'addEditableCopyChangeReferences' | 'addVariantCNVCopyChange'>
 );
 
-export type VariantCnvAddDescriptionMutationVariables = {
+export type VariantCnvAddDescriptionMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20572,7 +20603,7 @@ export type VariantCnvAddDescriptionMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantCnvAddDescriptionMutation = (
@@ -20580,9 +20611,9 @@ export type VariantCnvAddDescriptionMutation = (
   & Pick<MutationType, 'deleteVariantCNVDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantCNVDescription'>
 );
 
-export type GenomicVariantComponentsQueryVariables = {
+export type GenomicVariantComponentsQueryVariables = Exact<{
   variant_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type GenomicVariantComponentsQuery = (
@@ -20650,9 +20681,9 @@ export type GenomicVariantComponentsQuery = (
   )>>> }
 );
 
-export type Variant_Markers_For_IdQueryVariables = {
+export type Variant_Markers_For_IdQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type Variant_Markers_For_IdQuery = (
@@ -20698,9 +20729,9 @@ export type Variant_Markers_For_IdQuery = (
   )>>> }
 );
 
-export type VariantFusionQueryVariables = {
+export type VariantFusionQueryVariables = Exact<{
   variant_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionQuery = (
@@ -20748,7 +20779,7 @@ export type VariantFusionQuery = (
   )>>> }
 );
 
-export type VariantFusionAddCopyChangeMutationVariables = {
+export type VariantFusionAddCopyChangeMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20757,7 +20788,7 @@ export type VariantFusionAddCopyChangeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionAddCopyChangeMutation = (
@@ -20765,7 +20796,7 @@ export type VariantFusionAddCopyChangeMutation = (
   & Pick<MutationType, 'deleteVariantFusionCopyChange' | 'createEditableCopyChange' | 'addEditableCopyChangeEditor' | 'addEditableCopyChangeReferences' | 'addVariantFusionCopyChange'>
 );
 
-export type VariantFusionAddExon3PrimeMutationVariables = {
+export type VariantFusionAddExon3PrimeMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20774,7 +20805,7 @@ export type VariantFusionAddExon3PrimeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionAddExon3PrimeMutation = (
@@ -20782,7 +20813,7 @@ export type VariantFusionAddExon3PrimeMutation = (
   & Pick<MutationType, 'deleteVariantFusionExon3Prime' | 'createEditableInt' | 'addEditableIntEditor' | 'addEditableIntReferences' | 'addVariantFusionExon3Prime'>
 );
 
-export type VariantFusionAddExon5PrimeMutationVariables = {
+export type VariantFusionAddExon5PrimeMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20791,7 +20822,7 @@ export type VariantFusionAddExon5PrimeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionAddExon5PrimeMutation = (
@@ -20799,7 +20830,7 @@ export type VariantFusionAddExon5PrimeMutation = (
   & Pick<MutationType, 'deleteVariantFusionExon5Prime' | 'createEditableInt' | 'addEditableIntEditor' | 'addEditableIntReferences' | 'addVariantFusionExon5Prime'>
 );
 
-export type VariantFusionAddGene3PrimeMutationVariables = {
+export type VariantFusionAddGene3PrimeMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20808,7 +20839,7 @@ export type VariantFusionAddGene3PrimeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionAddGene3PrimeMutation = (
@@ -20816,7 +20847,7 @@ export type VariantFusionAddGene3PrimeMutation = (
   & Pick<MutationType, 'deleteVariantFusionGene3Prime' | 'createEditableOmniGeneReference' | 'addEditableOmniGeneReferenceGene' | 'addEditableOmniGeneReferenceEditor' | 'addEditableOmniGeneReferenceReferences' | 'addVariantFusionGene3Prime'>
 );
 
-export type VariantFusionAddGene5PrimeMutationVariables = {
+export type VariantFusionAddGene5PrimeMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20825,7 +20856,7 @@ export type VariantFusionAddGene5PrimeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionAddGene5PrimeMutation = (
@@ -20833,7 +20864,7 @@ export type VariantFusionAddGene5PrimeMutation = (
   & Pick<MutationType, 'deleteVariantFusionGene5Prime' | 'createEditableOmniGeneReference' | 'addEditableOmniGeneReferenceGene' | 'addEditableOmniGeneReferenceEditor' | 'addEditableOmniGeneReferenceReferences' | 'addVariantFusionGene5Prime'>
 );
 
-export type VariantFusionAddDescriptionMutationVariables = {
+export type VariantFusionAddDescriptionMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20842,7 +20873,7 @@ export type VariantFusionAddDescriptionMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantFusionAddDescriptionMutation = (
@@ -20850,9 +20881,9 @@ export type VariantFusionAddDescriptionMutation = (
   & Pick<MutationType, 'deleteVariantFusionDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantFusionDescription'>
 );
 
-export type VariantRegionQueryVariables = {
+export type VariantRegionQueryVariables = Exact<{
   variant_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantRegionQuery = (
@@ -20903,7 +20934,7 @@ export type VariantRegionQuery = (
   )>>> }
 );
 
-export type VariantRegionAddDescriptionMutationVariables = {
+export type VariantRegionAddDescriptionMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20912,7 +20943,7 @@ export type VariantRegionAddDescriptionMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantRegionAddDescriptionMutation = (
@@ -20920,7 +20951,7 @@ export type VariantRegionAddDescriptionMutation = (
   & Pick<MutationType, 'deleteVariantRegionDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantRegionDescription'>
 );
 
-export type VariantRegionAddProteinEffectMutationVariables = {
+export type VariantRegionAddProteinEffectMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_epe_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20929,7 +20960,7 @@ export type VariantRegionAddProteinEffectMutationVariables = {
   epe_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantRegionAddProteinEffectMutation = (
@@ -20937,7 +20968,7 @@ export type VariantRegionAddProteinEffectMutation = (
   & Pick<MutationType, 'deleteVariantRegionProteinEffect' | 'createEditableProteinEffect' | 'addEditableProteinEffectEditor' | 'addEditableProteinEffectReferences' | 'addVariantRegionProteinEffect'>
 );
 
-export type VariantRegionAddIsFrameshiftMutationVariables = {
+export type VariantRegionAddIsFrameshiftMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_eb_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20946,7 +20977,7 @@ export type VariantRegionAddIsFrameshiftMutationVariables = {
   eb_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantRegionAddIsFrameshiftMutation = (
@@ -20954,7 +20985,7 @@ export type VariantRegionAddIsFrameshiftMutation = (
   & Pick<MutationType, 'deleteVariantRegionIsFrameshift' | 'createEditableBoolean' | 'addEditableBooleanEditor' | 'addEditableBooleanReferences' | 'addVariantRegionIsFrameshift'>
 );
 
-export type VariantRegionAddIsDeleteriousMutationVariables = {
+export type VariantRegionAddIsDeleteriousMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_eb_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20963,7 +20994,7 @@ export type VariantRegionAddIsDeleteriousMutationVariables = {
   eb_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantRegionAddIsDeleteriousMutation = (
@@ -20971,7 +21002,7 @@ export type VariantRegionAddIsDeleteriousMutation = (
   & Pick<MutationType, 'deleteVariantRegionIsDeleterious' | 'createEditableBoolean' | 'addEditableBooleanEditor' | 'addEditableBooleanReferences' | 'addVariantRegionIsDeleterious'>
 );
 
-export type VariantRegionAddIsTruncatingMutationVariables = {
+export type VariantRegionAddIsTruncatingMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_eb_id: Scalars['ID'];
   date: Scalars['String'];
@@ -20980,7 +21011,7 @@ export type VariantRegionAddIsTruncatingMutationVariables = {
   eb_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantRegionAddIsTruncatingMutation = (
@@ -20988,9 +21019,9 @@ export type VariantRegionAddIsTruncatingMutation = (
   & Pick<MutationType, 'deleteVariantRegionIsTruncating' | 'createEditableBoolean' | 'addEditableBooleanEditor' | 'addEditableBooleanReferences' | 'addVariantRegionIsTruncating'>
 );
 
-export type VariantSnvIndelQueryVariables = {
+export type VariantSnvIndelQueryVariables = Exact<{
   variant_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelQuery = (
@@ -21038,7 +21069,7 @@ export type VariantSnvIndelQuery = (
   )>>> }
 );
 
-export type VariantSnvIndelAddDescriptionMutationVariables = {
+export type VariantSnvIndelAddDescriptionMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21047,7 +21078,7 @@ export type VariantSnvIndelAddDescriptionMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelAddDescriptionMutation = (
@@ -21055,7 +21086,7 @@ export type VariantSnvIndelAddDescriptionMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelDescription' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelDescription'>
 );
 
-export type VariantSnvIndelAddProteinEffectMutationVariables = {
+export type VariantSnvIndelAddProteinEffectMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_epe_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21064,7 +21095,7 @@ export type VariantSnvIndelAddProteinEffectMutationVariables = {
   epe_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelAddProteinEffectMutation = (
@@ -21072,7 +21103,7 @@ export type VariantSnvIndelAddProteinEffectMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelProteinEffect' | 'createEditableProteinEffect' | 'addEditableProteinEffectEditor' | 'addEditableProteinEffectReferences' | 'addVariantSNVIndelProteinEffect'>
 );
 
-export type VariantSnvIndelAddPDotMutationVariables = {
+export type VariantSnvIndelAddPDotMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21081,7 +21112,7 @@ export type VariantSnvIndelAddPDotMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelAddPDotMutation = (
@@ -21089,7 +21120,7 @@ export type VariantSnvIndelAddPDotMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelPDot' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelPDot'>
 );
 
-export type VariantSnvIndelAddCDotMutationVariables = {
+export type VariantSnvIndelAddCDotMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21098,7 +21129,7 @@ export type VariantSnvIndelAddCDotMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelAddCDotMutation = (
@@ -21106,7 +21137,7 @@ export type VariantSnvIndelAddCDotMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelCDot' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelCDot'>
 );
 
-export type VariantSnvIndelAddGDotMutationVariables = {
+export type VariantSnvIndelAddGDotMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21115,7 +21146,7 @@ export type VariantSnvIndelAddGDotMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelAddGDotMutation = (
@@ -21123,7 +21154,7 @@ export type VariantSnvIndelAddGDotMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelGDot' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelGDot'>
 );
 
-export type VariantSnvIndelAddExonMutationVariables = {
+export type VariantSnvIndelAddExonMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21132,7 +21163,7 @@ export type VariantSnvIndelAddExonMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type VariantSnvIndelAddExonMutation = (
@@ -21140,9 +21171,9 @@ export type VariantSnvIndelAddExonMutation = (
   & Pick<MutationType, 'deleteVariantSNVIndelExon' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addVariantSNVIndelExon'>
 );
 
-export type GenomicVariantMarkerComponentsQueryVariables = {
+export type GenomicVariantMarkerComponentsQueryVariables = Exact<{
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type GenomicVariantMarkerComponentsQuery = (
@@ -21157,7 +21188,7 @@ export type GenomicVariantMarkerComponentsQuery = (
   )>>> }
 );
 
-export type GeneList_For_VariantsQueryVariables = {};
+export type GeneList_For_VariantsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GeneList_For_VariantsQuery = (
@@ -21168,10 +21199,10 @@ export type GeneList_For_VariantsQuery = (
   )>>> }
 );
 
-export type Variant_Markers_For_GeneQueryVariables = {
+export type Variant_Markers_For_GeneQueryVariables = Exact<{
   omnigene_id?: Maybe<Scalars['ID']>;
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type Variant_Markers_For_GeneQuery = (
@@ -21217,9 +21248,9 @@ export type Variant_Markers_For_GeneQuery = (
   )>>> }
 );
 
-export type HotSpotVariantQueryVariables = {
+export type HotSpotVariantQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type HotSpotVariantQuery = (
@@ -21251,9 +21282,9 @@ export type HotSpotVariantQuery = (
   )>>> }
 );
 
-export type HotSpotVariantByGeneQueryVariables = {
+export type HotSpotVariantByGeneQueryVariables = Exact<{
   gene_name?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type HotSpotVariantByGeneQuery = (
@@ -21264,10 +21295,10 @@ export type HotSpotVariantByGeneQuery = (
   )>>> }
 );
 
-export type GenomicVariantAddHotSpotVariantMutationVariables = {
+export type GenomicVariantAddHotSpotVariantMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   hotspot_id: Scalars['ID'];
-};
+}>;
 
 
 export type GenomicVariantAddHotSpotVariantMutation = (
@@ -21275,9 +21306,9 @@ export type GenomicVariantAddHotSpotVariantMutation = (
   & Pick<MutationType, 'addGenomicVariantHotSpotVariant'>
 );
 
-export type IhcAssayQueryVariables = {
+export type IhcAssayQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type IhcAssayQuery = (
@@ -21310,9 +21341,9 @@ export type IhcAssayQuery = (
   )>>> }
 );
 
-export type JaxVariantQueryVariables = {
+export type JaxVariantQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type JaxVariantQuery = (
@@ -21337,10 +21368,10 @@ export type JaxVariantQuery = (
   )>>> }
 );
 
-export type JaxVariantByGeneQueryVariables = {
+export type JaxVariantByGeneQueryVariables = Exact<{
   gene_name?: Maybe<Scalars['String']>;
   pdot?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type JaxVariantByGeneQuery = (
@@ -21358,10 +21389,10 @@ export type JaxVariantByGeneQuery = (
   )>>> }
 );
 
-export type GenomicVariantAddJaxVariantMutationVariables = {
+export type GenomicVariantAddJaxVariantMutationVariables = Exact<{
   variant_id: Scalars['ID'];
   jaxvar_id: Scalars['ID'];
-};
+}>;
 
 
 export type GenomicVariantAddJaxVariantMutation = (
@@ -21369,9 +21400,9 @@ export type GenomicVariantAddJaxVariantMutation = (
   & Pick<MutationType, 'addGenomicVariantJaxVariant'>
 );
 
-export type Msi_MarkerQueryVariables = {
+export type Msi_MarkerQueryVariables = Exact<{
   marker_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type Msi_MarkerQuery = (
@@ -21392,7 +21423,7 @@ export type Msi_MarkerQuery = (
   )>>> }
 );
 
-export type MsiMarkerAddNameMutationVariables = {
+export type MsiMarkerAddNameMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21401,7 +21432,7 @@ export type MsiMarkerAddNameMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MsiMarkerAddNameMutation = (
@@ -21409,7 +21440,7 @@ export type MsiMarkerAddNameMutation = (
   & Pick<MutationType, 'deleteMSIMarkerName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMSIMarkerName'>
 );
 
-export type MsiMarkerAddMethodMutationVariables = {
+export type MsiMarkerAddMethodMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21418,7 +21449,7 @@ export type MsiMarkerAddMethodMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MsiMarkerAddMethodMutation = (
@@ -21426,7 +21457,7 @@ export type MsiMarkerAddMethodMutation = (
   & Pick<MutationType, 'deleteMSIMarkerMethod' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMSIMarkerMethod'>
 );
 
-export type MsiMarkerAddResultsMutationVariables = {
+export type MsiMarkerAddResultsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21435,7 +21466,7 @@ export type MsiMarkerAddResultsMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MsiMarkerAddResultsMutation = (
@@ -21443,7 +21474,7 @@ export type MsiMarkerAddResultsMutation = (
   & Pick<MutationType, 'deleteMSIMarkerResultString' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMSIMarkerResultString'>
 );
 
-export type Msi_MarkersQueryVariables = {};
+export type Msi_MarkersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type Msi_MarkersQuery = (
@@ -21464,9 +21495,9 @@ export type Msi_MarkersQuery = (
   )>>> }
 );
 
-export type MsiComponentsQueryVariables = {
+export type MsiComponentsQueryVariables = Exact<{
   q_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type MsiComponentsQuery = (
@@ -21481,9 +21512,9 @@ export type MsiComponentsQuery = (
   )>>> }
 );
 
-export type MarkerProfileQueryVariables = {
+export type MarkerProfileQueryVariables = Exact<{
   marker_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type MarkerProfileQuery = (
@@ -21582,7 +21613,7 @@ export type MarkerProfileQuery = (
   )>>> }
 );
 
-export type MarkerProfileAddNameMutationVariables = {
+export type MarkerProfileAddNameMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21591,7 +21622,7 @@ export type MarkerProfileAddNameMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MarkerProfileAddNameMutation = (
@@ -21599,7 +21630,7 @@ export type MarkerProfileAddNameMutation = (
   & Pick<MutationType, 'deleteMarkerProfileName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMarkerProfileName'>
 );
 
-export type MarkerProfileAddResultsMutationVariables = {
+export type MarkerProfileAddResultsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21608,7 +21639,7 @@ export type MarkerProfileAddResultsMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MarkerProfileAddResultsMutation = (
@@ -21616,7 +21647,7 @@ export type MarkerProfileAddResultsMutation = (
   & Pick<MutationType, 'deleteMarkerProfileResultString' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addMarkerProfileResultString'>
 );
 
-export type MarkerProfileAddConjuctionMutationVariables = {
+export type MarkerProfileAddConjuctionMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21625,7 +21656,7 @@ export type MarkerProfileAddConjuctionMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MarkerProfileAddConjuctionMutation = (
@@ -21633,7 +21664,7 @@ export type MarkerProfileAddConjuctionMutation = (
   & Pick<MutationType, 'deleteMarkerProfileConjunction' | 'createEditableOmniConjunction' | 'addEditableOmniConjunctionEditor' | 'addEditableOmniConjunctionReferences' | 'addMarkerProfileConjunction'>
 );
 
-export type MarkerProfileAddComponentsMutationVariables = {
+export type MarkerProfileAddComponentsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -21642,7 +21673,7 @@ export type MarkerProfileAddComponentsMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type MarkerProfileAddComponentsMutation = (
@@ -21650,9 +21681,9 @@ export type MarkerProfileAddComponentsMutation = (
   & Pick<MutationType, 'deleteMarkerProfileComponents' | 'createEditableMarkerComponentList' | 'addEditableMarkerComponentListComponents' | 'addEditableMarkerComponentListEditor' | 'addEditableMarkerComponentListReferences' | 'addMarkerProfileComponents'>
 );
 
-export type MarkerProfileComponentsQueryVariables = {
+export type MarkerProfileComponentsQueryVariables = Exact<{
   q_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type MarkerProfileComponentsQuery = (
@@ -21667,9 +21698,9 @@ export type MarkerProfileComponentsQuery = (
   )>>> }
 );
 
-export type MarkerProfilesQueryVariables = {
+export type MarkerProfilesQueryVariables = Exact<{
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type MarkerProfilesQuery = (
@@ -21684,7 +21715,7 @@ export type MarkerProfilesQuery = (
   )>>> }
 );
 
-export type CreateMarkerProfileMutationVariables = {
+export type CreateMarkerProfileMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   date: Scalars['String'];
   user_id: Scalars['ID'];
@@ -21701,7 +21732,7 @@ export type CreateMarkerProfileMutationVariables = {
   method_field: Scalars['String'];
   result_string_id: Scalars['ID'];
   result_string_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateMarkerProfileMutation = (
@@ -21710,7 +21741,7 @@ export type CreateMarkerProfileMutation = (
   & { components: MutationType['createEditableMarkerComponentList'], components_editor: MutationType['addEditableMarkerComponentListEditor'], components_ref: MutationType['addEditableMarkerComponentListReferences'], conjuction: MutationType['createEditableOmniConjunction'], conjuction_editor: MutationType['addEditableOmniConjunctionEditor'], conjuction_ref: MutationType['addEditableOmniConjunctionReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateGenomicVariantMarkerSnvMutationVariables = {
+export type CreateGenomicVariantMarkerSnvMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   variant_id: Scalars['ID'];
   name_v_id: Scalars['ID'];
@@ -21741,7 +21772,7 @@ export type CreateGenomicVariantMarkerSnvMutationVariables = {
   method_field: Scalars['String'];
   result_string_id: Scalars['ID'];
   result_string_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateGenomicVariantMarkerSnvMutation = (
@@ -21750,7 +21781,7 @@ export type CreateGenomicVariantMarkerSnvMutation = (
   & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], pe: MutationType['createEditableProteinEffect'], pe_editor: MutationType['addEditableProteinEffectEditor'], pe_ref: MutationType['addEditableProteinEffectReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], pdot: MutationType['createEditableStatement'], pdot_editor: MutationType['addEditableStatementEditor'], pdot_ref: MutationType['addEditableStatementReferences'], cdot: MutationType['createEditableStatement'], cdot_editor: MutationType['addEditableStatementEditor'], cdot_ref: MutationType['addEditableStatementReferences'], gdot: MutationType['createEditableStatement'], gdot_editor: MutationType['addEditableStatementEditor'], gdot_ref: MutationType['addEditableStatementReferences'], exon: MutationType['createEditableStatement'], exon_editor: MutationType['addEditableStatementEditor'], exon_ref: MutationType['addEditableStatementReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateGenomicVariantMarkerRegionMutationVariables = {
+export type CreateGenomicVariantMarkerRegionMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   variant_id: Scalars['ID'];
   name_v_id: Scalars['ID'];
@@ -21783,7 +21814,7 @@ export type CreateGenomicVariantMarkerRegionMutationVariables = {
   method_field: Scalars['String'];
   result_string_id: Scalars['ID'];
   result_string_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateGenomicVariantMarkerRegionMutation = (
@@ -21792,7 +21823,7 @@ export type CreateGenomicVariantMarkerRegionMutation = (
   & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], pe: MutationType['createEditableProteinEffect'], pe_editor: MutationType['addEditableProteinEffectEditor'], pe_ref: MutationType['addEditableProteinEffectReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], rv: MutationType['createEditableInt'], rv_editor: MutationType['addEditableIntEditor'], rv_ref: MutationType['addEditableIntReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], del: MutationType['createEditableBoolean'], del_editor: MutationType['addEditableBooleanEditor'], del_ref: MutationType['addEditableBooleanReferences'], frame: MutationType['createEditableBoolean'], frame_editor: MutationType['addEditableBooleanEditor'], frame_ref: MutationType['addEditableBooleanReferences'], trunc: MutationType['createEditableBoolean'], trunc_editor: MutationType['addEditableBooleanEditor'], trunc_ref: MutationType['addEditableBooleanReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateGenomicVariantMarkerCnvMutationVariables = {
+export type CreateGenomicVariantMarkerCnvMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   variant_id: Scalars['ID'];
   name_v_id: Scalars['ID'];
@@ -21815,7 +21846,7 @@ export type CreateGenomicVariantMarkerCnvMutationVariables = {
   method_field: Scalars['String'];
   result_string_id: Scalars['ID'];
   result_string_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateGenomicVariantMarkerCnvMutation = (
@@ -21824,7 +21855,7 @@ export type CreateGenomicVariantMarkerCnvMutation = (
   & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], cc: MutationType['createEditableCopyChange'], cc_editor: MutationType['addEditableCopyChangeEditor'], cc_ref: MutationType['addEditableCopyChangeReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateGenomicVariantMarkerFusionMutationVariables = {
+export type CreateGenomicVariantMarkerFusionMutationVariables = Exact<{
   gene_id: Scalars['ID'];
   variant_id: Scalars['ID'];
   name_v_id: Scalars['ID'];
@@ -21855,7 +21886,7 @@ export type CreateGenomicVariantMarkerFusionMutationVariables = {
   method_field: Scalars['String'];
   result_string_id: Scalars['ID'];
   result_string_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateGenomicVariantMarkerFusionMutation = (
@@ -21864,7 +21895,7 @@ export type CreateGenomicVariantMarkerFusionMutation = (
   & { name_v: MutationType['createEditableStatement'], name_v_editor: MutationType['addEditableStatementEditor'], name_v_ref: MutationType['addEditableStatementReferences'], des: MutationType['createEditableStatement'], des_editor: MutationType['addEditableStatementEditor'], des_ref: MutationType['addEditableStatementReferences'], trans: MutationType['createEditableStatement'], trans_editor: MutationType['addEditableStatementEditor'], trans_ref: MutationType['addEditableStatementReferences'], cc: MutationType['createEditableCopyChange'], cc_editor: MutationType['addEditableCopyChangeEditor'], cc_ref: MutationType['addEditableCopyChangeReferences'], g5: MutationType['createEditableOmniGeneReference'], g5_gene: MutationType['addEditableOmniGeneReferenceGene'], g5_editor: MutationType['addEditableOmniGeneReferenceEditor'], g5_ref: MutationType['addEditableOmniGeneReferenceReferences'], g3: MutationType['createEditableOmniGeneReference'], g3_gene: MutationType['addEditableOmniGeneReferenceGene'], g3_editor: MutationType['addEditableOmniGeneReferenceEditor'], g3_ref: MutationType['addEditableOmniGeneReferenceReferences'], e5: MutationType['createEditableInt'], e5_editor: MutationType['addEditableIntEditor'], e5_ref: MutationType['addEditableIntReferences'], e3: MutationType['createEditableInt'], e3_editor: MutationType['addEditableIntEditor'], e3_ref: MutationType['addEditableIntReferences'], name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateMsiMarkerMutationVariables = {
+export type CreateMsiMarkerMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   date: Scalars['String'];
   user_id: Scalars['ID'];
@@ -21877,7 +21908,7 @@ export type CreateMsiMarkerMutationVariables = {
   method_field: Scalars['String'];
   result_string_id: Scalars['ID'];
   result_string_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateMsiMarkerMutation = (
@@ -21886,7 +21917,7 @@ export type CreateMsiMarkerMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateTmbMarkerMutationVariables = {
+export type CreateTmbMarkerMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   date: Scalars['String'];
   user_id: Scalars['ID'];
@@ -21909,7 +21940,7 @@ export type CreateTmbMarkerMutationVariables = {
   resultUnits_field: Scalars['String'];
   interpretation_id: Scalars['ID'];
   interpretation_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateTmbMarkerMutation = (
@@ -21918,7 +21949,7 @@ export type CreateTmbMarkerMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], max: MutationType['createEditableFloat'], max_editor: MutationType['addEditableFloatEditor'], max_ref: MutationType['addEditableFloatReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'], interpretation: MutationType['createEditableTMBInterpretation'], interpretation_editor: MutationType['addEditableTMBInterpretationEditor'], interpretation_ref: MutationType['addEditableTMBInterpretationReferences'] }
 );
 
-export type CreateProteinExpressionMarkerMutationVariables = {
+export type CreateProteinExpressionMarkerMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   date: Scalars['String'];
   user_id: Scalars['ID'];
@@ -21942,7 +21973,7 @@ export type CreateProteinExpressionMarkerMutationVariables = {
   function_field: Scalars['String'];
   role_id: Scalars['ID'];
   role_field: Scalars['String'];
-};
+}>;
 
 
 export type CreateProteinExpressionMarkerMutation = (
@@ -21951,7 +21982,7 @@ export type CreateProteinExpressionMarkerMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], method: MutationType['createEditableStatement'], method_editor: MutationType['addEditableStatementEditor'], method_ref: MutationType['addEditableStatementReferences'], result: MutationType['createEditableStatement'], result_editor: MutationType['addEditableStatementEditor'], result_ref: MutationType['addEditableStatementReferences'], synonyms: MutationType['createEditableStringList'], synonyms_editor: MutationType['addEditableStringListEditor'], synonyms_ref: MutationType['addEditableStringListReferences'], genes: MutationType['createEditableOmniGeneList'], genes_editor: MutationType['addEditableOmniGeneListEditor'], genes_ref: MutationType['addEditableOmniGeneListReferences'], pheno: MutationType['createEditableImmunePhenotype'], pheno_editor: MutationType['addEditableImmunePhenotypeEditor'], pheno_ref: MutationType['addEditableImmunePhenotypeReferences'], function: MutationType['createEditableImmuneFunction'], function_editor: MutationType['addEditableImmuneFunctionEditor'], function_ref: MutationType['addEditableImmuneFunctionReferences'], role: MutationType['createEditableImmuneCycleRole'], role_editor: MutationType['addEditableImmuneCycleRoleEditor'], role_ref: MutationType['addEditableImmuneCycleRoleReferences'] }
 );
 
-export type CreateIhcAssayMutationVariables = {
+export type CreateIhcAssayMutationVariables = Exact<{
   date: Scalars['String'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
@@ -21977,7 +22008,7 @@ export type CreateIhcAssayMutationVariables = {
   units_id: Scalars['ID'];
   units_field: Scalars['String'];
   units: Scalars['String'];
-};
+}>;
 
 
 export type CreateIhcAssayMutation = (
@@ -21986,7 +22017,7 @@ export type CreateIhcAssayMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], clone: MutationType['createEditableStatement'], clone_editor: MutationType['addEditableStatementEditor'], clone_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], max: MutationType['createEditableFloat'], max_editor: MutationType['addEditableFloatEditor'], max_ref: MutationType['addEditableFloatReferences'], rs: MutationType['createEditableStatement'], rs_editor: MutationType['addEditableStatementEditor'], rs_ref: MutationType['addEditableStatementReferences'], units: MutationType['createEditableStatement'], units_editor: MutationType['addEditableStatementEditor'], units_ref: MutationType['addEditableStatementReferences'] }
 );
 
-export type CreateRnaSeqAssayMutationVariables = {
+export type CreateRnaSeqAssayMutationVariables = Exact<{
   date: Scalars['String'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
@@ -22006,7 +22037,7 @@ export type CreateRnaSeqAssayMutationVariables = {
   resultType_id: Scalars['ID'];
   resultType_field: Scalars['String'];
   resultType: RnaSeqResultType;
-};
+}>;
 
 
 export type CreateRnaSeqAssayMutation = (
@@ -22015,9 +22046,9 @@ export type CreateRnaSeqAssayMutation = (
   & { name: MutationType['createEditableStatement'], name_editor: MutationType['addEditableStatementEditor'], name_ref: MutationType['addEditableStatementReferences'], comp: MutationType['createEditableAssayComparator'], comp_editor: MutationType['addEditableAssayComparatorEditor'], comp_ref: MutationType['addEditableAssayComparatorReferences'], min: MutationType['createEditableFloat'], min_editor: MutationType['addEditableFloatEditor'], min_ref: MutationType['addEditableFloatReferences'], max: MutationType['createEditableFloat'], max_editor: MutationType['addEditableFloatEditor'], max_ref: MutationType['addEditableFloatReferences'], rt: MutationType['createEditableRNASeqResultType'], rt_editor: MutationType['addEditableRNASeqResultTypeEditor'], rt_ref: MutationType['addEditableRNASeqResultTypeReferences'] }
 );
 
-export type ProteinExpression_MarkerQueryVariables = {
+export type ProteinExpression_MarkerQueryVariables = Exact<{
   marker_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpression_MarkerQuery = (
@@ -22122,7 +22153,7 @@ export type ProteinExpression_MarkerQuery = (
   )>>> }
 );
 
-export type ProteinExpressionMarkerAddNameMutationVariables = {
+export type ProteinExpressionMarkerAddNameMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22131,7 +22162,7 @@ export type ProteinExpressionMarkerAddNameMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddNameMutation = (
@@ -22139,7 +22170,7 @@ export type ProteinExpressionMarkerAddNameMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addProteinExpressionMarkerName'>
 );
 
-export type ProteinExpressionMarkerAddMethodMutationVariables = {
+export type ProteinExpressionMarkerAddMethodMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22148,7 +22179,7 @@ export type ProteinExpressionMarkerAddMethodMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddMethodMutation = (
@@ -22156,7 +22187,7 @@ export type ProteinExpressionMarkerAddMethodMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerMethod' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addProteinExpressionMarkerMethod'>
 );
 
-export type ProteinExpressionMarkerAddResultsMutationVariables = {
+export type ProteinExpressionMarkerAddResultsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22165,7 +22196,7 @@ export type ProteinExpressionMarkerAddResultsMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddResultsMutation = (
@@ -22173,7 +22204,7 @@ export type ProteinExpressionMarkerAddResultsMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerResultString' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addProteinExpressionMarkerResultString'>
 );
 
-export type ProteinExpressionMarkerAddSynonymsMutationVariables = {
+export type ProteinExpressionMarkerAddSynonymsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_esyn_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22181,7 +22212,7 @@ export type ProteinExpressionMarkerAddSynonymsMutationVariables = {
   esyn_list: Array<Maybe<Scalars['String']>>;
   esyn_id: Scalars['ID'];
   user_id: Scalars['ID'];
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddSynonymsMutation = (
@@ -22189,7 +22220,7 @@ export type ProteinExpressionMarkerAddSynonymsMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerSynonyms' | 'createEditableStringList' | 'addEditableStringListEditor' | 'addEditableStringListReferences' | 'addProteinExpressionMarkerSynonyms'>
 );
 
-export type ProteinExpressionMarkerAddImmunePhenotypeMutationVariables = {
+export type ProteinExpressionMarkerAddImmunePhenotypeMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22198,7 +22229,7 @@ export type ProteinExpressionMarkerAddImmunePhenotypeMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddImmunePhenotypeMutation = (
@@ -22206,7 +22237,7 @@ export type ProteinExpressionMarkerAddImmunePhenotypeMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerImmunePhenotypes' | 'createEditableImmunePhenotype' | 'addEditableImmunePhenotypeEditor' | 'addEditableImmunePhenotypeReferences' | 'addProteinExpressionMarkerImmunePhenotypes'>
 );
 
-export type ProteinExpressionMarkerAddImmuneFunctionMutationVariables = {
+export type ProteinExpressionMarkerAddImmuneFunctionMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22215,7 +22246,7 @@ export type ProteinExpressionMarkerAddImmuneFunctionMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddImmuneFunctionMutation = (
@@ -22223,7 +22254,7 @@ export type ProteinExpressionMarkerAddImmuneFunctionMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerImmuneFunctions' | 'createEditableImmuneFunction' | 'addEditableImmuneFunctionEditor' | 'addEditableImmuneFunctionReferences' | 'addProteinExpressionMarkerImmuneFunctions'>
 );
 
-export type ProteinExpressionMarkerAddImmuneCycleRoleMutationVariables = {
+export type ProteinExpressionMarkerAddImmuneCycleRoleMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22232,7 +22263,7 @@ export type ProteinExpressionMarkerAddImmuneCycleRoleMutationVariables = {
   id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_array: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerAddImmuneCycleRoleMutation = (
@@ -22240,9 +22271,9 @@ export type ProteinExpressionMarkerAddImmuneCycleRoleMutation = (
   & Pick<MutationType, 'deleteProteinExpressionMarkerImmuneCycleRoles' | 'createEditableImmuneCycleRole' | 'addEditableImmuneCycleRoleEditor' | 'addEditableImmuneCycleRoleReferences' | 'addProteinExpressionMarkerImmuneCycleRoles'>
 );
 
-export type ProteinExpressionMarkerComponentsQueryVariables = {
+export type ProteinExpressionMarkerComponentsQueryVariables = Exact<{
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type ProteinExpressionMarkerComponentsQuery = (
@@ -22257,9 +22288,9 @@ export type ProteinExpressionMarkerComponentsQuery = (
   )>>> }
 );
 
-export type ProteinExpression_MarkersQueryVariables = {
+export type ProteinExpression_MarkersQueryVariables = Exact<{
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type ProteinExpression_MarkersQuery = (
@@ -22280,9 +22311,9 @@ export type ProteinExpression_MarkersQuery = (
   )>>> }
 );
 
-export type ProteinLevelAssayQueryVariables = {
+export type ProteinLevelAssayQueryVariables = Exact<{
   query_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type ProteinLevelAssayQuery = (
@@ -22304,9 +22335,9 @@ export type ProteinLevelAssayQuery = (
   )>>> }
 );
 
-export type RnaSeqAssayQueryVariables = {
+export type RnaSeqAssayQueryVariables = Exact<{
   id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type RnaSeqAssayQuery = (
@@ -22345,9 +22376,9 @@ export type RnaSeqAssayQuery = (
   )>>> }
 );
 
-export type Tmb_MarkerQueryVariables = {
+export type Tmb_MarkerQueryVariables = Exact<{
   marker_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type Tmb_MarkerQuery = (
@@ -22435,7 +22466,7 @@ export type Tmb_MarkerQuery = (
   )>>> }
 );
 
-export type TmbMarkerAddNameMutationVariables = {
+export type TmbMarkerAddNameMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22444,7 +22475,7 @@ export type TmbMarkerAddNameMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddNameMutation = (
@@ -22452,7 +22483,7 @@ export type TmbMarkerAddNameMutation = (
   & Pick<MutationType, 'deleteTMBMarkerName' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerName'>
 );
 
-export type TmbMarkerAddMethodMutationVariables = {
+export type TmbMarkerAddMethodMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22461,7 +22492,7 @@ export type TmbMarkerAddMethodMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddMethodMutation = (
@@ -22469,7 +22500,7 @@ export type TmbMarkerAddMethodMutation = (
   & Pick<MutationType, 'deleteTMBMarkerMethod' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerMethod'>
 );
 
-export type TmbMarkerAddResultsMutationVariables = {
+export type TmbMarkerAddResultsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22478,7 +22509,7 @@ export type TmbMarkerAddResultsMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddResultsMutation = (
@@ -22486,7 +22517,7 @@ export type TmbMarkerAddResultsMutation = (
   & Pick<MutationType, 'deleteTMBMarkerResultString' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerResultString'>
 );
 
-export type TmbMarkerAddResultUnitsMutationVariables = {
+export type TmbMarkerAddResultUnitsMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22495,7 +22526,7 @@ export type TmbMarkerAddResultUnitsMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddResultUnitsMutation = (
@@ -22503,7 +22534,7 @@ export type TmbMarkerAddResultUnitsMutation = (
   & Pick<MutationType, 'deleteTMBMarkerResultUnits' | 'createEditableStatement' | 'addEditableStatementEditor' | 'addEditableStatementReferences' | 'addTMBMarkerResultUnits'>
 );
 
-export type TmbMarkerAddResultMinMutationVariables = {
+export type TmbMarkerAddResultMinMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22512,7 +22543,7 @@ export type TmbMarkerAddResultMinMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddResultMinMutation = (
@@ -22520,7 +22551,7 @@ export type TmbMarkerAddResultMinMutation = (
   & Pick<MutationType, 'deleteTMBMarkerResultMin' | 'createEditableFloat' | 'addEditableFloatEditor' | 'addEditableFloatReferences' | 'addTMBMarkerResultMin'>
 );
 
-export type TmbMarkerAddResultMaxMutationVariables = {
+export type TmbMarkerAddResultMaxMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22529,7 +22560,7 @@ export type TmbMarkerAddResultMaxMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddResultMaxMutation = (
@@ -22537,7 +22568,7 @@ export type TmbMarkerAddResultMaxMutation = (
   & Pick<MutationType, 'deleteTMBMarkerResultMax' | 'createEditableFloat' | 'addEditableFloatEditor' | 'addEditableFloatReferences' | 'addTMBMarkerResultMax'>
 );
 
-export type TmbMarkerAddComparatorMutationVariables = {
+export type TmbMarkerAddComparatorMutationVariables = Exact<{
   marker_id: Scalars['ID'];
   old_es_id: Scalars['ID'];
   date: Scalars['String'];
@@ -22546,7 +22577,7 @@ export type TmbMarkerAddComparatorMutationVariables = {
   es_id: Scalars['ID'];
   user_id: Scalars['ID'];
   ref_aray: Array<Scalars['ID']>;
-};
+}>;
 
 
 export type TmbMarkerAddComparatorMutation = (
@@ -22554,7 +22585,7 @@ export type TmbMarkerAddComparatorMutation = (
   & Pick<MutationType, 'deleteTMBMarkerComparator' | 'createEditableAssayComparator' | 'addEditableAssayComparatorEditor' | 'addEditableAssayComparatorReferences' | 'addTMBMarkerComparator'>
 );
 
-export type Tmb_MarkersQueryVariables = {};
+export type Tmb_MarkersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type Tmb_MarkersQuery = (
@@ -22575,9 +22606,9 @@ export type Tmb_MarkersQuery = (
   )>>> }
 );
 
-export type TmbComponentsQueryVariables = {
+export type TmbComponentsQueryVariables = Exact<{
   q_string?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type TmbComponentsQuery = (
@@ -22592,9 +22623,9 @@ export type TmbComponentsQuery = (
   )>>> }
 );
 
-export type EditableAssayComparatorQueryVariables = {
+export type EditableAssayComparatorQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableAssayComparatorQuery = (
@@ -22618,9 +22649,9 @@ export type EditableAssayComparatorQuery = (
   )>>> }
 );
 
-export type EditableOmniConjunctionQueryVariables = {
+export type EditableOmniConjunctionQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableOmniConjunctionQuery = (
@@ -22644,9 +22675,9 @@ export type EditableOmniConjunctionQuery = (
   )>>> }
 );
 
-export type EditableCopyChangeQueryVariables = {
+export type EditableCopyChangeQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableCopyChangeQuery = (
@@ -22670,9 +22701,9 @@ export type EditableCopyChangeQuery = (
   )>>> }
 );
 
-export type EditableBooleanQueryVariables = {
+export type EditableBooleanQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableBooleanQuery = (
@@ -22696,9 +22727,9 @@ export type EditableBooleanQuery = (
   )>>> }
 );
 
-export type EditableFloatQueryVariables = {
+export type EditableFloatQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableFloatQuery = (
@@ -22722,9 +22753,9 @@ export type EditableFloatQuery = (
   )>>> }
 );
 
-export type EditableIntQueryVariables = {
+export type EditableIntQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableIntQuery = (
@@ -22748,9 +22779,9 @@ export type EditableIntQuery = (
   )>>> }
 );
 
-export type EditableMarkerComponentListQueryVariables = {
+export type EditableMarkerComponentListQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableMarkerComponentListQuery = (
@@ -22823,9 +22854,9 @@ export type EditableMarkerComponentListQuery = (
   )>>> }
 );
 
-export type EditableOmniGeneReferenceQueryVariables = {
+export type EditableOmniGeneReferenceQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableOmniGeneReferenceQuery = (
@@ -23017,9 +23048,9 @@ export type EcompFragment = (
   )>> }
 );
 
-export type EditableStatementQueryVariables = {
+export type EditableStatementQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableStatementQuery = (
@@ -23043,9 +23074,9 @@ export type EditableStatementQuery = (
   )>>> }
 );
 
-export type EditableImmuneCycleRoleQueryVariables = {
+export type EditableImmuneCycleRoleQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableImmuneCycleRoleQuery = (
@@ -23069,9 +23100,9 @@ export type EditableImmuneCycleRoleQuery = (
   )>>> }
 );
 
-export type EditableImmuneFunctionQueryVariables = {
+export type EditableImmuneFunctionQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableImmuneFunctionQuery = (
@@ -23095,9 +23126,9 @@ export type EditableImmuneFunctionQuery = (
   )>>> }
 );
 
-export type EditableImmunePhenotypeQueryVariables = {
+export type EditableImmunePhenotypeQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableImmunePhenotypeQuery = (
@@ -23121,9 +23152,9 @@ export type EditableImmunePhenotypeQuery = (
   )>>> }
 );
 
-export type LiteratureReferenceQueryVariables = {
+export type LiteratureReferenceQueryVariables = Exact<{
   ref_id?: Maybe<Scalars['ID']>;
-};
+}>;
 
 
 export type LiteratureReferenceQuery = (
@@ -23141,9 +23172,9 @@ export type LiteratureReferenceQuery = (
   )>>> }
 );
 
-export type EditableProteinEffectQueryVariables = {
+export type EditableProteinEffectQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableProteinEffectQuery = (
@@ -23167,9 +23198,9 @@ export type EditableProteinEffectQuery = (
   )>>> }
 );
 
-export type EditableStringListQueryVariables = {
+export type EditableStringListQueryVariables = Exact<{
   field?: Maybe<Scalars['String']>;
-};
+}>;
 
 
 export type EditableStringListQuery = (
@@ -23387,6 +23418,76 @@ export function useOntologicalDiseaseComponentsLazyQuery(baseOptions?: ApolloRea
 export type OntologicalDiseaseComponentsQueryHookResult = ReturnType<typeof useOntologicalDiseaseComponentsQuery>;
 export type OntologicalDiseaseComponentsLazyQueryHookResult = ReturnType<typeof useOntologicalDiseaseComponentsLazyQuery>;
 export type OntologicalDiseaseComponentsQueryResult = ApolloReactCommon.QueryResult<OntologicalDiseaseComponentsQuery, OntologicalDiseaseComponentsQueryVariables>;
+export const GoDiseaseDocument = gql`
+    query GODisease($id: ID) {
+  GODisease(id: $id) {
+    name {
+      statement
+      field
+      editDate
+      editor {
+        name
+      }
+    }
+    definition {
+      statement
+      field
+      editDate
+      editor {
+        name
+      }
+    }
+    synonyms {
+      stringList
+    }
+  }
+}
+    `;
+export type GoDiseaseComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GoDiseaseQuery, GoDiseaseQueryVariables>, 'query'>;
+
+    export const GoDiseaseComponent = (props: GoDiseaseComponentProps) => (
+      <ApolloReactComponents.Query<GoDiseaseQuery, GoDiseaseQueryVariables> query={GoDiseaseDocument} {...props} />
+    );
+    
+export type GoDiseaseProps<TChildProps = {}, TDataName extends string = 'data'> = {
+      [key in TDataName]: ApolloReactHoc.DataValue<GoDiseaseQuery, GoDiseaseQueryVariables>
+    } & TChildProps;
+export function withGoDisease<TProps, TChildProps = {}, TDataName extends string = 'data'>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  GoDiseaseQuery,
+  GoDiseaseQueryVariables,
+  GoDiseaseProps<TChildProps, TDataName>>) {
+    return ApolloReactHoc.withQuery<TProps, GoDiseaseQuery, GoDiseaseQueryVariables, GoDiseaseProps<TChildProps, TDataName>>(GoDiseaseDocument, {
+      alias: 'goDisease',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGoDiseaseQuery__
+ *
+ * To run a query within a React component, call `useGoDiseaseQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGoDiseaseQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGoDiseaseQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGoDiseaseQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GoDiseaseQuery, GoDiseaseQueryVariables>) {
+        return ApolloReactHooks.useQuery<GoDiseaseQuery, GoDiseaseQueryVariables>(GoDiseaseDocument, baseOptions);
+      }
+export function useGoDiseaseLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GoDiseaseQuery, GoDiseaseQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<GoDiseaseQuery, GoDiseaseQueryVariables>(GoDiseaseDocument, baseOptions);
+        }
+export type GoDiseaseQueryHookResult = ReturnType<typeof useGoDiseaseQuery>;
+export type GoDiseaseLazyQueryHookResult = ReturnType<typeof useGoDiseaseLazyQuery>;
+export type GoDiseaseQueryResult = ApolloReactCommon.QueryResult<GoDiseaseQuery, GoDiseaseQueryVariables>;
 export const OntologicalDiseaseDocument = gql`
     query OntologicalDisease($id: ID) {
   OntologicalDisease(id: $id) {
