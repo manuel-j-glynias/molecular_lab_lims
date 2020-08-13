@@ -19,8 +19,25 @@ export const QUERY_OntolgicalDisease = gql`
                     name
                 }
             }
+            goId
             synonyms{
                 stringList
+            }
+            parents {
+                name {
+                    statement
+                }
+            }
+            children {
+                name {
+                    statement
+                }
+            }
+            xrefs {
+                list {
+                    source
+                    sourceId
+                }
             }
         }
     }

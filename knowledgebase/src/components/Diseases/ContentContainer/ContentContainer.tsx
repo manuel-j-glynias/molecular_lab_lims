@@ -60,11 +60,12 @@ const ContentContainer: React.FC<Props> = ({
             </div>
 
             <div> {show_GODisease ?
+
                 <div>
                     { data.OntologicalDisease[0].goDiseases.list[0] && <GoDiseaseContainer id={data.OntologicalDisease[0].goDiseases.list[0].id} editing_description={editing_description} />}
 
-
                 </div>
+
                  : (<span></span>) }
             </div>
 
