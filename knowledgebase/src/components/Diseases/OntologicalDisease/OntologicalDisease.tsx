@@ -8,6 +8,7 @@ import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import {get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
 import SynonymEditor from "./SynonymEditor";
 import SynonymHistoryContainer from "../../common/SynonymHistory";
+import XRefContainer from "../XRef";
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
 
 
@@ -29,6 +30,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
     const [showing_name_references, set_showing_name_references] = React.useState(false);
     const [show_name_history, set_name_history] = React.useState(false);
     const [showing_references, set_showing_references] = React.useState(false);
+    const [showing_xrefs, set_showing_xrefs] = React.useState(false);
 
     // const [editing_description, set_editing_description]  = React.useState(false);
     const [showing_description_references, set_showing_description_references] = React.useState(false);
@@ -255,8 +257,9 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                         <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].synonyms.editDate)}</div>
                     </div></div>
 
-                    <div>OmniMaps</div>
-                <div></div>
+
+
+
 
                 {/*                const omArray = data.OntologicalDisease[0].omniMaps.list
                 <div></div>
@@ -274,6 +277,9 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     </tr>
                     ))
                 </div>*/}
+
+                <div>OmniMaps</div>
+                <div></div>
 
                 <div>OmniDisease ID</div>
                 {<div>{data.OntologicalDisease[0].omniMaps &&
@@ -302,6 +308,20 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                 data.OntologicalDisease[0].omniMaps.list[0].mCodes[0] &&
                 data.OntologicalDisease[0].omniMaps.list[0].mCodes[0].diseasePath.statement }</div>}
 
+
+
+                <div>X-Refs</div>
+                {/*{<div>{data.OntologicalDisease[0].xrefs.list.map(name => (<li>{name!.source} - {name!.sourceId}</li>))}</div>}*/}
+
+                <div>
+                    <button className={`${className}__small-btn`} onClick={() => set_showing_xrefs(!showing_xrefs)}> {showing_xrefs ? <span>Hide X-Refs</span> : <span>Show X-refs</span>}
+                    </button>
+                    {showing_xrefs && <XRefContainer id={data.OntologicalDisease[0].id}/>
+                    }
+                </div>
+
+                <div></div>
+                <div></div>
 
             </div>
 
