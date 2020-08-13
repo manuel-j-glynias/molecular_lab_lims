@@ -4,6 +4,7 @@ import ContentContainerContainer from "../ContentContainer";
 import OntologicalDiseaseListContainer from "../OntologicalDiseaseList";
 import OntologicalDiseaseContainer from "../OntologicalDisease";
 import './styles.css'
+import {AppendedContentProvider} from "../../../context/AppendedContentContext";
 
 
 interface Props {
@@ -29,12 +30,14 @@ const DiseasesContainer: React.FC<Props> = ({logged_in}) => {
     }
     return (
         <div className="DiseasesContainer">
+            <AppendedContentProvider>
             <React.Fragment>
                 <OntologicalDiseaseListContainer query_str={query_str} set_query_string={set_query_str}
                                                  handle_ontological_disease_id_Change={handle_ontological_disease_id_Change} ontological_disease_id={ontological_disease_id}/>
                 <OntologicalDiseaseContainer id={ontological_disease_id} editing_description={editing_description} set_editing_description={set_editing_description} editing_synonyms={editing_synonyms} set_editing_synonyms={set_editing_synonyms}/>
                 <ContentContainerContainer id={ontological_disease_id} editing_description={editing_description} editing_synonyms={editing_synonyms} />
             </React.Fragment>
+            </AppendedContentProvider>
         </div>
     )
 }
