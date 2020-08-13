@@ -53,7 +53,7 @@ const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editin
                     </div>) :<span></span> }
             </div>
             <div>
-                {show_go ? ( data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id}/>:
+                {show_go ? ( data.GenomicVariant[0].goVariant ? <GOVariantContainer id={data.GenomicVariant[0].goVariant.id} variant_id={variant_id} refetch_parent={refetch}/>:
                     <div>No Go Variant associated with this marker.  Select one from the list below:
                         <GOVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
                     </div>) : <span></span>}

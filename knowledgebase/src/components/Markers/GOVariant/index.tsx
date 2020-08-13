@@ -4,9 +4,11 @@ import GoVariant from "./GOVariant";
 
 interface Props {
     id: string;
+    variant_id: string;
+    refetch_parent: () => void;
 }
 
-const GOVariantContainer = ({id}:Props) => {
+const GOVariantContainer = ({id,variant_id,refetch_parent}:Props) => {
     const { data, error, loading, refetch } = useGoVariantQuery(
         {variables:{id:id}})
     React.useEffect(() => {
@@ -24,6 +26,6 @@ const GOVariantContainer = ({id}:Props) => {
     if (!data) {
         return <div>No GO Variant</div>;
     }
-    return <GoVariant data={data}/>
+    return <GoVariant data={data} variant_id={variant_id} refetch_parent={refetch_parent}/>
 }
 export default GOVariantContainer;

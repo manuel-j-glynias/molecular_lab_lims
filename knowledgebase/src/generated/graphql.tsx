@@ -20078,6 +20078,7 @@ export type GoDiseaseQuery = (
   { __typename?: 'QueryType' }
   & { GODisease?: Maybe<Array<Maybe<(
     { __typename?: 'GODisease' }
+    & Pick<GoDisease, 'goId'>
     & { name: (
       { __typename?: 'EditableStatement' }
       & Pick<EditableStatement, 'statement' | 'field' | 'editDate'>
@@ -20095,6 +20096,24 @@ export type GoDiseaseQuery = (
     ), synonyms: (
       { __typename?: 'EditableStringList' }
       & Pick<EditableStringList, 'stringList'>
+    ), parents?: Maybe<Array<Maybe<(
+      { __typename?: 'GODisease' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    )>>>, children: Array<Maybe<(
+      { __typename?: 'GODisease' }
+      & { name: (
+        { __typename?: 'EditableStatement' }
+        & Pick<EditableStatement, 'statement'>
+      ) }
+    )>>, xrefs: (
+      { __typename?: 'EditableXRefList' }
+      & { list: Array<Maybe<(
+        { __typename?: 'XRef' }
+        & Pick<XRef, 'source' | 'sourceId'>
+      )>> }
     ) }
   )>>> }
 );
@@ -23486,8 +23505,25 @@ export const GoDiseaseDocument = gql`
         name
       }
     }
+    goId
     synonyms {
       stringList
+    }
+    parents {
+      name {
+        statement
+      }
+    }
+    children {
+      name {
+        statement
+      }
+    }
+    xrefs {
+      list {
+        source
+        sourceId
+      }
     }
   }
 }
