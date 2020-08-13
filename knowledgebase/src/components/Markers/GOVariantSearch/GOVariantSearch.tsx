@@ -30,8 +30,8 @@ const GOVariantSearch: React.FC<Props> = ({data,variant_id,refetch_parent}: Prop
         <div className={className} >
 
             <div className={`${className}__Wrapper`} >
-                {data.go_by_name &&
-                data.go_by_name.map(
+                {data.GOVariant &&
+                data.GOVariant.map(
                     (go ,index) =>
                         go && (
                             <Fragment key={index}>

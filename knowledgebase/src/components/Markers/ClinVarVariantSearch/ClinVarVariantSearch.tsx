@@ -33,8 +33,8 @@ const ClinVarVariantSearch: React.FC<Props> = ({data,variant_id,refetch_parent}:
         <div className={className} >
 
             <div className={`${className}__Wrapper`} >
-                {data.cv_by_name &&
-                data.cv_by_name.map(
+                {data.ClinVarVariant &&
+                data.ClinVarVariant.map(
                     (cv ,index) =>
                         cv && (
                             <Fragment key={index}>

@@ -1,5 +1,9 @@
 import * as React from 'react';
-import {JaxVariantQuery, VariantProteinEffect} from "../../../generated/graphql";
+import {
+    JaxVariantQuery,
+    VariantProteinEffect,
+    useGenomicVariantDeleteJaxVariantMutation,
+} from "../../../generated/graphql";
 import './styles.css'
 import LiteratureReferenceContainer from "../../common/LiteratureReference";
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
@@ -8,14 +12,26 @@ interface Props {
     data: JaxVariantQuery;
     editing_description: boolean;
     editing_protein_effect: boolean;
-
+    variant_id: string;
+    refetch_parent: () => void;
 }
 type DescriptionWithPmids = {
     text: string;
     pmid: string;
 }
 const className = 'JaxVariant';
-const JaxVariant: React.FC<Props> = ({data,editing_description,editing_protein_effect}) => {
+const JaxVariant: React.FC<Props> = ({data,editing_description,editing_protein_effect,variant_id,refetch_parent}) => {
+
+    const [deleteJaxVarMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useGenomicVariantDeleteJaxVariantMutation({variables:{variant_id:'',jaxvar_id:''}})
+
+    const delete_jaxvar = async () => {
+        if (data && data.JaxVariant && data.JaxVariant[0]){
+            await deleteJaxVarMutation({variables:{variant_id:variant_id, jaxvar_id:data.JaxVariant[0].id}})
+            refetch_parent()
+        }
+    }
+
+
 
     const add_hyperlinks = (description: string): DescriptionWithPmids[] => {
         let d: DescriptionWithPmids[] = []
@@ -159,7 +175,10 @@ const JaxVariant: React.FC<Props> = ({data,editing_description,editing_protein_e
                 <div>{data.JaxVariant[0].transcript.statement}</div>
 
 
+                <div></div>
+                <div><button className={`${className}__small-btn`} onClick={() => delete_jaxvar()}>Detach</button></div>
             </div>
+
         </div>
     )
 }

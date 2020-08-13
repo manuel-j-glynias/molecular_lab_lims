@@ -47,7 +47,7 @@ const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editin
         </div>
         <div className = {`${className}__Wrapper`}>
             <div>
-                {show_jax ? ( data.GenomicVariant[0].jaxVariant ? <JaxVariantContainer id={data.GenomicVariant[0].jaxVariant.id} editing_protein_effect={editing_protein_effect} editing_description={editing_description}/>:
+                {show_jax ? ( data.GenomicVariant[0].jaxVariant ? <JaxVariantContainer id={data.GenomicVariant[0].jaxVariant.id} editing_protein_effect={editing_protein_effect} editing_description={editing_description} variant_id={variant_id} refetch_parent={refetch}/>:
                     <div>No Jax Variant associated with this marker.  Select one from the list below:
                         <JaxVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
                     </div>) :<span></span> }

@@ -27,3 +27,9 @@ export const QUERY_JAX_VARIANT = gql`
         }
     }
  `
+
+export const mutation_delete_jaxVariant = gql`
+    mutation GenomicVariantDeleteJaxVariant($variant_id: ID!, $jaxvar_id:ID!) {
+        deleteGenomicVariantJaxVariant(id: $variant_id, jaxVariant: [$jaxvar_id])
+    }
+`
