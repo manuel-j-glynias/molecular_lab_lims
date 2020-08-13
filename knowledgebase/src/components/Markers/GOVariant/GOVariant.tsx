@@ -12,7 +12,7 @@ const className = 'GOVariant'
 const GoVariant: React.FC<Props> = ({data,variant_id,refetch_parent}) => {
     const [deleteGoVarMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useGenomicVariantDeleteGoVariantMutation({variables:{variant_id:'',govar_id:''}})
 
-    const delete_jaxvar = async () => {
+    const delete_govar = async () => {
         if (data && data.GOVariant && data.GOVariant[0]){
             await deleteGoVarMutation({variables:{variant_id:variant_id, govar_id:data.GOVariant[0].id}})
             refetch_parent()
@@ -35,6 +35,9 @@ const GoVariant: React.FC<Props> = ({data,variant_id,refetch_parent}) => {
 
                 <div>GO ID</div>
                 <div>{data.GOVariant[0].goId} </div>
+
+                <div></div>
+                <div><button className={`${className}__small-btn`} onClick={() => delete_govar()}>Detach</button></div>
 
             </div>
         </div>

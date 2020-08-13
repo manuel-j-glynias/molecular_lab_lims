@@ -17,3 +17,9 @@ export const QUERY_CLINVAR_VARIANT = gql`
         }
     }
 `
+
+export const mutation_delete_clinVarVariant = gql`
+    mutation GenomicVariantDeleteClivarVariant($variant_id: ID!, $clinvar_var_id:ID!) {
+        deleteGenomicVariantClinVarVariant(id: $variant_id, clinVarVariant: [$clinvar_var_id])
+    }
+`

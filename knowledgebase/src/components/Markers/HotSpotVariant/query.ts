@@ -36,3 +36,9 @@ export const QUERY_HOTSPOT_VARIANT = gql`
 
     
 `
+
+export const mutation_delete_hsVariant = gql`
+    mutation GenomicVariantDeleteHotSpotVariant($variant_id: ID!, $hs_var_id:ID!) {
+        deleteGenomicVariantHotSpotVariant(id: $variant_id, hotSpotVariant: [$hs_var_id])
+    }
+`

@@ -1,14 +1,29 @@
 import * as React from 'react';
 import './styles.css'
-import {ClinVarVariantQuery} from "../../../generated/graphql";
+import {
+    ClinVarVariantQuery,
+    useGenomicVariantDeleteClivarVariantMutation,
+    useGenomicVariantDeleteGoVariantMutation
+} from "../../../generated/graphql";
 
 
 interface Props {
     data: ClinVarVariantQuery
+    variant_id: string;
+    refetch_parent: () => void;
 }
 const className = 'ClinVarVariant'
 
-const ClinVarVariant: React.FC<Props> = ({data}) => {
+const ClinVarVariant: React.FC<Props> = ({data,variant_id,refetch_parent}) => {
+
+    const [deleteClinVarVarMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useGenomicVariantDeleteClivarVariantMutation({variables:{variant_id:'',clinvar_var_id:''}})
+
+    const delete_clinvar_var = async () => {
+        if (data && data.ClinVarVariant && data.ClinVarVariant[0]){
+            await deleteClinVarVarMutation({variables:{variant_id:variant_id, clinvar_var_id:data.ClinVarVariant[0].id}})
+            refetch_parent()
+        }
+    }
     if (!data.ClinVarVariant || !data.ClinVarVariant[0]) {
         return <div>No ClinVar</div>;
     }
@@ -31,6 +46,9 @@ const ClinVarVariant: React.FC<Props> = ({data}) => {
 
                 <div>Explanation</div>
                 <div>{data.ClinVarVariant[0].signficanceExplanation.statement} </div>
+
+                <div></div>
+                <div><button className={`${className}__small-btn`} onClick={() => delete_clinvar_var()}>Detach</button></div>
 
             </div>
         </div>

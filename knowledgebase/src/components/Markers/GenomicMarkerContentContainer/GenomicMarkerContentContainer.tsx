@@ -59,13 +59,13 @@ const GenomicMarkerContentContainer : React.FC<Props> = ({variant_id,data,editin
                     </div>) : <span></span>}
             </div>
             <div>
-                {show_clinvar ? ( data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id}/>:
+                {show_clinvar ? ( data.GenomicVariant[0].clinVarVariant ? <ClinVarVariantContainer id={data.GenomicVariant[0].clinVarVariant.id} variant_id={variant_id} refetch_parent={refetch}/>:
                     <div>No ClinVar Variant associated with this marker.  Select one from the list below:
                         <ClinVarVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
                     </div>) : <span></span> }
             </div>
             <div>
-                {show_hotspot ? ( data.GenomicVariant[0].hotSpotVariant ? <HotSpotVariantContainer id={data.GenomicVariant[0].hotSpotVariant.id}/> :
+                {show_hotspot ? ( data.GenomicVariant[0].hotSpotVariant ? <HotSpotVariantContainer id={data.GenomicVariant[0].hotSpotVariant.id} variant_id={variant_id} refetch_parent={refetch}/> :
                     <div>No HotSpot Variant associated with this marker.  Select one from the list below:
                         <HotSpotVariantSearchContainer gene_name={selected_gene_label} variant_id={variant_id} refetch_parent={refetch}/>
                     </div>) : <span></span>}

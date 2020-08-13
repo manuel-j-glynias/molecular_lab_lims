@@ -4,8 +4,10 @@ import HotSpotVariant from './HotSpotVariant'
 
 interface Props {
     id: string;
+    variant_id: string;
+    refetch_parent: () => void;
 }
-const HotSpotVariantContainer = ({id}:Props) => {
+const HotSpotVariantContainer = ({id,variant_id,refetch_parent}:Props) => {
     const { data, error, loading, refetch } = useHotSpotVariantQuery(
         {variables:{id:id}})
     React.useEffect(() => {
@@ -23,6 +25,6 @@ const HotSpotVariantContainer = ({id}:Props) => {
     if (!data) {
         return <div>No Jax Variant</div>;
     }
-    return <HotSpotVariant data={data}/>;
+    return <HotSpotVariant data={data} variant_id={variant_id} refetch_parent={refetch_parent}/>;
 }
 export default HotSpotVariantContainer;

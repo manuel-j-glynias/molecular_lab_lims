@@ -1,14 +1,30 @@
 import * as React from 'react';
-import {HotSpotVariantQuery} from "../../../generated/graphql";
+import {
+    HotSpotVariantQuery,
+    useGenomicVariantDeleteHotSpotVariantMutation,
+    useGenomicVariantDeleteJaxVariantMutation
+} from "../../../generated/graphql";
 import './styles.css'
 
 interface Props {
     data: HotSpotVariantQuery;
+    variant_id: string;
+    refetch_parent: () => void;
 }
 
 const className = 'HotSpotVariant'
 
-const HotSpotVariant: React.FC<Props> = ({data}) => {
+const HotSpotVariant: React.FC<Props> = ({data,variant_id,refetch_parent}) => {
+
+    const [deleteHSVarMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useGenomicVariantDeleteHotSpotVariantMutation({variables:{variant_id:'',hs_var_id:''}})
+
+    const delete_hsvar = async () => {
+        if (data && data.HotSpotVariant && data.HotSpotVariant[0]){
+            await deleteHSVarMutation({variables:{variant_id:variant_id, hs_var_id:data.HotSpotVariant[0].id}})
+            refetch_parent()
+        }
+    }
+
     if (!data.HotSpotVariant) {
         return <div>No MyGeneInfo Gene</div>;
     }
@@ -50,6 +66,9 @@ const HotSpotVariant: React.FC<Props> = ({data}) => {
                     )}
                 </div>
             </div>
+
+            <div></div>
+            <div><button className={`${className}__small-btn`} onClick={() => delete_hsvar()}>Detach</button></div>
         </div>
     )
 }
