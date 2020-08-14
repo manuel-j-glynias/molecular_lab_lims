@@ -181,7 +181,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                 <div>Synonyms</div>
 
                 <div><div>
-                    {data.OntologicalDisease[0].synonyms.stringList.join(',') }</div>
+                    </div>
                     <div>Synonyms</div>
                     <div>
                         {editing_synonyms ?
