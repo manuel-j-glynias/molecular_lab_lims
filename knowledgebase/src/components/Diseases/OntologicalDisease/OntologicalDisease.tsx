@@ -9,8 +9,8 @@ import {get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
 import SynonymEditor from "./SynonymEditor";
 import SynonymHistoryContainer from "../../common/SynonymHistory";
 import XRefContainer from "../XRef";
+import OmniMapContainer from "../OmniMap";
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
-
 
 
 interface Props {
@@ -32,9 +32,12 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
     const [showing_references, set_showing_references] = React.useState(false);
     const [showing_xrefs, set_showing_xrefs] = React.useState(false);
 
-    // const [editing_description, set_editing_description]  = React.useState(false);
     const [showing_description_references, set_showing_description_references] = React.useState(false);
     const [show_description_history, set_description_history] = React.useState(false);
+
+    const [showing_omnimap, set_showing_omnimap] = React.useState(false);
+    const [show_omnimaps, set_show_omnimaps] = React.useState(false);
+
     const edit_description = async () => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToDescription, nextText: ''})
         set_editing_description(true)
@@ -174,50 +177,6 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     <div><strong>Last Editor: </strong>{data.OntologicalDisease[0].description.editor.name}</div>
                     <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].description.editDate)}</div>
                 </div>
-                {/*
-                 <div>Description</div>
-                <div>{data.OntologicalDisease[0].description.statement}</div>
-                <div>
-                    {editing_description ? (
-                            <DescriptionEditableStatementEditor statement={data.OntologicalDisease[0].description.statement} set_editing={set_editing_name} id={data.OntologicalDisease[0].id} es_ID={data.OntologicalDisease[0].description.id} es_field={data.OntologicalDisease[0].description.field} ref_array={[]} refetch={refetch} />
-                        )
-                        :
-                        <div>{data.OntologicalDisease[0].description.statement}</div>
-                    }
-                    {!editing_description ?
-                        (<div className={`${className}__FormGroup`}>
-                                <button className="btn btn-primary my-1" onClick={() => set_editing_description(true)}>Edit Description</button>
-                                <button className="btn btn-primary my-1"
-                                        onClick={() => set_description_history(!show_description_history)}>
-                                    {show_name_history ? <span>Hide History</span> : <span>Show History</span>}
-                                </button>
-                                <button className="btn btn-primary my-1" onClick={() => set_showing_description_references(!showing_description_references)}>
-                                    {showing_description_references ? <span>Hide References</span> : <span>Show References</span>}
-                                </button>
-                            </div>
-                        )
-                        : (<span></span>)
-                    }
-                    {show_description_history ?
-                        <div>
-                            <HistoryContainer field={data.OntologicalDisease[0].description.field}  />
-                        </div>
-                        : <span></span>
-                    }
-                    {
-                        showing_description_references ?
-                            <div><h3>References</h3>
-                                <div>{data.OntologicalDisease[0].name.references.length > 0 ?
-                                    data.OntologicalDisease[0].name.references.map((item, index) => (
-                                        // @ts-ignore
-                                        <div key={index}> {item ? <LiteratureReferenceContainer id={item.id}/> : ''}</div>
-                                    )) : <span>None</span>}</div>
-                            </div> : (<span></span>)
-                    }
-                    <div><strong>Last Editor: </strong>{data.OntologicalDisease[0].description.editor.name}</div>
-                    <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].description.editDate)}</div>
-                </div>
-*/}
 
                 <div>Synonyms</div>
 
@@ -277,11 +236,31 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     </tr>
                     ))
                 </div>*/}
+                {/*<div>OmniMaps</div>*/}
+                {/*<div></div>*/}
 
+{/*
+                <div>
+                    {data.OntologicalDisease[0].omniMaps.list}
+                    <button className={`${className}__small-btn`} onClick={() => set_show_omnimaps(!show_omnimaps)}> {show_omnimaps ? <span>Hide OmniMaps</span> : <span>Show OmniMaps</span>}
+                    </button>
+                </div>
+*/}
+
+
+                {/*<div>OmniMaps</div>
+                <div></div>*/}
                 <div>OmniMaps</div>
-                <div></div>
+                {/*{<div>{data.OntologicalDisease[0].xrefs.list.map(name => (<li>{name!.source} - {name!.sourceId}</li>))}</div>}*/}
 
-                <div>OmniDisease ID</div>
+                <div>
+                    <button className={`${className}__small-btn`} onClick={() => set_showing_omnimap(!showing_xrefs)}> {showing_omnimap ? <span>Hide OmniMap</span> : <span>Show OmniMap</span>}
+                    </button>
+                    {showing_omnimap && <OmniMapContainer id={data.OntologicalDisease[0].id}/>
+                    }
+                </div>
+
+               {/* <div>OmniDisease ID</div>
                 {<div>{data.OntologicalDisease[0].omniMaps &&
                 data.OntologicalDisease[0].omniMaps.list[0] &&
                 data.OntologicalDisease[0].omniMaps.list[0].omniDisease &&
@@ -306,7 +285,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                 {<div>{data.OntologicalDisease[0].omniMaps &&
                 data.OntologicalDisease[0].omniMaps.list[0] &&
                 data.OntologicalDisease[0].omniMaps.list[0].mCodes[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0].diseasePath.statement }</div>}
+                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0].diseasePath.statement }</div>}*/}
 
 
 
