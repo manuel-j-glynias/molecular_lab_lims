@@ -4,6 +4,7 @@ import {OntologicalDiseaseComponentsQuery} from "../../../generated/graphql";
 import GoDiseaseContainer from "../GODisease";
 import JaxDiseaseContainer from "../JaxDisease";
 import OncoTreeDiseaseContainer from "../OncoTreeDisease";
+import DODiseaseContainer from "../DODisease";
 
 
 
@@ -56,7 +57,8 @@ const ContentContainer: React.FC<Props> = ({
             <div>
                 {show_DODisease ?
                 <div>
-                    DO Disease
+                    { data.OntologicalDisease[0].doDiseases.list[0] && <DODiseaseContainer id={data.OntologicalDisease[0].doDiseases.list[0].id} editing_description={editing_description} editing_synonyms={editing_synonyms} />}
+
                 </div>
                  : <span></span>}
             </div>
