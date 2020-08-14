@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {EditableStatement, GoDiseaseQuery, JaxGeneQuery, Maybe} from '../../../generated/graphql';
+import {EditableStatement, GoDiseaseQuery, Maybe} from '../../../generated/graphql';
 import './styles.css';
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
 
@@ -7,12 +7,14 @@ import {AppendedContentActionTypes, useAppendedContentState} from "../../../cont
 interface Props {
     data: GoDiseaseQuery;
     editing_description: boolean;
+    editing_synonyms: boolean;
 }
+
 const className = 'GODisease';
 
 
-const GODisease: React.FC<Props> = ({data,editing_description}) => {
-    const [editing_name, set_editing_name]  = React.useState(false);
+const GODisease: React.FC<Props> = ({data,editing_description, editing_synonyms}) => {
+    const [editing_name, set_editing_name] = React.useState(false);
     const {
         AppendedContentState: {},
         setAppendedContentState
@@ -39,6 +41,16 @@ const GODisease: React.FC<Props> = ({data,editing_description}) => {
         }
         return s;
     }
+    const copy_synonym = async (synonym: string | null) => {
+        // console.log('copy_description')
+        let text: string = ''
+
+        if (synonym !== null) {
+            text = synonym
+        }
+        setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: text})
+        // handle_append_to_description('appended stuff')
+    };
     if (!data.GODisease) {
         return <div>No Selected OntologicalDisease</div>;
     }
@@ -48,35 +60,55 @@ const GODisease: React.FC<Props> = ({data,editing_description}) => {
     }
     return (
         <div className={className}>
-            <h1 className={`${className}__title`}> GO Disease: {data.GODisease[0].name.statement}</h1>
-            <div className={`${className}__definition`}>
+            <h3 className={`${className}__title`}> GO Disease: {data.GODisease[0].name.statement}</h3>
+            <div className={`${className}__Wrapper`}>
+                <div> goId:</div>
+                <div> {data.GODisease[0].goId}</div>
+                <div> Definition: </div>
+                <div>{data.GODisease[0].definition.statement}
+                    {editing_description ?
+                        (
+                            <div className="form-group">
+                                <button className="btn btn-primary my-1"
+                                        onClick={() => copy_description(getDescriptionString(data))}>Copy Description
+                                </button>
+                            </div>
 
-            <div className={`${className}__definition`}> Definition: {data.GODisease[0].definition.statement}
-                {editing_description ?
-                    (
-                        <div className="form-group">
-                            <button className="btn btn-primary my-1"
-                                    onClick={() => copy_description(getDescriptionString(data))}>Copy Description
-                            </button>
+                        ) :
+                        (<span></span>)}</div>
+                <div> Synonyms: </div>
+                <div>{data.GODisease[0].synonyms.stringList.map((item, index) => (
+                    <div className={`${className}__Synonym_Wrapper`} key={index}>
+                        <div>{item}</div>
+                        <div>
+                            {editing_synonyms ?
+                                (
+                                    <button className={`${className}__small-btn`}
+                                            onClick={() => copy_synonym(item)}>Copy Synonym
+                                    </button>
+                                )
+                                :
+                                (<span></span>)}
                         </div>
+                    </div>
+                ))}</div>
 
-                    ) :
-                    (<span></span>)}</div>
-            <p className={`${className}__definition`}> goId: {data.GODisease[0].goId}</p>
-            <p className={`${className}__definition`}> synonyms: {data.GODisease[0].synonyms.stringList.join(',')}</p>
-            <p className={`${className}__definition`}> parents: {data.GODisease[0].parents &&
-            data.GODisease[0].parents[0] && data.GODisease[0].parents[0].name.statement}</p>
-            <p className={`${className}__definition`}> children: {data.GODisease[0].children &&
-            data.GODisease[0].children[0] && data.GODisease[0].children[0].name.statement}</p>
-            <p className={`${className}__definition`}> source: {data.GODisease[0].xrefs &&
-            data.GODisease[0].xrefs.list[0] && data.GODisease[0].xrefs.list[0].source}</p>
-            <p className={`${className}__definition`}> sourceId: {data.GODisease[0].xrefs &&
-            data.GODisease[0].xrefs.list[0] && data.GODisease[0].xrefs.list[0].sourceId}</p>
-            </div>
 
-        </div>
-    )
 
-}
+                <div>Children:</div>
+                <div>{data.GODisease[0].children &&
+                data.GODisease[0].children[0] && data.GODisease[0].children[0].name.statement}</div>
 
+                <div>Parents:</div>
+                <div> {data.GODisease[0].parents &&
+                data.GODisease[0].parents[0] && data.GODisease[0].parents[0].name.statement}</div>
+
+                <div>Jax Diseases:</div>
+                <div> {data.GODisease[0].jaxDiseases &&
+                data.GODisease[0].jaxDiseases[0] && data.GODisease[0].jaxDiseases[0].name.statement}</div>
+
+                </div> </div>
+
+    );
+};
 export default GODisease

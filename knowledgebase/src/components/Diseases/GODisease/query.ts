@@ -39,6 +39,11 @@ export const QUERY_OntolgicalDisease = gql`
                     sourceId
                 }
             }
+            jaxDiseases {
+                name {
+                    statement
+                }
+            }
         }
     }
 `;
