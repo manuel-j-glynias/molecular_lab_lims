@@ -5,7 +5,10 @@ export const QUERY_OmniGene = gql`
         OmniGene(id: $gene_id) {
             id
             name
-            panelName
+            names
+            panelName{
+                ...es_fields
+            }
              geneDescription {
                 ...es_fields
             }
@@ -70,5 +73,19 @@ export const mutation_add_description = gql`
         addEditableStatementEditor(editor: [$user_id], id: $es_id)
         addEditableStatementReferences(id: $es_id, references: $ref_aray)
         addOmniGeneGeneDescription(id: $gene_id, geneDescription: [$es_id])
+    }
+`
+export const mutation_add_panel_name = gql`
+    mutation addOmniGenePanelName($gene_id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {
+        deleteOmniGenePanelName(id: $gene_id, panelName: [$old_es_id])
+        createEditableStatement(editDate: $date, field: $es_field, id: $es_id, statement: $es_statement)
+        addEditableStatementEditor(editor: [$user_id], id: $es_id)
+        addEditableStatementReferences(id: $es_id, references: $ref_aray)
+        addOmniGenePanelName(id: $gene_id, panelName: [$es_id])
+    }
+`
+export const mutation_update_omnigene = gql`
+    mutation updateOmnigene($gene_id: ID!, $name:String!, $names:String!) {
+        updateOmniGene(id: $gene_id,name: $name, names: $names)
     }
 `
