@@ -10,12 +10,12 @@ interface Props {
     call_mutation: ([]) => void;
     statement_string:MutableRefObject<string>;
     ref_array: string[];
-
+    shouldAllowPmids: boolean;
 }
 
 const className = 'BaseNameEditor';
 
-const BaseNameEditor : React.FC<Props> = ({statement,set_editing,statement_string,ref_array,call_mutation}) => {
+const BaseNameEditor : React.FC<Props> = ({statement,set_editing,statement_string,ref_array,call_mutation,shouldAllowPmids}) => {
 
     const [statement_value, set_statement_value] = React.useState(statement);
     const [pmid_list, set_pmid_list] = React.useState('');
@@ -60,9 +60,11 @@ const BaseNameEditor : React.FC<Props> = ({statement,set_editing,statement_strin
 
     return ( <div className="form-group">
             <textarea className={`${className}__ShortTextarea`} name="statement" placeholder="Name" value={get_statement_value()} onChange={(e) => {handle_change(e.target.value)}}/>
+            {shouldAllowPmids && (
             <div className="form-group">
                 <div><input type="text" placeholder="PMIDs" value={pmid_list} onChange={e => set_pmid_list(e.target.value )} required/></div>
             </div>
+            )}
             <button value="Save" className="btn btn-primary my-1" onClick={() => save()}>Save
             </button>
             <button value="Cancel" className="btn btn-primary my-1"

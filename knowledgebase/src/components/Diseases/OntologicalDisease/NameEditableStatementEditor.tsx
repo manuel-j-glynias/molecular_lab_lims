@@ -71,7 +71,7 @@ const NameEditableStatementEditor : React.FC<Props> = ({statement,set_editing,es
 
     return ( <div className="form-group">
             <BaseNameEditor statement={statement} set_editing={set_editing} call_mutation={call_mutation}
-                             statement_string={statement_string} ref_array={ref_array}/>
+                             statement_string={statement_string} ref_array={ref_array} shouldAllowPmids={true}/>
             <div>
                 {mutationLoading && <p>Loading...</p>}
                 {mutationError && <p>Error :( Please try again</p>}

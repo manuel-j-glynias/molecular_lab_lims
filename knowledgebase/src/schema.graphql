@@ -8530,6 +8530,34 @@ input _OmniGeneFilter {
     name_not_starts_with: String
     # name_starts_with
     name_starts_with: String
+    # names
+    names: String
+    # names_contains
+    names_contains: String
+    # names_ends_with
+    names_ends_with: String
+    # names_gt
+    names_gt: String
+    # names_gte
+    names_gte: String
+    # names_in
+    names_in: [String!]
+    # names_lt
+    names_lt: String
+    # names_lte
+    names_lte: String
+    # names_not
+    names_not: String
+    # names_not_contains
+    names_not_contains: String
+    # names_not_ends_with
+    names_not_ends_with: String
+    # names_not_in
+    names_not_in: [String!]
+    # names_not_starts_with
+    names_not_starts_with: String
+    # names_starts_with
+    names_starts_with: String
     # oncogenicCategory
     oncogenicCategory: _EditableStatementFilter
     # oncogenicCategory_in
@@ -8539,33 +8567,13 @@ input _OmniGeneFilter {
     # oncogenicCategory_not_in
     oncogenicCategory_not_in: _EditableStatementFilter
     # panelName
-    panelName: String
-    # panelName_contains
-    panelName_contains: String
-    # panelName_ends_with
-    panelName_ends_with: String
-    # panelName_gt
-    panelName_gt: String
-    # panelName_gte
-    panelName_gte: String
+    panelName: _EditableStatementFilter
     # panelName_in
-    panelName_in: [String!]
-    # panelName_lt
-    panelName_lt: String
-    # panelName_lte
-    panelName_lte: String
+    panelName_in: _EditableStatementFilter
     # panelName_not
-    panelName_not: String
-    # panelName_not_contains
-    panelName_not_contains: String
-    # panelName_not_ends_with
-    panelName_not_ends_with: String
+    panelName_not: _EditableStatementFilter
     # panelName_not_in
-    panelName_not_in: [String!]
-    # panelName_not_starts_with
-    panelName_not_starts_with: String
-    # panelName_starts_with
-    panelName_starts_with: String
+    panelName_not_in: _EditableStatementFilter
     # synonyms
     synonyms: _EditableStringListFilter
     # synonyms_in
@@ -8634,10 +8642,10 @@ enum _OmniGeneOrdering {
     name_asc
     # Descending sort for name
     name_desc
-    # Ascending sort for panelName
-    panelName_asc
-    # Descending sort for panelName
-    panelName_desc
+    # Ascending sort for names
+    names_asc
+    # Descending sort for names
+    names_desc
 }
 
 # Filter Input Type for OmniMap
@@ -13237,12 +13245,10 @@ type EditableOmniGeneList implements EditableObject {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         offset: Int
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): [OmniGene]!
     # id of  EditableOmniGeneList
     id: ID!
@@ -13309,11 +13315,9 @@ type EditableOmniGeneReference implements EditableObject {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # id of  EditableOmniGeneReference
     id: ID!
@@ -14180,11 +14184,9 @@ interface GenomicVariant {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # GenomicVariant goVariant GOVariant
     goVariant(
@@ -14338,11 +14340,9 @@ type GenomicVariantMarker implements MarkerComponent {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # id of  GenomicVariantMarker
     id: ID!
@@ -16338,6 +16338,8 @@ type MutationType {
     addOmniGeneMyGeneInfoGene(id: ID!, myGeneInfoGene: [ID!]!): String
     # Adds OncogenicCategory to OmniGene entity
     addOmniGeneOncogenicCategory(id: ID!, oncogenicCategory: [ID!]!): String
+    # Adds PanelName to OmniGene entity
+    addOmniGenePanelName(id: ID!, panelName: [ID!]!): String
     # Adds Synonyms to OmniGene entity
     addOmniGeneSynonyms(id: ID!, synonyms: [ID!]!): String
     # Adds Transcript to OmniGene entity
@@ -16940,7 +16942,7 @@ type MutationType {
     # Creates a OmniDrug entity
     createOmniDrug(id: ID!): String
     # Creates a OmniGene entity
-    createOmniGene(id: ID!, name: String!, panelName: String!): String
+    createOmniGene(id: ID!, name: String!, names: String!): String
     # Creates a OmniMap entity
     createOmniMap(id: ID!): String
     # Creates a OncoTreeDisease entity
@@ -17544,6 +17546,8 @@ type MutationType {
     deleteOmniGeneMyGeneInfoGene(id: ID!, myGeneInfoGene: [ID!]!): String
     # Deletes OncogenicCategory from OmniGene entity
     deleteOmniGeneOncogenicCategory(id: ID!, oncogenicCategory: [ID!]!): String
+    # Deletes PanelName from OmniGene entity
+    deleteOmniGenePanelName(id: ID!, panelName: [ID!]!): String
     # Deletes Synonyms from OmniGene entity
     deleteOmniGeneSynonyms(id: ID!, synonyms: [ID!]!): String
     # Deletes Transcript from OmniGene entity
@@ -18193,7 +18197,7 @@ type MutationType {
     # Merge a OmniDrug entity
     mergeOmniDrug(id: ID!): String
     # Merge a OmniGene entity
-    mergeOmniGene(id: ID!, name: String!, panelName: String!): String
+    mergeOmniGene(id: ID!, name: String!, names: String!): String
     # Merge a OmniMap entity
     mergeOmniMap(id: ID!): String
     # Merge a OncoTreeDisease entity
@@ -18578,7 +18582,7 @@ type MutationType {
     # Updates a OmniDrug entity
     updateOmniDrug(id: ID!): String
     # Updates a OmniGene entity
-    updateOmniGene(id: ID!, name: String!, panelName: String!): String
+    updateOmniGene(id: ID!, name: String!, names: String!): String
     # Updates a OmniMap entity
     updateOmniMap(id: ID!): String
     # Updates a OncoTreeDisease entity
@@ -19199,6 +19203,8 @@ type OmniGene implements Target {
     ): MyGeneInfoGene!
     # name of  OmniGene
     name: String!
+    # names of  OmniGene
+    names: String!
     # OmniGene oncogenicCategory EditableStatement
     oncogenicCategory(
         # editDate of EditableStatement
@@ -19220,8 +19226,28 @@ type OmniGene implements Target {
         # statements is list variant of statement of EditableStatement
         statements: [String]
     ): EditableStatement!
-    # panelName of  OmniGene
-    panelName: String!
+    # names is pipe delimited list of name, and current panelName, and synonyms,
+    # updated after each change to panel or syn list, for query only
+    panelName(
+        # editDate of EditableStatement
+        editDate: String
+        # editDates is list variant of editDate of EditableStatement
+        editDates: [String]
+        # field of EditableStatement
+        field: String
+        # fields is list variant of field of EditableStatement
+        fields: [String]
+        filter: _EditableStatementFilter
+        # id of EditableStatement
+        id: ID
+        # ids is list variant of id of EditableStatement
+        ids: [ID]
+        orderBy: [_EditableStatementOrdering]
+        # statement of EditableStatement
+        statement: String
+        # statements is list variant of statement of EditableStatement
+        statements: [String]
+    ): EditableStatement!
     # OmniGene synonyms EditableStringList
     synonyms(
         # editDate of EditableStringList
@@ -21365,12 +21391,10 @@ type QueryType {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         offset: Int
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): [OmniGene]
     OmniMap(
         _id: Long
@@ -22887,11 +22911,9 @@ type VariantCNV implements GenomicVariant {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # VariantCNV goVariant GOVariant
     goVariant(
@@ -23154,11 +23176,9 @@ type VariantFusion implements GenomicVariant {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # VariantFusion gene3Prime EditableOmniGeneReference
     gene3Prime(
@@ -23413,11 +23433,9 @@ type VariantRegion implements GenomicVariant {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # VariantRegion goVariant GOVariant
     goVariant(
@@ -23791,11 +23809,9 @@ type VariantSNVIndel implements GenomicVariant {
         name: String
         # names is list variant of name of OmniGene
         names: [String]
+        # namess is list variant of names of OmniGene
+        namess: [String]
         orderBy: [_OmniGeneOrdering]
-        # panelName of OmniGene
-        panelName: String
-        # panelNames is list variant of panelName of OmniGene
-        panelNames: [String]
     ): OmniGene!
     # VariantSNVIndel goVariant GOVariant
     goVariant(

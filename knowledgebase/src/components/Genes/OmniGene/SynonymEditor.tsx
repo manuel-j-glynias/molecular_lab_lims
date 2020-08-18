@@ -12,11 +12,12 @@ interface Props {
     es_ID: string;
     es_field: string;
     refetch: () => void;
+    update_names:() => void;
 }
 
 const className = 'OmniGene';
 
-const SynonymEditor: React.FC<Props> = ({synonym_string, set_editing, es_ID, es_field,omnigene_ID,refetch}) => {
+const SynonymEditor: React.FC<Props> = ({synonym_string, set_editing, es_ID, es_field,omnigene_ID,refetch,update_names}) => {
 
     const [synonym_string_value, set_synonym_string_value] = React.useState(synonym_string);
     const create_synonym_array = (syn_string: string): string[] => {
@@ -71,13 +72,14 @@ const SynonymEditor: React.FC<Props> = ({synonym_string, set_editing, es_ID, es_
     const post_save = () => {
         if (mutationData!=null){
             refetch()
+            update_names()
             set_editing(false)
         }
     }
     useEffect(post_save,[mutationData])
 
     const cancelEdit = async () => {
-        console.log('cancelEdit')
+        // console.log('cancelEdit')
         set_editing(false)
     };
 
