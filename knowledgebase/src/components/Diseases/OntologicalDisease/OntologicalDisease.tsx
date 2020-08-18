@@ -182,7 +182,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
 
                 <div><div>
                     </div>
-                    <div>Synonyms</div>
+
                     <div>
                         {editing_synonyms ?
                             (
@@ -297,6 +297,31 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     </button>
                     {showing_xrefs && <XRefContainer id={data.OntologicalDisease[0].id}/>
                     }
+                </div>
+
+
+                <div>Children:</div>
+
+                <div>
+                    <div> {data.OntologicalDisease[0].children.length  > 0 ?
+                        data.OntologicalDisease[0].children.map((item,
+                                                                 index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
+
+                <div>Parents:</div>
+
+                <div>
+                    <div> {data.OntologicalDisease[0].parents && data.OntologicalDisease[0].parents.length  > 0 ?
+                        data.OntologicalDisease[0].parents && data.OntologicalDisease[0].parents.map((item,
+                                                                 index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
                 </div>
 
                 <div></div>

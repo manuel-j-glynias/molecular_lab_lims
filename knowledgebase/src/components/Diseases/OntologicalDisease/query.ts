@@ -24,6 +24,16 @@ export const QUERY_OntolgicalDisease = gql`
                 }
                 editDate
             }
+            parents {
+                name {
+                    statement
+                }
+            }
+            children {
+                name {
+                    statement
+                }
+            }
         }
     }
 `
