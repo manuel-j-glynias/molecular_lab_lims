@@ -54,44 +54,63 @@ const ContentContainer: React.FC<Props> = ({
             </div>
             <div className = {`${className}__Wrapper`}>
 
-            <div>
-                {show_DODisease ?
+            <div> {show_DODisease ?
                 <div>
-                    { data.OntologicalDisease[0].doDiseases.list[0] && <DODiseaseContainer id={data.OntologicalDisease[0].doDiseases.list[0].id} editing_description={editing_description} editing_synonyms={editing_synonyms} />}
+                    <div> {data.OntologicalDisease[0].doDiseases.list.length  > 0 ?
+                        data.OntologicalDisease[0].doDiseases.list.map((item,
+                                                                        index) =>
+                            (
+                                <div key={index}> {item ?  <DODiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
 
-                </div>
-                 : <span></span>}
+                            )) : <span>None</span>}</div>
+                </div> : (<span></span>)
+            }
             </div>
 
             <div> {show_GODisease ?
-
                 <div>
-                    { data.OntologicalDisease[0].goDiseases.list[0] && <GoDiseaseContainer id={data.OntologicalDisease[0].goDiseases.list[0].id} editing_description={editing_description} editing_synonyms={editing_synonyms} />}
+                    <div> {data.OntologicalDisease[0].goDiseases.list.length  > 0 ?
+                        data.OntologicalDisease[0].goDiseases.list.map((item,
+                                                                         index) =>
+                            (
+                                <div key={index}> {item ?  <GoDiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
 
-                </div>
-
-                 : (<span></span>) }
+                            )) : <span>None</span>}</div>
+                </div> : (<span></span>)
+            }
             </div>
 
             <div> {show_jaxDisease ?
                 <div>
-                    { data.OntologicalDisease[0].jaxDiseases.list[0] && <JaxDiseaseContainer id={data.OntologicalDisease[0].jaxDiseases.list[0].id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>}
-                </div>
+                <div> {data.OntologicalDisease[0].jaxDiseases.list.length  > 0 ?
+                    data.OntologicalDisease[0].jaxDiseases.list.map((item,
+                    index) =>
+                    (
+                    <div key={index}> {item ?  <JaxDiseaseContainer id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
 
-                : (<span></span>) }
+                    )) : <span>None</span>}</div>
+                </div> : (<span></span>)
+            }
             </div>
-            <div> {show_oncoTreeDiseases ?
+
+            <div> {show_oncoTreeDiseases  ?
                 <div>
-                    { data.OntologicalDisease[0].oncoTreeDiseases.list[0] && <OncoTreeDiseaseContainer id={data.OntologicalDisease[0].oncoTreeDiseases.list[0].id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>}
+                    <div> {data.OntologicalDisease[0].oncoTreeDiseases .list.length  > 0 ?
+                        data.OntologicalDisease[0].oncoTreeDiseases .list.map((item,
+                                                                         index) =>
+                            (
+                                <div key={index}> {item ?  <OncoTreeDiseaseContainer  id={item.id} editing_description={editing_description} editing_synonyms={editing_synonyms}/>: ''}</div>
 
-                </div>
-                : (<span></span>) }
+                            )) : <span>None</span>}</div>
+                </div> : (<span></span>)
+            }
             </div>
-            </div>
+
         </div>
+
+    </div>
+
     )
-
-
 }
 
 export default ContentContainer;

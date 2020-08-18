@@ -60,7 +60,7 @@ const OncoTreeDisease: React.FC<Props> = ({data,editing_description, editing_syn
     }
     return (
         <div className={className}>
-            <h3 className={`${className}__title`}> GO Disease: {data.OncoTreeDisease[0].name.statement}</h3>
+            <h3 className={`${className}__title`}> OncoTree Disease: {data.OncoTreeDisease[0].name.statement}</h3>
             <div className={`${className}__Wrapper`}>
                 <div> Code:</div>
                 <div> {data.OncoTreeDisease[0].code}</div>
