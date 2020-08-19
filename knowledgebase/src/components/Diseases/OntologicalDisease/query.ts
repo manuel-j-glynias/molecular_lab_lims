@@ -11,6 +11,23 @@ export const QUERY_OntolgicalDisease = gql`
             description{
                 ...es_fields
             }
+            xrefs {
+                id
+                field
+                list{
+                    id
+                    source
+                    sourceId
+                }
+                editor{
+                    id
+                    name
+                }
+                editDate
+                references {
+                    id
+                }
+                }
             synonyms {
                 id
                 stringList
@@ -39,63 +56,7 @@ export const QUERY_OntolgicalDisease = gql`
 `
 
 
-//   query OntologicalDisease($id: ID)
-//     {
-//         OntologicalDisease(id:$id){
-//             id
-//             name{
-//                 ...es_fields
-//             }
-//             description{
-//                 ...es_fields
-//             }
-//             synonyms{
-//                 id
-//                 stringList
-//                 field
-//                 references {
-//                     id
-//                 }
-//                 editor {
-//                     id
-//                     name
-//                 }
-//                 editDate
-//             }
-//             children{
-//                 id
-//                 name{
-//                     statement
-//                 }
-//             }
-//             omniMaps{
-//                 list{
-//                     mCodes{
-//                         diseasePath{
-//                             statement
-//                         }
-//                     }
-//                     omniDisease{
-//                         name{
-//                             statement
-//                         }
-//                     }
-//                 }
-//             }
-//             doDiseases{
-//                 id
-//             }
-//             jaxDiseases{
-//                 id
-//             }
-//             goDiseases{
-//                 id
-//             }
-//             oncoTreeDiseases{
-//                 id
-//             }
-//         }
-//     }
+
 
 export const mutation_add_name = gql`
     mutation OntologicalDiseaseAddName($id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {
@@ -120,6 +81,17 @@ export const mutation_add_synonym_string = gql`
         #        addOmniGeneSynonyms(id: $gene_id, synonymsString: [$es_id])
     }
 `
+
+export const mutation_add_xref = gql`
+    mutation OntologicalDiseaseAddXRefs($id: ID!, $old_exref_id: ID!, $date: String!, $exref_field: String!, $exref_list: [ID!]!, $exref_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {
+        deleteOntologicalDiseaseXrefs(id: $id, xrefs:[$old_exref_id])
+        createEditableXRefList(id: $exref_id, field: $exref_field, editDate: $date)
+        addEditableXRefListEditor(id: $exref_id, editor: [$user_id])
+        addEditableXRefListList(id: $exref_id, list: $exref_list)
+        addEditableXRefListReferences(id: $exref_id, references: $ref_aray)
+    }
+`
+
 export const mutation_add_description = gql`
     mutation addOntologicalDiseaseDescription($id: ID!, $old_es_id: ID!, $date: String!, $es_field: String!, $es_statement: String!, $es_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {
         deleteOntologicalDiseaseDescription(id: $id, description: [$old_es_id])
@@ -129,3 +101,4 @@ export const mutation_add_description = gql`
         addOntologicalDiseaseDescription(id: $id, description: [$es_id])
     }
 `
+

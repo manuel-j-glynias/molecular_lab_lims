@@ -4,6 +4,7 @@ import {useUserContentState} from "../../../context/UserContentContext"
 import {
     OntologicalDiseaseAddSynonymsMutationVariables,
     useOntologicalDiseaseAddSynonymsMutation
+
 } from "../../../generated/graphql";
 import {useEffect} from "react";
 import {get_date_as_hyphenated_string, get_unique_graph_id} from "../../common/Helpers/EditableStatementHelper";

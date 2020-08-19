@@ -8,10 +8,11 @@ interface Props {
     set_editing_description: (newEditionDescription: boolean) => void;
     editing_synonyms: boolean;
     set_editing_synonyms: (newEditionDescription: boolean) => void;
-
+    editing_xrefs: boolean;
+    set_editing_xrefs: (newEditionDescription: boolean) => void;
 }
 
-const OntologicalDiseaseContainer = ({ id, editing_description, set_editing_description,editing_synonyms,set_editing_synonyms }: Props) => {
+const OntologicalDiseaseContainer = ({ id, editing_description, set_editing_description,editing_synonyms,set_editing_synonyms,editing_xrefs,set_editing_xrefs }: Props) => {
     const { data, error, loading, refetch } = useOntologicalDiseaseQuery(
         { variables: { id: id } });
     React.useEffect(() => {
@@ -32,6 +33,7 @@ const OntologicalDiseaseContainer = ({ id, editing_description, set_editing_desc
 
     return <OntologicalDisease data={data} editing_description={editing_description} set_editing_description={set_editing_description}
                                 editing_synonyms={editing_synonyms} set_editing_synonyms={set_editing_synonyms}
+                                editing_xrefs={editing_xrefs} set_editing_xrefs={set_editing_xrefs}
                                refetch={refetch}/>;
 };
 

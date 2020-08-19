@@ -20,7 +20,7 @@ const XRefContainer: React.FC<Props> = ({id}) => {
     }
 
     if (!data) {
-        return <div>No Variant</div>;
+        return <div>No XRef</div>;
     }    return (
         <XRef data={data} id={id} refetch={refetch}/>
     )

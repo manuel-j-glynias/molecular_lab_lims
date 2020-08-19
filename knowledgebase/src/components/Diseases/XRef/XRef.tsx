@@ -19,11 +19,14 @@ const XRef : React.FC<Props> = ({data,id, refetch}) => {
     if (!data.OntologicalDisease[0]){
         return <div>No XRef</div>;
     }
-    
 
     return (
         <div className={className} >
             <div className={`${className}__Wrapper`}>
+                <Fragment>
+                    <div className="header">Source</div>
+                    <div className="header">SourceId</div>
+                </Fragment>
                 {data.OntologicalDisease[0].xrefs.list &&
                 data.OntologicalDisease[0].xrefs.list.map(
                     (name ,index) =>

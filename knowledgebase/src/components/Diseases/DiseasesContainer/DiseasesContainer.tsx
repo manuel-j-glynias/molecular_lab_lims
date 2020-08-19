@@ -17,6 +17,7 @@ const DiseasesContainer: React.FC<Props> = ({logged_in}) => {
     const [query_str, set_query_str] = React.useState("");
     const [editing_description, set_editing_description] = React.useState(false);
     const [editing_synonyms, set_editing_synonyms] = React.useState(false);
+    const [editing_xrefs, set_editing_xrefs] = React.useState(false);
 
     const handle_ontological_disease_id_Change = React.useCallback(newId => {
         console.log('handle_ontological_disease_id_Change newId=' + newId)
@@ -34,7 +35,7 @@ const DiseasesContainer: React.FC<Props> = ({logged_in}) => {
             <React.Fragment>
                 <OntologicalDiseaseListContainer query_str={query_str} set_query_string={set_query_str}
                                                  handle_ontological_disease_id_Change={handle_ontological_disease_id_Change} ontological_disease_id={ontological_disease_id}/>
-                <OntologicalDiseaseContainer id={ontological_disease_id} editing_description={editing_description} set_editing_description={set_editing_description} editing_synonyms={editing_synonyms} set_editing_synonyms={set_editing_synonyms}/>
+                <OntologicalDiseaseContainer id={ontological_disease_id} editing_description={editing_description} set_editing_description={set_editing_description} editing_synonyms={editing_synonyms} set_editing_synonyms={set_editing_synonyms} editing_xrefs={editing_xrefs} set_editing_xrefs={set_editing_xrefs}/>
                 <ContentContainerContainer id={ontological_disease_id} editing_description={editing_description} editing_synonyms={editing_synonyms} />
             </React.Fragment>
             </AppendedContentProvider>

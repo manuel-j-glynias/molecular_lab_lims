@@ -1,14 +1,16 @@
 import React, {createContext, useReducer, useContext, ReducerState} from 'react';
-import {VariantProteinEffect} from "../generated/graphql";
+import {VariantProteinEffect, XRef} from "../generated/graphql";
 
 export type AppendedContentState = {
     textToAppend: string | null;
     synonymToAppend: string | null;
+    xrefToAppend: XRef;
     proteinEffectToAppend: VariantProteinEffect;
     userName: string;
     userID: string;
 };
-export enum AppendedContentActionTypes  {appendToDescription='appendToDescription', appendToSynonyms='appendToSynonyms',appendToProteinEffect='appendToProteinEffect'}
+
+export enum AppendedContentActionTypes  {appendToDescription='appendToDescription', appendToSynonyms='appendToSynonyms',appendToXRefs='appendToXRefs',appendToProteinEffect='appendToProteinEffect'}
 
 export type AppendedContentActions =
     | {
@@ -21,13 +23,21 @@ export type AppendedContentActions =
 
 }
     | {
+    type: AppendedContentActionTypes.appendToXRefs;
+    nextXRef: XRef;
+
+}
+    | {
     type: AppendedContentActionTypes.appendToProteinEffect;
     nextProteinEffect: VariantProteinEffect;
 
 }
 
+let xref: XRef = {id:'',source:'',sourceId:''}
+
 const initialState: AppendedContentState = {
-    textToAppend: '',synonymToAppend:'', proteinEffectToAppend: VariantProteinEffect.Unknown, userName:'manuel.glynias@omniseq.com',userID:'user_20200419151555871926'
+
+    textToAppend: '',synonymToAppend:'',xrefToAppend:xref, proteinEffectToAppend: VariantProteinEffect.Unknown, userName:'manuel.glynias@omniseq.com',userID:'user_20200419151555871926'
 }
 
 const initialAppendedContentContext: { AppendedContentState: AppendedContentState; setAppendedContentState: React.Dispatch<AppendedContentActions> } = {
@@ -49,6 +59,10 @@ const reducer = (state: AppendedContentState, action: AppendedContentActions) =>
         case 'appendToSynonyms':
             return {
                 synonymToAppend: action.nextSynonym
+            };
+        case 'appendToXRefs':
+            return {
+                xrefToAppend: action.nextXRef
             };
         case 'appendToProteinEffect':
             return {

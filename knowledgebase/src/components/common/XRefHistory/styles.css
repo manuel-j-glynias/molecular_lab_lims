@@ -1,4 +1,4 @@
-.XRef {
+.XRefHistory {
     top:0px;
     height: 200px;
     width: 300px;
@@ -9,30 +9,30 @@
     border: 1px solid black;
 }
 
-.XRef::-webkit-scrollbar {
+.XRefHistory::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.XRef::-webkit-scrollbar:vertical {
+.XRefHistory::-webkit-scrollbar:vertical {
     width: 11px;
 }
 
-.XRef::-webkit-scrollbar:horizontal {
+.XRefHistory::-webkit-scrollbar:horizontal {
     height: 11px;
 }
 
-.XRef::-webkit-scrollbar-thumb {
+.XRefHistory::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 2px solid white; /* should match background, can't be transparent */
     background-color: rgba(0, 0, 0, .5);
 }
 
-.XRef__title {
+.XRefHistory__title {
     margin-top: 20px;
     margin-bottom: 4px;
 }
 
-.XRef__Wrapper {
+.XRefHistory__Wrapper {
     display: grid;
     grid-template-columns: 180px 460px;
     grid-row-gap: 10px;
@@ -40,51 +40,22 @@
     align-items: flex-start;
 }
 
-.XRef__Wrapper > div{
+.XRefHistory__Wrapper > div{
     font-family: 'Lato', sans-serif;
     font-size: 13px;
 }
 
-.XRef__Wrapper_Span {
+.XRefHistory__Wrapper_Span {
     font-family: 'Lato', sans-serif;
     font-size: 10px;
 }
-.XRef__Wrapper > div:nth-child(odd){
+.XRefHistory__Wrapper > div:nth-child(odd){
     padding-left: 5px;
     padding-top: 5px;
     font-weight: bold;
 }
 
-.XRef__Wrapper > div:nth-child(even){
+.XRefHistory__Wrapper > div:nth-child(even){
     padding-left: 5px;
     padding-top: 5px;
-}
-
-.XRef__Link{
-    color: blue;
-    text-decoration: underline;
-}
-.XRef__small-btn {
-    display: inline-block;
-    background-color: #005198;
-    color: white;
-    padding: 0.2rem 0.2rem;
-    border: none;
-    cursor: pointer;
-    font-size: 0.6rem;
-    margin-top: 0.2rem;
-    margin-left: 0.2rem;
-    outline: none;
-    transition: all 0.2s ease-in;
-}
-.XRef__small-btn:hover {
-    background: #1ab6cf;
-}
-.XRef_small-btn:active {
-    border: 2px solid green;
-}
-
-.header {
-    text-decoration: underline;
-
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {OntologicalDiseaseQuery} from '../../../generated/graphql';
+import {OntologicalDiseaseQuery, XRef} from '../../../generated/graphql';
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import DescriptionEditor from "./DescriptionEditor";
@@ -9,6 +9,7 @@ import {get_ref_array, humanify_date} from "../../common/Helpers/Ref_helpers";
 import SynonymEditor from "./SynonymEditor";
 import SynonymHistoryContainer from "../../common/SynonymHistory";
 import XRefContainer from "../XRef";
+import XRefHistoryContainer from "../../common/XRefHistory";
 import OmniMapContainer from "../OmniMap";
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
 
@@ -19,14 +20,16 @@ interface Props {
     set_editing_description: (newEditionDescription: boolean) => void;
     editing_synonyms: boolean;
     set_editing_synonyms: (newEditionDescription: boolean) => void;
+    editing_xrefs: boolean;
+    set_editing_xrefs: (newEditionDescription: boolean) => void;
     refetch: () => void;
 
 }
 
 const className = 'OntologicalDisease';
 
-const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editing_description,editing_synonyms,set_editing_synonyms,refetch}) => {
-    const [editing_name, set_editing_name]  = React.useState(false);
+const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editing_description,editing_synonyms,set_editing_synonyms,editing_xrefs,set_editing_xrefs,refetch}) => {
+    const [editing_name, set_editing_name] = React.useState(false);
     const [showing_name_references, set_showing_name_references] = React.useState(false);
     const [show_name_history, set_name_history] = React.useState(false);
     const [showing_references, set_showing_references] = React.useState(false);
@@ -47,27 +50,23 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
         set_showing_references(!showing_references)
     }
 
-
-    const get_ref_array = (references: any) : string[] => {
-        let refs : string[] = []
-        for (let r of references) {
-            console.log(r)
-            if (r.__typename== "LiteratureReference"){
-                console.log(r.PMID)
-                refs.push(r.PMID)
-            }
-        }
-
-        return refs
-    }
     const [show_synonyms_history, set_synonyms_history] = React.useState(false);
     const {
         AppendedContentState: {},
         setAppendedContentState
     } = useAppendedContentState();
+
     const edit_synonyms = async () => {
         setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: ''})
         set_editing_synonyms(true)
+    }
+
+
+    const [show_xrefs_history, set_xrefs_history] = React.useState(false);
+    const edit_xrefs = async () => {
+        let xref: XRef = {id:'',source:'',sourceId:''}
+        setAppendedContentState({type: AppendedContentActionTypes.appendToXRefs, nextXRef: xref })
+        set_editing_xrefs(true)
     }
 
 
@@ -217,41 +216,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     </div></div>
 
 
-
-
-
-                {/*                const omArray = data.OntologicalDisease[0].omniMaps.list
-                <div></div>
-                <div>
-                    <tr>
-                        <th>OmniDisease</th>
-                        <th>M-Code</th>
-                    </tr>
-                    const omArray = data.OntologicalDisease[0].omniMaps.list
-                    omArray.map (om => (
-                    om.map (
-                    <tr>
-                        <td>{om.omniDiseaseId}</td>
-                        <td>{om.mcodeId}</td>
-                    </tr>
-                    ))
-                </div>*/}
-                {/*<div>OmniMaps</div>*/}
-                {/*<div></div>*/}
-
-{/*
-                <div>
-                    {data.OntologicalDisease[0].omniMaps.list}
-                    <button className={`${className}__small-btn`} onClick={() => set_show_omnimaps(!show_omnimaps)}> {show_omnimaps ? <span>Hide OmniMaps</span> : <span>Show OmniMaps</span>}
-                    </button>
-                </div>
-*/}
-
-
-                {/*<div>OmniMaps</div>
-                <div></div>*/}
                 <div>OmniMaps</div>
-                {/*{<div>{data.OntologicalDisease[0].xrefs.list.map(name => (<li>{name!.source} - {name!.sourceId}</li>))}</div>}*/}
 
                 <div>
                     <button className={`${className}__small-btn`} onClick={() => set_showing_omnimap(!showing_xrefs)}> {showing_omnimap ? <span>Hide OmniMap</span> : <span>Show OmniMap</span>}
@@ -260,43 +225,48 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                     }
                 </div>
 
-               {/* <div>OmniDisease ID</div>
-                {<div>{data.OntologicalDisease[0].omniMaps &&
-                data.OntologicalDisease[0].omniMaps.list[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].omniDisease &&
-                data.OntologicalDisease[0].omniMaps.list[0].omniDisease.omniDiseaseId }</div>}
-
-                <div>OmniMaps--OmniDisease</div>
-
-                {<div>{data.OntologicalDisease[0].omniMaps &&
-                data.OntologicalDisease[0].omniMaps.list[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].omniDisease &&
-                data.OntologicalDisease[0].omniMaps.list[0].omniDisease.name.statement }</div>}
-
-                <div>OmniMaps--M-Code</div>
-
-                {<div>{data.OntologicalDisease[0].omniMaps &&
-                data.OntologicalDisease[0].omniMaps.list[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0].mcodeId }</div>}
-
-                <div>OmniMaps--Disease Path</div>
-
-                {<div>{data.OntologicalDisease[0].omniMaps &&
-                data.OntologicalDisease[0].omniMaps.list[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0] &&
-                data.OntologicalDisease[0].omniMaps.list[0].mCodes[0].diseasePath.statement }</div>}*/}
 
 
-
-                <div>X-Refs</div>
-                {/*{<div>{data.OntologicalDisease[0].xrefs.list.map(name => (<li>{name!.source} - {name!.sourceId}</li>))}</div>}*/}
+                <div>XRefs</div>
 
                 <div>
-                    <button className={`${className}__small-btn`} onClick={() => set_showing_xrefs(!showing_xrefs)}> {showing_xrefs ? <span>Hide X-Refs</span> : <span>Show X-refs</span>}
+                    <button className={`${className}__small-btn`} onClick={() => set_showing_xrefs(!showing_xrefs)}> {showing_xrefs ? <span>Hide XRefs</span> : <span>Show XRefs</span>}
                     </button>
-                    {showing_xrefs && <XRefContainer id={data.OntologicalDisease[0].id}/>
+
+                    {editing_xrefs ?
+                        (
+                            <span></span>
+                        ) :
+
+                        <div>{showing_xrefs && <XRefContainer id={data.OntologicalDisease[0].id}/>}</div> }
+
+                    {editing_xrefs ?
+                        (
+                            <span></span>
+
+                        ) :
+
+                        (<div className="form-group">
+                                <button className="btn btn-primary my-1" onClick={() => edit_xrefs()}>Edit XRefs</button>
+                                <button className="btn btn-primary my-1" onClick={() => set_xrefs_history(!show_xrefs_history)}>
+                                    {show_xrefs_history ? <span>Hide History</span> : <span>Show History</span>}
+                                </button>
+                            </div>
+                        )
                     }
+
+                    {show_xrefs_history ?
+                        <div>
+                            <XRefHistoryContainer field={data.OntologicalDisease[0].xrefs.field}  />
+                        </div>
+                        : <span></span>
+                    }
+
+                    <div><strong>Last Editor: </strong>{data.OntologicalDisease[0].xrefs.editor.name}</div>
+                    <div><strong>Last Edit Date: </strong>{humanify_date(data.OntologicalDisease[0].xrefs.editDate)}</div>
+
+
+
                 </div>
 
 

@@ -31,13 +31,11 @@ const NameEditableStatementEditor : React.FC<Props> = ({statement,set_editing,es
     const [addNameMutation, { loading: mutationLoading, error: mutationError, data:mutationData }] = useOntologicalDiseaseAddNameMutation({variables:{id:'', old_es_id:'',
             date: '', es_field: '', es_statement:'', es_id: '', user_id: '', ref_aray:[]}})
 
-
     const {
         UserContentState: {userID}
     } = useUserContentState();
 
     const user_ID : string = userID;
-
 
     const get_ontological_disease_mutation_object = (id:string, oldESID:string, esField:string, description:string, userID:string, refs_array:Array<string>): OntologicalDiseaseAddNameMutationVariables=> {
         const  variables :OntologicalDiseaseAddNameMutationVariables = {
