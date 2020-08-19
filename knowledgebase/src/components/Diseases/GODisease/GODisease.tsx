@@ -96,16 +96,40 @@ const GODisease: React.FC<Props> = ({data,editing_description, editing_synonyms}
 
 
                 <div>Children:</div>
-                <div>{data.GODisease[0].children &&
-                data.GODisease[0].children[0] && data.GODisease[0].children[0].name.statement}</div>
+
+                <div>
+                    <div> {data.GODisease[0].children.length  > 0 ?
+                        data.GODisease[0].children.map((item,
+                                                        index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
+
 
                 <div>Parents:</div>
-                <div> {data.GODisease[0].parents &&
-                data.GODisease[0].parents[0] && data.GODisease[0].parents[0].name.statement}</div>
+
+                <div>
+                    <div> {data.GODisease[0].parents && data.GODisease[0].parents.length  > 0 ?
+                        data.GODisease[0].parents && data.GODisease[0].parents.map((item,
+                                                                                    index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
 
                 <div>Jax Diseases:</div>
-                <div> {data.GODisease[0].jaxDiseases &&
-                data.GODisease[0].jaxDiseases[0] && data.GODisease[0].jaxDiseases[0].name.statement}</div>
+                <div>
+                    <div> {data.GODisease[0].jaxDiseases && data.GODisease[0].jaxDiseases.length  > 0 ?
+                        data.GODisease[0].jaxDiseases && data.GODisease[0].jaxDiseases.map((item,
+                                                                                    index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
 
                 </div> </div>
 

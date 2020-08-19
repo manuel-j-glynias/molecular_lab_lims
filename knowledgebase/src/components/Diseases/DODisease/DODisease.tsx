@@ -126,12 +126,29 @@ const DODisease: React.FC<Props> = ({data,editing_description, editing_synonyms}
                 ))}</div>
 
                 <div>Children:</div>
-                <div>{data.DODisease[0].children &&
-                data.DODisease[0].children[0] && data.DODisease[0].children[0].name.statement}</div>
+
+                <div>
+                    <div> {data.DODisease[0].children.length  > 0 ?
+                        data.DODisease[0].children.map((item,
+                                                        index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
+
 
                 <div>Parents:</div>
-                <div> {data.DODisease[0].parents &&
-                data.DODisease[0].parents[0] && data.DODisease[0].parents[0].name.statement}</div>
+
+                <div>
+                    <div> {data.DODisease[0].parents && data.DODisease[0].parents.length  > 0 ?
+                        data.DODisease[0].parents && data.DODisease[0].parents.map((item,
+                                                                                                      index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
 
                 <div>Subsets:</div>
                 <div>{data.DODisease[0].subsets &&

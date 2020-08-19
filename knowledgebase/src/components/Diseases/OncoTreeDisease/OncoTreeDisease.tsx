@@ -81,12 +81,29 @@ const OncoTreeDisease: React.FC<Props> = ({data,editing_description, editing_syn
 
 
                 <div>Children:</div>
-                <div>{data.OncoTreeDisease[0].children &&
-                data.OncoTreeDisease[0].children[0] && data.OncoTreeDisease[0].children[0].name.statement}</div>
+
+                <div>
+                    <div> {data.OncoTreeDisease[0].children.length  > 0 ?
+                        data.OncoTreeDisease[0].children.map((item,
+                                                        index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
+
 
                 <div>Parents:</div>
-                <div> {data.OncoTreeDisease[0].parent &&
-                data.OncoTreeDisease[0].parent[0] && data.OncoTreeDisease[0].parent[0].name.statement}</div>
+
+                <div>
+                    <div> {data.OncoTreeDisease[0].parent && data.OncoTreeDisease[0].parent.length  > 0 ?
+                        data.OncoTreeDisease[0].parent && data.OncoTreeDisease[0].parent.map((item,
+                                                                                    index) =>
+                            (
+                                <div key={index}> {item ? item.name.statement: ''}</div>
+
+                            )) : <span>None</span>}</div>
+                </div>
 
             </div> </div>
 
