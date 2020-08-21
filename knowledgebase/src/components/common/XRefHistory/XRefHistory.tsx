@@ -33,7 +33,6 @@ const XRefHistory: React.FC<Props> = ({data}) => (
                             <strong>Created by: {ES.editor.name} on {humanify_date(ES.editDate)}:  </strong>
                             <div className={className2}>
                                 <div className={`${className2}__Wrapper`}>
-
                                     <Fragment>
                                         <div className="header">Source</div>
                                         <div className="header">SourceId</div>

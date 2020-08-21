@@ -1,10 +1,10 @@
 import React, {createContext, useReducer, useContext, ReducerState} from 'react';
-import {VariantProteinEffect, XRef} from "../generated/graphql";
+import {Maybe, VariantProteinEffect, XRef} from "../generated/graphql";
 
 export type AppendedContentState = {
     textToAppend: string | null;
     synonymToAppend: string | null;
-    xrefToAppend: XRef;
+    xrefToAppend: XRef | null;
     proteinEffectToAppend: VariantProteinEffect;
     userName: string;
     userID: string;
@@ -33,7 +33,7 @@ export type AppendedContentActions =
 
 }
 
-let xref: XRef = {id:'',source:'',sourceId:''}
+const xref: Maybe<XRef> = {id:'',source:'',sourceId:''}
 
 const initialState: AppendedContentState = {
 

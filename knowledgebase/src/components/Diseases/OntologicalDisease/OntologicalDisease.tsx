@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {OntologicalDiseaseQuery, XRef} from '../../../generated/graphql';
+import {Maybe, OntologicalDiseaseQuery, XRef} from '../../../generated/graphql';
 import './styles.css';
 import NameEditableStatementEditor from "./NameEditableStatementEditor";
 import DescriptionEditor from "./DescriptionEditor";
@@ -12,6 +12,7 @@ import XRefContainer from "../XRef";
 import XRefHistoryContainer from "../../common/XRefHistory";
 import OmniMapContainer from "../OmniMap";
 import {AppendedContentActionTypes, useAppendedContentState} from "../../../context/AppendedContentContext";
+import XRefEditor from "./XRefEditor";
 
 
 interface Props {
@@ -34,7 +35,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
     const [show_name_history, set_name_history] = React.useState(false);
     const [showing_references, set_showing_references] = React.useState(false);
     const [showing_xrefs, set_showing_xrefs] = React.useState(false);
-
+    const [show_xrefs_history, set_xrefs_history] = React.useState(false);
     const [showing_description_references, set_showing_description_references] = React.useState(false);
     const [show_description_history, set_description_history] = React.useState(false);
 
@@ -60,11 +61,8 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
         setAppendedContentState({type: AppendedContentActionTypes.appendToSynonyms, nextSynonym: ''})
         set_editing_synonyms(true)
     }
-
-
-    const [show_xrefs_history, set_xrefs_history] = React.useState(false);
     const edit_xrefs = async () => {
-        let xref: XRef = {id:'',source:'',sourceId:''}
+        let xref: Maybe<XRef> = {id:'',source:'',sourceId:''}
         setAppendedContentState({type: AppendedContentActionTypes.appendToXRefs, nextXRef: xref })
         set_editing_xrefs(true)
     }
@@ -219,7 +217,7 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
                 <div>OmniMaps</div>
 
                 <div>
-                    <button className={`${className}__small-btn`} onClick={() => set_showing_omnimap(!showing_xrefs)}> {showing_omnimap ? <span>Hide OmniMap</span> : <span>Show OmniMap</span>}
+                    <button className={`${className}__small-btn`} onClick={() => set_showing_omnimap(!showing_omnimap)}> {showing_omnimap ? <span>Hide OmniMap</span> : <span>Show OmniMap</span>}
                     </button>
                     {showing_omnimap && <OmniMapContainer id={data.OntologicalDisease[0].id}/>
                     }
@@ -242,12 +240,13 @@ const OntologicalDisease: React.FC<Props> = ({data,editing_description,set_editi
 
                     {editing_xrefs ?
                         (
-                            <span></span>
+                            <XRefEditor xref_array={data.OntologicalDisease[0].xrefs!.list} set_editing={set_editing_xrefs} exref_ID={data.OntologicalDisease[0].xrefs.id}
+                                        exref_field={data.OntologicalDisease[0].xrefs.field} ontologicaldisease_ID={data.OntologicalDisease[0].id} refetch={refetch}/>
 
                         ) :
 
                         (<div className="form-group">
-                                <button className="btn btn-primary my-1" onClick={() => edit_xrefs()}>Edit XRefs</button>
+                                <button className="btn btn-primary my-1" onClick={() => set_editing_xrefs(true)}>Edit XRefs</button>
                                 <button className="btn btn-primary my-1" onClick={() => set_xrefs_history(!show_xrefs_history)}>
                                     {show_xrefs_history ? <span>Hide History</span> : <span>Show History</span>}
                                 </button>

@@ -83,12 +83,14 @@ export const mutation_add_synonym_string = gql`
 `
 
 export const mutation_add_xref = gql`
-    mutation OntologicalDiseaseAddXRefs($id: ID!, $old_exref_id: ID!, $date: String!, $exref_field: String!, $exref_list: [ID!]!, $exref_id: ID!, $user_id: ID!, $ref_aray:[ID!]!) {
+    mutation OntologicalDiseaseAddXRefs($id: ID!, $old_exref_id: ID!, $exref_id: ID!, $exref_field: String!, $date: String!, $xref_id: ID!, $xref_source: String!, $xref_sourceId: String!, $user_id: ID!, $exref_list: [ID!]!) {
         deleteOntologicalDiseaseXrefs(id: $id, xrefs:[$old_exref_id])
         createEditableXRefList(id: $exref_id, field: $exref_field, editDate: $date)
+        createXRef(id: $xref_id, source: $xref_source, sourceId: $xref_sourceId)
         addEditableXRefListEditor(id: $exref_id, editor: [$user_id])
         addEditableXRefListList(id: $exref_id, list: $exref_list)
-        addEditableXRefListReferences(id: $exref_id, references: $ref_aray)
+        addEditableXRefListReferences(id: $exref_id, references: [])
+        addOntologicalDiseaseXrefs(id: $id, xrefs: [$exref_id])
     }
 `
 

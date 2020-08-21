@@ -85,7 +85,7 @@
 
 .OntologicalDisease__XRef_Wrapper {
     display: grid;
-    grid-template-columns: 100px 100px;
+    grid-template-columns: 175px 160px 100px;
     align-items: flex-start;
 }
 

@@ -7,6 +7,7 @@ export interface Props {
     field: string
 }
 
+// need to force to refetch
 const XRefHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableXRefListQuery(
