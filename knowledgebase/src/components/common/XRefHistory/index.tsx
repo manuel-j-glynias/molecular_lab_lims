@@ -11,7 +11,7 @@ export interface Props {
 const XRefHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableXRefListQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

@@ -10,7 +10,7 @@ export interface Props {
 const EditableIntHistoryHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableIntQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only"}
     );
 
     if (loading) {

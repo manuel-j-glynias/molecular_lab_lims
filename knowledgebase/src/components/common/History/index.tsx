@@ -10,8 +10,8 @@ export interface Props {
 
 const HistoryContainer = ({field}:Props) => {
 
-    const {data, error, loading } = useEditableStatementQuery(
-        { variables: { field: field } }
+    const {data, error, loading, refetch } = useEditableStatementQuery(
+        { variables: { field: field },fetchPolicy:"network-only"}
     );
 
     if (loading) {

@@ -11,7 +11,7 @@ export interface Props {
 const SynonymHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableStringListQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

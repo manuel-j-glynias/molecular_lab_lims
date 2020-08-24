@@ -10,7 +10,7 @@ export interface Props {
 const EditableMarkerComponentListHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableMarkerComponentListQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

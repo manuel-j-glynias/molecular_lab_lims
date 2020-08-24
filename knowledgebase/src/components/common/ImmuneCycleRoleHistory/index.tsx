@@ -10,7 +10,7 @@ export interface Props {
 const ImmuneCycleRoleHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableImmuneCycleRoleQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

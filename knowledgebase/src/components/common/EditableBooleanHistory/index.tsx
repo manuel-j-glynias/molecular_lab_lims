@@ -10,7 +10,7 @@ export interface Props {
 const EditableBooleanHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableBooleanQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

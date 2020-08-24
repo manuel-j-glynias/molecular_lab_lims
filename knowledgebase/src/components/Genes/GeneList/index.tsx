@@ -104,7 +104,7 @@ const GeneListContainer = ({query_str, handleGeneIdChange, gene_id, set_gene_que
                         </div> }
                         <div className={`${className}__Filter`}>
                             <input className={'filter_text_input'} type="text"
-                                   placeholder="Name Starts With..."
+                                   placeholder="Name contains..."
                                    name="subString" value={filter_term}
                                    onChange={e => set_filter_term(e.target.value)}
                                    onKeyPress={keyPressed}

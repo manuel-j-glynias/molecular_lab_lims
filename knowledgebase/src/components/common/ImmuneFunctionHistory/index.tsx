@@ -10,7 +10,7 @@ export interface Props {
 const ImmuneFunctionHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableImmuneFunctionQuery(
-        { variables: { field: field } }
+        { variables: { field: field } ,fetchPolicy:"network-only"}
     );
 
     if (loading) {

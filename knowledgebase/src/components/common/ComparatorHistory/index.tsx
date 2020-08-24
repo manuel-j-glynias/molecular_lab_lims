@@ -10,7 +10,7 @@ export interface Props {
 const ComparatorHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableAssayComparatorQuery(
-        { variables: { field: field } }
+        { variables: { field: field } ,fetchPolicy:"network-only"}
     );
 
     if (loading) {

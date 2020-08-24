@@ -10,7 +10,7 @@ export interface Props {
 const EditableOmniGeneReferenceContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableOmniGeneReferenceQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

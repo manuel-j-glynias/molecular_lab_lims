@@ -10,7 +10,7 @@ export interface Props {
 const ConjuctionHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableOmniConjunctionQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {

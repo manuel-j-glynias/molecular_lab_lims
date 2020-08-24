@@ -10,7 +10,7 @@ export interface Props {
 const EditableFloatHistoryHistoryContainer = ({field}:Props) => {
 
     const {data, error, loading } = useEditableFloatQuery(
-        { variables: { field: field } }
+        { variables: { field: field },fetchPolicy:"network-only" }
     );
 
     if (loading) {
