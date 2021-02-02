@@ -1,0 +1,6317 @@
+schema {
+  query: QueryType
+  mutation: MutationType
+}
+
+# This directive allows results to be deferred during execution
+directive @defer on FIELD
+# Relationship
+directive @relation on FIELD
+# default value
+directive @defaultValue on FIELD
+# field is unique in type
+directive @isUnique on FIELD
+# entity is a model type
+directive @model on FIELD
+# Cypher query to run
+directive @cypher on FIELD
+# Enable query profiling
+directive @profile on QUERY
+# Enable query explanation
+directive @explain on QUERY
+# Specify Cypher version
+directive @version(
+  # Cypher Version (3.0, 3.1, 3.2)
+  version: String = "3.4"
+) on QUERY
+# Filter Input Type for Assay
+input _AssayFilter {
+  # AND
+  AND: [_AssayFilter!]
+  # OR
+  OR: [_AssayFilter!]
+  # case
+  case: _CaseFilter
+  # case_in
+  case_in: _CaseFilter
+  # case_not
+  case_not: _CaseFilter
+  # case_not_in
+  case_not_in: _CaseFilter
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # protocol_steps
+  protocol_steps: _Protocol_StepFilter
+  # protocol_steps_every
+  protocol_steps_every: _Protocol_StepFilter
+  # protocol_steps_in
+  protocol_steps_in: _Protocol_StepFilter
+  # protocol_steps_none
+  protocol_steps_none: _Protocol_StepFilter
+  # protocol_steps_not
+  protocol_steps_not: _Protocol_StepFilter
+  # protocol_steps_not_in
+  protocol_steps_not_in: _Protocol_StepFilter
+  # protocol_steps_single
+  protocol_steps_single: _Protocol_StepFilter
+  # protocol_steps_some
+  protocol_steps_some: _Protocol_StepFilter
+  # start
+  start: _Protocol_StepFilter
+  # start_in
+  start_in: _Protocol_StepFilter
+  # start_not
+  start_not: _Protocol_StepFilter
+  # start_not_in
+  start_not_in: _Protocol_StepFilter
+  # test
+  test: _Molecular_Lab_TestFilter
+  # test_in
+  test_in: _Molecular_Lab_TestFilter
+  # test_not
+  test_not: _Molecular_Lab_TestFilter
+  # test_not_in
+  test_not_in: _Molecular_Lab_TestFilter
+}
+
+# Ordering Enum for Assay
+enum _AssayOrdering {
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+}
+
+# Filter Input Type for Case
+input _CaseFilter {
+  # AND
+  AND: [_CaseFilter!]
+  # OR
+  OR: [_CaseFilter!]
+  # assays
+  assays: _AssayFilter
+  # assays_every
+  assays_every: _AssayFilter
+  # assays_in
+  assays_in: _AssayFilter
+  # assays_none
+  assays_none: _AssayFilter
+  # assays_not
+  assays_not: _AssayFilter
+  # assays_not_in
+  assays_not_in: _AssayFilter
+  # assays_single
+  assays_single: _AssayFilter
+  # assays_some
+  assays_some: _AssayFilter
+  # created_by
+  created_by: _Molecular_Lab_UserFilter
+  # created_by_in
+  created_by_in: _Molecular_Lab_UserFilter
+  # created_by_not
+  created_by_not: _Molecular_Lab_UserFilter
+  # created_by_not_in
+  created_by_not_in: _Molecular_Lab_UserFilter
+  # created_date
+  created_date: String
+  # created_date_contains
+  created_date_contains: String
+  # created_date_ends_with
+  created_date_ends_with: String
+  # created_date_gt
+  created_date_gt: String
+  # created_date_gte
+  created_date_gte: String
+  # created_date_in
+  created_date_in: [String!]
+  # created_date_lt
+  created_date_lt: String
+  # created_date_lte
+  created_date_lte: String
+  # created_date_not
+  created_date_not: String
+  # created_date_not_contains
+  created_date_not_contains: String
+  # created_date_not_ends_with
+  created_date_not_ends_with: String
+  # created_date_not_in
+  created_date_not_in: [String!]
+  # created_date_not_starts_with
+  created_date_not_starts_with: String
+  # created_date_starts_with
+  created_date_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # order
+  order: _OrderFilter
+  # order_in
+  order_in: _OrderFilter
+  # order_not
+  order_not: _OrderFilter
+  # order_not_in
+  order_not_in: _OrderFilter
+  # sample
+  sample: _SampleFilter
+  # sample_in
+  sample_in: _SampleFilter
+  # sample_not
+  sample_not: _SampleFilter
+  # sample_not_in
+  sample_not_in: _SampleFilter
+}
+
+# Ordering Enum for Case
+enum _CaseOrdering {
+  # Ascending sort for created_date
+  created_date_asc
+  # Descending sort for created_date
+  created_date_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+}
+
+# Filter Input Type for HasStatus
+input _HasStatusFilter {
+  # AND
+  AND: [_HasStatusFilter!]
+  # OR
+  OR: [_HasStatusFilter!]
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # status
+  status: _StatusUpdateFilter
+  # status_in
+  status_in: _StatusUpdateFilter
+  # status_not
+  status_not: _StatusUpdateFilter
+  # status_not_in
+  status_not_in: _StatusUpdateFilter
+}
+
+# Ordering Enum for HasStatus
+enum _HasStatusOrdering {
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+}
+
+# Filter Input Type for Instrument
+input _InstrumentFilter {
+  # AND
+  AND: [_InstrumentFilter!]
+  # OR
+  OR: [_InstrumentFilter!]
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # reagents
+  reagents: _ReagentFilter
+  # reagents_every
+  reagents_every: _ReagentFilter
+  # reagents_in
+  reagents_in: _ReagentFilter
+  # reagents_none
+  reagents_none: _ReagentFilter
+  # reagents_not
+  reagents_not: _ReagentFilter
+  # reagents_not_in
+  reagents_not_in: _ReagentFilter
+  # reagents_single
+  reagents_single: _ReagentFilter
+  # reagents_some
+  reagents_some: _ReagentFilter
+  # tests
+  tests: _Molecular_Lab_TestFilter
+  # tests_every
+  tests_every: _Molecular_Lab_TestFilter
+  # tests_in
+  tests_in: _Molecular_Lab_TestFilter
+  # tests_none
+  tests_none: _Molecular_Lab_TestFilter
+  # tests_not
+  tests_not: _Molecular_Lab_TestFilter
+  # tests_not_in
+  tests_not_in: _Molecular_Lab_TestFilter
+  # tests_single
+  tests_single: _Molecular_Lab_TestFilter
+  # tests_some
+  tests_some: _Molecular_Lab_TestFilter
+}
+
+# Ordering Enum for Instrument
+enum _InstrumentOrdering {
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+}
+
+# Filter Input Type for Molecular_Lab_Test
+input _Molecular_Lab_TestFilter {
+  # AND
+  AND: [_Molecular_Lab_TestFilter!]
+  # OR
+  OR: [_Molecular_Lab_TestFilter!]
+  # acceptable_sample_type
+  acceptable_sample_type: _Sample_TypeFilter
+  # acceptable_sample_type_every
+  acceptable_sample_type_every: _Sample_TypeFilter
+  # acceptable_sample_type_in
+  acceptable_sample_type_in: _Sample_TypeFilter
+  # acceptable_sample_type_none
+  acceptable_sample_type_none: _Sample_TypeFilter
+  # acceptable_sample_type_not
+  acceptable_sample_type_not: _Sample_TypeFilter
+  # acceptable_sample_type_not_in
+  acceptable_sample_type_not_in: _Sample_TypeFilter
+  # acceptable_sample_type_single
+  acceptable_sample_type_single: _Sample_TypeFilter
+  # acceptable_sample_type_some
+  acceptable_sample_type_some: _Sample_TypeFilter
+  # assays
+  assays: _AssayFilter
+  # assays_every
+  assays_every: _AssayFilter
+  # assays_in
+  assays_in: _AssayFilter
+  # assays_none
+  assays_none: _AssayFilter
+  # assays_not
+  assays_not: _AssayFilter
+  # assays_not_in
+  assays_not_in: _AssayFilter
+  # assays_single
+  assays_single: _AssayFilter
+  # assays_some
+  assays_some: _AssayFilter
+  # authorized_diagnoses
+  authorized_diagnoses: String
+  # authorized_diagnoses_contains
+  authorized_diagnoses_contains: String
+  # authorized_diagnoses_ends_with
+  authorized_diagnoses_ends_with: String
+  # authorized_diagnoses_gt
+  authorized_diagnoses_gt: String
+  # authorized_diagnoses_gte
+  authorized_diagnoses_gte: String
+  # authorized_diagnoses_in
+  authorized_diagnoses_in: [String!]
+  # authorized_diagnoses_lt
+  authorized_diagnoses_lt: String
+  # authorized_diagnoses_lte
+  authorized_diagnoses_lte: String
+  # authorized_diagnoses_not
+  authorized_diagnoses_not: String
+  # authorized_diagnoses_not_contains
+  authorized_diagnoses_not_contains: String
+  # authorized_diagnoses_not_ends_with
+  authorized_diagnoses_not_ends_with: String
+  # authorized_diagnoses_not_in
+  authorized_diagnoses_not_in: [String!]
+  # authorized_diagnoses_not_starts_with
+  authorized_diagnoses_not_starts_with: String
+  # authorized_diagnoses_starts_with
+  authorized_diagnoses_starts_with: String
+  # description
+  description: String
+  # description_contains
+  description_contains: String
+  # description_ends_with
+  description_ends_with: String
+  # description_gt
+  description_gt: String
+  # description_gte
+  description_gte: String
+  # description_in
+  description_in: [String!]
+  # description_lt
+  description_lt: String
+  # description_lte
+  description_lte: String
+  # description_not
+  description_not: String
+  # description_not_contains
+  description_not_contains: String
+  # description_not_ends_with
+  description_not_ends_with: String
+  # description_not_in
+  description_not_in: [String!]
+  # description_not_starts_with
+  description_not_starts_with: String
+  # description_starts_with
+  description_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # instruments
+  instruments: _InstrumentFilter
+  # instruments_every
+  instruments_every: _InstrumentFilter
+  # instruments_in
+  instruments_in: _InstrumentFilter
+  # instruments_none
+  instruments_none: _InstrumentFilter
+  # instruments_not
+  instruments_not: _InstrumentFilter
+  # instruments_not_in
+  instruments_not_in: _InstrumentFilter
+  # instruments_single
+  instruments_single: _InstrumentFilter
+  # instruments_some
+  instruments_some: _InstrumentFilter
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lower
+  name_lower: String
+  # name_lower_contains
+  name_lower_contains: String
+  # name_lower_ends_with
+  name_lower_ends_with: String
+  # name_lower_gt
+  name_lower_gt: String
+  # name_lower_gte
+  name_lower_gte: String
+  # name_lower_in
+  name_lower_in: [String!]
+  # name_lower_lt
+  name_lower_lt: String
+  # name_lower_lte
+  name_lower_lte: String
+  # name_lower_not
+  name_lower_not: String
+  # name_lower_not_contains
+  name_lower_not_contains: String
+  # name_lower_not_ends_with
+  name_lower_not_ends_with: String
+  # name_lower_not_in
+  name_lower_not_in: [String!]
+  # name_lower_not_starts_with
+  name_lower_not_starts_with: String
+  # name_lower_starts_with
+  name_lower_starts_with: String
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # ngsBased
+  ngsBased: Boolean
+  # ngsBased_not
+  ngsBased_not: Boolean
+  # orders
+  orders: _OrderFilter
+  # orders_every
+  orders_every: _OrderFilter
+  # orders_in
+  orders_in: _OrderFilter
+  # orders_none
+  orders_none: _OrderFilter
+  # orders_not
+  orders_not: _OrderFilter
+  # orders_not_in
+  orders_not_in: _OrderFilter
+  # orders_single
+  orders_single: _OrderFilter
+  # orders_some
+  orders_some: _OrderFilter
+}
+
+# Ordering Enum for Molecular_Lab_Test
+enum _Molecular_Lab_TestOrdering {
+  # Ascending sort for authorized_diagnoses
+  authorized_diagnoses_asc
+  # Descending sort for authorized_diagnoses
+  authorized_diagnoses_desc
+  # Ascending sort for description
+  description_asc
+  # Descending sort for description
+  description_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+  # Ascending sort for name_lower
+  name_lower_asc
+  # Descending sort for name_lower
+  name_lower_desc
+  # Ascending sort for ngsBased
+  ngsBased_asc
+  # Descending sort for ngsBased
+  ngsBased_desc
+}
+
+# Filter Input Type for Molecular_Lab_User
+input _Molecular_Lab_UserFilter {
+  # AND
+  AND: [_Molecular_Lab_UserFilter!]
+  # OR
+  OR: [_Molecular_Lab_UserFilter!]
+  # canApproveReagent
+  canApproveReagent: Boolean
+  # canApproveReagent_not
+  canApproveReagent_not: Boolean
+  # canEditOrders
+  canEditOrders: Boolean
+  # canEditOrders_not
+  canEditOrders_not: Boolean
+  # canEditPhysicians
+  canEditPhysicians: Boolean
+  # canEditPhysicians_not
+  canEditPhysicians_not: Boolean
+  # canEditTests
+  canEditTests: Boolean
+  # canEditTests_not
+  canEditTests_not: Boolean
+  # canEditUsers
+  canEditUsers: Boolean
+  # canEditUsers_not
+  canEditUsers_not: Boolean
+  # canQC
+  canQC: Boolean
+  # canQC_not
+  canQC_not: Boolean
+  # first_name
+  first_name: String
+  # first_name_contains
+  first_name_contains: String
+  # first_name_ends_with
+  first_name_ends_with: String
+  # first_name_gt
+  first_name_gt: String
+  # first_name_gte
+  first_name_gte: String
+  # first_name_in
+  first_name_in: [String!]
+  # first_name_lt
+  first_name_lt: String
+  # first_name_lte
+  first_name_lte: String
+  # first_name_not
+  first_name_not: String
+  # first_name_not_contains
+  first_name_not_contains: String
+  # first_name_not_ends_with
+  first_name_not_ends_with: String
+  # first_name_not_in
+  first_name_not_in: [String!]
+  # first_name_not_starts_with
+  first_name_not_starts_with: String
+  # first_name_starts_with
+  first_name_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # last_name
+  last_name: String
+  # last_name_contains
+  last_name_contains: String
+  # last_name_ends_with
+  last_name_ends_with: String
+  # last_name_gt
+  last_name_gt: String
+  # last_name_gte
+  last_name_gte: String
+  # last_name_in
+  last_name_in: [String!]
+  # last_name_lt
+  last_name_lt: String
+  # last_name_lte
+  last_name_lte: String
+  # last_name_not
+  last_name_not: String
+  # last_name_not_contains
+  last_name_not_contains: String
+  # last_name_not_ends_with
+  last_name_not_ends_with: String
+  # last_name_not_in
+  last_name_not_in: [String!]
+  # last_name_not_starts_with
+  last_name_not_starts_with: String
+  # last_name_starts_with
+  last_name_starts_with: String
+  # name_lower
+  name_lower: String
+  # name_lower_contains
+  name_lower_contains: String
+  # name_lower_ends_with
+  name_lower_ends_with: String
+  # name_lower_gt
+  name_lower_gt: String
+  # name_lower_gte
+  name_lower_gte: String
+  # name_lower_in
+  name_lower_in: [String!]
+  # name_lower_lt
+  name_lower_lt: String
+  # name_lower_lte
+  name_lower_lte: String
+  # name_lower_not
+  name_lower_not: String
+  # name_lower_not_contains
+  name_lower_not_contains: String
+  # name_lower_not_ends_with
+  name_lower_not_ends_with: String
+  # name_lower_not_in
+  name_lower_not_in: [String!]
+  # name_lower_not_starts_with
+  name_lower_not_starts_with: String
+  # name_lower_starts_with
+  name_lower_starts_with: String
+  # password
+  password: String
+  # password_contains
+  password_contains: String
+  # password_ends_with
+  password_ends_with: String
+  # password_gt
+  password_gt: String
+  # password_gte
+  password_gte: String
+  # password_in
+  password_in: [String!]
+  # password_lt
+  password_lt: String
+  # password_lte
+  password_lte: String
+  # password_not
+  password_not: String
+  # password_not_contains
+  password_not_contains: String
+  # password_not_ends_with
+  password_not_ends_with: String
+  # password_not_in
+  password_not_in: [String!]
+  # password_not_starts_with
+  password_not_starts_with: String
+  # password_starts_with
+  password_starts_with: String
+  # user_name
+  user_name: String
+  # user_name_contains
+  user_name_contains: String
+  # user_name_ends_with
+  user_name_ends_with: String
+  # user_name_gt
+  user_name_gt: String
+  # user_name_gte
+  user_name_gte: String
+  # user_name_in
+  user_name_in: [String!]
+  # user_name_lt
+  user_name_lt: String
+  # user_name_lte
+  user_name_lte: String
+  # user_name_not
+  user_name_not: String
+  # user_name_not_contains
+  user_name_not_contains: String
+  # user_name_not_ends_with
+  user_name_not_ends_with: String
+  # user_name_not_in
+  user_name_not_in: [String!]
+  # user_name_not_starts_with
+  user_name_not_starts_with: String
+  # user_name_starts_with
+  user_name_starts_with: String
+}
+
+# Ordering Enum for Molecular_Lab_User
+enum _Molecular_Lab_UserOrdering {
+  # Ascending sort for canApproveReagent
+  canApproveReagent_asc
+  # Descending sort for canApproveReagent
+  canApproveReagent_desc
+  # Ascending sort for canEditOrders
+  canEditOrders_asc
+  # Descending sort for canEditOrders
+  canEditOrders_desc
+  # Ascending sort for canEditPhysicians
+  canEditPhysicians_asc
+  # Descending sort for canEditPhysicians
+  canEditPhysicians_desc
+  # Ascending sort for canEditTests
+  canEditTests_asc
+  # Descending sort for canEditTests
+  canEditTests_desc
+  # Ascending sort for canEditUsers
+  canEditUsers_asc
+  # Descending sort for canEditUsers
+  canEditUsers_desc
+  # Ascending sort for canQC
+  canQC_asc
+  # Descending sort for canQC
+  canQC_desc
+  # Ascending sort for first_name
+  first_name_asc
+  # Descending sort for first_name
+  first_name_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for last_name
+  last_name_asc
+  # Descending sort for last_name
+  last_name_desc
+  # Ascending sort for name_lower
+  name_lower_asc
+  # Descending sort for name_lower
+  name_lower_desc
+  # Ascending sort for password
+  password_asc
+  # Descending sort for password
+  password_desc
+  # Ascending sort for user_name
+  user_name_asc
+  # Descending sort for user_name
+  user_name_desc
+}
+
+# Filter Input Type for Order_Information_Request
+input _Order_Information_RequestFilter {
+  # AND
+  AND: [_Order_Information_RequestFilter!]
+  # OR
+  OR: [_Order_Information_RequestFilter!]
+  # field
+  field: Order_Information_Request_Fields
+  # field_in
+  field_in: [Order_Information_Request_Fields!]
+  # field_not
+  field_not: Order_Information_Request_Fields
+  # field_not_in
+  field_not_in: [Order_Information_Request_Fields!]
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # order
+  order: _OrderFilter
+  # order_every
+  order_every: _OrderFilter
+  # order_in
+  order_in: _OrderFilter
+  # order_none
+  order_none: _OrderFilter
+  # order_not
+  order_not: _OrderFilter
+  # order_not_in
+  order_not_in: _OrderFilter
+  # order_single
+  order_single: _OrderFilter
+  # order_some
+  order_some: _OrderFilter
+  # requested_by
+  requested_by: _Molecular_Lab_UserFilter
+  # requested_by_in
+  requested_by_in: _Molecular_Lab_UserFilter
+  # requested_by_not
+  requested_by_not: _Molecular_Lab_UserFilter
+  # requested_by_not_in
+  requested_by_not_in: _Molecular_Lab_UserFilter
+  # requested_date
+  requested_date: String
+  # requested_date_contains
+  requested_date_contains: String
+  # requested_date_ends_with
+  requested_date_ends_with: String
+  # requested_date_gt
+  requested_date_gt: String
+  # requested_date_gte
+  requested_date_gte: String
+  # requested_date_in
+  requested_date_in: [String!]
+  # requested_date_lt
+  requested_date_lt: String
+  # requested_date_lte
+  requested_date_lte: String
+  # requested_date_not
+  requested_date_not: String
+  # requested_date_not_contains
+  requested_date_not_contains: String
+  # requested_date_not_ends_with
+  requested_date_not_ends_with: String
+  # requested_date_not_in
+  requested_date_not_in: [String!]
+  # requested_date_not_starts_with
+  requested_date_not_starts_with: String
+  # requested_date_starts_with
+  requested_date_starts_with: String
+  # resolved_by
+  resolved_by: _Molecular_Lab_UserFilter
+  # resolved_by_in
+  resolved_by_in: _Molecular_Lab_UserFilter
+  # resolved_by_not
+  resolved_by_not: _Molecular_Lab_UserFilter
+  # resolved_by_not_in
+  resolved_by_not_in: _Molecular_Lab_UserFilter
+  # resolved_date
+  resolved_date: String
+  # resolved_date_contains
+  resolved_date_contains: String
+  # resolved_date_ends_with
+  resolved_date_ends_with: String
+  # resolved_date_gt
+  resolved_date_gt: String
+  # resolved_date_gte
+  resolved_date_gte: String
+  # resolved_date_in
+  resolved_date_in: [String!]
+  # resolved_date_lt
+  resolved_date_lt: String
+  # resolved_date_lte
+  resolved_date_lte: String
+  # resolved_date_not
+  resolved_date_not: String
+  # resolved_date_not_contains
+  resolved_date_not_contains: String
+  # resolved_date_not_ends_with
+  resolved_date_not_ends_with: String
+  # resolved_date_not_in
+  resolved_date_not_in: [String!]
+  # resolved_date_not_starts_with
+  resolved_date_not_starts_with: String
+  # resolved_date_starts_with
+  resolved_date_starts_with: String
+}
+
+# Ordering Enum for Order_Information_Request
+enum _Order_Information_RequestOrdering {
+  # Ascending sort for field
+  field_asc
+  # Descending sort for field
+  field_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for requested_date
+  requested_date_asc
+  # Descending sort for requested_date
+  requested_date_desc
+  # Ascending sort for resolved_date
+  resolved_date_asc
+  # Descending sort for resolved_date
+  resolved_date_desc
+}
+
+# Filter Input Type for Order
+input _OrderFilter {
+  # AND
+  AND: [_OrderFilter!]
+  # OR
+  OR: [_OrderFilter!]
+  # attending_physician
+  attending_physician: _PhysicianFilter
+  # attending_physician_in
+  attending_physician_in: _PhysicianFilter
+  # attending_physician_not
+  attending_physician_not: _PhysicianFilter
+  # attending_physician_not_in
+  attending_physician_not_in: _PhysicianFilter
+  # case
+  case: _CaseFilter
+  # case_in
+  case_in: _CaseFilter
+  # case_not
+  case_not: _CaseFilter
+  # case_not_in
+  case_not_in: _CaseFilter
+  # comments
+  comments: String
+  # comments_contains
+  comments_contains: String
+  # comments_ends_with
+  comments_ends_with: String
+  # comments_gt
+  comments_gt: String
+  # comments_gte
+  comments_gte: String
+  # comments_in
+  comments_in: [String!]
+  # comments_lt
+  comments_lt: String
+  # comments_lte
+  comments_lte: String
+  # comments_not
+  comments_not: String
+  # comments_not_contains
+  comments_not_contains: String
+  # comments_not_ends_with
+  comments_not_ends_with: String
+  # comments_not_in
+  comments_not_in: [String!]
+  # comments_not_starts_with
+  comments_not_starts_with: String
+  # comments_starts_with
+  comments_starts_with: String
+  # date_of_birth
+  date_of_birth: String
+  # date_of_birth_contains
+  date_of_birth_contains: String
+  # date_of_birth_ends_with
+  date_of_birth_ends_with: String
+  # date_of_birth_gt
+  date_of_birth_gt: String
+  # date_of_birth_gte
+  date_of_birth_gte: String
+  # date_of_birth_in
+  date_of_birth_in: [String!]
+  # date_of_birth_lt
+  date_of_birth_lt: String
+  # date_of_birth_lte
+  date_of_birth_lte: String
+  # date_of_birth_not
+  date_of_birth_not: String
+  # date_of_birth_not_contains
+  date_of_birth_not_contains: String
+  # date_of_birth_not_ends_with
+  date_of_birth_not_ends_with: String
+  # date_of_birth_not_in
+  date_of_birth_not_in: [String!]
+  # date_of_birth_not_starts_with
+  date_of_birth_not_starts_with: String
+  # date_of_birth_starts_with
+  date_of_birth_starts_with: String
+  # diagnosis
+  diagnosis: String
+  # diagnosis_contains
+  diagnosis_contains: String
+  # diagnosis_ends_with
+  diagnosis_ends_with: String
+  # diagnosis_gt
+  diagnosis_gt: String
+  # diagnosis_gte
+  diagnosis_gte: String
+  # diagnosis_in
+  diagnosis_in: [String!]
+  # diagnosis_lt
+  diagnosis_lt: String
+  # diagnosis_lte
+  diagnosis_lte: String
+  # diagnosis_not
+  diagnosis_not: String
+  # diagnosis_not_contains
+  diagnosis_not_contains: String
+  # diagnosis_not_ends_with
+  diagnosis_not_ends_with: String
+  # diagnosis_not_in
+  diagnosis_not_in: [String!]
+  # diagnosis_not_starts_with
+  diagnosis_not_starts_with: String
+  # diagnosis_starts_with
+  diagnosis_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # information_request
+  information_request: _Order_Information_RequestFilter
+  # information_request_every
+  information_request_every: _Order_Information_RequestFilter
+  # information_request_in
+  information_request_in: _Order_Information_RequestFilter
+  # information_request_none
+  information_request_none: _Order_Information_RequestFilter
+  # information_request_not
+  information_request_not: _Order_Information_RequestFilter
+  # information_request_not_in
+  information_request_not_in: _Order_Information_RequestFilter
+  # information_request_single
+  information_request_single: _Order_Information_RequestFilter
+  # information_request_some
+  information_request_some: _Order_Information_RequestFilter
+  # ml_order_id
+  ml_order_id: String
+  # ml_order_id_contains
+  ml_order_id_contains: String
+  # ml_order_id_ends_with
+  ml_order_id_ends_with: String
+  # ml_order_id_gt
+  ml_order_id_gt: String
+  # ml_order_id_gte
+  ml_order_id_gte: String
+  # ml_order_id_in
+  ml_order_id_in: [String!]
+  # ml_order_id_lt
+  ml_order_id_lt: String
+  # ml_order_id_lte
+  ml_order_id_lte: String
+  # ml_order_id_not
+  ml_order_id_not: String
+  # ml_order_id_not_contains
+  ml_order_id_not_contains: String
+  # ml_order_id_not_ends_with
+  ml_order_id_not_ends_with: String
+  # ml_order_id_not_in
+  ml_order_id_not_in: [String!]
+  # ml_order_id_not_starts_with
+  ml_order_id_not_starts_with: String
+  # ml_order_id_starts_with
+  ml_order_id_starts_with: String
+  # mrn
+  mrn: String
+  # mrn_contains
+  mrn_contains: String
+  # mrn_ends_with
+  mrn_ends_with: String
+  # mrn_gt
+  mrn_gt: String
+  # mrn_gte
+  mrn_gte: String
+  # mrn_in
+  mrn_in: [String!]
+  # mrn_lt
+  mrn_lt: String
+  # mrn_lte
+  mrn_lte: String
+  # mrn_not
+  mrn_not: String
+  # mrn_not_contains
+  mrn_not_contains: String
+  # mrn_not_ends_with
+  mrn_not_ends_with: String
+  # mrn_not_in
+  mrn_not_in: [String!]
+  # mrn_not_starts_with
+  mrn_not_starts_with: String
+  # mrn_starts_with
+  mrn_starts_with: String
+  # order_date
+  order_date: String
+  # order_date_contains
+  order_date_contains: String
+  # order_date_ends_with
+  order_date_ends_with: String
+  # order_date_gt
+  order_date_gt: String
+  # order_date_gte
+  order_date_gte: String
+  # order_date_in
+  order_date_in: [String!]
+  # order_date_lt
+  order_date_lt: String
+  # order_date_lte
+  order_date_lte: String
+  # order_date_not
+  order_date_not: String
+  # order_date_not_contains
+  order_date_not_contains: String
+  # order_date_not_ends_with
+  order_date_not_ends_with: String
+  # order_date_not_in
+  order_date_not_in: [String!]
+  # order_date_not_starts_with
+  order_date_not_starts_with: String
+  # order_date_starts_with
+  order_date_starts_with: String
+  # ordered_by
+  ordered_by: _PhysicianFilter
+  # ordered_by_in
+  ordered_by_in: _PhysicianFilter
+  # ordered_by_not
+  ordered_by_not: _PhysicianFilter
+  # ordered_by_not_in
+  ordered_by_not_in: _PhysicianFilter
+  # patient_name
+  patient_name: String
+  # patient_name_contains
+  patient_name_contains: String
+  # patient_name_ends_with
+  patient_name_ends_with: String
+  # patient_name_gt
+  patient_name_gt: String
+  # patient_name_gte
+  patient_name_gte: String
+  # patient_name_in
+  patient_name_in: [String!]
+  # patient_name_lt
+  patient_name_lt: String
+  # patient_name_lte
+  patient_name_lte: String
+  # patient_name_not
+  patient_name_not: String
+  # patient_name_not_contains
+  patient_name_not_contains: String
+  # patient_name_not_ends_with
+  patient_name_not_ends_with: String
+  # patient_name_not_in
+  patient_name_not_in: [String!]
+  # patient_name_not_starts_with
+  patient_name_not_starts_with: String
+  # patient_name_starts_with
+  patient_name_starts_with: String
+  # received_date
+  received_date: String
+  # received_date_contains
+  received_date_contains: String
+  # received_date_ends_with
+  received_date_ends_with: String
+  # received_date_gt
+  received_date_gt: String
+  # received_date_gte
+  received_date_gte: String
+  # received_date_in
+  received_date_in: [String!]
+  # received_date_lt
+  received_date_lt: String
+  # received_date_lte
+  received_date_lte: String
+  # received_date_not
+  received_date_not: String
+  # received_date_not_contains
+  received_date_not_contains: String
+  # received_date_not_ends_with
+  received_date_not_ends_with: String
+  # received_date_not_in
+  received_date_not_in: [String!]
+  # received_date_not_starts_with
+  received_date_not_starts_with: String
+  # received_date_starts_with
+  received_date_starts_with: String
+  # received_order_id
+  received_order_id: String
+  # received_order_id_contains
+  received_order_id_contains: String
+  # received_order_id_ends_with
+  received_order_id_ends_with: String
+  # received_order_id_gt
+  received_order_id_gt: String
+  # received_order_id_gte
+  received_order_id_gte: String
+  # received_order_id_in
+  received_order_id_in: [String!]
+  # received_order_id_lt
+  received_order_id_lt: String
+  # received_order_id_lte
+  received_order_id_lte: String
+  # received_order_id_not
+  received_order_id_not: String
+  # received_order_id_not_contains
+  received_order_id_not_contains: String
+  # received_order_id_not_ends_with
+  received_order_id_not_ends_with: String
+  # received_order_id_not_in
+  received_order_id_not_in: [String!]
+  # received_order_id_not_starts_with
+  received_order_id_not_starts_with: String
+  # received_order_id_starts_with
+  received_order_id_starts_with: String
+  # rejected_once
+  rejected_once: Boolean
+  # rejected_once_not
+  rejected_once_not: Boolean
+  # search_string_lower
+  search_string_lower: String
+  # search_string_lower_contains
+  search_string_lower_contains: String
+  # search_string_lower_ends_with
+  search_string_lower_ends_with: String
+  # search_string_lower_gt
+  search_string_lower_gt: String
+  # search_string_lower_gte
+  search_string_lower_gte: String
+  # search_string_lower_in
+  search_string_lower_in: [String!]
+  # search_string_lower_lt
+  search_string_lower_lt: String
+  # search_string_lower_lte
+  search_string_lower_lte: String
+  # search_string_lower_not
+  search_string_lower_not: String
+  # search_string_lower_not_contains
+  search_string_lower_not_contains: String
+  # search_string_lower_not_ends_with
+  search_string_lower_not_ends_with: String
+  # search_string_lower_not_in
+  search_string_lower_not_in: [String!]
+  # search_string_lower_not_starts_with
+  search_string_lower_not_starts_with: String
+  # search_string_lower_starts_with
+  search_string_lower_starts_with: String
+  # sex
+  sex: String
+  # sex_contains
+  sex_contains: String
+  # sex_ends_with
+  sex_ends_with: String
+  # sex_gt
+  sex_gt: String
+  # sex_gte
+  sex_gte: String
+  # sex_in
+  sex_in: [String!]
+  # sex_lt
+  sex_lt: String
+  # sex_lte
+  sex_lte: String
+  # sex_not
+  sex_not: String
+  # sex_not_contains
+  sex_not_contains: String
+  # sex_not_ends_with
+  sex_not_ends_with: String
+  # sex_not_in
+  sex_not_in: [String!]
+  # sex_not_starts_with
+  sex_not_starts_with: String
+  # sex_starts_with
+  sex_starts_with: String
+  # status
+  status: _StatusUpdateFilter
+  # status_in
+  status_in: _StatusUpdateFilter
+  # status_not
+  status_not: _StatusUpdateFilter
+  # status_not_in
+  status_not_in: _StatusUpdateFilter
+  # test_ordered
+  test_ordered: _Molecular_Lab_TestFilter
+  # test_ordered_in
+  test_ordered_in: _Molecular_Lab_TestFilter
+  # test_ordered_not
+  test_ordered_not: _Molecular_Lab_TestFilter
+  # test_ordered_not_in
+  test_ordered_not_in: _Molecular_Lab_TestFilter
+}
+
+# Ordering Enum for Order
+enum _OrderOrdering {
+  # Ascending sort for comments
+  comments_asc
+  # Descending sort for comments
+  comments_desc
+  # Ascending sort for date_of_birth
+  date_of_birth_asc
+  # Descending sort for date_of_birth
+  date_of_birth_desc
+  # Ascending sort for diagnosis
+  diagnosis_asc
+  # Descending sort for diagnosis
+  diagnosis_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for ml_order_id
+  ml_order_id_asc
+  # Descending sort for ml_order_id
+  ml_order_id_desc
+  # Ascending sort for mrn
+  mrn_asc
+  # Descending sort for mrn
+  mrn_desc
+  # Ascending sort for order_date
+  order_date_asc
+  # Descending sort for order_date
+  order_date_desc
+  # Ascending sort for patient_name
+  patient_name_asc
+  # Descending sort for patient_name
+  patient_name_desc
+  # Ascending sort for received_date
+  received_date_asc
+  # Descending sort for received_date
+  received_date_desc
+  # Ascending sort for received_order_id
+  received_order_id_asc
+  # Descending sort for received_order_id
+  received_order_id_desc
+  # Ascending sort for rejected_once
+  rejected_once_asc
+  # Descending sort for rejected_once
+  rejected_once_desc
+  # Ascending sort for search_string_lower
+  search_string_lower_asc
+  # Descending sort for search_string_lower
+  search_string_lower_desc
+  # Ascending sort for sex
+  sex_asc
+  # Descending sort for sex
+  sex_desc
+}
+
+# Filter Input Type for Pathologist_QC
+input _Pathologist_QCFilter {
+  # AND
+  AND: [_Pathologist_QCFilter!]
+  # OR
+  OR: [_Pathologist_QCFilter!]
+  # acceptance_value
+  acceptance_value: QC_Acceptance_Value
+  # acceptance_value_in
+  acceptance_value_in: [QC_Acceptance_Value!]
+  # acceptance_value_not
+  acceptance_value_not: QC_Acceptance_Value
+  # acceptance_value_not_in
+  acceptance_value_not_in: [QC_Acceptance_Value!]
+  # case
+  case: _CaseFilter
+  # case_in
+  case_in: _CaseFilter
+  # case_not
+  case_not: _CaseFilter
+  # case_not_in
+  case_not_in: _CaseFilter
+  # diagnosis
+  diagnosis: String
+  # diagnosis_contains
+  diagnosis_contains: String
+  # diagnosis_ends_with
+  diagnosis_ends_with: String
+  # diagnosis_gt
+  diagnosis_gt: String
+  # diagnosis_gte
+  diagnosis_gte: String
+  # diagnosis_in
+  diagnosis_in: [String!]
+  # diagnosis_lt
+  diagnosis_lt: String
+  # diagnosis_lte
+  diagnosis_lte: String
+  # diagnosis_not
+  diagnosis_not: String
+  # diagnosis_not_contains
+  diagnosis_not_contains: String
+  # diagnosis_not_ends_with
+  diagnosis_not_ends_with: String
+  # diagnosis_not_in
+  diagnosis_not_in: [String!]
+  # diagnosis_not_starts_with
+  diagnosis_not_starts_with: String
+  # diagnosis_starts_with
+  diagnosis_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # macro_dissection_required
+  macro_dissection_required: Boolean
+  # macro_dissection_required_not
+  macro_dissection_required_not: Boolean
+  # percent_neoplastic_cells
+  percent_neoplastic_cells: Float
+  # percent_neoplastic_cells_gt
+  percent_neoplastic_cells_gt: Float
+  # percent_neoplastic_cells_gte
+  percent_neoplastic_cells_gte: Float
+  # percent_neoplastic_cells_in
+  percent_neoplastic_cells_in: [Float!]
+  # percent_neoplastic_cells_lt
+  percent_neoplastic_cells_lt: Float
+  # percent_neoplastic_cells_lte
+  percent_neoplastic_cells_lte: Float
+  # percent_neoplastic_cells_not
+  percent_neoplastic_cells_not: Float
+  # percent_neoplastic_cells_not_in
+  percent_neoplastic_cells_not_in: [Float!]
+  # qc_by
+  qc_by: _Molecular_Lab_UserFilter
+  # qc_by_in
+  qc_by_in: _Molecular_Lab_UserFilter
+  # qc_by_not
+  qc_by_not: _Molecular_Lab_UserFilter
+  # qc_by_not_in
+  qc_by_not_in: _Molecular_Lab_UserFilter
+  # qc_date
+  qc_date: String
+  # qc_date_contains
+  qc_date_contains: String
+  # qc_date_ends_with
+  qc_date_ends_with: String
+  # qc_date_gt
+  qc_date_gt: String
+  # qc_date_gte
+  qc_date_gte: String
+  # qc_date_in
+  qc_date_in: [String!]
+  # qc_date_lt
+  qc_date_lt: String
+  # qc_date_lte
+  qc_date_lte: String
+  # qc_date_not
+  qc_date_not: String
+  # qc_date_not_contains
+  qc_date_not_contains: String
+  # qc_date_not_ends_with
+  qc_date_not_ends_with: String
+  # qc_date_not_in
+  qc_date_not_in: [String!]
+  # qc_date_not_starts_with
+  qc_date_not_starts_with: String
+  # qc_date_starts_with
+  qc_date_starts_with: String
+  # sample_size_mm2
+  sample_size_mm2: Float
+  # sample_size_mm2_gt
+  sample_size_mm2_gt: Float
+  # sample_size_mm2_gte
+  sample_size_mm2_gte: Float
+  # sample_size_mm2_in
+  sample_size_mm2_in: [Float!]
+  # sample_size_mm2_lt
+  sample_size_mm2_lt: Float
+  # sample_size_mm2_lte
+  sample_size_mm2_lte: Float
+  # sample_size_mm2_not
+  sample_size_mm2_not: Float
+  # sample_size_mm2_not_in
+  sample_size_mm2_not_in: [Float!]
+}
+
+# Ordering Enum for Pathologist_QC
+enum _Pathologist_QCOrdering {
+  # Ascending sort for acceptance_value
+  acceptance_value_asc
+  # Descending sort for acceptance_value
+  acceptance_value_desc
+  # Ascending sort for diagnosis
+  diagnosis_asc
+  # Descending sort for diagnosis
+  diagnosis_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for macro_dissection_required
+  macro_dissection_required_asc
+  # Descending sort for macro_dissection_required
+  macro_dissection_required_desc
+  # Ascending sort for percent_neoplastic_cells
+  percent_neoplastic_cells_asc
+  # Descending sort for percent_neoplastic_cells
+  percent_neoplastic_cells_desc
+  # Ascending sort for qc_date
+  qc_date_asc
+  # Descending sort for qc_date
+  qc_date_desc
+  # Ascending sort for sample_size_mm2
+  sample_size_mm2_asc
+  # Descending sort for sample_size_mm2
+  sample_size_mm2_desc
+}
+
+# Filter Input Type for Physician
+input _PhysicianFilter {
+  # AND
+  AND: [_PhysicianFilter!]
+  # OR
+  OR: [_PhysicianFilter!]
+  # badge_id
+  badge_id: String
+  # badge_id_contains
+  badge_id_contains: String
+  # badge_id_ends_with
+  badge_id_ends_with: String
+  # badge_id_gt
+  badge_id_gt: String
+  # badge_id_gte
+  badge_id_gte: String
+  # badge_id_in
+  badge_id_in: [String!]
+  # badge_id_lt
+  badge_id_lt: String
+  # badge_id_lte
+  badge_id_lte: String
+  # badge_id_not
+  badge_id_not: String
+  # badge_id_not_contains
+  badge_id_not_contains: String
+  # badge_id_not_ends_with
+  badge_id_not_ends_with: String
+  # badge_id_not_in
+  badge_id_not_in: [String!]
+  # badge_id_not_starts_with
+  badge_id_not_starts_with: String
+  # badge_id_starts_with
+  badge_id_starts_with: String
+  # degrees
+  degrees: String
+  # degrees_contains
+  degrees_contains: String
+  # degrees_ends_with
+  degrees_ends_with: String
+  # degrees_gt
+  degrees_gt: String
+  # degrees_gte
+  degrees_gte: String
+  # degrees_in
+  degrees_in: [String!]
+  # degrees_lt
+  degrees_lt: String
+  # degrees_lte
+  degrees_lte: String
+  # degrees_not
+  degrees_not: String
+  # degrees_not_contains
+  degrees_not_contains: String
+  # degrees_not_ends_with
+  degrees_not_ends_with: String
+  # degrees_not_in
+  degrees_not_in: [String!]
+  # degrees_not_starts_with
+  degrees_not_starts_with: String
+  # degrees_starts_with
+  degrees_starts_with: String
+  # email
+  email: String
+  # email_contains
+  email_contains: String
+  # email_ends_with
+  email_ends_with: String
+  # email_gt
+  email_gt: String
+  # email_gte
+  email_gte: String
+  # email_in
+  email_in: [String!]
+  # email_lt
+  email_lt: String
+  # email_lte
+  email_lte: String
+  # email_not
+  email_not: String
+  # email_not_contains
+  email_not_contains: String
+  # email_not_ends_with
+  email_not_ends_with: String
+  # email_not_in
+  email_not_in: [String!]
+  # email_not_starts_with
+  email_not_starts_with: String
+  # email_starts_with
+  email_starts_with: String
+  # first_name
+  first_name: String
+  # first_name_contains
+  first_name_contains: String
+  # first_name_ends_with
+  first_name_ends_with: String
+  # first_name_gt
+  first_name_gt: String
+  # first_name_gte
+  first_name_gte: String
+  # first_name_in
+  first_name_in: [String!]
+  # first_name_lt
+  first_name_lt: String
+  # first_name_lte
+  first_name_lte: String
+  # first_name_not
+  first_name_not: String
+  # first_name_not_contains
+  first_name_not_contains: String
+  # first_name_not_ends_with
+  first_name_not_ends_with: String
+  # first_name_not_in
+  first_name_not_in: [String!]
+  # first_name_not_starts_with
+  first_name_not_starts_with: String
+  # first_name_starts_with
+  first_name_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # last_name
+  last_name: String
+  # last_name_contains
+  last_name_contains: String
+  # last_name_ends_with
+  last_name_ends_with: String
+  # last_name_gt
+  last_name_gt: String
+  # last_name_gte
+  last_name_gte: String
+  # last_name_in
+  last_name_in: [String!]
+  # last_name_lt
+  last_name_lt: String
+  # last_name_lte
+  last_name_lte: String
+  # last_name_not
+  last_name_not: String
+  # last_name_not_contains
+  last_name_not_contains: String
+  # last_name_not_ends_with
+  last_name_not_ends_with: String
+  # last_name_not_in
+  last_name_not_in: [String!]
+  # last_name_not_starts_with
+  last_name_not_starts_with: String
+  # last_name_starts_with
+  last_name_starts_with: String
+  # name_lower
+  name_lower: String
+  # name_lower_contains
+  name_lower_contains: String
+  # name_lower_ends_with
+  name_lower_ends_with: String
+  # name_lower_gt
+  name_lower_gt: String
+  # name_lower_gte
+  name_lower_gte: String
+  # name_lower_in
+  name_lower_in: [String!]
+  # name_lower_lt
+  name_lower_lt: String
+  # name_lower_lte
+  name_lower_lte: String
+  # name_lower_not
+  name_lower_not: String
+  # name_lower_not_contains
+  name_lower_not_contains: String
+  # name_lower_not_ends_with
+  name_lower_not_ends_with: String
+  # name_lower_not_in
+  name_lower_not_in: [String!]
+  # name_lower_not_starts_with
+  name_lower_not_starts_with: String
+  # name_lower_starts_with
+  name_lower_starts_with: String
+  # orders
+  orders: _OrderFilter
+  # orders_every
+  orders_every: _OrderFilter
+  # orders_in
+  orders_in: _OrderFilter
+  # orders_none
+  orders_none: _OrderFilter
+  # orders_not
+  orders_not: _OrderFilter
+  # orders_not_in
+  orders_not_in: _OrderFilter
+  # orders_single
+  orders_single: _OrderFilter
+  # orders_some
+  orders_some: _OrderFilter
+  # phone_number
+  phone_number: String
+  # phone_number_contains
+  phone_number_contains: String
+  # phone_number_ends_with
+  phone_number_ends_with: String
+  # phone_number_gt
+  phone_number_gt: String
+  # phone_number_gte
+  phone_number_gte: String
+  # phone_number_in
+  phone_number_in: [String!]
+  # phone_number_lt
+  phone_number_lt: String
+  # phone_number_lte
+  phone_number_lte: String
+  # phone_number_not
+  phone_number_not: String
+  # phone_number_not_contains
+  phone_number_not_contains: String
+  # phone_number_not_ends_with
+  phone_number_not_ends_with: String
+  # phone_number_not_in
+  phone_number_not_in: [String!]
+  # phone_number_not_starts_with
+  phone_number_not_starts_with: String
+  # phone_number_starts_with
+  phone_number_starts_with: String
+}
+
+# Ordering Enum for Physician
+enum _PhysicianOrdering {
+  # Ascending sort for badge_id
+  badge_id_asc
+  # Descending sort for badge_id
+  badge_id_desc
+  # Ascending sort for degrees
+  degrees_asc
+  # Descending sort for degrees
+  degrees_desc
+  # Ascending sort for email
+  email_asc
+  # Descending sort for email
+  email_desc
+  # Ascending sort for first_name
+  first_name_asc
+  # Descending sort for first_name
+  first_name_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for last_name
+  last_name_asc
+  # Descending sort for last_name
+  last_name_desc
+  # Ascending sort for name_lower
+  name_lower_asc
+  # Descending sort for name_lower
+  name_lower_desc
+  # Ascending sort for phone_number
+  phone_number_asc
+  # Descending sort for phone_number
+  phone_number_desc
+}
+
+# Filter Input Type for Protocol_Step
+input _Protocol_StepFilter {
+  # AND
+  AND: [_Protocol_StepFilter!]
+  # OR
+  OR: [_Protocol_StepFilter!]
+  # completed_by
+  completed_by: _Molecular_Lab_UserFilter
+  # completed_by_in
+  completed_by_in: _Molecular_Lab_UserFilter
+  # completed_by_not
+  completed_by_not: _Molecular_Lab_UserFilter
+  # completed_by_not_in
+  completed_by_not_in: _Molecular_Lab_UserFilter
+  # completed_date
+  completed_date: String
+  # completed_date_contains
+  completed_date_contains: String
+  # completed_date_ends_with
+  completed_date_ends_with: String
+  # completed_date_gt
+  completed_date_gt: String
+  # completed_date_gte
+  completed_date_gte: String
+  # completed_date_in
+  completed_date_in: [String!]
+  # completed_date_lt
+  completed_date_lt: String
+  # completed_date_lte
+  completed_date_lte: String
+  # completed_date_not
+  completed_date_not: String
+  # completed_date_not_contains
+  completed_date_not_contains: String
+  # completed_date_not_ends_with
+  completed_date_not_ends_with: String
+  # completed_date_not_in
+  completed_date_not_in: [String!]
+  # completed_date_not_starts_with
+  completed_date_not_starts_with: String
+  # completed_date_starts_with
+  completed_date_starts_with: String
+  # description
+  description: String
+  # description_contains
+  description_contains: String
+  # description_ends_with
+  description_ends_with: String
+  # description_gt
+  description_gt: String
+  # description_gte
+  description_gte: String
+  # description_in
+  description_in: [String!]
+  # description_lt
+  description_lt: String
+  # description_lte
+  description_lte: String
+  # description_not
+  description_not: String
+  # description_not_contains
+  description_not_contains: String
+  # description_not_ends_with
+  description_not_ends_with: String
+  # description_not_in
+  description_not_in: [String!]
+  # description_not_starts_with
+  description_not_starts_with: String
+  # description_starts_with
+  description_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # next_step
+  next_step: _Protocol_StepFilter
+  # next_step_in
+  next_step_in: _Protocol_StepFilter
+  # next_step_not
+  next_step_not: _Protocol_StepFilter
+  # next_step_not_in
+  next_step_not_in: _Protocol_StepFilter
+  # reagentLots_used
+  reagentLots_used: _ReagentLotFilter
+  # reagentLots_used_every
+  reagentLots_used_every: _ReagentLotFilter
+  # reagentLots_used_in
+  reagentLots_used_in: _ReagentLotFilter
+  # reagentLots_used_none
+  reagentLots_used_none: _ReagentLotFilter
+  # reagentLots_used_not
+  reagentLots_used_not: _ReagentLotFilter
+  # reagentLots_used_not_in
+  reagentLots_used_not_in: _ReagentLotFilter
+  # reagentLots_used_single
+  reagentLots_used_single: _ReagentLotFilter
+  # reagentLots_used_some
+  reagentLots_used_some: _ReagentLotFilter
+  # reagents_required
+  reagents_required: _ReagentFilter
+  # reagents_required_every
+  reagents_required_every: _ReagentFilter
+  # reagents_required_in
+  reagents_required_in: _ReagentFilter
+  # reagents_required_none
+  reagents_required_none: _ReagentFilter
+  # reagents_required_not
+  reagents_required_not: _ReagentFilter
+  # reagents_required_not_in
+  reagents_required_not_in: _ReagentFilter
+  # reagents_required_single
+  reagents_required_single: _ReagentFilter
+  # reagents_required_some
+  reagents_required_some: _ReagentFilter
+  # started_by
+  started_by: _Molecular_Lab_UserFilter
+  # started_by_in
+  started_by_in: _Molecular_Lab_UserFilter
+  # started_by_not
+  started_by_not: _Molecular_Lab_UserFilter
+  # started_by_not_in
+  started_by_not_in: _Molecular_Lab_UserFilter
+  # started_date
+  started_date: String
+  # started_date_contains
+  started_date_contains: String
+  # started_date_ends_with
+  started_date_ends_with: String
+  # started_date_gt
+  started_date_gt: String
+  # started_date_gte
+  started_date_gte: String
+  # started_date_in
+  started_date_in: [String!]
+  # started_date_lt
+  started_date_lt: String
+  # started_date_lte
+  started_date_lte: String
+  # started_date_not
+  started_date_not: String
+  # started_date_not_contains
+  started_date_not_contains: String
+  # started_date_not_ends_with
+  started_date_not_ends_with: String
+  # started_date_not_in
+  started_date_not_in: [String!]
+  # started_date_not_starts_with
+  started_date_not_starts_with: String
+  # started_date_starts_with
+  started_date_starts_with: String
+}
+
+# Ordering Enum for Protocol_Step
+enum _Protocol_StepOrdering {
+  # Ascending sort for completed_date
+  completed_date_asc
+  # Descending sort for completed_date
+  completed_date_desc
+  # Ascending sort for description
+  description_asc
+  # Descending sort for description
+  description_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+  # Ascending sort for started_date
+  started_date_asc
+  # Descending sort for started_date
+  started_date_desc
+}
+
+# Filter Input Type for Reagent
+input _ReagentFilter {
+  # AND
+  AND: [_ReagentFilter!]
+  # OR
+  OR: [_ReagentFilter!]
+  # current_lot
+  current_lot: _ReagentLotFilter
+  # current_lot_in
+  current_lot_in: _ReagentLotFilter
+  # current_lot_not
+  current_lot_not: _ReagentLotFilter
+  # current_lot_not_in
+  current_lot_not_in: _ReagentLotFilter
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # instrument
+  instrument: _InstrumentFilter
+  # instrument_in
+  instrument_in: _InstrumentFilter
+  # instrument_not
+  instrument_not: _InstrumentFilter
+  # instrument_not_in
+  instrument_not_in: _InstrumentFilter
+  # lots
+  lots: _ReagentLotFilter
+  # lots_every
+  lots_every: _ReagentLotFilter
+  # lots_in
+  lots_in: _ReagentLotFilter
+  # lots_none
+  lots_none: _ReagentLotFilter
+  # lots_not
+  lots_not: _ReagentLotFilter
+  # lots_not_in
+  lots_not_in: _ReagentLotFilter
+  # lots_single
+  lots_single: _ReagentLotFilter
+  # lots_some
+  lots_some: _ReagentLotFilter
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # tests
+  tests: _Molecular_Lab_TestFilter
+  # tests_every
+  tests_every: _Molecular_Lab_TestFilter
+  # tests_in
+  tests_in: _Molecular_Lab_TestFilter
+  # tests_none
+  tests_none: _Molecular_Lab_TestFilter
+  # tests_not
+  tests_not: _Molecular_Lab_TestFilter
+  # tests_not_in
+  tests_not_in: _Molecular_Lab_TestFilter
+  # tests_single
+  tests_single: _Molecular_Lab_TestFilter
+  # tests_some
+  tests_some: _Molecular_Lab_TestFilter
+}
+
+# Filter Input Type for ReagentLot
+input _ReagentLotFilter {
+  # AND
+  AND: [_ReagentLotFilter!]
+  # OR
+  OR: [_ReagentLotFilter!]
+  # approved_by
+  approved_by: _Molecular_Lab_UserFilter
+  # approved_by_in
+  approved_by_in: _Molecular_Lab_UserFilter
+  # approved_by_not
+  approved_by_not: _Molecular_Lab_UserFilter
+  # approved_by_not_in
+  approved_by_not_in: _Molecular_Lab_UserFilter
+  # approved_date
+  approved_date: String
+  # approved_date_contains
+  approved_date_contains: String
+  # approved_date_ends_with
+  approved_date_ends_with: String
+  # approved_date_gt
+  approved_date_gt: String
+  # approved_date_gte
+  approved_date_gte: String
+  # approved_date_in
+  approved_date_in: [String!]
+  # approved_date_lt
+  approved_date_lt: String
+  # approved_date_lte
+  approved_date_lte: String
+  # approved_date_not
+  approved_date_not: String
+  # approved_date_not_contains
+  approved_date_not_contains: String
+  # approved_date_not_ends_with
+  approved_date_not_ends_with: String
+  # approved_date_not_in
+  approved_date_not_in: [String!]
+  # approved_date_not_starts_with
+  approved_date_not_starts_with: String
+  # approved_date_starts_with
+  approved_date_starts_with: String
+  # expiration_date
+  expiration_date: String
+  # expiration_date_contains
+  expiration_date_contains: String
+  # expiration_date_ends_with
+  expiration_date_ends_with: String
+  # expiration_date_gt
+  expiration_date_gt: String
+  # expiration_date_gte
+  expiration_date_gte: String
+  # expiration_date_in
+  expiration_date_in: [String!]
+  # expiration_date_lt
+  expiration_date_lt: String
+  # expiration_date_lte
+  expiration_date_lte: String
+  # expiration_date_not
+  expiration_date_not: String
+  # expiration_date_not_contains
+  expiration_date_not_contains: String
+  # expiration_date_not_ends_with
+  expiration_date_not_ends_with: String
+  # expiration_date_not_in
+  expiration_date_not_in: [String!]
+  # expiration_date_not_starts_with
+  expiration_date_not_starts_with: String
+  # expiration_date_starts_with
+  expiration_date_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # qc_by
+  qc_by: _Molecular_Lab_UserFilter
+  # qc_by_in
+  qc_by_in: _Molecular_Lab_UserFilter
+  # qc_by_not
+  qc_by_not: _Molecular_Lab_UserFilter
+  # qc_by_not_in
+  qc_by_not_in: _Molecular_Lab_UserFilter
+  # qc_date
+  qc_date: String
+  # qc_date_contains
+  qc_date_contains: String
+  # qc_date_ends_with
+  qc_date_ends_with: String
+  # qc_date_gt
+  qc_date_gt: String
+  # qc_date_gte
+  qc_date_gte: String
+  # qc_date_in
+  qc_date_in: [String!]
+  # qc_date_lt
+  qc_date_lt: String
+  # qc_date_lte
+  qc_date_lte: String
+  # qc_date_not
+  qc_date_not: String
+  # qc_date_not_contains
+  qc_date_not_contains: String
+  # qc_date_not_ends_with
+  qc_date_not_ends_with: String
+  # qc_date_not_in
+  qc_date_not_in: [String!]
+  # qc_date_not_starts_with
+  qc_date_not_starts_with: String
+  # qc_date_starts_with
+  qc_date_starts_with: String
+  # reagent
+  reagent: _ReagentFilter
+  # reagent_in
+  reagent_in: _ReagentFilter
+  # reagent_not
+  reagent_not: _ReagentFilter
+  # reagent_not_in
+  reagent_not_in: _ReagentFilter
+  # received_by
+  received_by: _Molecular_Lab_UserFilter
+  # received_by_in
+  received_by_in: _Molecular_Lab_UserFilter
+  # received_by_not
+  received_by_not: _Molecular_Lab_UserFilter
+  # received_by_not_in
+  received_by_not_in: _Molecular_Lab_UserFilter
+  # received_date
+  received_date: String
+  # received_date_contains
+  received_date_contains: String
+  # received_date_ends_with
+  received_date_ends_with: String
+  # received_date_gt
+  received_date_gt: String
+  # received_date_gte
+  received_date_gte: String
+  # received_date_in
+  received_date_in: [String!]
+  # received_date_lt
+  received_date_lt: String
+  # received_date_lte
+  received_date_lte: String
+  # received_date_not
+  received_date_not: String
+  # received_date_not_contains
+  received_date_not_contains: String
+  # received_date_not_ends_with
+  received_date_not_ends_with: String
+  # received_date_not_in
+  received_date_not_in: [String!]
+  # received_date_not_starts_with
+  received_date_not_starts_with: String
+  # received_date_starts_with
+  received_date_starts_with: String
+  # status
+  status: Reagent_Status
+  # status_in
+  status_in: [Reagent_Status!]
+  # status_not
+  status_not: Reagent_Status
+  # status_not_in
+  status_not_in: [Reagent_Status!]
+}
+
+# Ordering Enum for ReagentLot
+enum _ReagentLotOrdering {
+  # Ascending sort for approved_date
+  approved_date_asc
+  # Descending sort for approved_date
+  approved_date_desc
+  # Ascending sort for expiration_date
+  expiration_date_asc
+  # Descending sort for expiration_date
+  expiration_date_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+  # Ascending sort for qc_date
+  qc_date_asc
+  # Descending sort for qc_date
+  qc_date_desc
+  # Ascending sort for received_date
+  received_date_asc
+  # Descending sort for received_date
+  received_date_desc
+  # Ascending sort for status
+  status_asc
+  # Descending sort for status
+  status_desc
+}
+
+# Ordering Enum for Reagent
+enum _ReagentOrdering {
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+}
+
+# Filter Input Type for Sample_Type
+input _Sample_TypeFilter {
+  # AND
+  AND: [_Sample_TypeFilter!]
+  # OR
+  OR: [_Sample_TypeFilter!]
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # name
+  name: String
+  # name_contains
+  name_contains: String
+  # name_ends_with
+  name_ends_with: String
+  # name_gt
+  name_gt: String
+  # name_gte
+  name_gte: String
+  # name_in
+  name_in: [String!]
+  # name_lt
+  name_lt: String
+  # name_lte
+  name_lte: String
+  # name_not
+  name_not: String
+  # name_not_contains
+  name_not_contains: String
+  # name_not_ends_with
+  name_not_ends_with: String
+  # name_not_in
+  name_not_in: [String!]
+  # name_not_starts_with
+  name_not_starts_with: String
+  # name_starts_with
+  name_starts_with: String
+  # requires_pathologist_qc
+  requires_pathologist_qc: Boolean
+  # requires_pathologist_qc_not
+  requires_pathologist_qc_not: Boolean
+}
+
+# Ordering Enum for Sample_Type
+enum _Sample_TypeOrdering {
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for name
+  name_asc
+  # Descending sort for name
+  name_desc
+  # Ascending sort for requires_pathologist_qc
+  requires_pathologist_qc_asc
+  # Descending sort for requires_pathologist_qc
+  requires_pathologist_qc_desc
+}
+
+# Filter Input Type for Sample
+input _SampleFilter {
+  # AND
+  AND: [_SampleFilter!]
+  # OR
+  OR: [_SampleFilter!]
+  # case
+  case: _CaseFilter
+  # case_in
+  case_in: _CaseFilter
+  # case_not
+  case_not: _CaseFilter
+  # case_not_in
+  case_not_in: _CaseFilter
+  # collected_date
+  collected_date: String
+  # collected_date_contains
+  collected_date_contains: String
+  # collected_date_ends_with
+  collected_date_ends_with: String
+  # collected_date_gt
+  collected_date_gt: String
+  # collected_date_gte
+  collected_date_gte: String
+  # collected_date_in
+  collected_date_in: [String!]
+  # collected_date_lt
+  collected_date_lt: String
+  # collected_date_lte
+  collected_date_lte: String
+  # collected_date_not
+  collected_date_not: String
+  # collected_date_not_contains
+  collected_date_not_contains: String
+  # collected_date_not_ends_with
+  collected_date_not_ends_with: String
+  # collected_date_not_in
+  collected_date_not_in: [String!]
+  # collected_date_not_starts_with
+  collected_date_not_starts_with: String
+  # collected_date_starts_with
+  collected_date_starts_with: String
+  # comments
+  comments: String
+  # comments_contains
+  comments_contains: String
+  # comments_ends_with
+  comments_ends_with: String
+  # comments_gt
+  comments_gt: String
+  # comments_gte
+  comments_gte: String
+  # comments_in
+  comments_in: [String!]
+  # comments_lt
+  comments_lt: String
+  # comments_lte
+  comments_lte: String
+  # comments_not
+  comments_not: String
+  # comments_not_contains
+  comments_not_contains: String
+  # comments_not_ends_with
+  comments_not_ends_with: String
+  # comments_not_in
+  comments_not_in: [String!]
+  # comments_not_starts_with
+  comments_not_starts_with: String
+  # comments_starts_with
+  comments_starts_with: String
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # ml_order_id
+  ml_order_id: String
+  # ml_order_id_contains
+  ml_order_id_contains: String
+  # ml_order_id_ends_with
+  ml_order_id_ends_with: String
+  # ml_order_id_gt
+  ml_order_id_gt: String
+  # ml_order_id_gte
+  ml_order_id_gte: String
+  # ml_order_id_in
+  ml_order_id_in: [String!]
+  # ml_order_id_lt
+  ml_order_id_lt: String
+  # ml_order_id_lte
+  ml_order_id_lte: String
+  # ml_order_id_not
+  ml_order_id_not: String
+  # ml_order_id_not_contains
+  ml_order_id_not_contains: String
+  # ml_order_id_not_ends_with
+  ml_order_id_not_ends_with: String
+  # ml_order_id_not_in
+  ml_order_id_not_in: [String!]
+  # ml_order_id_not_starts_with
+  ml_order_id_not_starts_with: String
+  # ml_order_id_starts_with
+  ml_order_id_starts_with: String
+  # mrn
+  mrn: String
+  # mrn_contains
+  mrn_contains: String
+  # mrn_ends_with
+  mrn_ends_with: String
+  # mrn_gt
+  mrn_gt: String
+  # mrn_gte
+  mrn_gte: String
+  # mrn_in
+  mrn_in: [String!]
+  # mrn_lt
+  mrn_lt: String
+  # mrn_lte
+  mrn_lte: String
+  # mrn_not
+  mrn_not: String
+  # mrn_not_contains
+  mrn_not_contains: String
+  # mrn_not_ends_with
+  mrn_not_ends_with: String
+  # mrn_not_in
+  mrn_not_in: [String!]
+  # mrn_not_starts_with
+  mrn_not_starts_with: String
+  # mrn_starts_with
+  mrn_starts_with: String
+  # ordered_by
+  ordered_by: _PhysicianFilter
+  # ordered_by_in
+  ordered_by_in: _PhysicianFilter
+  # ordered_by_not
+  ordered_by_not: _PhysicianFilter
+  # ordered_by_not_in
+  ordered_by_not_in: _PhysicianFilter
+  # pathologist_qc
+  pathologist_qc: _Pathologist_QCFilter
+  # pathologist_qc_in
+  pathologist_qc_in: _Pathologist_QCFilter
+  # pathologist_qc_not
+  pathologist_qc_not: _Pathologist_QCFilter
+  # pathologist_qc_not_in
+  pathologist_qc_not_in: _Pathologist_QCFilter
+  # patient_name
+  patient_name: String
+  # patient_name_contains
+  patient_name_contains: String
+  # patient_name_ends_with
+  patient_name_ends_with: String
+  # patient_name_gt
+  patient_name_gt: String
+  # patient_name_gte
+  patient_name_gte: String
+  # patient_name_in
+  patient_name_in: [String!]
+  # patient_name_lt
+  patient_name_lt: String
+  # patient_name_lte
+  patient_name_lte: String
+  # patient_name_not
+  patient_name_not: String
+  # patient_name_not_contains
+  patient_name_not_contains: String
+  # patient_name_not_ends_with
+  patient_name_not_ends_with: String
+  # patient_name_not_in
+  patient_name_not_in: [String!]
+  # patient_name_not_starts_with
+  patient_name_not_starts_with: String
+  # patient_name_starts_with
+  patient_name_starts_with: String
+  # received_date
+  received_date: String
+  # received_date_contains
+  received_date_contains: String
+  # received_date_ends_with
+  received_date_ends_with: String
+  # received_date_gt
+  received_date_gt: String
+  # received_date_gte
+  received_date_gte: String
+  # received_date_in
+  received_date_in: [String!]
+  # received_date_lt
+  received_date_lt: String
+  # received_date_lte
+  received_date_lte: String
+  # received_date_not
+  received_date_not: String
+  # received_date_not_contains
+  received_date_not_contains: String
+  # received_date_not_ends_with
+  received_date_not_ends_with: String
+  # received_date_not_in
+  received_date_not_in: [String!]
+  # received_date_not_starts_with
+  received_date_not_starts_with: String
+  # received_date_starts_with
+  received_date_starts_with: String
+  # received_order_id
+  received_order_id: String
+  # received_order_id_contains
+  received_order_id_contains: String
+  # received_order_id_ends_with
+  received_order_id_ends_with: String
+  # received_order_id_gt
+  received_order_id_gt: String
+  # received_order_id_gte
+  received_order_id_gte: String
+  # received_order_id_in
+  received_order_id_in: [String!]
+  # received_order_id_lt
+  received_order_id_lt: String
+  # received_order_id_lte
+  received_order_id_lte: String
+  # received_order_id_not
+  received_order_id_not: String
+  # received_order_id_not_contains
+  received_order_id_not_contains: String
+  # received_order_id_not_ends_with
+  received_order_id_not_ends_with: String
+  # received_order_id_not_in
+  received_order_id_not_in: [String!]
+  # received_order_id_not_starts_with
+  received_order_id_not_starts_with: String
+  # received_order_id_starts_with
+  received_order_id_starts_with: String
+  # sample_id
+  sample_id: String
+  # sample_id_contains
+  sample_id_contains: String
+  # sample_id_ends_with
+  sample_id_ends_with: String
+  # sample_id_gt
+  sample_id_gt: String
+  # sample_id_gte
+  sample_id_gte: String
+  # sample_id_in
+  sample_id_in: [String!]
+  # sample_id_lt
+  sample_id_lt: String
+  # sample_id_lte
+  sample_id_lte: String
+  # sample_id_not
+  sample_id_not: String
+  # sample_id_not_contains
+  sample_id_not_contains: String
+  # sample_id_not_ends_with
+  sample_id_not_ends_with: String
+  # sample_id_not_in
+  sample_id_not_in: [String!]
+  # sample_id_not_starts_with
+  sample_id_not_starts_with: String
+  # sample_id_starts_with
+  sample_id_starts_with: String
+  # sample_location
+  sample_location: String
+  # sample_location_contains
+  sample_location_contains: String
+  # sample_location_ends_with
+  sample_location_ends_with: String
+  # sample_location_gt
+  sample_location_gt: String
+  # sample_location_gte
+  sample_location_gte: String
+  # sample_location_in
+  sample_location_in: [String!]
+  # sample_location_lt
+  sample_location_lt: String
+  # sample_location_lte
+  sample_location_lte: String
+  # sample_location_not
+  sample_location_not: String
+  # sample_location_not_contains
+  sample_location_not_contains: String
+  # sample_location_not_ends_with
+  sample_location_not_ends_with: String
+  # sample_location_not_in
+  sample_location_not_in: [String!]
+  # sample_location_not_starts_with
+  sample_location_not_starts_with: String
+  # sample_location_starts_with
+  sample_location_starts_with: String
+  # sample_type
+  sample_type: _Sample_TypeFilter
+  # sample_type_in
+  sample_type_in: _Sample_TypeFilter
+  # sample_type_not
+  sample_type_not: _Sample_TypeFilter
+  # sample_type_not_in
+  sample_type_not_in: _Sample_TypeFilter
+  # search_string_lower
+  search_string_lower: String
+  # search_string_lower_contains
+  search_string_lower_contains: String
+  # search_string_lower_ends_with
+  search_string_lower_ends_with: String
+  # search_string_lower_gt
+  search_string_lower_gt: String
+  # search_string_lower_gte
+  search_string_lower_gte: String
+  # search_string_lower_in
+  search_string_lower_in: [String!]
+  # search_string_lower_lt
+  search_string_lower_lt: String
+  # search_string_lower_lte
+  search_string_lower_lte: String
+  # search_string_lower_not
+  search_string_lower_not: String
+  # search_string_lower_not_contains
+  search_string_lower_not_contains: String
+  # search_string_lower_not_ends_with
+  search_string_lower_not_ends_with: String
+  # search_string_lower_not_in
+  search_string_lower_not_in: [String!]
+  # search_string_lower_not_starts_with
+  search_string_lower_not_starts_with: String
+  # search_string_lower_starts_with
+  search_string_lower_starts_with: String
+  # status
+  status: _StatusUpdateFilter
+  # status_in
+  status_in: _StatusUpdateFilter
+  # status_not
+  status_not: _StatusUpdateFilter
+  # status_not_in
+  status_not_in: _StatusUpdateFilter
+}
+
+# Ordering Enum for Sample
+enum _SampleOrdering {
+  # Ascending sort for collected_date
+  collected_date_asc
+  # Descending sort for collected_date
+  collected_date_desc
+  # Ascending sort for comments
+  comments_asc
+  # Descending sort for comments
+  comments_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for ml_order_id
+  ml_order_id_asc
+  # Descending sort for ml_order_id
+  ml_order_id_desc
+  # Ascending sort for mrn
+  mrn_asc
+  # Descending sort for mrn
+  mrn_desc
+  # Ascending sort for patient_name
+  patient_name_asc
+  # Descending sort for patient_name
+  patient_name_desc
+  # Ascending sort for received_date
+  received_date_asc
+  # Descending sort for received_date
+  received_date_desc
+  # Ascending sort for received_order_id
+  received_order_id_asc
+  # Descending sort for received_order_id
+  received_order_id_desc
+  # Ascending sort for sample_id
+  sample_id_asc
+  # Descending sort for sample_id
+  sample_id_desc
+  # Ascending sort for sample_location
+  sample_location_asc
+  # Descending sort for sample_location
+  sample_location_desc
+  # Ascending sort for search_string_lower
+  search_string_lower_asc
+  # Descending sort for search_string_lower
+  search_string_lower_desc
+}
+
+# Filter Input Type for StatusUpdate
+input _StatusUpdateFilter {
+  # AND
+  AND: [_StatusUpdateFilter!]
+  # OR
+  OR: [_StatusUpdateFilter!]
+  # by
+  by: _Molecular_Lab_UserFilter
+  # by_in
+  by_in: _Molecular_Lab_UserFilter
+  # by_not
+  by_not: _Molecular_Lab_UserFilter
+  # by_not_in
+  by_not_in: _Molecular_Lab_UserFilter
+  # comments
+  comments: String
+  # comments_contains
+  comments_contains: String
+  # comments_ends_with
+  comments_ends_with: String
+  # comments_gt
+  comments_gt: String
+  # comments_gte
+  comments_gte: String
+  # comments_in
+  comments_in: [String!]
+  # comments_lt
+  comments_lt: String
+  # comments_lte
+  comments_lte: String
+  # comments_not
+  comments_not: String
+  # comments_not_contains
+  comments_not_contains: String
+  # comments_not_ends_with
+  comments_not_ends_with: String
+  # comments_not_in
+  comments_not_in: [String!]
+  # comments_not_starts_with
+  comments_not_starts_with: String
+  # comments_starts_with
+  comments_starts_with: String
+  # date
+  date: String
+  # date_contains
+  date_contains: String
+  # date_ends_with
+  date_ends_with: String
+  # date_gt
+  date_gt: String
+  # date_gte
+  date_gte: String
+  # date_in
+  date_in: [String!]
+  # date_lt
+  date_lt: String
+  # date_lte
+  date_lte: String
+  # date_not
+  date_not: String
+  # date_not_contains
+  date_not_contains: String
+  # date_not_ends_with
+  date_not_ends_with: String
+  # date_not_in
+  date_not_in: [String!]
+  # date_not_starts_with
+  date_not_starts_with: String
+  # date_starts_with
+  date_starts_with: String
+  # hasStatus
+  hasStatus: _HasStatusFilter
+  # hasStatus_in
+  hasStatus_in: _HasStatusFilter
+  # hasStatus_not
+  hasStatus_not: _HasStatusFilter
+  # hasStatus_not_in
+  hasStatus_not_in: _HasStatusFilter
+  # id
+  id: ID
+  # id_contains
+  id_contains: ID
+  # id_ends_with
+  id_ends_with: ID
+  # id_gt
+  id_gt: ID
+  # id_gte
+  id_gte: ID
+  # id_in
+  id_in: [ID!]
+  # id_lt
+  id_lt: ID
+  # id_lte
+  id_lte: ID
+  # id_not
+  id_not: ID
+  # id_not_contains
+  id_not_contains: ID
+  # id_not_ends_with
+  id_not_ends_with: ID
+  # id_not_in
+  id_not_in: [ID!]
+  # id_not_starts_with
+  id_not_starts_with: ID
+  # id_starts_with
+  id_starts_with: ID
+  # previousStatus
+  previousStatus: _StatusUpdateFilter
+  # previousStatus_in
+  previousStatus_in: _StatusUpdateFilter
+  # previousStatus_not
+  previousStatus_not: _StatusUpdateFilter
+  # previousStatus_not_in
+  previousStatus_not_in: _StatusUpdateFilter
+  # rejected_reason
+  rejected_reason: Sample_Rejection_Reason_Fields
+  # rejected_reason_in
+  rejected_reason_in: [Sample_Rejection_Reason_Fields!]
+  # rejected_reason_not
+  rejected_reason_not: Sample_Rejection_Reason_Fields
+  # rejected_reason_not_in
+  rejected_reason_not_in: [Sample_Rejection_Reason_Fields!]
+  # status
+  status: acceptedStatus
+  # status_in
+  status_in: [acceptedStatus!]
+  # status_not
+  status_not: acceptedStatus
+  # status_not_in
+  status_not_in: [acceptedStatus!]
+}
+
+# Ordering Enum for StatusUpdate
+enum _StatusUpdateOrdering {
+  # Ascending sort for comments
+  comments_asc
+  # Descending sort for comments
+  comments_desc
+  # Ascending sort for date
+  date_asc
+  # Descending sort for date
+  date_desc
+  # Ascending sort for id
+  id_asc
+  # Descending sort for id
+  id_desc
+  # Ascending sort for rejected_reason
+  rejected_reason_asc
+  # Descending sort for rejected_reason
+  rejected_reason_desc
+  # Ascending sort for status
+  status_asc
+  # Descending sort for status
+  status_desc
+}
+
+# Enum for acceptedStatus
+enum acceptedStatus {
+  # Value for accepted
+  accepted
+  # Value for case_created
+  case_created
+  # Value for not_ready
+  not_ready
+  # Value for ready_for_qc
+  ready_for_qc
+  # Value for rejected
+  rejected
+  # Value for sample_rejection_resolved
+  sample_rejection_resolved
+}
+
+# Assay-Node
+type Assay {
+  # internal node id
+  _id: Long
+  # Assay case Case
+  case(
+    # created_date of Case
+    created_date: String
+    # created_dates is list variant of created_date of Case
+    created_dates: [String]
+    filter: _CaseFilter
+    # id of Case
+    id: ID
+    # ids is list variant of id of Case
+    ids: [ID]
+    orderBy: [_CaseOrdering]
+  ): Case
+  # id of  Assay
+  id: ID!
+  # name of  Assay
+  name: String!
+  # Assay protocol_steps Protocol_Step
+  protocol_steps(
+    _id: Long
+    _ids: [Long]
+    # completed_date of Protocol_Step
+    completed_date: String
+    # completed_dates is list variant of completed_date of Protocol_Step
+    completed_dates: [String]
+    # description of Protocol_Step
+    description: String
+    # descriptions is list variant of description of Protocol_Step
+    descriptions: [String]
+    filter: _Protocol_StepFilter
+    first: Int
+    # id of Protocol_Step
+    id: ID
+    # ids is list variant of id of Protocol_Step
+    ids: [ID]
+    # name of Protocol_Step
+    name: String
+    # names is list variant of name of Protocol_Step
+    names: [String]
+    offset: Int
+    orderBy: [_Protocol_StepOrdering]
+    # started_date of Protocol_Step
+    started_date: String
+    # started_dates is list variant of started_date of Protocol_Step
+    started_dates: [String]
+  ): [Protocol_Step]!
+  # Assay start Protocol_Step
+  start(
+    # completed_date of Protocol_Step
+    completed_date: String
+    # completed_dates is list variant of completed_date of Protocol_Step
+    completed_dates: [String]
+    # description of Protocol_Step
+    description: String
+    # descriptions is list variant of description of Protocol_Step
+    descriptions: [String]
+    filter: _Protocol_StepFilter
+    # id of Protocol_Step
+    id: ID
+    # ids is list variant of id of Protocol_Step
+    ids: [ID]
+    # name of Protocol_Step
+    name: String
+    # names is list variant of name of Protocol_Step
+    names: [String]
+    orderBy: [_Protocol_StepOrdering]
+    # started_date of Protocol_Step
+    started_date: String
+    # started_dates is list variant of started_date of Protocol_Step
+    started_dates: [String]
+  ): Protocol_Step!
+  # Assay test Molecular_Lab_Test
+  test(
+    # authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnoses: [String]
+    # authorized_diagnosess is list variant of authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnosess: [[String]]
+    # description of Molecular_Lab_Test
+    description: String
+    # descriptions is list variant of description of Molecular_Lab_Test
+    descriptions: [String]
+    filter: _Molecular_Lab_TestFilter
+    # id of Molecular_Lab_Test
+    id: ID
+    # ids is list variant of id of Molecular_Lab_Test
+    ids: [ID]
+    # name of Molecular_Lab_Test
+    name: String
+    # name_lower of Molecular_Lab_Test
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_Test
+    name_lowers: [String]
+    # names is list variant of name of Molecular_Lab_Test
+    names: [String]
+    # ngsBased of Molecular_Lab_Test
+    ngsBased: Boolean
+    # ngsBaseds is list variant of ngsBased of Molecular_Lab_Test
+    ngsBaseds: [Boolean]
+    orderBy: [_Molecular_Lab_TestOrdering]
+  ): Molecular_Lab_Test!
+}
+
+# Case-Node
+type Case {
+  # internal node id
+  _id: Long
+  # Case assays Assay
+  assays(
+    _id: Long
+    _ids: [Long]
+    filter: _AssayFilter
+    first: Int
+    # id of Assay
+    id: ID
+    # ids is list variant of id of Assay
+    ids: [ID]
+    # name of Assay
+    name: String
+    # names is list variant of name of Assay
+    names: [String]
+    offset: Int
+    orderBy: [_AssayOrdering]
+  ): [Assay]!
+  # Case created_by Molecular_Lab_User
+  created_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User!
+  # created_date of  Case
+  created_date: String!
+  # id of  Case
+  id: ID!
+  # Case order Order
+  order(
+    # comments of Order
+    comments: String
+    # commentss is list variant of comments of Order
+    commentss: [String]
+    # date_of_birth of Order
+    date_of_birth: String
+    # date_of_births is list variant of date_of_birth of Order
+    date_of_births: [String]
+    # diagnosis of Order
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Order
+    diagnosiss: [String]
+    filter: _OrderFilter
+    # id of Order
+    id: ID
+    # ids is list variant of id of Order
+    ids: [ID]
+    # ml_order_id of Order
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Order
+    ml_order_ids: [String]
+    # mrn of Order
+    mrn: String
+    # mrns is list variant of mrn of Order
+    mrns: [String]
+    orderBy: [_OrderOrdering]
+    # order_date of Order
+    order_date: String
+    # order_dates is list variant of order_date of Order
+    order_dates: [String]
+    # patient_name of Order
+    patient_name: String
+    # patient_names is list variant of patient_name of Order
+    patient_names: [String]
+    # received_date of Order
+    received_date: String
+    # received_dates is list variant of received_date of Order
+    received_dates: [String]
+    # received_order_id of Order
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Order
+    received_order_ids: [String]
+    # rejected_once of Order
+    rejected_once: Boolean
+    # rejected_onces is list variant of rejected_once of Order
+    rejected_onces: [Boolean]
+    # search_string_lower of Order
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Order
+    search_string_lowers: [String]
+    # sex of Order
+    sex: String
+    # sexs is list variant of sex of Order
+    sexs: [String]
+  ): Order!
+  # Case sample Sample
+  sample(
+    # collected_date of Sample
+    collected_date: String
+    # collected_dates is list variant of collected_date of Sample
+    collected_dates: [String]
+    # comments of Sample
+    comments: String
+    # commentss is list variant of comments of Sample
+    commentss: [String]
+    filter: _SampleFilter
+    # id of Sample
+    id: ID
+    # ids is list variant of id of Sample
+    ids: [ID]
+    # ml_order_id of Sample
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Sample
+    ml_order_ids: [String]
+    # mrn of Sample
+    mrn: String
+    # mrns is list variant of mrn of Sample
+    mrns: [String]
+    orderBy: [_SampleOrdering]
+    # patient_name of Sample
+    patient_name: String
+    # patient_names is list variant of patient_name of Sample
+    patient_names: [String]
+    # received_date of Sample
+    received_date: String
+    # received_dates is list variant of received_date of Sample
+    received_dates: [String]
+    # received_order_id of Sample
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Sample
+    received_order_ids: [String]
+    # sample_id of Sample
+    sample_id: String
+    # sample_ids is list variant of sample_id of Sample
+    sample_ids: [String]
+    # sample_location of Sample
+    sample_location: String
+    # sample_locations is list variant of sample_location of Sample
+    sample_locations: [String]
+    # search_string_lower of Sample
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Sample
+    search_string_lowers: [String]
+  ): Sample!
+}
+
+# HasStatus-Node
+interface HasStatus {
+  # internal node id
+  _id: Long
+  # id of  HasStatus
+  id: ID!
+  # HasStatus status StatusUpdate
+  status(
+    # comments of StatusUpdate
+    comments: String
+    # commentss is list variant of comments of StatusUpdate
+    commentss: [String]
+    # date of StatusUpdate
+    date: String
+    # dates is list variant of date of StatusUpdate
+    dates: [String]
+    filter: _StatusUpdateFilter
+    # id of StatusUpdate
+    id: ID
+    # ids is list variant of id of StatusUpdate
+    ids: [ID]
+    orderBy: [_StatusUpdateOrdering]
+    # rejected_reason of StatusUpdate
+    rejected_reason: Sample_Rejection_Reason_Fields
+    # rejected_reasons is list variant of rejected_reason of StatusUpdate
+    rejected_reasons: [Sample_Rejection_Reason_Fields]
+    # status of StatusUpdate
+    status: acceptedStatus
+    # statuss is list variant of status of StatusUpdate
+    statuss: [acceptedStatus]
+  ): StatusUpdate!
+}
+
+# Instrument-Node
+type Instrument {
+  # internal node id
+  _id: Long
+  # id of  Instrument
+  id: ID!
+  # name of  Instrument
+  name: String!
+  # Instrument reagents Reagent
+  reagents(
+    _id: Long
+    _ids: [Long]
+    filter: _ReagentFilter
+    first: Int
+    # id of Reagent
+    id: ID
+    # ids is list variant of id of Reagent
+    ids: [ID]
+    # name of Reagent
+    name: String
+    # names is list variant of name of Reagent
+    names: [String]
+    offset: Int
+    orderBy: [_ReagentOrdering]
+  ): [Reagent]!
+  # Instrument tests Molecular_Lab_Test
+  tests(
+    _id: Long
+    _ids: [Long]
+    # authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnoses: [String]
+    # authorized_diagnosess is list variant of authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnosess: [[String]]
+    # description of Molecular_Lab_Test
+    description: String
+    # descriptions is list variant of description of Molecular_Lab_Test
+    descriptions: [String]
+    filter: _Molecular_Lab_TestFilter
+    first: Int
+    # id of Molecular_Lab_Test
+    id: ID
+    # ids is list variant of id of Molecular_Lab_Test
+    ids: [ID]
+    # name of Molecular_Lab_Test
+    name: String
+    # name_lower of Molecular_Lab_Test
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_Test
+    name_lowers: [String]
+    # names is list variant of name of Molecular_Lab_Test
+    names: [String]
+    # ngsBased of Molecular_Lab_Test
+    ngsBased: Boolean
+    # ngsBaseds is list variant of ngsBased of Molecular_Lab_Test
+    ngsBaseds: [Boolean]
+    offset: Int
+    orderBy: [_Molecular_Lab_TestOrdering]
+  ): [Molecular_Lab_Test]!
+}
+
+# Long type
+scalar Long
+
+# Molecular_Lab_Test-Node
+type Molecular_Lab_Test {
+  # internal node id
+  _id: Long
+  # Molecular_Lab_Test acceptable_sample_type Sample_Type
+  acceptable_sample_type(
+    _id: Long
+    _ids: [Long]
+    filter: _Sample_TypeFilter
+    first: Int
+    # id of Sample_Type
+    id: ID
+    # ids is list variant of id of Sample_Type
+    ids: [ID]
+    # name of Sample_Type
+    name: String
+    # names is list variant of name of Sample_Type
+    names: [String]
+    offset: Int
+    orderBy: [_Sample_TypeOrdering]
+    # requires_pathologist_qc of Sample_Type
+    requires_pathologist_qc: Boolean
+    # requires_pathologist_qcs is list variant of requires_pathologist_qc of Sample_Type
+    requires_pathologist_qcs: [Boolean]
+  ): [Sample_Type]!
+  # Molecular_Lab_Test assays Assay
+  assays(
+    _id: Long
+    _ids: [Long]
+    filter: _AssayFilter
+    first: Int
+    # id of Assay
+    id: ID
+    # ids is list variant of id of Assay
+    ids: [ID]
+    # name of Assay
+    name: String
+    # names is list variant of name of Assay
+    names: [String]
+    offset: Int
+    orderBy: [_AssayOrdering]
+  ): [Assay]!
+  # authorized_diagnoses of  Molecular_Lab_Test
+  authorized_diagnoses: [String]!
+  # description of  Molecular_Lab_Test
+  description: String!
+  # id of  Molecular_Lab_Test
+  id: ID!
+  # Molecular_Lab_Test instruments Instrument
+  instruments(
+    _id: Long
+    _ids: [Long]
+    filter: _InstrumentFilter
+    first: Int
+    # id of Instrument
+    id: ID
+    # ids is list variant of id of Instrument
+    ids: [ID]
+    # name of Instrument
+    name: String
+    # names is list variant of name of Instrument
+    names: [String]
+    offset: Int
+    orderBy: [_InstrumentOrdering]
+  ): [Instrument]!
+  # name of  Molecular_Lab_Test
+  name: String!
+  # name_lower of  Molecular_Lab_Test
+  name_lower: String!
+  # ngsBased of  Molecular_Lab_Test
+  ngsBased: Boolean!
+  # Molecular_Lab_Test orders Order
+  orders(
+    _id: Long
+    _ids: [Long]
+    # comments of Order
+    comments: String
+    # commentss is list variant of comments of Order
+    commentss: [String]
+    # date_of_birth of Order
+    date_of_birth: String
+    # date_of_births is list variant of date_of_birth of Order
+    date_of_births: [String]
+    # diagnosis of Order
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Order
+    diagnosiss: [String]
+    filter: _OrderFilter
+    first: Int
+    # id of Order
+    id: ID
+    # ids is list variant of id of Order
+    ids: [ID]
+    # ml_order_id of Order
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Order
+    ml_order_ids: [String]
+    # mrn of Order
+    mrn: String
+    # mrns is list variant of mrn of Order
+    mrns: [String]
+    offset: Int
+    orderBy: [_OrderOrdering]
+    # order_date of Order
+    order_date: String
+    # order_dates is list variant of order_date of Order
+    order_dates: [String]
+    # patient_name of Order
+    patient_name: String
+    # patient_names is list variant of patient_name of Order
+    patient_names: [String]
+    # received_date of Order
+    received_date: String
+    # received_dates is list variant of received_date of Order
+    received_dates: [String]
+    # received_order_id of Order
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Order
+    received_order_ids: [String]
+    # rejected_once of Order
+    rejected_once: Boolean
+    # rejected_onces is list variant of rejected_once of Order
+    rejected_onces: [Boolean]
+    # search_string_lower of Order
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Order
+    search_string_lowers: [String]
+    # sex of Order
+    sex: String
+    # sexs is list variant of sex of Order
+    sexs: [String]
+  ): [Order]!
+}
+
+# Molecular_Lab_User-Node
+type Molecular_Lab_User {
+  # internal node id
+  _id: Long
+  # canApproveReagent of  Molecular_Lab_User
+  canApproveReagent: Boolean!
+  # canEditOrders of  Molecular_Lab_User
+  canEditOrders: Boolean!
+  # canEditPhysicians of  Molecular_Lab_User
+  canEditPhysicians: Boolean!
+  # canEditTests of  Molecular_Lab_User
+  canEditTests: Boolean!
+  # canEditUsers of  Molecular_Lab_User
+  canEditUsers: Boolean!
+  # canQC of  Molecular_Lab_User
+  canQC: Boolean!
+  # first_name of  Molecular_Lab_User
+  first_name: String!
+  # id of  Molecular_Lab_User
+  id: ID!
+  # last_name of  Molecular_Lab_User
+  last_name: String!
+  # name_lower of  Molecular_Lab_User
+  name_lower: String!
+  # password of  Molecular_Lab_User
+  password: String!
+  # user_name of  Molecular_Lab_User
+  user_name: String!
+}
+
+type MutationType {
+  # Adds Case to Assay entity
+  addAssayCase(case: [ID!]!, id: ID!): String
+  # Adds Protocol_steps to Assay entity
+  addAssayProtocol_steps(id: ID!, protocol_steps: [ID!]!): String
+  # Adds Start to Assay entity
+  addAssayStart(id: ID!, start: [ID!]!): String
+  # Adds Test to Assay entity
+  addAssayTest(id: ID!, test: [ID!]!): String
+  # Adds Assays to Case entity
+  addCaseAssays(assays: [ID!]!, id: ID!): String
+  # Adds Created_by to Case entity
+  addCaseCreated_by(created_by: [ID!]!, id: ID!): String
+  # Adds Order to Case entity
+  addCaseOrder(id: ID!, order: [ID!]!): String
+  # Adds Sample to Case entity
+  addCaseSample(id: ID!, sample: [ID!]!): String
+  # Adds Status to HasStatus entity
+  addHasStatusStatus(id: ID!, status: [ID!]!): String
+  # Adds Reagents to Instrument entity
+  addInstrumentReagents(id: ID!, reagents: [ID!]!): String
+  # Adds Tests to Instrument entity
+  addInstrumentTests(id: ID!, tests: [ID!]!): String
+  # Adds Acceptable_sample_type to Molecular_Lab_Test entity
+  addMolecular_Lab_TestAcceptable_sample_type(
+    acceptable_sample_type: [ID!]!
+    id: ID!
+  ): String
+  # Adds Assays to Molecular_Lab_Test entity
+  addMolecular_Lab_TestAssays(assays: [ID!]!, id: ID!): String
+  # Adds Instruments to Molecular_Lab_Test entity
+  addMolecular_Lab_TestInstruments(id: ID!, instruments: [ID!]!): String
+  # Adds Orders to Molecular_Lab_Test entity
+  addMolecular_Lab_TestOrders(id: ID!, orders: [ID!]!): String
+  # Adds Attending_physician to Order entity
+  addOrderAttending_physician(attending_physician: [ID!]!, id: ID!): String
+  # Adds Case to Order entity
+  addOrderCase(case: [ID!]!, id: ID!): String
+  # Adds Information_request to Order entity
+  addOrderInformation_request(id: ID!, information_request: [ID!]!): String
+  # Adds Ordered_by to Order entity
+  addOrderOrdered_by(id: ID!, ordered_by: [ID!]!): String
+  # Adds Status to Order entity
+  addOrderStatus(id: ID!, status: [ID!]!): String
+  # Adds Test_ordered to Order entity
+  addOrderTest_ordered(id: ID!, test_ordered: [ID!]!): String
+  # Adds Order to Order_Information_Request entity
+  addOrder_Information_RequestOrder(id: ID!, order: [ID!]!): String
+  # Adds Requested_by to Order_Information_Request entity
+  addOrder_Information_RequestRequested_by(
+    id: ID!
+    requested_by: [ID!]!
+  ): String
+  # Adds Resolved_by to Order_Information_Request entity
+  addOrder_Information_RequestResolved_by(id: ID!, resolved_by: [ID!]!): String
+  # Adds Case to Pathologist_QC entity
+  addPathologist_QCCase(case: [ID!]!, id: ID!): String
+  # Adds Qc_by to Pathologist_QC entity
+  addPathologist_QCQc_by(id: ID!, qc_by: [ID!]!): String
+  # Adds Orders to Physician entity
+  addPhysicianOrders(id: ID!, orders: [ID!]!): String
+  # Adds Completed_by to Protocol_Step entity
+  addProtocol_StepCompleted_by(completed_by: [ID!]!, id: ID!): String
+  # Adds Next_step to Protocol_Step entity
+  addProtocol_StepNext_step(id: ID!, next_step: [ID!]!): String
+  # Adds ReagentLots_used to Protocol_Step entity
+  addProtocol_StepReagentLots_used(id: ID!, reagentLots_used: [ID!]!): String
+  # Adds Reagents_required to Protocol_Step entity
+  addProtocol_StepReagents_required(id: ID!, reagents_required: [ID!]!): String
+  # Adds Started_by to Protocol_Step entity
+  addProtocol_StepStarted_by(id: ID!, started_by: [ID!]!): String
+  # Adds Current_lot to Reagent entity
+  addReagentCurrent_lot(current_lot: [ID!]!, id: ID!): String
+  # Adds Instrument to Reagent entity
+  addReagentInstrument(id: ID!, instrument: [ID!]!): String
+  # Adds Approved_by to ReagentLot entity
+  addReagentLotApproved_by(approved_by: [ID!]!, id: ID!): String
+  # Adds Qc_by to ReagentLot entity
+  addReagentLotQc_by(id: ID!, qc_by: [ID!]!): String
+  # Adds Reagent to ReagentLot entity
+  addReagentLotReagent(id: ID!, reagent: [ID!]!): String
+  # Adds Received_by to ReagentLot entity
+  addReagentLotReceived_by(id: ID!, received_by: [ID!]!): String
+  # Adds Lots to Reagent entity
+  addReagentLots(id: ID!, lots: [ID!]!): String
+  # Adds Tests to Reagent entity
+  addReagentTests(id: ID!, tests: [ID!]!): String
+  # Adds Case to Sample entity
+  addSampleCase(case: [ID!]!, id: ID!): String
+  # Adds Ordered_by to Sample entity
+  addSampleOrdered_by(id: ID!, ordered_by: [ID!]!): String
+  # Adds Pathologist_qc to Sample entity
+  addSamplePathologist_qc(id: ID!, pathologist_qc: [ID!]!): String
+  # Adds Sample_type to Sample entity
+  addSampleSample_type(id: ID!, sample_type: [ID!]!): String
+  # Adds Status to Sample entity
+  addSampleStatus(id: ID!, status: [ID!]!): String
+  # Adds By to StatusUpdate entity
+  addStatusUpdateBy(by: [ID!]!, id: ID!): String
+  # Adds HasStatus to StatusUpdate entity
+  addStatusUpdateHasStatus(hasStatus: [ID!]!, id: ID!): String
+  # Adds PreviousStatus to StatusUpdate entity
+  addStatusUpdatePreviousStatus(id: ID!, previousStatus: [ID!]!): String
+  # Creates a Assay entity
+  createAssay(id: ID!, name: String!): String
+  # Creates a Case entity
+  createCase(created_date: String!, id: ID!): String
+  # Creates a HasStatus entity
+  createHasStatus(id: ID!): String
+  # Creates a Instrument entity
+  createInstrument(id: ID!, name: String!): String
+  # Creates a Molecular_Lab_Test entity
+  createMolecular_Lab_Test(
+    authorized_diagnoses: [String]!
+    description: String!
+    id: ID!
+    name: String!
+    name_lower: String!
+    ngsBased: Boolean!
+  ): String
+  # Creates a Molecular_Lab_User entity
+  createMolecular_Lab_User(
+    canApproveReagent: Boolean!
+    canEditOrders: Boolean!
+    canEditPhysicians: Boolean!
+    canEditTests: Boolean!
+    canEditUsers: Boolean!
+    canQC: Boolean!
+    first_name: String!
+    id: ID!
+    last_name: String!
+    name_lower: String!
+    password: String!
+    user_name: String!
+  ): String
+  # Creates a Order entity
+  createOrder(
+    comments: String!
+    date_of_birth: String!
+    diagnosis: String!
+    id: ID!
+    ml_order_id: String!
+    mrn: String!
+    order_date: String!
+    patient_name: String!
+    received_date: String!
+    received_order_id: String!
+    rejected_once: Boolean!
+    search_string_lower: String!
+    sex: String!
+  ): String
+  # Creates a Order_Information_Request entity
+  createOrder_Information_Request(
+    field: Order_Information_Request_Fields!
+    id: ID!
+    requested_date: String!
+    resolved_date: String!
+  ): String
+  # Creates a Pathologist_QC entity
+  createPathologist_QC(
+    acceptance_value: QC_Acceptance_Value!
+    diagnosis: String!
+    id: ID!
+    macro_dissection_required: Boolean!
+    percent_neoplastic_cells: Float!
+    qc_date: String!
+    sample_size_mm2: Float!
+  ): String
+  # Creates a Physician entity
+  createPhysician(
+    badge_id: String!
+    degrees: String!
+    email: String!
+    first_name: String!
+    id: ID!
+    last_name: String!
+    name_lower: String!
+    phone_number: String!
+  ): String
+  # Creates a Protocol_Step entity
+  createProtocol_Step(
+    completed_date: String
+    description: String!
+    id: ID!
+    name: String!
+    started_date: String
+  ): String
+  # Creates a Reagent entity
+  createReagent(id: ID!, name: String!): String
+  # Creates a ReagentLot entity
+  createReagentLot(
+    approved_date: String
+    expiration_date: String
+    id: ID!
+    name: String!
+    qc_date: String
+    received_date: String
+    status: Reagent_Status!
+  ): String
+  # Creates a Sample entity
+  createSample(
+    collected_date: String!
+    comments: String!
+    id: ID!
+    ml_order_id: String
+    mrn: String!
+    patient_name: String!
+    received_date: String!
+    received_order_id: String!
+    sample_id: String!
+    sample_location: String!
+    search_string_lower: String!
+  ): String
+  # Creates a Sample_Type entity
+  createSample_Type(
+    id: ID!
+    name: String!
+    requires_pathologist_qc: Boolean!
+  ): String
+  # Creates a StatusUpdate entity
+  createStatusUpdate(
+    comments: String
+    date: String!
+    id: ID!
+    rejected_reason: Sample_Rejection_Reason_Fields
+    status: acceptedStatus!
+  ): String
+  # Deletes a Assay entity
+  deleteAssay(id: ID!): String
+  # Deletes Case from Assay entity
+  deleteAssayCase(case: [ID!]!, id: ID!): String
+  # Deletes Protocol_steps from Assay entity
+  deleteAssayProtocol_steps(id: ID!, protocol_steps: [ID!]!): String
+  # Deletes Start from Assay entity
+  deleteAssayStart(id: ID!, start: [ID!]!): String
+  # Deletes Test from Assay entity
+  deleteAssayTest(id: ID!, test: [ID!]!): String
+  # Deletes a Case entity
+  deleteCase(id: ID!): String
+  # Deletes Assays from Case entity
+  deleteCaseAssays(assays: [ID!]!, id: ID!): String
+  # Deletes Created_by from Case entity
+  deleteCaseCreated_by(created_by: [ID!]!, id: ID!): String
+  # Deletes Order from Case entity
+  deleteCaseOrder(id: ID!, order: [ID!]!): String
+  # Deletes Sample from Case entity
+  deleteCaseSample(id: ID!, sample: [ID!]!): String
+  # Deletes a HasStatus entity
+  deleteHasStatus(id: ID!): String
+  # Deletes Status from HasStatus entity
+  deleteHasStatusStatus(id: ID!, status: [ID!]!): String
+  # Deletes a Instrument entity
+  deleteInstrument(id: ID!): String
+  # Deletes Reagents from Instrument entity
+  deleteInstrumentReagents(id: ID!, reagents: [ID!]!): String
+  # Deletes Tests from Instrument entity
+  deleteInstrumentTests(id: ID!, tests: [ID!]!): String
+  # Deletes a Molecular_Lab_Test entity
+  deleteMolecular_Lab_Test(id: ID!): String
+  # Deletes Acceptable_sample_type from Molecular_Lab_Test entity
+  deleteMolecular_Lab_TestAcceptable_sample_type(
+    acceptable_sample_type: [ID!]!
+    id: ID!
+  ): String
+  # Deletes Assays from Molecular_Lab_Test entity
+  deleteMolecular_Lab_TestAssays(assays: [ID!]!, id: ID!): String
+  # Deletes Instruments from Molecular_Lab_Test entity
+  deleteMolecular_Lab_TestInstruments(id: ID!, instruments: [ID!]!): String
+  # Deletes Orders from Molecular_Lab_Test entity
+  deleteMolecular_Lab_TestOrders(id: ID!, orders: [ID!]!): String
+  # Deletes a Molecular_Lab_User entity
+  deleteMolecular_Lab_User(id: ID!): String
+  # Deletes a Order entity
+  deleteOrder(id: ID!): String
+  # Deletes Attending_physician from Order entity
+  deleteOrderAttending_physician(attending_physician: [ID!]!, id: ID!): String
+  # Deletes Case from Order entity
+  deleteOrderCase(case: [ID!]!, id: ID!): String
+  # Deletes Information_request from Order entity
+  deleteOrderInformation_request(id: ID!, information_request: [ID!]!): String
+  # Deletes Ordered_by from Order entity
+  deleteOrderOrdered_by(id: ID!, ordered_by: [ID!]!): String
+  # Deletes Status from Order entity
+  deleteOrderStatus(id: ID!, status: [ID!]!): String
+  # Deletes Test_ordered from Order entity
+  deleteOrderTest_ordered(id: ID!, test_ordered: [ID!]!): String
+  # Deletes a Order_Information_Request entity
+  deleteOrder_Information_Request(id: ID!): String
+  # Deletes Order from Order_Information_Request entity
+  deleteOrder_Information_RequestOrder(id: ID!, order: [ID!]!): String
+  # Deletes Requested_by from Order_Information_Request entity
+  deleteOrder_Information_RequestRequested_by(
+    id: ID!
+    requested_by: [ID!]!
+  ): String
+  # Deletes Resolved_by from Order_Information_Request entity
+  deleteOrder_Information_RequestResolved_by(
+    id: ID!
+    resolved_by: [ID!]!
+  ): String
+  # Deletes a Pathologist_QC entity
+  deletePathologist_QC(id: ID!): String
+  # Deletes Case from Pathologist_QC entity
+  deletePathologist_QCCase(case: [ID!]!, id: ID!): String
+  # Deletes Qc_by from Pathologist_QC entity
+  deletePathologist_QCQc_by(id: ID!, qc_by: [ID!]!): String
+  # Deletes a Physician entity
+  deletePhysician(id: ID!): String
+  # Deletes Orders from Physician entity
+  deletePhysicianOrders(id: ID!, orders: [ID!]!): String
+  # Deletes a Protocol_Step entity
+  deleteProtocol_Step(id: ID!): String
+  # Deletes Completed_by from Protocol_Step entity
+  deleteProtocol_StepCompleted_by(completed_by: [ID!]!, id: ID!): String
+  # Deletes Next_step from Protocol_Step entity
+  deleteProtocol_StepNext_step(id: ID!, next_step: [ID!]!): String
+  # Deletes ReagentLots_used from Protocol_Step entity
+  deleteProtocol_StepReagentLots_used(id: ID!, reagentLots_used: [ID!]!): String
+  # Deletes Reagents_required from Protocol_Step entity
+  deleteProtocol_StepReagents_required(
+    id: ID!
+    reagents_required: [ID!]!
+  ): String
+  # Deletes Started_by from Protocol_Step entity
+  deleteProtocol_StepStarted_by(id: ID!, started_by: [ID!]!): String
+  # Deletes a Reagent entity
+  deleteReagent(id: ID!): String
+  # Deletes Current_lot from Reagent entity
+  deleteReagentCurrent_lot(current_lot: [ID!]!, id: ID!): String
+  # Deletes Instrument from Reagent entity
+  deleteReagentInstrument(id: ID!, instrument: [ID!]!): String
+  # Deletes a ReagentLot entity
+  deleteReagentLot(id: ID!): String
+  # Deletes Approved_by from ReagentLot entity
+  deleteReagentLotApproved_by(approved_by: [ID!]!, id: ID!): String
+  # Deletes Qc_by from ReagentLot entity
+  deleteReagentLotQc_by(id: ID!, qc_by: [ID!]!): String
+  # Deletes Reagent from ReagentLot entity
+  deleteReagentLotReagent(id: ID!, reagent: [ID!]!): String
+  # Deletes Received_by from ReagentLot entity
+  deleteReagentLotReceived_by(id: ID!, received_by: [ID!]!): String
+  # Deletes Lots from Reagent entity
+  deleteReagentLots(id: ID!, lots: [ID!]!): String
+  # Deletes Tests from Reagent entity
+  deleteReagentTests(id: ID!, tests: [ID!]!): String
+  # Deletes a Sample entity
+  deleteSample(id: ID!): String
+  # Deletes Case from Sample entity
+  deleteSampleCase(case: [ID!]!, id: ID!): String
+  # Deletes Ordered_by from Sample entity
+  deleteSampleOrdered_by(id: ID!, ordered_by: [ID!]!): String
+  # Deletes Pathologist_qc from Sample entity
+  deleteSamplePathologist_qc(id: ID!, pathologist_qc: [ID!]!): String
+  # Deletes Sample_type from Sample entity
+  deleteSampleSample_type(id: ID!, sample_type: [ID!]!): String
+  # Deletes Status from Sample entity
+  deleteSampleStatus(id: ID!, status: [ID!]!): String
+  # Deletes a Sample_Type entity
+  deleteSample_Type(id: ID!): String
+  # Deletes a StatusUpdate entity
+  deleteStatusUpdate(id: ID!): String
+  # Deletes By from StatusUpdate entity
+  deleteStatusUpdateBy(by: [ID!]!, id: ID!): String
+  # Deletes HasStatus from StatusUpdate entity
+  deleteStatusUpdateHasStatus(hasStatus: [ID!]!, id: ID!): String
+  # Deletes PreviousStatus from StatusUpdate entity
+  deleteStatusUpdatePreviousStatus(id: ID!, previousStatus: [ID!]!): String
+  # Merge a Assay entity
+  mergeAssay(id: ID!, name: String!): String
+  # Merge a Case entity
+  mergeCase(created_date: String!, id: ID!): String
+  # Merge a HasStatus entity
+  mergeHasStatus(id: ID!): String
+  # Merge a Instrument entity
+  mergeInstrument(id: ID!, name: String!): String
+  # Merge a Molecular_Lab_Test entity
+  mergeMolecular_Lab_Test(
+    authorized_diagnoses: [String]!
+    description: String!
+    id: ID!
+    name: String!
+    name_lower: String!
+    ngsBased: Boolean!
+  ): String
+  # Merge a Molecular_Lab_User entity
+  mergeMolecular_Lab_User(
+    canApproveReagent: Boolean!
+    canEditOrders: Boolean!
+    canEditPhysicians: Boolean!
+    canEditTests: Boolean!
+    canEditUsers: Boolean!
+    canQC: Boolean!
+    first_name: String!
+    id: ID!
+    last_name: String!
+    name_lower: String!
+    password: String!
+    user_name: String!
+  ): String
+  # Merge a Order entity
+  mergeOrder(
+    comments: String!
+    date_of_birth: String!
+    diagnosis: String!
+    id: ID!
+    ml_order_id: String!
+    mrn: String!
+    order_date: String!
+    patient_name: String!
+    received_date: String!
+    received_order_id: String!
+    rejected_once: Boolean!
+    search_string_lower: String!
+    sex: String!
+  ): String
+  # Merge a Order_Information_Request entity
+  mergeOrder_Information_Request(
+    field: Order_Information_Request_Fields!
+    id: ID!
+    requested_date: String!
+    resolved_date: String!
+  ): String
+  # Merge a Pathologist_QC entity
+  mergePathologist_QC(
+    acceptance_value: QC_Acceptance_Value!
+    diagnosis: String!
+    id: ID!
+    macro_dissection_required: Boolean!
+    percent_neoplastic_cells: Float!
+    qc_date: String!
+    sample_size_mm2: Float!
+  ): String
+  # Merge a Physician entity
+  mergePhysician(
+    badge_id: String!
+    degrees: String!
+    email: String!
+    first_name: String!
+    id: ID!
+    last_name: String!
+    name_lower: String!
+    phone_number: String!
+  ): String
+  # Merge a Protocol_Step entity
+  mergeProtocol_Step(
+    completed_date: String
+    description: String!
+    id: ID!
+    name: String!
+    started_date: String
+  ): String
+  # Merge a Reagent entity
+  mergeReagent(id: ID!, name: String!): String
+  # Merge a ReagentLot entity
+  mergeReagentLot(
+    approved_date: String
+    expiration_date: String
+    id: ID!
+    name: String!
+    qc_date: String
+    received_date: String
+    status: Reagent_Status!
+  ): String
+  # Merge a Sample entity
+  mergeSample(
+    collected_date: String!
+    comments: String!
+    id: ID!
+    ml_order_id: String
+    mrn: String!
+    patient_name: String!
+    received_date: String!
+    received_order_id: String!
+    sample_id: String!
+    sample_location: String!
+    search_string_lower: String!
+  ): String
+  # Merge a Sample_Type entity
+  mergeSample_Type(
+    id: ID!
+    name: String!
+    requires_pathologist_qc: Boolean!
+  ): String
+  # Merge a StatusUpdate entity
+  mergeStatusUpdate(
+    comments: String
+    date: String!
+    id: ID!
+    rejected_reason: Sample_Rejection_Reason_Fields
+    status: acceptedStatus!
+  ): String
+  # Updates a Assay entity
+  updateAssay(id: ID!, name: String!): String
+  # Updates a Case entity
+  updateCase(created_date: String!, id: ID!): String
+  # Updates a HasStatus entity
+  updateHasStatus(id: ID!): String
+  # Updates a Instrument entity
+  updateInstrument(id: ID!, name: String!): String
+  # Updates a Molecular_Lab_Test entity
+  updateMolecular_Lab_Test(
+    authorized_diagnoses: [String]!
+    description: String!
+    id: ID!
+    name: String!
+    name_lower: String!
+    ngsBased: Boolean!
+  ): String
+  # Updates a Molecular_Lab_User entity
+  updateMolecular_Lab_User(
+    canApproveReagent: Boolean!
+    canEditOrders: Boolean!
+    canEditPhysicians: Boolean!
+    canEditTests: Boolean!
+    canEditUsers: Boolean!
+    canQC: Boolean!
+    first_name: String!
+    id: ID!
+    last_name: String!
+    name_lower: String!
+    password: String!
+    user_name: String!
+  ): String
+  # Updates a Order entity
+  updateOrder(
+    comments: String!
+    date_of_birth: String!
+    diagnosis: String!
+    id: ID!
+    ml_order_id: String!
+    mrn: String!
+    order_date: String!
+    patient_name: String!
+    received_date: String!
+    received_order_id: String!
+    rejected_once: Boolean!
+    search_string_lower: String!
+    sex: String!
+  ): String
+  # Updates a Order_Information_Request entity
+  updateOrder_Information_Request(
+    field: Order_Information_Request_Fields!
+    id: ID!
+    requested_date: String!
+    resolved_date: String!
+  ): String
+  # Updates a Pathologist_QC entity
+  updatePathologist_QC(
+    acceptance_value: QC_Acceptance_Value!
+    diagnosis: String!
+    id: ID!
+    macro_dissection_required: Boolean!
+    percent_neoplastic_cells: Float!
+    qc_date: String!
+    sample_size_mm2: Float!
+  ): String
+  # Updates a Physician entity
+  updatePhysician(
+    badge_id: String!
+    degrees: String!
+    email: String!
+    first_name: String!
+    id: ID!
+    last_name: String!
+    name_lower: String!
+    phone_number: String!
+  ): String
+  # Updates a Protocol_Step entity
+  updateProtocol_Step(
+    completed_date: String
+    description: String!
+    id: ID!
+    name: String!
+    started_date: String
+  ): String
+  # Updates a Reagent entity
+  updateReagent(id: ID!, name: String!): String
+  # Updates a ReagentLot entity
+  updateReagentLot(
+    approved_date: String
+    expiration_date: String
+    id: ID!
+    name: String!
+    qc_date: String
+    received_date: String
+    status: Reagent_Status!
+  ): String
+  # Updates a Sample entity
+  updateSample(
+    collected_date: String!
+    comments: String!
+    id: ID!
+    ml_order_id: String
+    mrn: String!
+    patient_name: String!
+    received_date: String!
+    received_order_id: String!
+    sample_id: String!
+    sample_location: String!
+    search_string_lower: String!
+  ): String
+  # Updates a Sample_Type entity
+  updateSample_Type(
+    id: ID!
+    name: String!
+    requires_pathologist_qc: Boolean!
+  ): String
+  # Updates a StatusUpdate entity
+  updateStatusUpdate(
+    comments: String
+    date: String!
+    id: ID!
+    rejected_reason: Sample_Rejection_Reason_Fields
+    status: acceptedStatus!
+  ): String
+}
+
+# Order-Node
+type Order implements HasStatus {
+  # internal node id
+  _id: Long
+  # Order attending_physician Physician
+  attending_physician(
+    # badge_id of Physician
+    badge_id: String
+    # badge_ids is list variant of badge_id of Physician
+    badge_ids: [String]
+    # degrees of Physician
+    degrees: String
+    # degreess is list variant of degrees of Physician
+    degreess: [String]
+    # email of Physician
+    email: String
+    # emails is list variant of email of Physician
+    emails: [String]
+    filter: _PhysicianFilter
+    # first_name of Physician
+    first_name: String
+    # first_names is list variant of first_name of Physician
+    first_names: [String]
+    # id of Physician
+    id: ID
+    # ids is list variant of id of Physician
+    ids: [ID]
+    # last_name of Physician
+    last_name: String
+    # last_names is list variant of last_name of Physician
+    last_names: [String]
+    # name_lower of Physician
+    name_lower: String
+    # name_lowers is list variant of name_lower of Physician
+    name_lowers: [String]
+    orderBy: [_PhysicianOrdering]
+    # phone_number of Physician
+    phone_number: String
+    # phone_numbers is list variant of phone_number of Physician
+    phone_numbers: [String]
+  ): Physician!
+  # Order case Case
+  case(
+    # created_date of Case
+    created_date: String
+    # created_dates is list variant of created_date of Case
+    created_dates: [String]
+    filter: _CaseFilter
+    # id of Case
+    id: ID
+    # ids is list variant of id of Case
+    ids: [ID]
+    orderBy: [_CaseOrdering]
+  ): Case
+  # comments of  Order
+  comments: String!
+  # date_of_birth of  Order
+  date_of_birth: String!
+  # diagnosis of  Order
+  diagnosis: String!
+  # id of  Order
+  id: ID!
+  # Order information_request Order_Information_Request
+  information_request(
+    _id: Long
+    _ids: [Long]
+    # field of Order_Information_Request
+    field: Order_Information_Request_Fields
+    # fields is list variant of field of Order_Information_Request
+    fields: [Order_Information_Request_Fields]
+    filter: _Order_Information_RequestFilter
+    first: Int
+    # id of Order_Information_Request
+    id: ID
+    # ids is list variant of id of Order_Information_Request
+    ids: [ID]
+    offset: Int
+    orderBy: [_Order_Information_RequestOrdering]
+    # requested_date of Order_Information_Request
+    requested_date: String
+    # requested_dates is list variant of requested_date of Order_Information_Request
+    requested_dates: [String]
+    # resolved_date of Order_Information_Request
+    resolved_date: String
+    # resolved_dates is list variant of resolved_date of Order_Information_Request
+    resolved_dates: [String]
+  ): [Order_Information_Request]!
+  # ml_order_id of  Order
+  ml_order_id: String!
+  # mrn of  Order
+  mrn: String!
+  # order_date of  Order
+  order_date: String!
+  # Order ordered_by Physician
+  ordered_by(
+    # badge_id of Physician
+    badge_id: String
+    # badge_ids is list variant of badge_id of Physician
+    badge_ids: [String]
+    # degrees of Physician
+    degrees: String
+    # degreess is list variant of degrees of Physician
+    degreess: [String]
+    # email of Physician
+    email: String
+    # emails is list variant of email of Physician
+    emails: [String]
+    filter: _PhysicianFilter
+    # first_name of Physician
+    first_name: String
+    # first_names is list variant of first_name of Physician
+    first_names: [String]
+    # id of Physician
+    id: ID
+    # ids is list variant of id of Physician
+    ids: [ID]
+    # last_name of Physician
+    last_name: String
+    # last_names is list variant of last_name of Physician
+    last_names: [String]
+    # name_lower of Physician
+    name_lower: String
+    # name_lowers is list variant of name_lower of Physician
+    name_lowers: [String]
+    orderBy: [_PhysicianOrdering]
+    # phone_number of Physician
+    phone_number: String
+    # phone_numbers is list variant of phone_number of Physician
+    phone_numbers: [String]
+  ): Physician!
+  # patient_name of  Order
+  patient_name: String!
+  # received_date of  Order
+  received_date: String!
+  # received_order_id of  Order
+  received_order_id: String!
+  # rejected_once of  Order
+  rejected_once: Boolean!
+  # search_string_lower of  Order
+  search_string_lower: String!
+  # sex of  Order
+  sex: String!
+  # Order status StatusUpdate
+  status(
+    # comments of StatusUpdate
+    comments: String
+    # commentss is list variant of comments of StatusUpdate
+    commentss: [String]
+    # date of StatusUpdate
+    date: String
+    # dates is list variant of date of StatusUpdate
+    dates: [String]
+    filter: _StatusUpdateFilter
+    # id of StatusUpdate
+    id: ID
+    # ids is list variant of id of StatusUpdate
+    ids: [ID]
+    orderBy: [_StatusUpdateOrdering]
+    # rejected_reason of StatusUpdate
+    rejected_reason: Sample_Rejection_Reason_Fields
+    # rejected_reasons is list variant of rejected_reason of StatusUpdate
+    rejected_reasons: [Sample_Rejection_Reason_Fields]
+    # status of StatusUpdate
+    status: acceptedStatus
+    # statuss is list variant of status of StatusUpdate
+    statuss: [acceptedStatus]
+  ): StatusUpdate!
+  # Order test_ordered Molecular_Lab_Test
+  test_ordered(
+    # authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnoses: [String]
+    # authorized_diagnosess is list variant of authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnosess: [[String]]
+    # description of Molecular_Lab_Test
+    description: String
+    # descriptions is list variant of description of Molecular_Lab_Test
+    descriptions: [String]
+    filter: _Molecular_Lab_TestFilter
+    # id of Molecular_Lab_Test
+    id: ID
+    # ids is list variant of id of Molecular_Lab_Test
+    ids: [ID]
+    # name of Molecular_Lab_Test
+    name: String
+    # name_lower of Molecular_Lab_Test
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_Test
+    name_lowers: [String]
+    # names is list variant of name of Molecular_Lab_Test
+    names: [String]
+    # ngsBased of Molecular_Lab_Test
+    ngsBased: Boolean
+    # ngsBaseds is list variant of ngsBased of Molecular_Lab_Test
+    ngsBaseds: [Boolean]
+    orderBy: [_Molecular_Lab_TestOrdering]
+  ): Molecular_Lab_Test!
+}
+
+# Order_Information_Request-Node
+type Order_Information_Request {
+  # internal node id
+  _id: Long
+  # field of  Order_Information_Request
+  field: Order_Information_Request_Fields!
+  # id of  Order_Information_Request
+  id: ID!
+  # Order_Information_Request order Order
+  order(
+    _id: Long
+    _ids: [Long]
+    # comments of Order
+    comments: String
+    # commentss is list variant of comments of Order
+    commentss: [String]
+    # date_of_birth of Order
+    date_of_birth: String
+    # date_of_births is list variant of date_of_birth of Order
+    date_of_births: [String]
+    # diagnosis of Order
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Order
+    diagnosiss: [String]
+    filter: _OrderFilter
+    first: Int
+    # id of Order
+    id: ID
+    # ids is list variant of id of Order
+    ids: [ID]
+    # ml_order_id of Order
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Order
+    ml_order_ids: [String]
+    # mrn of Order
+    mrn: String
+    # mrns is list variant of mrn of Order
+    mrns: [String]
+    offset: Int
+    orderBy: [_OrderOrdering]
+    # order_date of Order
+    order_date: String
+    # order_dates is list variant of order_date of Order
+    order_dates: [String]
+    # patient_name of Order
+    patient_name: String
+    # patient_names is list variant of patient_name of Order
+    patient_names: [String]
+    # received_date of Order
+    received_date: String
+    # received_dates is list variant of received_date of Order
+    received_dates: [String]
+    # received_order_id of Order
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Order
+    received_order_ids: [String]
+    # rejected_once of Order
+    rejected_once: Boolean
+    # rejected_onces is list variant of rejected_once of Order
+    rejected_onces: [Boolean]
+    # search_string_lower of Order
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Order
+    search_string_lowers: [String]
+    # sex of Order
+    sex: String
+    # sexs is list variant of sex of Order
+    sexs: [String]
+  ): [Order]!
+  # Order_Information_Request requested_by Molecular_Lab_User
+  requested_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User!
+  # requested_date of  Order_Information_Request
+  requested_date: String!
+  # Order_Information_Request resolved_by Molecular_Lab_User
+  resolved_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User
+  # resolved_date of  Order_Information_Request
+  resolved_date: String!
+}
+
+# Enum for Order_Information_Request_Fields
+enum Order_Information_Request_Fields {
+  # Value for attending_physician
+  attending_physician
+  # Value for date_of_birth
+  date_of_birth
+  # Value for diagnosis
+  diagnosis
+  # Value for mrn
+  mrn
+  # Value for none
+  none
+  # Value for ordered_by
+  ordered_by
+  # Value for other
+  other
+  # Value for patient_name
+  patient_name
+  # Value for sex
+  sex
+  # Value for tests_ordered
+  tests_ordered
+}
+
+# Pathologist_QC-Node
+type Pathologist_QC {
+  # internal node id
+  _id: Long
+  # acceptance_value of  Pathologist_QC
+  acceptance_value: QC_Acceptance_Value!
+  # Pathologist_QC case Case
+  case(
+    # created_date of Case
+    created_date: String
+    # created_dates is list variant of created_date of Case
+    created_dates: [String]
+    filter: _CaseFilter
+    # id of Case
+    id: ID
+    # ids is list variant of id of Case
+    ids: [ID]
+    orderBy: [_CaseOrdering]
+  ): Case
+  # diagnosis of  Pathologist_QC
+  diagnosis: String!
+  # id of  Pathologist_QC
+  id: ID!
+  # macro_dissection_required of  Pathologist_QC
+  macro_dissection_required: Boolean!
+  # percent_neoplastic_cells of  Pathologist_QC
+  percent_neoplastic_cells: Float!
+  # Pathologist_QC qc_by Molecular_Lab_User
+  qc_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User!
+  # qc_date of  Pathologist_QC
+  qc_date: String!
+  # sample_size_mm2 of  Pathologist_QC
+  sample_size_mm2: Float!
+}
+
+# Physician-Node
+type Physician {
+  # internal node id
+  _id: Long
+  # badge_id of  Physician
+  badge_id: String!
+  # degrees of  Physician
+  degrees: String!
+  # email of  Physician
+  email: String!
+  # first_name of  Physician
+  first_name: String!
+  # id of  Physician
+  id: ID!
+  # last_name of  Physician
+  last_name: String!
+  # name_lower of  Physician
+  name_lower: String!
+  # Physician orders Order
+  orders(
+    _id: Long
+    _ids: [Long]
+    # comments of Order
+    comments: String
+    # commentss is list variant of comments of Order
+    commentss: [String]
+    # date_of_birth of Order
+    date_of_birth: String
+    # date_of_births is list variant of date_of_birth of Order
+    date_of_births: [String]
+    # diagnosis of Order
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Order
+    diagnosiss: [String]
+    filter: _OrderFilter
+    first: Int
+    # id of Order
+    id: ID
+    # ids is list variant of id of Order
+    ids: [ID]
+    # ml_order_id of Order
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Order
+    ml_order_ids: [String]
+    # mrn of Order
+    mrn: String
+    # mrns is list variant of mrn of Order
+    mrns: [String]
+    offset: Int
+    orderBy: [_OrderOrdering]
+    # order_date of Order
+    order_date: String
+    # order_dates is list variant of order_date of Order
+    order_dates: [String]
+    # patient_name of Order
+    patient_name: String
+    # patient_names is list variant of patient_name of Order
+    patient_names: [String]
+    # received_date of Order
+    received_date: String
+    # received_dates is list variant of received_date of Order
+    received_dates: [String]
+    # received_order_id of Order
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Order
+    received_order_ids: [String]
+    # rejected_once of Order
+    rejected_once: Boolean
+    # rejected_onces is list variant of rejected_once of Order
+    rejected_onces: [Boolean]
+    # search_string_lower of Order
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Order
+    search_string_lowers: [String]
+    # sex of Order
+    sex: String
+    # sexs is list variant of sex of Order
+    sexs: [String]
+  ): [Order]!
+  # phone_number of  Physician
+  phone_number: String!
+}
+
+# Protocol_Step-Node
+type Protocol_Step {
+  # internal node id
+  _id: Long
+  # Protocol_Step completed_by Molecular_Lab_User
+  completed_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User
+  # completed_date of  Protocol_Step
+  completed_date: String
+  # description of  Protocol_Step
+  description: String!
+  # id of  Protocol_Step
+  id: ID!
+  # name of  Protocol_Step
+  name: String!
+  # Protocol_Step next_step Protocol_Step
+  next_step(
+    # completed_date of Protocol_Step
+    completed_date: String
+    # completed_dates is list variant of completed_date of Protocol_Step
+    completed_dates: [String]
+    # description of Protocol_Step
+    description: String
+    # descriptions is list variant of description of Protocol_Step
+    descriptions: [String]
+    filter: _Protocol_StepFilter
+    # id of Protocol_Step
+    id: ID
+    # ids is list variant of id of Protocol_Step
+    ids: [ID]
+    # name of Protocol_Step
+    name: String
+    # names is list variant of name of Protocol_Step
+    names: [String]
+    orderBy: [_Protocol_StepOrdering]
+    # started_date of Protocol_Step
+    started_date: String
+    # started_dates is list variant of started_date of Protocol_Step
+    started_dates: [String]
+  ): Protocol_Step
+  # Protocol_Step reagentLots_used ReagentLot
+  reagentLots_used(
+    _id: Long
+    _ids: [Long]
+    # approved_date of ReagentLot
+    approved_date: String
+    # approved_dates is list variant of approved_date of ReagentLot
+    approved_dates: [String]
+    # expiration_date of ReagentLot
+    expiration_date: String
+    # expiration_dates is list variant of expiration_date of ReagentLot
+    expiration_dates: [String]
+    filter: _ReagentLotFilter
+    first: Int
+    # id of ReagentLot
+    id: ID
+    # ids is list variant of id of ReagentLot
+    ids: [ID]
+    # name of ReagentLot
+    name: String
+    # names is list variant of name of ReagentLot
+    names: [String]
+    offset: Int
+    orderBy: [_ReagentLotOrdering]
+    # qc_date of ReagentLot
+    qc_date: String
+    # qc_dates is list variant of qc_date of ReagentLot
+    qc_dates: [String]
+    # received_date of ReagentLot
+    received_date: String
+    # received_dates is list variant of received_date of ReagentLot
+    received_dates: [String]
+    # status of ReagentLot
+    status: Reagent_Status
+    # statuss is list variant of status of ReagentLot
+    statuss: [Reagent_Status]
+  ): [ReagentLot]!
+  # Protocol_Step reagents_required Reagent
+  reagents_required(
+    _id: Long
+    _ids: [Long]
+    filter: _ReagentFilter
+    first: Int
+    # id of Reagent
+    id: ID
+    # ids is list variant of id of Reagent
+    ids: [ID]
+    # name of Reagent
+    name: String
+    # names is list variant of name of Reagent
+    names: [String]
+    offset: Int
+    orderBy: [_ReagentOrdering]
+  ): [Reagent]!
+  # Protocol_Step started_by Molecular_Lab_User
+  started_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User
+  # started_date of  Protocol_Step
+  started_date: String
+}
+
+# Enum for QC_Acceptance_Value
+enum QC_Acceptance_Value {
+  # Value for accepted
+  accepted
+  # Value for rejected
+  rejected
+}
+
+type QueryType {
+  Assay(
+    _id: Long
+    _ids: [Long]
+    filter: _AssayFilter
+    first: Int
+    # id of Assay
+    id: ID
+    # ids is list variant of id of Assay
+    ids: [ID]
+    # name of Assay
+    name: String
+    # names is list variant of name of Assay
+    names: [String]
+    offset: Int
+    orderBy: [_AssayOrdering]
+  ): [Assay]
+  Case(
+    _id: Long
+    _ids: [Long]
+    # created_date of Case
+    created_date: String
+    # created_dates is list variant of created_date of Case
+    created_dates: [String]
+    filter: _CaseFilter
+    first: Int
+    # id of Case
+    id: ID
+    # ids is list variant of id of Case
+    ids: [ID]
+    offset: Int
+    orderBy: [_CaseOrdering]
+  ): [Case]
+  HasStatus(
+    _id: Long
+    _ids: [Long]
+    filter: _HasStatusFilter
+    first: Int
+    # id of HasStatus
+    id: ID
+    # ids is list variant of id of HasStatus
+    ids: [ID]
+    offset: Int
+    orderBy: [_HasStatusOrdering]
+  ): [HasStatus]
+  Instrument(
+    _id: Long
+    _ids: [Long]
+    filter: _InstrumentFilter
+    first: Int
+    # id of Instrument
+    id: ID
+    # ids is list variant of id of Instrument
+    ids: [ID]
+    # name of Instrument
+    name: String
+    # names is list variant of name of Instrument
+    names: [String]
+    offset: Int
+    orderBy: [_InstrumentOrdering]
+  ): [Instrument]
+  Molecular_Lab_Test(
+    _id: Long
+    _ids: [Long]
+    # authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnoses: [String]
+    # authorized_diagnosess is list variant of authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnosess: [[String]]
+    # description of Molecular_Lab_Test
+    description: String
+    # descriptions is list variant of description of Molecular_Lab_Test
+    descriptions: [String]
+    filter: _Molecular_Lab_TestFilter
+    first: Int
+    # id of Molecular_Lab_Test
+    id: ID
+    # ids is list variant of id of Molecular_Lab_Test
+    ids: [ID]
+    # name of Molecular_Lab_Test
+    name: String
+    # name_lower of Molecular_Lab_Test
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_Test
+    name_lowers: [String]
+    # names is list variant of name of Molecular_Lab_Test
+    names: [String]
+    # ngsBased of Molecular_Lab_Test
+    ngsBased: Boolean
+    # ngsBaseds is list variant of ngsBased of Molecular_Lab_Test
+    ngsBaseds: [Boolean]
+    offset: Int
+    orderBy: [_Molecular_Lab_TestOrdering]
+  ): [Molecular_Lab_Test]
+  Molecular_Lab_User(
+    _id: Long
+    _ids: [Long]
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    first: Int
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    offset: Int
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): [Molecular_Lab_User]
+  Order(
+    _id: Long
+    _ids: [Long]
+    # comments of Order
+    comments: String
+    # commentss is list variant of comments of Order
+    commentss: [String]
+    # date_of_birth of Order
+    date_of_birth: String
+    # date_of_births is list variant of date_of_birth of Order
+    date_of_births: [String]
+    # diagnosis of Order
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Order
+    diagnosiss: [String]
+    filter: _OrderFilter
+    first: Int
+    # id of Order
+    id: ID
+    # ids is list variant of id of Order
+    ids: [ID]
+    # ml_order_id of Order
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Order
+    ml_order_ids: [String]
+    # mrn of Order
+    mrn: String
+    # mrns is list variant of mrn of Order
+    mrns: [String]
+    offset: Int
+    orderBy: [_OrderOrdering]
+    # order_date of Order
+    order_date: String
+    # order_dates is list variant of order_date of Order
+    order_dates: [String]
+    # patient_name of Order
+    patient_name: String
+    # patient_names is list variant of patient_name of Order
+    patient_names: [String]
+    # received_date of Order
+    received_date: String
+    # received_dates is list variant of received_date of Order
+    received_dates: [String]
+    # received_order_id of Order
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Order
+    received_order_ids: [String]
+    # rejected_once of Order
+    rejected_once: Boolean
+    # rejected_onces is list variant of rejected_once of Order
+    rejected_onces: [Boolean]
+    # search_string_lower of Order
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Order
+    search_string_lowers: [String]
+    # sex of Order
+    sex: String
+    # sexs is list variant of sex of Order
+    sexs: [String]
+  ): [Order]
+  Order_Information_Request(
+    _id: Long
+    _ids: [Long]
+    # field of Order_Information_Request
+    field: Order_Information_Request_Fields
+    # fields is list variant of field of Order_Information_Request
+    fields: [Order_Information_Request_Fields]
+    filter: _Order_Information_RequestFilter
+    first: Int
+    # id of Order_Information_Request
+    id: ID
+    # ids is list variant of id of Order_Information_Request
+    ids: [ID]
+    offset: Int
+    orderBy: [_Order_Information_RequestOrdering]
+    # requested_date of Order_Information_Request
+    requested_date: String
+    # requested_dates is list variant of requested_date of Order_Information_Request
+    requested_dates: [String]
+    # resolved_date of Order_Information_Request
+    resolved_date: String
+    # resolved_dates is list variant of resolved_date of Order_Information_Request
+    resolved_dates: [String]
+  ): [Order_Information_Request]
+  Pathologist_QC(
+    _id: Long
+    _ids: [Long]
+    # acceptance_value of Pathologist_QC
+    acceptance_value: QC_Acceptance_Value
+    # acceptance_values is list variant of acceptance_value of Pathologist_QC
+    acceptance_values: [QC_Acceptance_Value]
+    # diagnosis of Pathologist_QC
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Pathologist_QC
+    diagnosiss: [String]
+    filter: _Pathologist_QCFilter
+    first: Int
+    # id of Pathologist_QC
+    id: ID
+    # ids is list variant of id of Pathologist_QC
+    ids: [ID]
+    # macro_dissection_required of Pathologist_QC
+    macro_dissection_required: Boolean
+    # macro_dissection_requireds is list variant of macro_dissection_required of Pathologist_QC
+    macro_dissection_requireds: [Boolean]
+    offset: Int
+    orderBy: [_Pathologist_QCOrdering]
+    # percent_neoplastic_cells of Pathologist_QC
+    percent_neoplastic_cells: Float
+    # percent_neoplastic_cellss is list variant of percent_neoplastic_cells of Pathologist_QC
+    percent_neoplastic_cellss: [Float]
+    # qc_date of Pathologist_QC
+    qc_date: String
+    # qc_dates is list variant of qc_date of Pathologist_QC
+    qc_dates: [String]
+    # sample_size_mm2 of Pathologist_QC
+    sample_size_mm2: Float
+    # sample_size_mm2s is list variant of sample_size_mm2 of Pathologist_QC
+    sample_size_mm2s: [Float]
+  ): [Pathologist_QC]
+  Physician(
+    _id: Long
+    _ids: [Long]
+    # badge_id of Physician
+    badge_id: String
+    # badge_ids is list variant of badge_id of Physician
+    badge_ids: [String]
+    # degrees of Physician
+    degrees: String
+    # degreess is list variant of degrees of Physician
+    degreess: [String]
+    # email of Physician
+    email: String
+    # emails is list variant of email of Physician
+    emails: [String]
+    filter: _PhysicianFilter
+    first: Int
+    # first_name of Physician
+    first_name: String
+    # first_names is list variant of first_name of Physician
+    first_names: [String]
+    # id of Physician
+    id: ID
+    # ids is list variant of id of Physician
+    ids: [ID]
+    # last_name of Physician
+    last_name: String
+    # last_names is list variant of last_name of Physician
+    last_names: [String]
+    # name_lower of Physician
+    name_lower: String
+    # name_lowers is list variant of name_lower of Physician
+    name_lowers: [String]
+    offset: Int
+    orderBy: [_PhysicianOrdering]
+    # phone_number of Physician
+    phone_number: String
+    # phone_numbers is list variant of phone_number of Physician
+    phone_numbers: [String]
+  ): [Physician]
+  Protocol_Step(
+    _id: Long
+    _ids: [Long]
+    # completed_date of Protocol_Step
+    completed_date: String
+    # completed_dates is list variant of completed_date of Protocol_Step
+    completed_dates: [String]
+    # description of Protocol_Step
+    description: String
+    # descriptions is list variant of description of Protocol_Step
+    descriptions: [String]
+    filter: _Protocol_StepFilter
+    first: Int
+    # id of Protocol_Step
+    id: ID
+    # ids is list variant of id of Protocol_Step
+    ids: [ID]
+    # name of Protocol_Step
+    name: String
+    # names is list variant of name of Protocol_Step
+    names: [String]
+    offset: Int
+    orderBy: [_Protocol_StepOrdering]
+    # started_date of Protocol_Step
+    started_date: String
+    # started_dates is list variant of started_date of Protocol_Step
+    started_dates: [String]
+  ): [Protocol_Step]
+  Reagent(
+    _id: Long
+    _ids: [Long]
+    filter: _ReagentFilter
+    first: Int
+    # id of Reagent
+    id: ID
+    # ids is list variant of id of Reagent
+    ids: [ID]
+    # name of Reagent
+    name: String
+    # names is list variant of name of Reagent
+    names: [String]
+    offset: Int
+    orderBy: [_ReagentOrdering]
+  ): [Reagent]
+  ReagentLot(
+    _id: Long
+    _ids: [Long]
+    # approved_date of ReagentLot
+    approved_date: String
+    # approved_dates is list variant of approved_date of ReagentLot
+    approved_dates: [String]
+    # expiration_date of ReagentLot
+    expiration_date: String
+    # expiration_dates is list variant of expiration_date of ReagentLot
+    expiration_dates: [String]
+    filter: _ReagentLotFilter
+    first: Int
+    # id of ReagentLot
+    id: ID
+    # ids is list variant of id of ReagentLot
+    ids: [ID]
+    # name of ReagentLot
+    name: String
+    # names is list variant of name of ReagentLot
+    names: [String]
+    offset: Int
+    orderBy: [_ReagentLotOrdering]
+    # qc_date of ReagentLot
+    qc_date: String
+    # qc_dates is list variant of qc_date of ReagentLot
+    qc_dates: [String]
+    # received_date of ReagentLot
+    received_date: String
+    # received_dates is list variant of received_date of ReagentLot
+    received_dates: [String]
+    # status of ReagentLot
+    status: Reagent_Status
+    # statuss is list variant of status of ReagentLot
+    statuss: [Reagent_Status]
+  ): [ReagentLot]
+  Sample(
+    _id: Long
+    _ids: [Long]
+    # collected_date of Sample
+    collected_date: String
+    # collected_dates is list variant of collected_date of Sample
+    collected_dates: [String]
+    # comments of Sample
+    comments: String
+    # commentss is list variant of comments of Sample
+    commentss: [String]
+    filter: _SampleFilter
+    first: Int
+    # id of Sample
+    id: ID
+    # ids is list variant of id of Sample
+    ids: [ID]
+    # ml_order_id of Sample
+    ml_order_id: String
+    # ml_order_ids is list variant of ml_order_id of Sample
+    ml_order_ids: [String]
+    # mrn of Sample
+    mrn: String
+    # mrns is list variant of mrn of Sample
+    mrns: [String]
+    offset: Int
+    orderBy: [_SampleOrdering]
+    # patient_name of Sample
+    patient_name: String
+    # patient_names is list variant of patient_name of Sample
+    patient_names: [String]
+    # received_date of Sample
+    received_date: String
+    # received_dates is list variant of received_date of Sample
+    received_dates: [String]
+    # received_order_id of Sample
+    received_order_id: String
+    # received_order_ids is list variant of received_order_id of Sample
+    received_order_ids: [String]
+    # sample_id of Sample
+    sample_id: String
+    # sample_ids is list variant of sample_id of Sample
+    sample_ids: [String]
+    # sample_location of Sample
+    sample_location: String
+    # sample_locations is list variant of sample_location of Sample
+    sample_locations: [String]
+    # search_string_lower of Sample
+    search_string_lower: String
+    # search_string_lowers is list variant of search_string_lower of Sample
+    search_string_lowers: [String]
+  ): [Sample]
+  Sample_Type(
+    _id: Long
+    _ids: [Long]
+    filter: _Sample_TypeFilter
+    first: Int
+    # id of Sample_Type
+    id: ID
+    # ids is list variant of id of Sample_Type
+    ids: [ID]
+    # name of Sample_Type
+    name: String
+    # names is list variant of name of Sample_Type
+    names: [String]
+    offset: Int
+    orderBy: [_Sample_TypeOrdering]
+    # requires_pathologist_qc of Sample_Type
+    requires_pathologist_qc: Boolean
+    # requires_pathologist_qcs is list variant of requires_pathologist_qc of Sample_Type
+    requires_pathologist_qcs: [Boolean]
+  ): [Sample_Type]
+  StatusUpdate(
+    _id: Long
+    _ids: [Long]
+    # comments of StatusUpdate
+    comments: String
+    # commentss is list variant of comments of StatusUpdate
+    commentss: [String]
+    # date of StatusUpdate
+    date: String
+    # dates is list variant of date of StatusUpdate
+    dates: [String]
+    filter: _StatusUpdateFilter
+    first: Int
+    # id of StatusUpdate
+    id: ID
+    # ids is list variant of id of StatusUpdate
+    ids: [ID]
+    offset: Int
+    orderBy: [_StatusUpdateOrdering]
+    # rejected_reason of StatusUpdate
+    rejected_reason: Sample_Rejection_Reason_Fields
+    # rejected_reasons is list variant of rejected_reason of StatusUpdate
+    rejected_reasons: [Sample_Rejection_Reason_Fields]
+    # status of StatusUpdate
+    status: acceptedStatus
+    # statuss is list variant of status of StatusUpdate
+    statuss: [acceptedStatus]
+  ): [StatusUpdate]
+}
+
+# Reagent-Node
+type Reagent {
+  # internal node id
+  _id: Long
+  # Reagent current_lot ReagentLot
+  current_lot(
+    # approved_date of ReagentLot
+    approved_date: String
+    # approved_dates is list variant of approved_date of ReagentLot
+    approved_dates: [String]
+    # expiration_date of ReagentLot
+    expiration_date: String
+    # expiration_dates is list variant of expiration_date of ReagentLot
+    expiration_dates: [String]
+    filter: _ReagentLotFilter
+    # id of ReagentLot
+    id: ID
+    # ids is list variant of id of ReagentLot
+    ids: [ID]
+    # name of ReagentLot
+    name: String
+    # names is list variant of name of ReagentLot
+    names: [String]
+    orderBy: [_ReagentLotOrdering]
+    # qc_date of ReagentLot
+    qc_date: String
+    # qc_dates is list variant of qc_date of ReagentLot
+    qc_dates: [String]
+    # received_date of ReagentLot
+    received_date: String
+    # received_dates is list variant of received_date of ReagentLot
+    received_dates: [String]
+    # status of ReagentLot
+    status: Reagent_Status
+    # statuss is list variant of status of ReagentLot
+    statuss: [Reagent_Status]
+  ): ReagentLot
+  # id of  Reagent
+  id: ID!
+  # Reagent instrument Instrument
+  instrument(
+    filter: _InstrumentFilter
+    # id of Instrument
+    id: ID
+    # ids is list variant of id of Instrument
+    ids: [ID]
+    # name of Instrument
+    name: String
+    # names is list variant of name of Instrument
+    names: [String]
+    orderBy: [_InstrumentOrdering]
+  ): Instrument!
+  # Reagent lots ReagentLot
+  lots(
+    _id: Long
+    _ids: [Long]
+    # approved_date of ReagentLot
+    approved_date: String
+    # approved_dates is list variant of approved_date of ReagentLot
+    approved_dates: [String]
+    # expiration_date of ReagentLot
+    expiration_date: String
+    # expiration_dates is list variant of expiration_date of ReagentLot
+    expiration_dates: [String]
+    filter: _ReagentLotFilter
+    first: Int
+    # id of ReagentLot
+    id: ID
+    # ids is list variant of id of ReagentLot
+    ids: [ID]
+    # name of ReagentLot
+    name: String
+    # names is list variant of name of ReagentLot
+    names: [String]
+    offset: Int
+    orderBy: [_ReagentLotOrdering]
+    # qc_date of ReagentLot
+    qc_date: String
+    # qc_dates is list variant of qc_date of ReagentLot
+    qc_dates: [String]
+    # received_date of ReagentLot
+    received_date: String
+    # received_dates is list variant of received_date of ReagentLot
+    received_dates: [String]
+    # status of ReagentLot
+    status: Reagent_Status
+    # statuss is list variant of status of ReagentLot
+    statuss: [Reagent_Status]
+  ): [ReagentLot]!
+  # name of  Reagent
+  name: String!
+  # Reagent tests Molecular_Lab_Test
+  tests(
+    _id: Long
+    _ids: [Long]
+    # authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnoses: [String]
+    # authorized_diagnosess is list variant of authorized_diagnoses of Molecular_Lab_Test
+    authorized_diagnosess: [[String]]
+    # description of Molecular_Lab_Test
+    description: String
+    # descriptions is list variant of description of Molecular_Lab_Test
+    descriptions: [String]
+    filter: _Molecular_Lab_TestFilter
+    first: Int
+    # id of Molecular_Lab_Test
+    id: ID
+    # ids is list variant of id of Molecular_Lab_Test
+    ids: [ID]
+    # name of Molecular_Lab_Test
+    name: String
+    # name_lower of Molecular_Lab_Test
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_Test
+    name_lowers: [String]
+    # names is list variant of name of Molecular_Lab_Test
+    names: [String]
+    # ngsBased of Molecular_Lab_Test
+    ngsBased: Boolean
+    # ngsBaseds is list variant of ngsBased of Molecular_Lab_Test
+    ngsBaseds: [Boolean]
+    offset: Int
+    orderBy: [_Molecular_Lab_TestOrdering]
+  ): [Molecular_Lab_Test]!
+}
+
+# Enum for Reagent_Status
+enum Reagent_Status {
+  # Value for approved
+  approved
+  # Value for expired
+  expired
+  # Value for failed_qc
+  failed_qc
+  # Value for none
+  none
+  # Value for passed_qc
+  passed_qc
+  # Value for received
+  received
+}
+
+# ReagentLot-Node
+type ReagentLot {
+  # internal node id
+  _id: Long
+  # ReagentLot approved_by Molecular_Lab_User
+  approved_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User
+  # approved_date of  ReagentLot
+  approved_date: String
+  # expiration_date of  ReagentLot
+  expiration_date: String
+  # id of  ReagentLot
+  id: ID!
+  # name of  ReagentLot
+  name: String!
+  # ReagentLot qc_by Molecular_Lab_User
+  qc_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User
+  # qc_date of  ReagentLot
+  qc_date: String
+  # ReagentLot reagent Reagent
+  reagent(
+    filter: _ReagentFilter
+    # id of Reagent
+    id: ID
+    # ids is list variant of id of Reagent
+    ids: [ID]
+    # name of Reagent
+    name: String
+    # names is list variant of name of Reagent
+    names: [String]
+    orderBy: [_ReagentOrdering]
+  ): Reagent!
+  # ReagentLot received_by Molecular_Lab_User
+  received_by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User
+  # received_date of  ReagentLot
+  received_date: String
+  # status of  ReagentLot
+  status: Reagent_Status!
+}
+
+# Sample-Node
+type Sample implements HasStatus {
+  # internal node id
+  _id: Long
+  # Sample case Case
+  case(
+    # created_date of Case
+    created_date: String
+    # created_dates is list variant of created_date of Case
+    created_dates: [String]
+    filter: _CaseFilter
+    # id of Case
+    id: ID
+    # ids is list variant of id of Case
+    ids: [ID]
+    orderBy: [_CaseOrdering]
+  ): Case
+  # collected_date of  Sample
+  collected_date: String!
+  # comments of  Sample
+  comments: String!
+  # id of  Sample
+  id: ID!
+  # ml_order_id of  Sample
+  ml_order_id: String
+  # mrn of  Sample
+  mrn: String!
+  # Sample ordered_by Physician
+  ordered_by(
+    # badge_id of Physician
+    badge_id: String
+    # badge_ids is list variant of badge_id of Physician
+    badge_ids: [String]
+    # degrees of Physician
+    degrees: String
+    # degreess is list variant of degrees of Physician
+    degreess: [String]
+    # email of Physician
+    email: String
+    # emails is list variant of email of Physician
+    emails: [String]
+    filter: _PhysicianFilter
+    # first_name of Physician
+    first_name: String
+    # first_names is list variant of first_name of Physician
+    first_names: [String]
+    # id of Physician
+    id: ID
+    # ids is list variant of id of Physician
+    ids: [ID]
+    # last_name of Physician
+    last_name: String
+    # last_names is list variant of last_name of Physician
+    last_names: [String]
+    # name_lower of Physician
+    name_lower: String
+    # name_lowers is list variant of name_lower of Physician
+    name_lowers: [String]
+    orderBy: [_PhysicianOrdering]
+    # phone_number of Physician
+    phone_number: String
+    # phone_numbers is list variant of phone_number of Physician
+    phone_numbers: [String]
+  ): Physician!
+  # Sample pathologist_qc Pathologist_QC
+  pathologist_qc(
+    # acceptance_value of Pathologist_QC
+    acceptance_value: QC_Acceptance_Value
+    # acceptance_values is list variant of acceptance_value of Pathologist_QC
+    acceptance_values: [QC_Acceptance_Value]
+    # diagnosis of Pathologist_QC
+    diagnosis: String
+    # diagnosiss is list variant of diagnosis of Pathologist_QC
+    diagnosiss: [String]
+    filter: _Pathologist_QCFilter
+    # id of Pathologist_QC
+    id: ID
+    # ids is list variant of id of Pathologist_QC
+    ids: [ID]
+    # macro_dissection_required of Pathologist_QC
+    macro_dissection_required: Boolean
+    # macro_dissection_requireds is list variant of macro_dissection_required of Pathologist_QC
+    macro_dissection_requireds: [Boolean]
+    orderBy: [_Pathologist_QCOrdering]
+    # percent_neoplastic_cells of Pathologist_QC
+    percent_neoplastic_cells: Float
+    # percent_neoplastic_cellss is list variant of percent_neoplastic_cells of Pathologist_QC
+    percent_neoplastic_cellss: [Float]
+    # qc_date of Pathologist_QC
+    qc_date: String
+    # qc_dates is list variant of qc_date of Pathologist_QC
+    qc_dates: [String]
+    # sample_size_mm2 of Pathologist_QC
+    sample_size_mm2: Float
+    # sample_size_mm2s is list variant of sample_size_mm2 of Pathologist_QC
+    sample_size_mm2s: [Float]
+  ): Pathologist_QC
+  # patient_name of  Sample
+  patient_name: String!
+  # received_date of  Sample
+  received_date: String!
+  # received_order_id of  Sample
+  received_order_id: String!
+  # sample_id of  Sample
+  sample_id: String!
+  # sample_location of  Sample
+  sample_location: String!
+  # Sample sample_type Sample_Type
+  sample_type(
+    filter: _Sample_TypeFilter
+    # id of Sample_Type
+    id: ID
+    # ids is list variant of id of Sample_Type
+    ids: [ID]
+    # name of Sample_Type
+    name: String
+    # names is list variant of name of Sample_Type
+    names: [String]
+    orderBy: [_Sample_TypeOrdering]
+    # requires_pathologist_qc of Sample_Type
+    requires_pathologist_qc: Boolean
+    # requires_pathologist_qcs is list variant of requires_pathologist_qc of Sample_Type
+    requires_pathologist_qcs: [Boolean]
+  ): Sample_Type!
+  # search_string_lower of  Sample
+  search_string_lower: String!
+  # Sample status StatusUpdate
+  status(
+    # comments of StatusUpdate
+    comments: String
+    # commentss is list variant of comments of StatusUpdate
+    commentss: [String]
+    # date of StatusUpdate
+    date: String
+    # dates is list variant of date of StatusUpdate
+    dates: [String]
+    filter: _StatusUpdateFilter
+    # id of StatusUpdate
+    id: ID
+    # ids is list variant of id of StatusUpdate
+    ids: [ID]
+    orderBy: [_StatusUpdateOrdering]
+    # rejected_reason of StatusUpdate
+    rejected_reason: Sample_Rejection_Reason_Fields
+    # rejected_reasons is list variant of rejected_reason of StatusUpdate
+    rejected_reasons: [Sample_Rejection_Reason_Fields]
+    # status of StatusUpdate
+    status: acceptedStatus
+    # statuss is list variant of status of StatusUpdate
+    statuss: [acceptedStatus]
+  ): StatusUpdate!
+}
+
+# Enum for Sample_Rejection_Reason_Fields
+enum Sample_Rejection_Reason_Fields {
+  # Value for failed_qc
+  failed_qc
+  # Value for missing_h_and_e
+  missing_h_and_e
+  # Value for no_order
+  no_order
+  # Value for none
+  none
+  # Value for other
+  other
+  # Value for quantity_not_sufficient
+  quantity_not_sufficient
+  # Value for sample_expired
+  sample_expired
+  # Value for wrong_sample_type
+  wrong_sample_type
+}
+
+# Sample_Type-Node
+type Sample_Type {
+  # internal node id
+  _id: Long
+  # id of  Sample_Type
+  id: ID!
+  # name of  Sample_Type
+  name: String!
+  # requires_pathologist_qc of  Sample_Type
+  requires_pathologist_qc: Boolean!
+}
+
+# StatusUpdate-Node
+type StatusUpdate {
+  # internal node id
+  _id: Long
+  # StatusUpdate by Molecular_Lab_User
+  by(
+    # canApproveReagent of Molecular_Lab_User
+    canApproveReagent: Boolean
+    # canApproveReagents is list variant of canApproveReagent of Molecular_Lab_User
+    canApproveReagents: [Boolean]
+    # canEditOrders of Molecular_Lab_User
+    canEditOrders: Boolean
+    # canEditOrderss is list variant of canEditOrders of Molecular_Lab_User
+    canEditOrderss: [Boolean]
+    # canEditPhysicians of Molecular_Lab_User
+    canEditPhysicians: Boolean
+    # canEditPhysicianss is list variant of canEditPhysicians of Molecular_Lab_User
+    canEditPhysicianss: [Boolean]
+    # canEditTests of Molecular_Lab_User
+    canEditTests: Boolean
+    # canEditTestss is list variant of canEditTests of Molecular_Lab_User
+    canEditTestss: [Boolean]
+    # canEditUsers of Molecular_Lab_User
+    canEditUsers: Boolean
+    # canEditUserss is list variant of canEditUsers of Molecular_Lab_User
+    canEditUserss: [Boolean]
+    # canQC of Molecular_Lab_User
+    canQC: Boolean
+    # canQCs is list variant of canQC of Molecular_Lab_User
+    canQCs: [Boolean]
+    filter: _Molecular_Lab_UserFilter
+    # first_name of Molecular_Lab_User
+    first_name: String
+    # first_names is list variant of first_name of Molecular_Lab_User
+    first_names: [String]
+    # id of Molecular_Lab_User
+    id: ID
+    # ids is list variant of id of Molecular_Lab_User
+    ids: [ID]
+    # last_name of Molecular_Lab_User
+    last_name: String
+    # last_names is list variant of last_name of Molecular_Lab_User
+    last_names: [String]
+    # name_lower of Molecular_Lab_User
+    name_lower: String
+    # name_lowers is list variant of name_lower of Molecular_Lab_User
+    name_lowers: [String]
+    orderBy: [_Molecular_Lab_UserOrdering]
+    # password of Molecular_Lab_User
+    password: String
+    # passwords is list variant of password of Molecular_Lab_User
+    passwords: [String]
+    # user_name of Molecular_Lab_User
+    user_name: String
+    # user_names is list variant of user_name of Molecular_Lab_User
+    user_names: [String]
+  ): Molecular_Lab_User!
+  # comments of  StatusUpdate
+  comments: String
+  # date of  StatusUpdate
+  date: String!
+  # StatusUpdate hasStatus HasStatus
+  hasStatus(
+    filter: _HasStatusFilter
+    # id of HasStatus
+    id: ID
+    # ids is list variant of id of HasStatus
+    ids: [ID]
+    orderBy: [_HasStatusOrdering]
+  ): HasStatus!
+  # id of  StatusUpdate
+  id: ID!
+  # StatusUpdate previousStatus StatusUpdate
+  previousStatus(
+    # comments of StatusUpdate
+    comments: String
+    # commentss is list variant of comments of StatusUpdate
+    commentss: [String]
+    # date of StatusUpdate
+    date: String
+    # dates is list variant of date of StatusUpdate
+    dates: [String]
+    filter: _StatusUpdateFilter
+    # id of StatusUpdate
+    id: ID
+    # ids is list variant of id of StatusUpdate
+    ids: [ID]
+    orderBy: [_StatusUpdateOrdering]
+    # rejected_reason of StatusUpdate
+    rejected_reason: Sample_Rejection_Reason_Fields
+    # rejected_reasons is list variant of rejected_reason of StatusUpdate
+    rejected_reasons: [Sample_Rejection_Reason_Fields]
+    # status of StatusUpdate
+    status: acceptedStatus
+    # statuss is list variant of status of StatusUpdate
+    statuss: [acceptedStatus]
+  ): StatusUpdate
+  # rejected_reason of  StatusUpdate
+  rejected_reason: Sample_Rejection_Reason_Fields
+  # status of  StatusUpdate
+  status: acceptedStatus!
+}
+

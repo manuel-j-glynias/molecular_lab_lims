@@ -1,0 +1,416 @@
+.Tests__ContainerContainer{
+    height: 850px;
+    display: flex;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 100%;
+}
+.Tests__Container {
+    height: 900px;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 350px;
+}
+.Tests__Panel {
+    height: 220px;
+    width: 350px;
+    position: fixed;
+    background-color: #ececec;
+    border-bottom: 1px solid #919191;
+}
+.Tests__Panel_Wrapper {
+    height: 220px;
+}
+.Tests__Buttons {
+    height: 50px;
+    width: 250px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.Tests__Filter {
+    height: 120px;
+    width: 300px;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.Tests__Label {
+    font-size: 0.8rem;
+}
+.Tests__Title {
+    padding-top: 10px;
+    font-size: 1.5rem;
+}
+.Tests {
+    height: 100%;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 350px;
+    min-width: 350px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.Tests__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.Tests__item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #919191;
+    cursor: pointer;
+}
+
+.Tests__selected_item {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #919191;
+    cursor: pointer;
+    color: blue;
+}
+.btn {
+    display: inline-block;
+    background-color: #005198;
+    color: #cccccc;
+    padding: 0.4rem 0.4rem;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+    margin-left: 0.4rem;
+    outline: none;
+    transition: all 0.2s ease-in;
+}
+.btn:disabled {
+    text-decoration: line-through;
+}
+.btn.btn-primary {
+    background-color: #005198;
+    color: #fff;
+}
+.btn.btn-primary:hover {
+    background: #1ab6cf;
+}
+.btn.btn-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+.btn.btn-dark:hover {
+    background: #3f474e;
+}
+.btn.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+.btn.btn-success:hover {
+    background: #2dbc4e;
+}
+.btn.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+.btn.btn-danger:hover {
+    background: #e04b59;
+}
+.btn:hover {
+    background: #626d78;
+    color: #fff;
+}
+
+.filter_text_input {
+    text-align: left;
+    width: 220px;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-right: 0.5rem;
+}
+
+.add_gene_input {
+    text-align: left;
+    width: 100px;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-right: 0.5rem;
+}
+
+
+.Tests__Details_Panel {
+    height: 800px;
+    width: 1300px;
+    padding-top: 10px;
+    /*padding-left: 20px;*/
+    background-color: white;
+}
+.Tests__Details_Panel_Select {
+    height: 450px;
+    width: 1300px;
+    padding-top: 10px;
+    /*padding-left: 20px;*/
+    background-color: white;
+}
+.Tests__DetailsTable {
+    display: table;
+    width: 1300px;
+}
+
+
+.Tests__DetailsRow {
+    display: table-row;
+}
+
+.Tests__DetailsCellLeft {
+    display: table-cell;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: small;
+}
+.Tests__DetailsCellLeftLong {
+    display: table-cell;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 150px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: small;
+}
+.Tests__DetailsCellRight {
+    display: table-cell;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 250px;
+    font-family: 'Lato', sans-serif;
+    font-size: small;
+}
+.Tests__DetailsCellRightLong {
+    display: table-cell;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 500px;
+    font-family: 'Lato', sans-serif;
+    font-size: small;
+}
+.Tests__ShortTextarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 25px;
+    /*padding: 0.4rem;*/
+    font-size: small;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+
+.Tests__Table_Container
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: white;
+    width: 1300px;
+    height: 350px;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    overflow: scroll;
+
+}
+.Tests__Table {
+    display: table;
+    width: 1300px;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+
+}
+.Tests__TableWrapper
+{
+    border: 1px solid red;
+    width: 1300px;
+    overflow: auto;
+}
+.Tests__Header_Row
+{
+    display: table-header-group;
+    font-weight: bold;
+    text-align: center;
+    width:auto;
+}
+
+.Tests__Row {
+    display: table-row;
+    width:auto;
+}
+
+.Tests__Table_Cell_Small
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-size: small;
+    background-color:white;
+}
+.Tests__Table_Cell_Small_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-size: small;
+    background-color:cyan;
+}
+.Tests__Table_Cell_Medium
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: small;
+    background-color:white;
+
+}
+.Tests__Table_Cell_Large
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: small;
+    background-color:white;
+
+}
+.Tests__Table_Cell_Medium_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: small;
+    background-color:cyan;
+
+}
+.Tests__Table_Cell_Large_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: small;
+    background-color:cyan;
+
+}
+
+.Vertical_Spacer_10 {
+    height: 10px;
+}
+
+.Tests__radio_choice {
+    padding-right: 50px;
+}
+
+.Tests__ScrollableContainer {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: white;
+    width: 95%;
+    height: 150px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    overflow: scroll;
+}
+.Tests__DiagnosisLabel {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 400px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: small;
+}
+.Tests__diagnosis_item {
+     cursor: pointer;
+}
+.Tests__EditingScrollableContainer {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: white;
+    width: 95%;
+    height: 300px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    overflow: scroll;
+}
+.Tests__DiagnosisShortTextarea {
+    display: block;
+    text-align: left;
+    width: 70%;
+    height: 25px;
+    font-size: small;
+    border: 1px solid #ccc;
+    font: inherit;
+}

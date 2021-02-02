@@ -1,0 +1,301 @@
+.ResolveSamples__Container {
+    height: 900px;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 100%;
+}
+
+.ResolveSamples__Table_Container
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: white;
+    width: 1300px;
+    height: 150px;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    overflow: scroll;
+
+}
+.ResolveSamples__Table {
+    display: table;
+    width: 1300px;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+
+}
+.ResolveSamples__TableWrapper
+{
+    border: 1px solid red;
+    width: 1300px;
+    overflow: auto;
+}
+.ResolveSamples__Header_Row
+{
+    display: table-header-group;
+    font-weight: bold;
+    text-align: center;
+    width:auto;
+}
+
+.ResolveSamples__Row {
+    display: table-row;
+    width:auto;
+}
+
+.ResolveSamples__Table_Cell_Small
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-size: small;
+    background-color:white;
+}
+.ResolveSamples__Table_Cell_Small_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-size: small;
+    background-color:cyan;
+}
+.ResolveSamples__Table_Cell_Medium
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: small;
+    background-color:white;
+
+}
+.ResolveSamples__Table_Cell_Large
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: small;
+    background-color:white;
+
+}
+.ResolveSamples__Table_Cell_Medium_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: small;
+    background-color:cyan;
+
+}
+.ResolveSamples__Table_Cell_Large_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: small;
+    background-color:cyan;
+
+}
+.ResolveSamples__Buttons {
+    height: 50px;
+    width: 250px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+.ResolveSamples__Filter {
+    height: 120px;
+    width: 300px;
+    padding-top: 20px;
+    padding-left: 400px;
+}
+
+.ResolveSamples__filter_text_input {
+    text-align: left;
+    width: 320px;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-right: 0.5rem;
+}
+
+.Vertical_Spacer_10 {
+    height: 10px;
+}
+.Vertical_SpacerWithBorder_10 {
+    height: 10px;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    width: 1300px;
+}
+.ResolveSamples__Details_Panel {
+    height: 400px;
+    width: 1300px;
+    padding-top: 10px;
+    /*padding-left: 20px;*/
+    background-color: white;
+}
+.ResolveSamples__Details_Panel_Select {
+    height: 450px;
+    width: 1300px;
+    padding-top: 10px;
+    /*padding-left: 20px;*/
+    background-color: white;
+}
+.ResolveSamples__DetailsTable {
+    display: table;
+    width: 1300px;
+}
+
+
+.ResolveSamples__DetailsRow {
+    display: table-row;
+}
+
+.ResolveSamples__DetailsCellLeft {
+    display: table-cell;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: small;
+}
+.ResolveSamples__DetailsCellRight {
+    display: table-cell;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 400px;
+    font-family: 'Lato', sans-serif;
+    font-size: small;
+}
+
+.ResolveSamples__Comments_Panel {
+    height: 120px;
+    width: 1300px;
+    padding-top: 10px;
+    /*padding-left: 20px;*/
+    background-color: white;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+
+}
+.ResolveSamples__Textarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 75px;
+    padding: 0.4rem;
+    font-size: small;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+.ResolveSamples__ShortTextarea {
+    display: block;
+    text-align: left;
+    width: 95%;
+    height: 25px;
+    /*padding: 0.4rem;*/
+    font-size: small;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+.ResolveSamples__select {
+    display: inline-block;
+    width: 250px;
+}
+.ResolveSamples__selectButton {
+    padding-left: 200px;
+}
+.ResolveSamples__btn {
+    display: inline-block;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 5rem;
+    outline: none;
+    width: 200px;
+    transition: all 0.2s ease-in;
+}
+
+.ResolveSamples__btn:disabled {
+    text-decoration: line-through;
+    background-color: lightgrey;
+    color: white;
+}
+.ResolveSamples__btn.btn-primary {
+    background-color: #17a2b8;
+    color: #fff;
+}
+.ResolveSamples__btn.btn-primary:hover {
+    background: #1ab6cf;
+}
+
+.ResolveSamples__Button_Panel {
+    height: 50px;
+    width: 950px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+.ResolveSamples__Notes_Panel {
+    height: 80px;
+    width: 1300px;
+    padding-top: 10px;
+    background-color: white;
+}

@@ -1,0 +1,207 @@
+.Inquiry__Container {
+    height: 900px;
+    overflow: hidden auto;
+    background-color: #ececec;
+    width: 100%;
+}
+.Inquiry__Table_Container
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    background-color: white;
+    width: 1300px;
+    height: 600px;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    overflow: scroll;
+
+}
+.Inquiry__Table {
+    display: table;
+    width: 1300px;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+
+}
+.Inquiry__TableWrapper
+{
+    border: 1px solid red;
+    width: 1300px;
+    overflow: auto;
+}
+.Inquiry__Header_Row
+{
+    display: table-header-group;
+    font-weight: bold;
+    text-align: center;
+    width:auto;
+}
+
+.Inquiry__Row {
+    display: table-row;
+    width:auto;
+}
+
+.Inquiry__Table_Cell_Small
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-size: small;
+    background-color:white;
+}
+.Inquiry__Table_Cell_Small_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100px;
+    font-size: small;
+    background-color:cyan;
+}
+.Inquiry__Table_Cell_Medium
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: small;
+    background-color:white;
+
+}
+.Inquiry__Table_Cell_Large
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: small;
+    background-color:white;
+
+}
+.Inquiry__Table_Cell_Medium_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: small;
+    background-color:cyan;
+
+}
+.Inquiry__Table_Cell_Large_selected
+{
+    display: table-cell;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 200px;
+    font-size: small;
+    background-color:cyan;
+
+}
+.Inquiry__Buttons {
+    height: 50px;
+    width: 250px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+.Inquiry__Filter {
+    height: 120px;
+    width: 300px;
+    padding-top: 20px;
+    padding-left: 700px;
+}
+
+.Inquiry__filter_text_input {
+    text-align: left;
+    width: 320px;
+    padding: 0.3rem;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    font: inherit;
+    margin-right: 0.5rem;
+}
+
+.Vertical_Spacer_10 {
+    height: 10px;
+}
+.Vertical_SpacerWithBorder_10 {
+    height: 10px;
+    border-top-style: solid;
+    border-width: thin;
+    border-color: #0055BF;
+    width: 1300px;
+}
+
+.Inquiry__btn {
+    display: inline-block;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 5rem;
+    outline: none;
+    width: 200px;
+    transition: all 0.2s ease-in;
+}
+.Inquiry__btn:disabled {
+    text-decoration: line-through;
+}
+.Inquiry__btn.btn-primary {
+    background-color: #17a2b8;
+    color: #fff;
+}
+.Inquiry__btn.btn-primary:hover {
+    background: #1ab6cf;
+}
+.Inquiry__Button_Panel {
+    height: 50px;
+    width: 950px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
